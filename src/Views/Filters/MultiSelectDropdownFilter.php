@@ -16,7 +16,7 @@ class MultiSelectDropdownFilter extends Filter
         return $this;
     }
 
-    public function setFirstOption(string $firstOption): SelectFilter
+    public function setFirstOption(string $firstOption)
     {
         $this->firstOption = $firstOption;
 

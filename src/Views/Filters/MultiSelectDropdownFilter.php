@@ -8,6 +8,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 class MultiSelectDropdownFilter extends Filter
 {
     protected array $options = [];
+    protected string $firstOption = "";
 
     public function options(array $options = []): MultiSelectDropdownFilter
     {

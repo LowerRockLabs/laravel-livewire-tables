@@ -88,6 +88,31 @@ public function filters(): array
 }
 ```
 
+### The default value
+
+You should supply the first option as the default value. I.e. nothing selected, so the filter is not applied. This value should be an empty string. When this value is selected, the filter will be removed from the query and the query string.
+
+When creating options from a Query or Builder function, you can use the setFirstOption() below to set this instead
+
+```php
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
+
+public function filters(): array
+{
+    return [
+        SelectFilter::make('Tags')
+            ->options(
+                Tag::query()
+                    ->orderBy('name')
+                    ->get()
+                    ->keyBy('id')
+                    ->map(fn($tag) => $tag->name)
+                    ->toArray()
+            )
+            ->setFirstOption('All Tags'),
+    ];
+}
+```
 ## Multi-select Filters
 
 Multi-select filters are a list of checkboxes. The user can select multiple options from the list. There is also an 'All' option that will select all values.

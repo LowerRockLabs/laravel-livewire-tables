@@ -187,4 +187,12 @@ trait BulkActionsHelpers
         $this->setSelectAllEnabled();
         $this->setSelected((clone $this->baseQuery())->pluck($this->getPrimaryKey())->map(fn ($item) => (string)$item)->toArray());
     }
+
+    /**
+     * Set select all and get all ids for selected
+     */
+    public function setAllVisibleSelected(): void
+    {
+        $this->setSelected((clone $this->baseQuery()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName()))->pluck($this->getPrimaryKey())->map(fn ($item) => (string)$item)->toArray());
+    }
 }

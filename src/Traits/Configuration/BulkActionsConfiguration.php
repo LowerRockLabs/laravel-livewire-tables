@@ -128,6 +128,5 @@ trait BulkActionsConfiguration
         $this->bulkSelectionsTdClasses = $classList;
 
         return $this;
-
     }
 }

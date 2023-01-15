@@ -30,6 +30,7 @@ This is a fork of the brilliant Rappsoft Laravel Livewire Tables, with the follo
   [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/943)
 
 * Added functionality to "select all on page" when using Bulk Actions
+
   [Pull Request](https://github.com/rappasoft/laravel-livewire-tables/pull/1023)
 
 A dynamic Laravel Livewire component for data tables.

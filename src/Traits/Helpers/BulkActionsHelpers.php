@@ -193,6 +193,6 @@ trait BulkActionsHelpers
      */
     public function setAllVisibleSelected(): void
     {
-        $this->setSelected((clone $this->baseQuery()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName()))->pluck($this->getPrimaryKey())->map(fn ($item) => (string)$item)->toArray());
+        $this->selected = array_unique(array_merge($this->selected, (clone $this->baseQuery()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName()))->pluck($this->getPrimaryKey())->map(fn ($item) => (string)$item)->toArray()));
     }
 }

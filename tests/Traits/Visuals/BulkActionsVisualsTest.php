@@ -42,11 +42,11 @@ class BulkActionsVisualsTest extends TestCase
     {
         Livewire::test(PetsTable::class)
             ->call('setBulkActionsDisabled')
-            ->assertDontSeeHtml('wire:model="selected"')
+            ->assertDontSeeHtml('wire:model="selected.3"')
             ->call('setBulkActionsEnabled')
-            ->assertDontSeeHtml('wire:model="selected"')
+            ->assertDontSeeHtml('wire:model="selected.3"')
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->assertSeeHtml('wire:model="selected"');
+            ->assertSeeHtml('wire:model="selected.3"');
     }
 
     /** @test */

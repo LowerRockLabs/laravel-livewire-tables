@@ -1,7 +1,7 @@
 name: run-tests
 
 on:
-  push:s
+  push:
     branches-ignore:
       - master
       - main

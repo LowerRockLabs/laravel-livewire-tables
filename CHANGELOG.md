@@ -37,6 +37,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
   - php-cs-fixer - (For Badge) - https://github.com/rappasoft/laravel-livewire-tables/pull/1125 / https://github.com/rappasoft/laravel-livewire-tables/pull/1126
 
 - Testing
+  - Split the run-tests into "run-tests" and "run-tests-pull" to avoid clashing when doing a PR (both run simultaneously)   
   - Significant quantity of tests, improving test coverage from 81% to 91% - https://github.com/rappasoft/laravel-livewire-tables/pull/1137
   - General DocType/TypeHint Fixes https://github.com/rappasoft/laravel-livewire-tables/pull/1133
 

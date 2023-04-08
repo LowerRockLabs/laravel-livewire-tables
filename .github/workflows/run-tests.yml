@@ -3,6 +3,7 @@ name: run-tests
 on:
   push:
     branches-ignore:
+      - master
       - main
 
 jobs:

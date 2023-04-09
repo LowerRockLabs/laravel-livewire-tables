@@ -10,7 +10,6 @@ on:
 jobs:
   test:
     runs-on: ${{ matrix.os }}
-    container: shivammathur/node:jammy-amd64
     strategy:
       fail-fast: false
       matrix:
@@ -21,6 +20,12 @@ jobs:
         exclude:
           - laravel: 10
             php: 8.0
+          - laravel: 9
+            php: 8.1
+          - laravel: 9
+            php: 8.0
+          - laravel: 8
+            php: 8.1
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
@@ -38,6 +43,7 @@ jobs:
           coverage: none
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          phpts: ts
 
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"

@@ -6,8 +6,12 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ### Changed
 - General
-  - Add capability for passing a custom model path to the MakeCommand
-  
+  - Add capability for passing a custom model path to the MakeCommand - https://github.com/rappasoft/laravel-livewire-tables/pull/1168
+  - Collapsed Columns Enhancements - https://github.com/rappasoft/laravel-livewire-tables/pull/1169
+    - Uses PrimaryKey rather than Row #
+    - State persists across pages
+    - Remediates issues with 
+
 - Filters
   - *Fix* - Changed the booting order to prevent repeated calling of filters() - https://github.com/rappasoft/laravel-livewire-tables/pull/1166 
   - *Fix* - fixed multiSelectDropdownFilter in menus - https://github.com/rappasoft/laravel-livewire-tables/pull/1160 

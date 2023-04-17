@@ -9,9 +9,10 @@
     @if ($theme === 'tailwind')
         <td
 
-            @if (! $hidden) 
-                x-init="rowExpanded = visibleRows[{{ $row->{$component->getPrimaryKey()} }}] ?? false; 
-                $watch('visibleRows[{{ $row->{$component->getPrimaryKey()} }}]', (value, oldValue) => rowExpanded = value);"
+            @if (!$hidden) 
+                x-data="{ currentlyExpanded: false }"
+                x-init="currentlyExpanded = visibleRows[{{ $row->{$component->getPrimaryKey()} }}] ?? false; 
+                $watch('visibleRows[{{ $row->{$component->getPrimaryKey()} }}]', (value, oldValue) => currentlyExpanded = value);"
             @endif
             {{
                 $attributes
@@ -26,13 +27,13 @@
         >
             @if (! $hidden)
                 <button
-                    x-on:click.prevent="rowExpanded = !rowExpanded; visibleRows[{{ $row->{$component->getPrimaryKey()} }}] = rowExpanded;"
+                    x-on:click.prevent="currentlyExpanded = !currentlyExpanded; visibleRows[{{ $row->{$component->getPrimaryKey()} }}] = currentlyExpanded;"
                 >
-                    <svg x-show="!rowExpanded" xmlns="http://www.w3.org/2000/svg"  class="text-green-600 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg x-show="!currentlyExpanded" xmlns="http://www.w3.org/2000/svg"  class="text-green-600 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
 
-                    <svg x-cloak x-show="rowExpanded" xmlns="http://www.w3.org/2000/svg" class="text-yellow-600 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg x-cloak x-show="currentlyExpanded" xmlns="http://www.w3.org/2000/svg" class="text-yellow-600 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </button>

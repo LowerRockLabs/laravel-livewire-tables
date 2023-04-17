@@ -10,7 +10,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
   - Collapsed Columns Enhancements - https://github.com/rappasoft/laravel-livewire-tables/pull/1169
     - Uses PrimaryKey rather than Row #
     - State persists across pages
-    - Remediates issues with 
+    - Remediates issues where Icon persists on tablet/mobile
 
 - Filters
   - *Fix* - Changed the booting order to prevent repeated calling of filters() - https://github.com/rappasoft/laravel-livewire-tables/pull/1166 

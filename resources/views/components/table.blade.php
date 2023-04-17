@@ -59,8 +59,7 @@
             ->class(['table-responsive' => $customAttributes['wrapper']['default'] ?? true])
             ->except('default')
     }}>
-        <table x-data="{ visibleRows: $wire.entangle('collapsedColumnStatuses').defer, totalRows: $wire.entangle('paginationCurrentCount').defer }"
-        {{
+        <table {{
             $attributes->merge($customAttributes['table'])
                 ->class(['table table-striped' => $customAttributes['table']['default'] ?? true])
                 ->except('default')

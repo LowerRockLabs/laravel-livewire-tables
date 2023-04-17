@@ -8,7 +8,6 @@
 
     @if ($theme === 'tailwind')
         <td
-            x-data="{ rowExpanded: false }" 
 
             @if (! $hidden) 
                 x-init="rowExpanded = visibleRows[{{ $row->{$component->getPrimaryKey()} }}] ?? false; 

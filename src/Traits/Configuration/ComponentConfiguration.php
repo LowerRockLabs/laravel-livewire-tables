@@ -391,7 +391,6 @@ trait ComponentConfiguration
 
         return $this;
     }
-
     
     /**
      * @param bool $persistentColumnCollapsedState

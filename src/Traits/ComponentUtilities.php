@@ -50,6 +50,8 @@ trait ComponentUtilities
         'before-pagination' => null,
         'after-pagination' => null,
     ];
+    public array $collapsedColumnStatuses = [];
+    protected bool $persistentColumnCollapsedState = false;
 
     /**
      * Set the custom query string array for this specific table

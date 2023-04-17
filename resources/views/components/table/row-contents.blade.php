@@ -23,11 +23,12 @@
 
     @if ($theme === 'tailwind')
         <tr
-            wire:key="row-{{ $rowIndex }}-collapsed-contents"
+            wire:key="row-{{ $row->{$component->getPrimaryKey()} }}-collapsed-contents"
             wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
-            x-data
-            @toggle-row-content.window="$event.detail.row === {{ $rowIndex }} ? $el.classList.toggle('hidden') : null"
-            class="hidden md:hidden bg-white dark:bg-gray-700 dark:text-white"
+            x-data = "{ rowExpanded: visibleRows[{{ $row->{$component->getPrimaryKey()} }}] ?? false }"
+            x-init="$watch('visibleRows[{{ $row->{$component->getPrimaryKey()} }}]', (value, oldValue) => rowExpanded = value);"
+            x-show="rowExpanded"
+            class="bg-white dark:bg-gray-700 dark:text-white"
         >
             <td class="pt-4 pb-2 px-4" colspan="{{ $colspan }}">
                 <div>
@@ -44,10 +45,10 @@
         </tr>
     @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
         <tr
-            wire:key="row-{{ $rowIndex }}-collapsed-contents"
-            x-data
-            @toggle-row-content.window="$event.detail.row === {{ $rowIndex }} ? $el.classList.toggle('d-none') : null"
-            class="d-none d-md-none"
+            wire:key="row-{{ $row->{$component->getPrimaryKey()} }}-collapsed-contents"
+            x-data = "{ rowExpanded: visibleRows[{{ $row->{$component->getPrimaryKey()} }}] ?? false }"
+            x-init="$watch('visibleRows[{{ $row->{$component->getPrimaryKey()} }}]', (value, oldValue) => rowExpanded = value);"
+            x-show="rowExpanded"
         >
             <td class="pt-3 p-2" colspan="{{ $colspan }}">
                 <div>

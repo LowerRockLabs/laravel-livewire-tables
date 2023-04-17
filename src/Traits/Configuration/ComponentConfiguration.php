@@ -391,4 +391,17 @@ trait ComponentConfiguration
 
         return $this;
     }
+
+    
+    /**
+     * @param bool $persistentColumnCollapsedState
+     *
+     * @return self
+     */
+    public function setPersistentColumnCollapsedState(bool $persistentColumnCollapsedState): self
+    {
+        $this->persistentColumnCollapsedState = $persistentColumnCollapsedState;
+
+        return $this;
+    }
 }

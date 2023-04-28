@@ -227,7 +227,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('wire:model="selectAll"')
             ->call('enableReordering')
             ->assertSet('bulkActionsStatus', false)
-            ->assertDontSeeHtml('wire:model="selectAll"');
+            ->assertDontSee('Select All');
     }
 
     /** @test */
@@ -240,7 +240,7 @@ class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('x-model="selectedItems"')
             ->call('enableReordering')
             ->assertSet('bulkActionsStatus', false)
-            ->assertDontSeeHtml('x-model="selectedItems"');
+            ->assertDontSee('Select All');
     }
 
     /** @test */

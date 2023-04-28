@@ -139,9 +139,9 @@ class PaginationVisualsTest extends TestCase
         Livewire::test(PetsTable::class)
             ->call('setPerPageAccepted', [10, 25, 50, -1])
             ->assertSeeHtmlInOrder(
-                ['<option value="10" wire:key="per-page-10-table">10</option>', 
-            '<option value="25" wire:key="per-page-25-table">25</option>', 
-            '<option value="50" wire:key="per-page-50-table">50</option>', 
+                ['<option value="10" wire:key="per-page-10-table">10</option>',
+            '<option value="25" wire:key="per-page-25-table">25</option>',
+            '<option value="50" wire:key="per-page-50-table">50</option>',
             '<option value="-1" wire:key="per-page--1-table">All</option>'
         ]);
     }*/

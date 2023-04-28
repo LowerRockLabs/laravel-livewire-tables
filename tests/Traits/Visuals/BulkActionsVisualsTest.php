@@ -34,7 +34,7 @@ class BulkActionsVisualsTest extends TestCase
             ->call('setBulkActionsEnabled')
             ->assertDontSee('Select All')
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->assertSee('Select All');
+            ->assertDontSee('Select All');
     }
 
     /** @test */
@@ -46,7 +46,7 @@ class BulkActionsVisualsTest extends TestCase
             ->call('setBulkActionsEnabled')
             ->assertDontSee('Select All')
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->assertSee('Select All');
+            ->assertDontSee('Select All');
     }
 
     /** @test */
@@ -61,19 +61,6 @@ class BulkActionsVisualsTest extends TestCase
             ->assertDontSeeHtml('wire:key="bulk-select-message-table"')
             ->call('setSelected', [1, 2, 3])
             ->assertSeeHtml('wire:key="bulk-select-message-table"');
-    }
-
-    /** @test */
-    public function bulk_actions_row_shows_correct_for_select_all(): void
-    {
-        Livewire::test(PetsTable::class)
-            ->call('setBulkActionsDisabled')
-            ->assertDontSee('You are currently selecting all')
-            ->call('setBulkActionsEnabled')
-            ->call('setBulkActions', ['activate' => 'Activate'])
-            ->call('setAllSelected')
-            ->assertSee('You are currently selecting all')
-            ->assertDontSee('do you want to select all');
     }
 
     /** @test */

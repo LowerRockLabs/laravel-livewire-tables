@@ -9,6 +9,13 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 class BulkActionsVisualsTest extends TestCase
 {
     /** @test */
+    public function bulk_dropdown_shows_when_necessary(): void
+    {
+        Livewire::test(PetsTable::class)
+        ->assertDontSee('No items found. Try to broaden your search.');
+    }
+
+    /** @test */
     /*
     public function bulk_dropdown_shows_when_necessary(): void
     {

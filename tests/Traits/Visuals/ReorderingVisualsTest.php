@@ -264,7 +264,7 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSet('bulkActionsStatus', true)
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->call('setSelected', [1, 2, 3])s
+            ->call('setSelected', [1, 2, 3])
             ->assertSee('do you want to select all')
             ->call('enableReordering')
             ->assertSet('bulkActionsStatus', false)

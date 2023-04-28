@@ -34,7 +34,7 @@ class BulkActionsVisualsTest extends TestCase
             ->call('setBulkActionsEnabled')
             ->assertDontSee('Select All')
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->assertSee('Select All')
+            ->assertSee('Select All');
     }
 
     /** @test */
@@ -46,7 +46,7 @@ class BulkActionsVisualsTest extends TestCase
             ->call('setBulkActionsEnabled')
             ->assertDontSee('Select All')
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->assertSee('Select All')
+            ->assertSee('Select All');
     }
 
     /** @test */

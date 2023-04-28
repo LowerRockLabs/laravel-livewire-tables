@@ -195,5 +195,4 @@ trait BulkActionsHelpers
     {
         return ($this->bulkActionsAreEnabled() && $this->hasBulkActions());
     }
-
 }

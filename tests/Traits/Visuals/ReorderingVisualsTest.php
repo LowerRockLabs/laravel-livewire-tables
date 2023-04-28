@@ -237,10 +237,10 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSet('bulkActionsStatus', true)
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->assertSeeHtml('wire:model="selected"')
+            ->assertSeeHtml('x-model="selectedItems"')
             ->call('enableReordering')
             ->assertSet('bulkActionsStatus', false)
-            ->assertDontSeeHtml('wire:model="selected"');
+            ->assertDontSeeHtml('x-model="selectedItems"');
     }
 
     /** @test */
@@ -264,7 +264,7 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->assertSet('bulkActionsStatus', true)
             ->call('setBulkActions', ['activate' => 'Activate'])
-            ->call('setSelected', [1, 2, 3])
+            ->call('setSelected', [1, 2, 3])s
             ->assertSee('do you want to select all')
             ->call('enableReordering')
             ->assertSet('bulkActionsStatus', false)

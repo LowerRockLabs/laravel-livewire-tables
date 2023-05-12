@@ -15,7 +15,8 @@
         <x-livewire-tables::table.tr.plain 
             wire:key="bulk-select-message-{{ $table }}"
             class="bg-indigo-50 dark:bg-gray-900 dark:text-white" 
-            x-show="shouldShowBulkActionSelect">
+            x-show="shouldShowBulkActionSelect"
+        >
             <x-livewire-tables::table.td.plain :colspan="$colspan">
                 <template x-if="allItemsSelected">
                     <div wire:key="all-selected-{{ $table }}">
@@ -31,7 +32,8 @@
                             wire:click="clearSelected"
                             wire:loading.attr="disabled"
                             type="button"
-                            class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400">
+                            class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
+                        >
                             @lang('Deselect All')
                         </button>
                     </div>
@@ -78,8 +80,10 @@
             </x-livewire-tables::table.td.plain>
         </x-livewire-tables::table.tr.plain>
     @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
-        <x-livewire-tables::table.tr.plain wire:key="bulk-select-message-{{ $table }}"
-            x-show="shouldShowBulkActionSelect">
+        <x-livewire-tables::table.tr.plain 
+            wire:key="bulk-select-message-{{ $table }}"
+            x-show="shouldShowBulkActionSelect"
+        >
             <x-livewire-tables::table.td.plain :colspan="$colspan">
                 <template x-if="allItemsSelected">
                     <div wire:key="all-selected-{{ $table }}">

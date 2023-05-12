@@ -12,8 +12,10 @@
     @endphp
 
     @if ($theme === 'tailwind')
-        <x-livewire-tables::table.tr.plain wire:key="bulk-select-message-{{ $table }}"
-            class="bg-indigo-50 dark:bg-gray-900 dark:text-white" x-show="shouldShowBulkActionSelect">
+        <x-livewire-tables::table.tr.plain 
+            wire:key="bulk-select-message-{{ $table }}"
+            class="bg-indigo-50 dark:bg-gray-900 dark:text-white" 
+            x-show="shouldShowBulkActionSelect">
             <x-livewire-tables::table.td.plain :colspan="$colspan">
                 <template x-if="allItemsSelected">
                     <div wire:key="all-selected-{{ $table }}">
@@ -25,7 +27,10 @@
                             @lang('rows').
                         </span>
 
-                        <button wire:click="clearSelected" wire:loading.attr="disabled" type="button"
+                        <button 
+                            wire:click="clearSelected" 
+                            wire:loading.attr="disabled" 
+                            type="button"
                             class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400">
                             @lang('Deselect All')
                         </button>
@@ -42,17 +47,26 @@
                             @endif
                         </span>
 
-                        <button x-on:click="selectAllOnPage()" wire:loading.attr="disabled" type="button"
+                        <button 
+                            x-on:click="selectAllOnPage()" 
+                            wire:loading.attr="disabled" 
+                            type="button"
                             class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400">
                             @lang('Select All On Page')
                         </button>&nbsp;
 
-                        <button wire:click="setAllSelected" wire:loading.attr="disabled" type="button"
+                        <button 
+                            wire:click="setAllSelected" 
+                            wire:loading.attr="disabled" 
+                            type="button"
                             class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400">
                             @lang('Select All')
                         </button>
 
-                        <button wire:click="clearSelected" wire:loading.attr="disabled" type="button"
+                        <button 
+                            wire:click="clearSelected" 
+                            wire:loading.attr="disabled" 
+                            type="button"
                             class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400">
                             @lang('Deselect All')
                         </button>
@@ -74,7 +88,10 @@
                             @lang('rows').
                         </span>
 
-                        <button wire:click="clearSelected" wire:loading.attr="disabled" type="button"
+                        <button 
+                            wire:click="clearSelected" 
+                            wire:loading.attr="disabled" 
+                            type="button"
                             class="btn btn-primary btn-sm">
                             @lang('Deselect All')
                         </button>
@@ -91,17 +108,26 @@
                             @endif
                         </span>
 
-                        <button x-on:click="selectAllOnPage()" wire:loading.attr="disabled" type="button"
+                        <button 
+                            x-on:click="selectAllOnPage()" 
+                            wire:loading.attr="disabled"
+                            type="button"
                             class="btn btn-primary btn-sm">
                             @lang('Select All On Page')
                         </button>&nbsp;
 
-                        <button wire:click="setAllSelected" wire:loading.attr="disabled" type="button"
+                        <button 
+                            wire:click="setAllSelected" 
+                            wire:loading.attr="disabled" 
+                            type="button"
                             class="btn btn-primary btn-sm">
                             @lang('Select All')
                         </button>
 
-                        <button wire:click="clearSelected" wire:loading.attr="disabled" type="button"
+                        <button 
+                            wire:click="clearSelected" 
+                            wire:loading.attr="disabled" 
+                            type="button"
                             class="btn btn-primary btn-sm">
                             @lang('Deselect All')
                         </button>

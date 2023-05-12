@@ -51,7 +51,8 @@
                             x-on:click="selectAllOnPage()"
                             wire:loading.attr="disabled"
                             type="button"
-                            class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400">
+                            class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
+                        >
                             @lang('Select All On Page')
                         </button>&nbsp;
 
@@ -59,7 +60,8 @@
                             wire:click="setAllSelected"
                             wire:loading.attr="disabled"
                             type="button"
-                            class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400">
+                            class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
+                        >
                             @lang('Select All')
                         </button>
 
@@ -67,7 +69,8 @@
                             wire:click="clearSelected"
                             wire:loading.attr="disabled"
                             type="button"
-                            class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400">
+                            class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
+                        >
                             @lang('Deselect All')
                         </button>
                     </div>
@@ -92,7 +95,8 @@
                             wire:click="clearSelected"
                             wire:loading.attr="disabled"
                             type="button"
-                            class="btn btn-primary btn-sm">
+                            class="btn btn-primary btn-sm"
+                        >
                             @lang('Deselect All')
                         </button>
                     </div>
@@ -112,7 +116,8 @@
                             x-on:click="selectAllOnPage()"
                             wire:loading.attr="disabled"
                             type="button"
-                            class="btn btn-primary btn-sm">
+                            class="btn btn-primary btn-sm"
+                        >
                             @lang('Select All On Page')
                         </button>&nbsp;
 
@@ -120,7 +125,8 @@
                             wire:click="setAllSelected"
                             wire:loading.attr="disabled"
                             type="button"
-                            class="btn btn-primary btn-sm">
+                            class="btn btn-primary btn-sm"
+                        >
                             @lang('Select All')
                         </button>
 
@@ -128,7 +134,8 @@
                             wire:click="clearSelected"
                             wire:loading.attr="disabled"
                             type="button"
-                            class="btn btn-primary btn-sm">
+                            class="btn btn-primary btn-sm"
+                        >
                             @lang('Deselect All')
                         </button>
                     </div>

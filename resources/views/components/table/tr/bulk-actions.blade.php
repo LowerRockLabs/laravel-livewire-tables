@@ -27,7 +27,7 @@
                             @lang('rows').
                         </span>
 
-                        <button 
+                        <button
                             wire:click="clearSelected"
                             wire:loading.attr="disabled"
                             type="button"
@@ -47,7 +47,7 @@
                             @endif
                         </span>
 
-                        <button 
+                        <button
                             x-on:click="selectAllOnPage()"
                             wire:loading.attr="disabled"
                             type="button"
@@ -55,7 +55,7 @@
                             @lang('Select All On Page')
                         </button>&nbsp;
 
-                        <button 
+                        <button
                             wire:click="setAllSelected"
                             wire:loading.attr="disabled"
                             type="button"
@@ -63,7 +63,7 @@
                             @lang('Select All')
                         </button>
 
-                        <button 
+                        <button
                             wire:click="clearSelected"
                             wire:loading.attr="disabled"
                             type="button"
@@ -88,7 +88,7 @@
                             @lang('rows').
                         </span>
 
-                        <button 
+                        <button
                             wire:click="clearSelected"
                             wire:loading.attr="disabled"
                             type="button"
@@ -108,7 +108,7 @@
                             @endif
                         </span>
 
-                        <button 
+                        <button
                             x-on:click="selectAllOnPage()"
                             wire:loading.attr="disabled"
                             type="button"
@@ -116,7 +116,7 @@
                             @lang('Select All On Page')
                         </button>&nbsp;
 
-                        <button 
+                        <button
                             wire:click="setAllSelected"
                             wire:loading.attr="disabled"
                             type="button"
@@ -124,7 +124,7 @@
                             @lang('Select All')
                         </button>
 
-                        <button 
+                        <button
                             wire:click="clearSelected"
                             wire:loading.attr="disabled"
                             type="button"

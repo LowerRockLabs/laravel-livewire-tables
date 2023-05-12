@@ -9,7 +9,7 @@
     @if ($theme === 'tailwind')
         <x-livewire-tables::table.td.plain>
             <div class="inline-flex rounded-md shadow-sm">
-                <input 
+                <input
                     wire:loading.attr.delay="disabled"
                     value="{{ $row->{$this->getPrimaryKey()} }}"
                     type="checkbox"
@@ -19,7 +19,7 @@
         </x-livewire-tables::table.td.plain>
     @elseif ($theme === 'bootstrap-4')
         <x-livewire-tables::table.td.plain>
-            <input 
+            <input
                 wire:loading.attr.delay="disabled"
                 value="{{ $row->{$this->getPrimaryKey()} }}"
                 type="checkbox"
@@ -28,7 +28,7 @@
     @elseif ($theme === 'bootstrap-5')
         <x-livewire-tables::table.td.plain>
             <div class="form-check">
-                <input 
+                <input
                     wire:loading.attr.delay="disabled"
                     value="{{ $row->{$this->getPrimaryKey()} }}"
                     type="checkbox"

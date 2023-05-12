@@ -22,9 +22,7 @@
                     <div wire:key="all-selected-{{ $table }}">
                         <span>
                             @lang('You are currently selecting all')
-                            @if (!$simplePagination)
-                                <strong>{{ number_format($rows->total()) }}</strong>
-                            @endif
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
                             @lang('rows').
                         </span>
 
@@ -44,9 +42,7 @@
                             @lang('You have selected')
                             <strong><span x-text="selectedCount"></span></strong>
                             @lang('rows, do you want to select all')
-                            @if (!$simplePagination)
-                                <strong>{{ number_format($rows->total()) }}</strong>
-                            @endif
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
                         </span>
 
                         <button
@@ -89,9 +85,7 @@
                     <div wire:key="all-selected-{{ $table }}">
                         <span>
                             @lang('You are currently selecting all')
-                            @if (!$simplePagination)
-                                <strong>{{ number_format($rows->total()) }}</strong>
-                            @endif
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
                             @lang('rows').
                         </span>
 
@@ -111,9 +105,7 @@
                             @lang('You have selected')
                             <strong><span x-text="selectedCount"></span></strong>
                             @lang('rows, do you want to select all')
-                            @if (!$simplePagination)
-                                <strong>{{ number_format($rows->total()) }}</strong>
-                            @endif
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
                         </span>
 
                         <button

@@ -136,8 +136,7 @@ trait FilterConfiguration
     public function setFilterValidationStatusDisabled()
     {
         $this->setFilterValidationStatus(false);
-        
+
         return $this;
     }
-
 }

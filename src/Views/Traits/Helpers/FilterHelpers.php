@@ -255,5 +255,4 @@ trait FilterHelpers
     {
         return $this->getFilterValidationStatus() == false;
     }
-
 }

@@ -240,4 +240,20 @@ trait FilterHelpers
     {
         return ! is_null($this->filterDefaultValue);
     }
+
+    public function getFilterValidationStatus(): bool
+    {
+        return $this->filterValidationStatus;
+    }
+
+    public function filterValidationIsEnabled(): bool
+    {
+        return $this->getFilterValidationStatus() == true;
+    }
+
+    public function filterValidationIsDisabled(): bool
+    {
+        return $this->getFilterValidationStatus() == false;
+    }
+
 }

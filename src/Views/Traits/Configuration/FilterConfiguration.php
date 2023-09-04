@@ -118,4 +118,26 @@ trait FilterConfiguration
 
         return $this;
     }
+
+    public function setFilterValidationStatus(bool $status): self
+    {
+        $this->filterValidationStatus = $status;
+
+        return $this;
+    }
+
+    public function setFilterValidationStatusEnabled()
+    {
+        $this->setFilterValidationStatus(true);
+
+        return $this;
+    }
+
+    public function setFilterValidationStatusDisabled()
+    {
+        $this->setFilterValidationStatus(false);
+        
+        return $this;
+    }
+
 }

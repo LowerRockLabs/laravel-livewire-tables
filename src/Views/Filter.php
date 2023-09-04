@@ -43,6 +43,8 @@ abstract class Filter
 
     protected mixed $filterDefaultValue = null;
 
+    protected bool $filterValidationStatus = true;
+
     public function __construct(string $name, string $key = null)
     {
         $this->name = $name;

@@ -363,3 +363,30 @@ If the filter takes any config options, you can set them with the `config` metho
         'max' => '2021-12-31',
     ])
 ```
+
+### setFilterValidationStatus(bool $status)
+
+Allows setting of built-in filter validation, for example - ensuring that DateFilter has a formatted date returned.  Default is enabled (true)
+
+```php
+SelectFilter::make('Active')
+    ->setFilterValidationStatus(true)
+```
+
+### setFilterValidationStatusEnabled()
+
+Default behaviour.  Enables built-in filter validation, for example - ensuring that DateFilter has a formatted date returned.
+```php
+SelectFilter::make('Active')
+    ->setFilterValidationStatusEnabled()
+```
+
+### setFilterValidationStatusDisabled() - Not Recommended
+
+Disables built-in filter validation, for example - ensuring that DateFilter has a formatted date returned.  
+
+```php
+SelectFilter::make('Active')
+    ->setFilterValidationStatusDisabled()
+```
+

@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
+use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterRenderData;
 
 trait FilterConfiguration
 {
@@ -121,4 +122,12 @@ trait FilterConfiguration
 
         return $this;
     }
+
+    public function setFilterRenderDTO(): self
+    {
+        $this->filterRenderDTO = (new FilterRenderData($this));
+
+        return $this;
+    }
+
 }

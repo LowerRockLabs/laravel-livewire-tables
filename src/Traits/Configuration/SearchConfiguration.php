@@ -156,4 +156,6 @@ trait SearchConfiguration
 
         return $this;
     }
+
+
 }

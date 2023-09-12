@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterRenderData;
 
 trait FilterHelpers
 {
@@ -239,5 +240,15 @@ trait FilterHelpers
     public function hasFilterDefaultValue(): bool
     {
         return ! is_null($this->filterDefaultValue);
+    }
+
+    public function getFilterRenderDataDTO(): FilterRenderData
+    {
+        return $this->filterRenderDataDTO;
+    }
+
+    public function getFilterSpecificViewData(): ?array
+    {
+        return $this->getFilterRenderDataDTO()->filterDataToArray($this);    
     }
 }

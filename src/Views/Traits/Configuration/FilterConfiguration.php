@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterRenderData;
 
 trait FilterConfiguration
 {
@@ -115,6 +116,20 @@ trait FilterConfiguration
     public function setFilterDefaultValue($value): self
     {
         $this->filterDefaultValue = $value;
+
+        return $this;
+    }
+
+    public function setFilterRenderDTO(FilterRenderData $filterRenderDataDTO): self
+    {
+        $this->filterRenderDataDTO = $filterRenderDataDTO;
+
+        return $this;
+    }
+
+    public function setFilterViewArray(array $filterViewArray): self
+    {
+        $this->filterViewArray = $filterViewArray;
 
         return $this;
     }

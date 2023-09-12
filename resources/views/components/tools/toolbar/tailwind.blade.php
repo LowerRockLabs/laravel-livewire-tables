@@ -112,7 +112,7 @@
                                     role="menuitem"
                                     id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
                                 >
-                                    {{ $filter->render($component->filterLayout, $tableName, $component->isTailwind(), $component->isBootstrap4(), $component->isBootstrap5()) }}
+                                    {{ $filter->setFilterRenderDTO($component->getFilterRenderDTO())->render() }}
                                 </div>
                             </div>
                         @endforeach
@@ -352,7 +352,7 @@
                             ])
                          id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
                     >
-                        {{ $filter->render($component->filterLayout, $tableName, $component->isTailwind(), $component->isBootstrap4(), $component->isBootstrap5()) }}
+                        {{ $filter->setFilterRenderDTO($component->getFilterRenderDTO())->render() }}
                     </div>
                 @endforeach
             </div>

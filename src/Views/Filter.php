@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Views;
 use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\FilterHelpers;
+use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterRenderData;
 
 abstract class Filter
 {
@@ -43,6 +44,10 @@ abstract class Filter
 
     protected mixed $filterDefaultValue = null;
 
+    protected array $filterViewArray = [];
+
+    protected ?FilterRenderData $filterRenderDataDTO = null;
+
     public function __construct(string $name, string $key = null)
     {
         $this->name = $name;
@@ -64,6 +69,6 @@ abstract class Filter
     }
 
     abstract public function isEmpty(string $value): bool;
-
-    abstract public function render(string $filterLayout, string $tableName, bool $isTailwind, bool $isBootstrap4, bool $isBootstrap5): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory;
+   
+    abstract public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory;
 }

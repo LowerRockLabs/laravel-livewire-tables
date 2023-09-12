@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\FilterHelpers;
+use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterRenderData;
 
 trait WithFilters
 {
@@ -30,6 +31,10 @@ trait WithFilters
     public array $appliedFilters = [];
 
     protected array $filterPopoverAttributes = [];
+
+    protected ?FilterRenderData $filterRenderDTO = null;
+
+    public array $filterRenderGlobalData = [];
 
     public function filters(): array
     {
@@ -57,4 +62,5 @@ trait WithFilters
 
         return $this->getBuilder();
     }
+
 }

@@ -3,9 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterRenderData;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\FilterHelpers;
-use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterRenderData;
 
 trait WithFilters
 {
@@ -62,5 +62,4 @@ trait WithFilters
 
         return $this->getBuilder();
     }
-
 }

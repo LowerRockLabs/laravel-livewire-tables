@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
-use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterRenderData;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait FilterHelpers
 {
@@ -249,6 +249,6 @@ trait FilterHelpers
 
     public function getFilterSpecificViewData(): ?array
     {
-        return $this->getFilterRenderDataDTO()->filterDataToArray($this);    
+        return $this->getFilterRenderDataDTO()->filterDataToArray($this);
     }
 }

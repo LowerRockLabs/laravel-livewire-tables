@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
-use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterRenderData;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait FilterConfiguration
 {

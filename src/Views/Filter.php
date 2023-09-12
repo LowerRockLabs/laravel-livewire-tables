@@ -3,9 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Views;
 
 use Illuminate\Support\Str;
+use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterRenderData;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\FilterHelpers;
-use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterRenderData;
 
 abstract class Filter
 {
@@ -69,6 +69,6 @@ abstract class Filter
     }
 
     abstract public function isEmpty(string $value): bool;
-   
+
     abstract public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory;
 }

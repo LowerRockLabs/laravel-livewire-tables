@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
-use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterRenderData;
+use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait FilterConfiguration
 {
@@ -129,5 +129,4 @@ trait FilterConfiguration
 
         return $this;
     }
-
 }

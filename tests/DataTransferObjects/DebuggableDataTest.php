@@ -2,7 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\DataTransferObjects;
 
-use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class DebuggableDataTest extends TestCase
@@ -20,7 +19,6 @@ class DebuggableDataTest extends TestCase
         ];
 
         $dto = ((new \Rappasoft\LaravelLivewireTables\DataTransferObjects\DebuggableData($this->basicTable))->toArray());
-        $this->assertSame($nonDTO,$dto);
+        $this->assertSame($nonDTO, $dto);
     }
-
 }

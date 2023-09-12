@@ -2,11 +2,13 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
-use Illuminate\Support\{Arr,Collection};
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
-use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\{MultiSelectDropdownFilter,MultiSelectFilter};
 use Rappasoft\LaravelLivewireTables\DataTransferObjects\FilterRenderData;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 
 trait FilterHelpers
 {
@@ -15,9 +17,9 @@ trait FilterHelpers
      */
     public function mountFilterHelpers(): void
     {
-        
+
         $tmp = $this->getFilterRenderDTO();
-        
+
         foreach ($this->getFilters() as $filter) {
             if (! isset($this->appliedFilters[$filter->getKey()])) {
                 if ($filter->hasFilterDefaultValue()) {
@@ -320,10 +322,10 @@ trait FilterHelpers
 
     public function getFilterRenderDTO(): FilterRenderData
     {
-        if (!$this->hasFilterRenderDTO())
-        {
+        if (! $this->hasFilterRenderDTO()) {
             $this->setFilterRenderDTO();
         }
+
         return $this->filterRenderDTO;
     }
 
@@ -331,5 +333,4 @@ trait FilterHelpers
     {
         return $this->filterRenderDTO != null;
     }
-
 }

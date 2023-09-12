@@ -2,12 +2,13 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
-use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Illuminate\Support\Str;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class LivewireComponentFilter extends Filter
 {
     public string $filterComponentPath = '';
+
     public array $filterComponentOptions = [];
 
     public function validate(mixed $value): mixed
@@ -46,33 +47,25 @@ class LivewireComponentFilter extends Filter
     {
         $this->config = $config;
 
-        if ($this->filterComponentPath == '' && $this->hasConfig('filterComponentPath'))
-        {
+        if ($this->filterComponentPath == '' && $this->hasConfig('filterComponentPath')) {
             $this->setFilterComponentPath($this->getConfig('filterComponentPath'));
         }
 
-        if ($this->filterComponentOptions == [] && $this->hasConfig('filterComponentOptions'))
-        {
+        if ($this->filterComponentOptions == [] && $this->hasConfig('filterComponentOptions')) {
             $this->setFilterComponentOptions($this->getConfig('filterComponentOptions'));
         }
 
         return $this;
     }
 
-
-    
-    
-
     public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
     {
         return view('livewire-tables::components.tools.filters.livewire-component-filter', [...$this->getFilterSpecificViewData(), ...[
-            'wirekey' => 'test12312' . '-filter-'. $this->getKey() . ($this->hasCustomPosition() ? '-'.$this->getCustomPosition() : ''),
+            'wirekey' => 'test12312'.'-filter-'.$this->getKey().($this->hasCustomPosition() ? '-'.$this->getCustomPosition() : ''),
             'livewireComponent' => $this->filterComponentPath,
             'modelableValue' => 'filterComponents.'.$this->getKey(),
             ...$this->filterComponentOptions,
         ]]);
-
-
 
     }
 }

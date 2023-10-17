@@ -7,6 +7,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 - Docs livewire namespace fix [Here](https://github.com/rappasoft/laravel-livewire-tables/pull/1420)
 - Add CollapseAlways capability for Columns
 - Fix localisation bug
+- Bootstrap - Fix Filter Popover closing when using large child filters (e.g. DateRangeFilter)
 
 ## [3.0.0-beta.3] - 2023-10-13
 - Fix for Livewire ^3.0.6 where the table loading causes an additional lifecycle

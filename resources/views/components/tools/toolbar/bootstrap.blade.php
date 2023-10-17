@@ -89,9 +89,9 @@
             >
                 <div
                     @if ($component->isFilterLayoutPopover())
-                        x-data="{ open: false, childElementOpen: false  }"
-                        x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
-                        x-on:mousedown.away="if (!childElementOpen) { open = false }"
+                        x-data="{ filterPopoverOpen: false }"
+                        x-on:keydown.escape.stop="if (!window.childElementOpen) { filterPopoverOpen = false } "
+                        x-on:mousedown.away="if (!window.childElementOpen) { filterPopoverOpen = false }"
                     @endif
                     @class([
                         'btn-group d-block d-md-inline' => $component->isBootstrap(),
@@ -103,9 +103,9 @@
                             @class([
                                 'btn dropdown-toggle d-block w-100 d-md-inline' => $component->isBootstrap(),
                             ])
-                            @if ($component->isFilterLayoutPopover()) x-on:click="open = !open"
+                            @if ($component->isFilterLayoutPopover()) x-on:click="filterPopoverOpen = !filterPopoverOpen"
                                 aria-haspopup="true"
-                                x-bind:aria-expanded="open"
+                                x-bind:aria-expanded="filterPopoverOpen"
                                 aria-expanded="true"
                             @endif
                             @if ($component->isFilterLayoutSlideDown()) x-on:click="filtersOpen = !filtersOpen" @endif
@@ -133,7 +133,7 @@
                                 'dropdown-menu w-100 mt-md-5' => $component->isBootstrap4(),
                                 'dropdown-menu w-100' => $component->isBootstrap5(),
                             ])
-                            x-bind:class="{ 'show': open }"
+                            x-bind:class="{ 'show': filterPopoverOpen }"
                             role="menu"
                         >
                             @foreach ($component->getVisibleFilters() as $filter)
@@ -156,7 +156,7 @@
                                 ></div>
 
                                 <button
-                                    wire:click.prevent="setFilterDefaults" x-on:click="open = false"
+                                    wire:click.prevent="setFilterDefaults" x-on:click="filterPopoverOpen = false"
                                     @class([
                                         'dropdown-item btn text-center' => $component->isBootstrap4(),
                                         'dropdown-item text-center' => $component->isBootstrap5(),

@@ -1,5 +1,5 @@
 @aware(['component'])
-@props(['displayMinimisedOnReorder' => false, 'hideUntilReorder' => false])
+@props(['displayMinimisedOnReorder' => false, 'hideUntilReorder' => false, 'customAttributes' => []])
 
 <th x-cloak scope="col"
     {{ $attributes

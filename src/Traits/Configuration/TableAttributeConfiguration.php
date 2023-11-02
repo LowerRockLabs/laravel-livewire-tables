@@ -118,4 +118,12 @@ trait TableAttributeConfiguration
 
         return $this;
     }
+
+    public function setThBulkActionsAttributes(array $thBulkActionsAttributes): self
+    {
+        $this->thBulkActionsAttributes = $thBulkActionsAttributes;
+
+        return $this;
+    }
+
 }

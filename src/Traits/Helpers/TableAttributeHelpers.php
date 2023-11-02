@@ -93,4 +93,14 @@ trait TableAttributeHelpers
     {
         return $this->trUrlTargetCallback ? call_user_func($this->trUrlTargetCallback, $row) : null;
     }
+
+    public function hasThBulkActionsAttributes(): array
+    {
+        return !empty($this->thBulkActionsAttributes);
+    }
+
+    public function getThBulkActionsAttributes(): array
+    {
+        return $this->thBulkActionsAttributes;
+    }
 }

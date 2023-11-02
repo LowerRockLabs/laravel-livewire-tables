@@ -5,6 +5,7 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 ## UNRELEASED
 ### New Features
 - Add setCustomView for Filters
+- Add setThBulkActionsAttributes
 
 ### Bug Fixes
 - Default Search to "Live" rather than "Defer" to match v2

@@ -20,6 +20,8 @@ trait WithTableAttributes
 
     protected array $tbodyAttributes = [];
 
+    protected array $thBulkActionsAttributes = [];
+
     protected $thAttributesCallback;
 
     protected $thSortButtonAttributesCallback;

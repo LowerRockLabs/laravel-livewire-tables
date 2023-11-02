@@ -4,15 +4,8 @@
     $customAttributes = $component->getThBulkActionsAttributes();
 @endphp
 
-
 @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
-    <th wire:key="{{ $tableName }}-thead-bulk-actions" :displayMinimisedOnReorder="true" x-cloak  scope="col" 
-        {{
-            $attributes->merge($customAttributes)
-            ->class(['px-6 py-3 text-left text-xs font-medium whitespace-nowrap text-gray-500 uppercase tracking-wider dark:bg-gray-800 dark:text-gray-400' => $customAttributes['default'] ?? true])
-            ->except('default')
-        }}
-    >
+    <x-livewire-tables::table.th.plain wire:key="{{ $tableName }}-thead-bulk-actions" :displayMinimisedOnReorder="true" x-cloak scope="col" :$customAttributes>
         <div
             x-data="{newSelectCount: 0, indeterminateCheckbox: false, bulkActionHeaderChecked: false}"
             x-init="$watch('selectedItems', value => indeterminateCheckbox = (value.length > 0 && value.length < paginationTotalItemCount))"
@@ -34,5 +27,5 @@
                 ])
             />
         </div>
-    </th>
+    </x-livewire-tables::table.th.plain>
 @endif

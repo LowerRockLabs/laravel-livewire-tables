@@ -108,4 +108,10 @@ trait TableAttributeHelpers
     {
         return $this->thCollapseAttributes;
     }
+
+    public function getThReorderAttributes(): array
+    {
+        return $this->thReorderAttributes;
+    }
+
 }

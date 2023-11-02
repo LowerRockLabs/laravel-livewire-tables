@@ -132,4 +132,12 @@ trait TableAttributeConfiguration
 
         return $this;
     }
+
+    public function setThReorderAttributes(array $thReorderAttributes): self
+    {
+        $this->thReorderAttributes = $thReorderAttributes;
+
+        return $this;
+    }
+
 }

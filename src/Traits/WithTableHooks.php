@@ -13,7 +13,7 @@ trait WithTableHooks
         }
     }
 
-    function callTraitHook($name, $params = [])
+    public function callTraitHook($name, $params = [])
     {
         foreach (class_uses_recursive($this) as $trait) {
             $method = $name.class_basename($trait);

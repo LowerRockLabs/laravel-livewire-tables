@@ -46,6 +46,27 @@ trait WithFilters
 
         return [];
     }
+    
+    public function updatedWithFilters(string $name, string|array $value)
+    {
+        if (Str::contains($name, 'appliedFilters')) {
+            $this->resetComputedPage();
+
+            // Clear bulk actions on filter
+            $this->clearSelected();
+            $this->setSelectAllDisabled();
+
+            // Clear filters on empty value
+            $filterName = Str::after($name, 'appliedFilters.');
+            $filter = $this->getFilterByKey($filterName);
+
+            if ($filter && $filter->isEmpty($value)) {
+                $this->resetFilter($filterName);
+            }
+        }
+
+
+    }
 
     public function applyFilters(): Builder
     {

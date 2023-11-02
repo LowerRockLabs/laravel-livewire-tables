@@ -44,6 +44,22 @@ trait WithSearch
         return [];
     }
 
+    public function updatedWithSearch(string $name, string|array $value)
+    {
+        if ($name === 'search') {
+            $this->resetComputedPage();
+
+            // Clear bulk actions on search
+            $this->clearSelected();
+            $this->setSelectAllDisabled();
+
+            if ($value === '') {
+                $this->clearSearch();
+            }
+        }
+
+    }
+
     // TODO
     public function applySearch(): Builder
     {

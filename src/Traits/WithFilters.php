@@ -46,7 +46,7 @@ trait WithFilters
 
         return [];
     }
-    
+
     public function updatedWithFilters(string $name, string|array $value)
     {
         if (Str::contains($name, 'appliedFilters')) {
@@ -64,7 +64,6 @@ trait WithFilters
                 $this->resetFilter($filterName);
             }
         }
-
 
     }
 

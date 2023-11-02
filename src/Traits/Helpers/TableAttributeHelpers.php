@@ -108,5 +108,4 @@ trait TableAttributeHelpers
     {
         return $this->thCollapseAttributes;
     }
-
 }

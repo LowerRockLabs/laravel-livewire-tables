@@ -96,7 +96,7 @@ trait TableAttributeHelpers
 
     public function hasThBulkActionsAttributes(): array
     {
-        return !empty($this->thBulkActionsAttributes);
+        return ! empty($this->thBulkActionsAttributes);
     }
 
     public function getThBulkActionsAttributes(): array

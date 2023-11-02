@@ -6,7 +6,12 @@
         "livewire",
         "datatables",
         "tables",
-        "laravel"
+        "laravel",
+        "data tables",
+        "livewire 3",
+        "livewire v3",
+        "sortable tables",
+        "searchable tables"
     ],
     "homepage": "https://github.com/rappasoft/laravel-livewire-tables",
     "license": "MIT",
@@ -21,7 +26,7 @@
         "php": "^8.1|^8.2",
         "blade-ui-kit/blade-heroicons": "^2.1",
         "illuminate/contracts": "^10.0|^11.0",
-        "livewire/livewire": "^3.0|dev-main"
+        "livewire/livewire": "^3.0"
     },
     "require-dev": {
         "ext-sqlite3": "*",

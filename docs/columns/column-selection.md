@@ -1,6 +1,6 @@
 ---
 title: Column Selection
-weight: 5
+weight: 4
 ---
 
 Column select is on by default. All columns are selected by default and saved in the users session.

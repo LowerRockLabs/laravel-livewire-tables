@@ -1,6 +1,6 @@
 ---
 title: Secondary Header
-weight: 6
+weight: 5
 ---
 
 A secondary header is a body table row underneath the `thead` that can serve whatever purpose you need. It is passed the current rows of the table at the time so you can use it to tally numbers or show messages based on those rows.

@@ -1,6 +1,6 @@
 ---
 title: Footer
-weight: 7
+weight: 6
 ---
 
 A footer is a `tfoot` element under the body rows that can serve whatever purpose you need. It is passed the current rows of the table at the time so you can use it to tally numbers or show messages based on those rows.

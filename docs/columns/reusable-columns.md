@@ -1,6 +1,6 @@
 ---
 title: Reusable Columns
-weight: 8
+weight: 7
 ---
 
 Often you will want to re-use the same column across multiple tables.  For example a "Created At" and "Used At" column.

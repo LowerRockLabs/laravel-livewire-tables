@@ -1,8 +1,9 @@
 @aware(['component', 'tableName'])
-@php(
-    $theme = $component->getTheme()
+@php
+    $theme = $component->getTheme();
     $customAttributes = $component->getThBulkActionsAttributes();
-)
+@endphp
+
 
 @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
     <th wire:key="{{ $tableName }}-thead-bulk-actions" :displayMinimisedOnReorder="true" x-cloak  scope="col" 

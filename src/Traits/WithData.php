@@ -26,7 +26,7 @@ trait WithData
 
         // Get Count of Items in Current Page
         $this->paginationCurrentCount = $executedQuery->count();
-
+        
         return $executedQuery;
     }
 

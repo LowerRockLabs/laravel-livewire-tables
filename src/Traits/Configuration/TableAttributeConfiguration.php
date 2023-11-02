@@ -139,5 +139,4 @@ trait TableAttributeConfiguration
 
         return $this;
     }
-
 }

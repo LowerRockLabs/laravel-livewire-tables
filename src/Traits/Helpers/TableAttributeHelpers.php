@@ -113,5 +113,4 @@ trait TableAttributeHelpers
     {
         return $this->thReorderAttributes;
     }
-
 }

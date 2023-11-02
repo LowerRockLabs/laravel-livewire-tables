@@ -22,6 +22,8 @@ trait WithTableAttributes
 
     protected array $thBulkActionsAttributes = [];
 
+    protected array $thCollapseAttributes = [];
+
     protected $thAttributesCallback;
 
     protected $thSortButtonAttributesCallback;

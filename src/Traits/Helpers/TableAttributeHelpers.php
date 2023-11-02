@@ -103,4 +103,10 @@ trait TableAttributeHelpers
     {
         return $this->thBulkActionsAttributes;
     }
+
+    public function getThCollapseAttributes(): array
+    {
+        return $this->thCollapseAttributes;
+    }
+
 }

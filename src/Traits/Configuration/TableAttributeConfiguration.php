@@ -125,4 +125,13 @@ trait TableAttributeConfiguration
 
         return $this;
     }
+
+    public function setThCollapseAttributes(array $thCollapseAttributes): self
+    {
+        $this->thCollapseAttributes = $thCollapseAttributes;
+
+        return $this;
+    }
+
+    
 }

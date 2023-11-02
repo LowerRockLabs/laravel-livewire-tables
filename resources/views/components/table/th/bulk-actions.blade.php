@@ -5,7 +5,7 @@
 @endphp
 
 @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
-    <x-livewire-tables::table.th.plain wire:key="{{ $tableName }}-thead-bulk-actions" :displayMinimisedOnReorder="true" x-cloak scope="col" :$customAttributes>
+    <x-livewire-tables::table.th.plain :$customAttributes wire:key="{{ $tableName }}-thead-bulk-actions" :displayMinimisedOnReorder="true" x-cloak scope="col">
         <div
             x-data="{newSelectCount: 0, indeterminateCheckbox: false, bulkActionHeaderChecked: false}"
             x-init="$watch('selectedItems', value => indeterminateCheckbox = (value.length > 0 && value.length < paginationTotalItemCount))"

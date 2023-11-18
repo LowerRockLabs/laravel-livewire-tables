@@ -10,7 +10,7 @@ trait WithBladeManagement
     use BladeManagementConfiguration,
         BladeManagementHelpers;
 
-    public string $offlineBladePath = 'livewire-tables::includes.offline';
+    public ?string $offlineBladePath;
 
-    public string $debugBladePath = 'livewire-tables::includes.debug';
+    public ?string $debugBladePath;
 }

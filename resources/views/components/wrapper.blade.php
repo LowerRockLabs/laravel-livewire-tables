@@ -6,8 +6,8 @@
         @if ($component->isFilterLayoutSlideDown()) wire:ignore.self @endif>
 
         <div x-data="reorderFunction($wire, '{{ $component->getTableAttributes()['id'] }}', '{{ $component->getPrimaryKey() }}')">
-            @include($component->getCustomBladeDebugPath())
-            @include($component->getCustomBladeOfflinePath())
+            @includeFirst([$component->getCustomBladeOfflinePath(), $component->getCustomBladeOfflinePathDefault()])
+            @includeFirst([$component->getCustomBladeDebugPath(), $component->getCustomBladeDebugPathDefault()])
 
             {{ $slot }}
         </div>

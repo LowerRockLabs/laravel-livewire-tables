@@ -18,7 +18,6 @@ trait BladeManagementHelpers
     {
         return 'livewire-tables::includes.offline';
     }
-    
 
     public function hasCustomBladeDebugPath(): bool
     {
@@ -29,10 +28,9 @@ trait BladeManagementHelpers
     {
         return $this->debugBladePath ?? 'livewire-tables::non-existent';
     }
-    
+
     public function getCustomBladeDebugPathDefault(): string
     {
         return 'livewire-tables::includes.debug';
     }
-
 }

@@ -31,5 +31,8 @@ jobs:
       - name: Install dependencies
         run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction && composer update
 
+      - name: Install paratest
+        run: composer require brianium/paratest
+
       - name: Run Unit Tests
         run: php ./vendor/bin/paratest --no-coverage --processes=1

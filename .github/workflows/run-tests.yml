@@ -23,25 +23,13 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, pcntl, pdo, sqlite, pdo_sqlite, bcmath, intl, iconv, fileinfo
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
           tools: phpunit:latest
           ini-values: memory_limit=512M
-          coverage: none
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup problem matchers for PHP
-        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-
-      - name: Add token
-        run: |
-          composer config github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
+          coverage: pcov
           
       - name: Install dependencies
-        run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction --no-update
-
-      - name: Update dependencies
-        run: composer update --${{ matrix.stability }} --no-interaction
+        run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction && composer update && php artisan optimize:clear && composer update
 
       - name: Run Unit Tests
         run: php ./vendor/bin/paratest --no-coverage --processes=4

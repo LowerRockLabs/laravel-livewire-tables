@@ -23,10 +23,9 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
-          tools: phpunit:latest
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pcov, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, :psr
           ini-values: memory_limit=512M
-          coverage: pcov
+          coverage: none
           
       - name: Install dependencies
         run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-interaction && composer update

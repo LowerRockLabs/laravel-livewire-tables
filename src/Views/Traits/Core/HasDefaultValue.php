@@ -2,27 +2,17 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\Configuration\DefaultValueConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\Helpers\DefaultValueHelpers;
+
+
 trait HasDefaultValue
 {
+    use DefaultValueConfiguration,
+        DefaultValueHelpers;
+
     protected string $defaultValue = '';
 
-    public function hasDefaultValue(): bool
-    {
-        return $this->defaultValue !== null && $this->defaultValue !== '';
-    }
+    protected mixed $filterDefaultValue = null;
 
-    public function getDefaultValue(): string
-    {
-        return $this->defaultValue;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setDefaultValue(string $defaultValue): self
-    {
-        $this->defaultValue = $defaultValue;
-
-        return $this;
-    }
 }

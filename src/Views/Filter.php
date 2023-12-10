@@ -30,6 +30,10 @@ abstract class Filter
     }
 
     abstract public function isEmpty(string $value): bool;
+    
+    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
+    {
+        return view($this->getViewPath(), $this->getFilterDisplayData());
+    }
 
-    abstract public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory;
 }

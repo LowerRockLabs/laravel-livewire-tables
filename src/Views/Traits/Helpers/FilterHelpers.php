@@ -52,13 +52,6 @@ trait FilterHelpers
         return [];
     }
 
-    /**
-     * Get the filter options.
-     */
-    public function getDefaultValue()
-    {
-        return null;
-    }
 
     public function filter(callable $callback): Filter
     {
@@ -170,22 +163,6 @@ trait FilterHelpers
     }
 
     /**
-     * Returns whether the filter has a custom label blade
-     */
-    public function hasCustomFilterLabel(): bool
-    {
-        return ! is_null($this->filterCustomLabel);
-    }
-
-    /**
-     * Returns the path to the custom filter label blade
-     */
-    public function getCustomFilterLabel(): string
-    {
-        return $this->filterCustomLabel ?? '';
-    }
-
-    /**
      * Get the filter slide down row.
      */
     public function getFilterSlidedownRow(): ?int
@@ -233,23 +210,6 @@ trait FilterHelpers
         return $this->filterCustomPillBlade;
     }
 
-    /**
-     * Determines if the Filter has a Default Value via the Component
-     */
-    public function hasFilterDefaultValue(): bool
-    {
-        return ! is_null($this->filterDefaultValue);
-    }
-
-    public function getFilterLabelAttributes(): array
-    {
-        return [...['default' => true], ...$this->filterLabelAttributes];
-    }
-
-    public function hasFilterLabelAttributes(): bool
-    {
-        return $this->getFilterLabelAttributes() != ['default' => true] && $this->getFilterLabelAttributes() != ['default' => false];
-    }
 
     public function generateWireKey(string $tableName, string $filterType, string $extraData = ''): string
     {
@@ -266,8 +226,4 @@ trait FilterHelpers
         return array_merge($this->getGenericDisplayData(), ['filter' => $this]);
     }
 
-    public function getViewPath(): string
-    {
-        return $this->viewPath;
-    }
 }

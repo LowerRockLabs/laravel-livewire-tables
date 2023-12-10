@@ -63,8 +63,4 @@ class SelectFilter extends Filter
         return $this->filterDefaultValue ?? null;
     }
 
-    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
-    {
-        return view($this->getViewPath(), $this->getFilterDisplayData());
-    }
 }

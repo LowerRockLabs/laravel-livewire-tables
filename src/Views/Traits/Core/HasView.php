@@ -18,4 +18,17 @@ trait HasView
 
         return $this;
     }
+
+    public function setCustomView(string $customView): self
+    {
+        $this->view = $customView;
+
+        return $this;
+    }
+
+    public function getViewPath(): string
+    {
+        return $this->view;
+    }
+
 }

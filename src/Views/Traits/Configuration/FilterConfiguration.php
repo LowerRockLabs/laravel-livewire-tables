@@ -77,12 +77,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    public function setCustomFilterLabel(string $filterCustomLabel): self
-    {
-        $this->filterCustomLabel = $filterCustomLabel;
-
-        return $this;
-    }
 
     public function setFilterSlidedownRow(string $filterSlidedownRow): self
     {
@@ -107,25 +101,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * Sets a Default Value via the Filter Component
-     *
-     * @param  mixed  $value
-     */
-    public function setFilterDefaultValue($value): self
-    {
-        $this->filterDefaultValue = $value;
-
-        return $this;
-    }
-
-    public function setFilterLabelAttributes(array $filterLabelAttributes): self
-    {
-        $this->filterLabelAttributes = [...['default' => false], ...$filterLabelAttributes];
-
-        return $this;
-    }
-
     public function setGenericDisplayData(array $genericDisplayData = []): self
     {
         $this->genericDisplayData = [
@@ -140,10 +115,4 @@ trait FilterConfiguration
         return $this;
     }
 
-    public function setCustomView(string $customView): self
-    {
-        $this->viewPath = $customView;
-
-        return $this;
-    }
 }

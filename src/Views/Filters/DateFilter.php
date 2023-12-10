@@ -8,10 +8,11 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 class DateFilter extends Filter
 {
     public string $viewPath = 'livewire-tables::components.tools.filters.date';
+    public string $configPath = 'livewire-tables.dateFilter.defaultConfig';
 
     public function config(array $config = []): DateFilter
     {
-        $this->config = [...config('livewire-tables.dateFilter.defaultConfig'), ...$config];
+        $this->config = [...config($this->configPath), ...$config];
 
         return $this;
     }
@@ -47,8 +48,4 @@ class DateFilter extends Filter
         return $this->filterDefaultValue ?? null;
     }
 
-    public function render(): string|\Illuminate\Contracts\Foundation\Application|\Illuminate\View\View|\Illuminate\View\Factory
-    {
-        return view($this->getViewPath(), $this->getFilterDisplayData());
-    }
 }

@@ -4,14 +4,11 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
 trait ColorColumnHelpers
 {
-
-
     // TODO: Test
     public function getColor($row): string
     {
         return $this->hasColorCallback() ? app()->call($this->getColorCallback(), ['row' => $row]) : ($this->getValue($row) ?? $this->getDefaultValue());
     }
-
 
     public function getColorCallback(): ?callable
     {
@@ -22,5 +19,4 @@ trait ColorColumnHelpers
     {
         return isset($this->colorCallback);
     }
-
 }

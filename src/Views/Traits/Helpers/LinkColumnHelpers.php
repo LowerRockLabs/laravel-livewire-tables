@@ -14,5 +14,4 @@ trait LinkColumnHelpers
     {
         return $this->titleCallback !== null;
     }
-
 }

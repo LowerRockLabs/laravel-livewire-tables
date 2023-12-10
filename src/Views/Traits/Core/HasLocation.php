@@ -15,7 +15,6 @@ trait HasLocation
         return $this;
     }
 
-
     public function getLocationCallback(): ?Closure
     {
         return $this->locationCallback;
@@ -25,6 +24,4 @@ trait HasLocation
     {
         return $this->locationCallback !== null;
     }
-
-
 }

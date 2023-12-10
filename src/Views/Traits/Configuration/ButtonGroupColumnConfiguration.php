@@ -10,5 +10,4 @@ trait ButtonGroupColumnConfiguration
 
         return $this;
     }
-
 }

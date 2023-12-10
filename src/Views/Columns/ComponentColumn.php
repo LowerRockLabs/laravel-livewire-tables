@@ -8,8 +8,8 @@ use Illuminate\View\ComponentAttributeBag;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ComponentColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasAttributes;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ComponentColumnHelpers;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasCallback, HasDefaultValue, HasLocation, HasView};
 
 class ComponentColumn extends Column
 {

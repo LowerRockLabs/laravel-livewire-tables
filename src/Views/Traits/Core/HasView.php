@@ -4,12 +4,11 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
 trait HasView
 {
-
     public function getView(): string
     {
         return $this->view;
     }
-    
+
     /**
      * @return $this
      */
@@ -19,5 +18,4 @@ trait HasView
 
         return $this;
     }
-
 }

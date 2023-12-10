@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\LinkColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasAttributes;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasLocation;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasView;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\LinkColumnHelpers;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasCallback, HasDefaultValue, HasLocation, HasView};
 
 class LinkColumn extends Column
 {

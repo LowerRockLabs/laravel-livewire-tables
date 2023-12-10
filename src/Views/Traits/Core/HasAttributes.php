@@ -15,7 +15,7 @@ trait HasAttributes
 
         return $this;
     }
-    
+
     public function getAttributesCallback(): ?Closure
     {
         return $this->attributesCallback;
@@ -31,5 +31,4 @@ trait HasAttributes
     {
         return new ComponentAttributeBag($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
     }
-
 }

@@ -5,8 +5,9 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ButtonGroupColumnConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasAttributes;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasView;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ButtonGroupColumnHelpers;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasCallback, HasDefaultValue, HasLocation, HasView};
 
 class ButtonGroupColumn extends Column
 {

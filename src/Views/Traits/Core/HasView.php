@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
 trait HasView
 {
-    protected string $view = '';
 
     public function getView(): string
     {

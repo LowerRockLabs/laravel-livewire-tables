@@ -2,16 +2,18 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
+use Closure;
+
 trait HasCallback
 {
-    protected ?callable $callback = null;
+    protected ?Closure $callback = null;
 
     public function hasCallback(): bool
     {
         return $this->callback !== null;
     }
 
-    public function getCallback(): Closure
+    public function getCallback(): ?Closure
     {
         return $this->callback;
     }

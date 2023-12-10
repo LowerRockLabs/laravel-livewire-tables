@@ -2,11 +2,13 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
+use Closure;
+
 trait HasLocation
 {
-    protected ?callable $locationCallback = null;
+    protected ?Closure $locationCallback = null;
 
-    public function location(callable $callback): self
+    public function location(Closure $callback): self
     {
         $this->locationCallback = $callback;
 
@@ -14,7 +16,7 @@ trait HasLocation
     }
 
 
-    public function getLocationCallback(): ?callable
+    public function getLocationCallback(): ?Closure
     {
         return $this->locationCallback;
     }

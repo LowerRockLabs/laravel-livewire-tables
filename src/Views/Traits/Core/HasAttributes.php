@@ -2,20 +2,21 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
+use Closure;
 use Illuminate\View\ComponentAttributeBag;
 
 trait HasAttributes
 {
-    protected mixed $attributesCallback = null;
+    protected ?Closure $attributesCallback = null;
 
-    public function attributes(callable $callback): self
+    public function attributes(Closure $callback): self
     {
         $this->attributesCallback = $callback;
 
         return $this;
     }
     
-    public function getAttributesCallback(): ?callable
+    public function getAttributesCallback(): ?Closure
     {
         return $this->attributesCallback;
     }

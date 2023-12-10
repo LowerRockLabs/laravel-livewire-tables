@@ -35,11 +35,11 @@ class LinkColumn extends Column
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         if (! $this->hasTitleCallback()) {
-            throw new NoTitleException('You must specify a title callback for an link column.');
+            throw new NoTitleException('You must specify a title callback for the LinkColumn: '.$this->getTitle());
         }
 
         if (! $this->hasLocationCallback()) {
-            throw new NoLocationException('You must specify a location callback for an link column.');
+            throw new NoLocationException('You must specify a location callback for the LinkColumn:'.$this->getTitle());
         }
 
         return view($this->getView())

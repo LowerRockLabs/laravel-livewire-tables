@@ -13,7 +13,7 @@ trait IsFilter
     use FilterConfiguration,
         FilterHelpers,
         HasLabel,
-        HasDefaultValue
+        HasDefaultValue,
         HasView;
 
     protected string $name;

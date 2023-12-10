@@ -95,5 +95,4 @@ class MultiSelectFilter extends Filter
     {
         return ! is_array($value);
     }
-
 }

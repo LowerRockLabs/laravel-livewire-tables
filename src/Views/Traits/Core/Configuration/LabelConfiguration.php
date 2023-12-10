@@ -34,5 +34,4 @@ trait LabelConfiguration
 
         return $this;
     }
-
 }

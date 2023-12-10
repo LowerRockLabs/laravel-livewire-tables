@@ -21,5 +21,4 @@ trait DefaultValueHelpers
     {
         return ! is_null($this->getDefaultValue());
     }
-
 }

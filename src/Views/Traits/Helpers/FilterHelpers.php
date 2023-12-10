@@ -52,7 +52,6 @@ trait FilterHelpers
         return [];
     }
 
-
     public function filter(callable $callback): Filter
     {
         $this->filterCallback = $callback;
@@ -210,7 +209,6 @@ trait FilterHelpers
         return $this->filterCustomPillBlade;
     }
 
-
     public function generateWireKey(string $tableName, string $filterType, string $extraData = ''): string
     {
         return $tableName.'-filter-'.$filterType.'-'.$this->getKey().($extraData != '' ? '-'.$extraData : '').($this->hasCustomPosition() ? '-'.$this->getCustomPosition() : '');
@@ -225,5 +223,4 @@ trait FilterHelpers
     {
         return array_merge($this->getGenericDisplayData(), ['filter' => $this]);
     }
-
 }

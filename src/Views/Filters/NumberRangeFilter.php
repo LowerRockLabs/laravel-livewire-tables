@@ -9,6 +9,7 @@ class NumberRangeFilter extends Filter
     public array $options = [];
 
     public string $viewPath = 'livewire-tables::components.tools.filters.number-range';
+
     public string $configPath = 'livewire-tables.numberRange.defaultConfig';
 
     public function options(array $options = []): NumberRangeFilter
@@ -88,5 +89,4 @@ class NumberRangeFilter extends Filter
 
         return '';
     }
-
 }

@@ -62,5 +62,4 @@ class SelectFilter extends Filter
     {
         return $this->filterDefaultValue ?? null;
     }
-
 }

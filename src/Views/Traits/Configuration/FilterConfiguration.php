@@ -77,7 +77,6 @@ trait FilterConfiguration
         return $this;
     }
 
-
     public function setFilterSlidedownRow(string $filterSlidedownRow): self
     {
         //$this->filterSlidedownRow = (is_int($filterSlidedownRow) ? $filterSlidedownRow : intval($filterSlidedownRow));
@@ -114,5 +113,4 @@ trait FilterConfiguration
 
         return $this;
     }
-
 }

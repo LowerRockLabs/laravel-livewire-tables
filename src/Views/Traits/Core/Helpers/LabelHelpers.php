@@ -57,7 +57,6 @@ trait LabelHelpers
         return $this->getCustomLabelAttributes() != ['default' => true] && $this->getCustomLabelAttributes() != ['default' => false];
     }
 
-    
     /**
      * Deprecated but in use
      * Returns whether the filter has a custom label blade

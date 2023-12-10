@@ -10,8 +10,8 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Core\Helpers\LabelHelpers;
  */
 trait HasLabel
 {
-    use LabelConfiguration, 
-    LabelHelpers;
+    use LabelConfiguration,
+        LabelHelpers;
 
     protected ?string $customLabel = null;
 
@@ -20,5 +20,4 @@ trait HasLabel
     protected ?string $filterCustomLabel = null;
 
     protected array $filterLabelAttributes = [];
-
 }

@@ -30,5 +30,4 @@ trait HasView
     {
         return $this->view;
     }
-
 }

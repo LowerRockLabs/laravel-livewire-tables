@@ -3,7 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Illuminate\Database\Eloquent\Model;
-use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
+use Rappasoft\LaravelLivewireTables\Exceptions\{DataTableConfigurationException,NoLocationException, NoTitleException};
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\LinkColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasAttributes;
@@ -33,11 +33,11 @@ class LinkColumn extends Column
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         if (! $this->hasTitleCallback()) {
-            throw new DataTableConfigurationException('You must specify a title callback for an link column.');
+            throw new NoTitleException('You must specify a title callback for an link column.');
         }
 
         if (! $this->hasLocationCallback()) {
-            throw new DataTableConfigurationException('You must specify a location callback for an link column.');
+            throw new NoLocationException('You must specify a location callback for an link column.');
         }
 
         return view($this->getView())

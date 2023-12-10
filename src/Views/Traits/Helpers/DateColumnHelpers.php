@@ -25,6 +25,6 @@ trait DateColumnHelpers
      */
     public function getEmptyValue(): string
     {
-        return $this->emptyValue;
+        return $this->getDefaultValue();
     }
 }

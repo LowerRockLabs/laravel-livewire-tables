@@ -6,17 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ButtonGroupColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ButtonGroupColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasCallback, HasDefaultValue, HasLocation, HasView};
 
 class ButtonGroupColumn extends Column
 {
     use ButtonGroupColumnConfiguration,
-        ButtonGroupColumnHelpers;
+        ButtonGroupColumnHelpers,
+        HasAttributes,
+        HasView;
 
     protected array $buttons = [];
 
     protected string $view = 'livewire-tables::includes.columns.button-group';
-
-    protected mixed $attributesCallback = null;
 
     public function __construct(string $title, ?string $from = null)
     {

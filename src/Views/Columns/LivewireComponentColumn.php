@@ -10,11 +10,13 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\LivewireComponentColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\LivewireComponentColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasCallback, HasDefaultValue, HasLocation, HasView};
 
 class LivewireComponentColumn extends Column
 {
     use LivewireComponentColumnConfiguration,
-        LivewireComponentColumnHelpers;
+        LivewireComponentColumnHelpers,
+        HasAttributes;
 
     protected string $livewireComponent;
 

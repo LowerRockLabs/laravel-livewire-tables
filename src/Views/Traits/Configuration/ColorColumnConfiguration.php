@@ -11,16 +11,9 @@ trait ColorColumnConfiguration
         return $this;
     }
 
-    public function attributes(callable $callback): self
-    {
-        $this->attributesCallback = $callback;
-
-        return $this;
-    }
-
     public function defaultValue(string $defaultValue): self
     {
-        $this->defaultValue = $defaultValue;
+        $this->setDefaultValue($defaultValue);
 
         return $this;
     }

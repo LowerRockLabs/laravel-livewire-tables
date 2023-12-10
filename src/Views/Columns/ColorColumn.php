@@ -8,18 +8,18 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ColorColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ColorColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasCallback, HasDefaultValue, HasLocation, HasView};
 
 class ColorColumn extends Column
 {
     use IsColumn;
     use ColorColumnConfiguration,
-        ColorColumnHelpers;
+        ColorColumnHelpers,
+        HasAttributes,
+        HasDefaultValue,
+        HasView;
 
     public ?object $colorCallback = null;
-
-    public ?object $attributesCallback = null;
-
-    public string $defaultValue = '';
 
     public string $view = 'livewire-tables::includes.columns.color';
 

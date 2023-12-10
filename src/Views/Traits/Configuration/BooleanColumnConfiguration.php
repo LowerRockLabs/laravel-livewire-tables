@@ -6,32 +6,9 @@ use Closure;
 
 trait BooleanColumnConfiguration
 {
-    /**
-     * @return $this
-     */
-    public function setCallback(Closure $callback): self
-    {
-        $this->callback = $callback;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
     public function setSuccessValue(bool $value): self
     {
         $this->successValue = $value;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setView(string $view): self
-    {
-        $this->view = $view;
 
         return $this;
     }

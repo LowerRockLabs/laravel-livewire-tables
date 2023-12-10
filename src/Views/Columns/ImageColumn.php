@@ -7,17 +7,17 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ImageColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ImageColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasCallback, HasDefaultValue, HasLocation, HasView};
 
 class ImageColumn extends Column
 {
     use ImageColumnConfiguration,
-        ImageColumnHelpers;
+        ImageColumnHelpers,
+        HasView,
+        HasAttributes,
+        HasLocation;
 
     protected string $view = 'livewire-tables::includes.columns.image';
-
-    protected mixed $locationCallback = null;
-
-    protected mixed $attributesCallback = null;
 
     public function __construct(string $title, ?string $from = null)
     {

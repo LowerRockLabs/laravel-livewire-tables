@@ -7,19 +7,19 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\LinkColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\LinkColumnHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasCallback, HasDefaultValue, HasLocation, HasView};
 
 class LinkColumn extends Column
 {
     use LinkColumnConfiguration,
-        LinkColumnHelpers;
+        LinkColumnHelpers,
+        HasAttributes,
+        HasLocation,
+        HasView;
 
     protected string $view = 'livewire-tables::includes.columns.link';
 
     protected mixed $titleCallback = null;
-
-    protected mixed $locationCallback = null;
-
-    protected mixed $attributesCallback = null;
 
     public function __construct(string $title, ?string $from = null)
     {

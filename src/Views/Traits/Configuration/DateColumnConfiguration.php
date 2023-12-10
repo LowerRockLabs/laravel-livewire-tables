@@ -30,6 +30,7 @@ trait DateColumnConfiguration
     public function emptyValue(string $emptyValue): self
     {
         $this->emptyValue = $emptyValue;
+        $this->setDefaultValue($emptyValue);
 
         return $this;
     }

@@ -9,12 +9,15 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\DateColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\DateColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Traits\IsColumn;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasCallback, HasDefaultValue, HasLocation, HasView};
 
 class DateColumn extends Column
 {
     use IsColumn;
     use DateColumnConfiguration,
-        DateColumnHelpers;
+        DateColumnHelpers,
+        HasDefaultValue,
+        HasView;
 
     public string $inputFormat = 'Y-m-d';
 

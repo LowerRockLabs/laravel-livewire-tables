@@ -26,7 +26,7 @@ class BooleanColumn extends Column
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         if ($this->isLabel()) {
-            throw new DataTableConfigurationException('You can not specify a boolean column as a label.');
+            throw new DataTableConfigurationException('You can not specify a boolean column as a label for BooleanColumn'.$this->getTitle());
         }
 
         $value = $this->getValue($row);

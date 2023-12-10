@@ -30,7 +30,7 @@ class LivewireComponentColumn extends Column
     public function getContents(Model $row): null|string|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         if ($this->isLabel()) {
-            throw new DataTableConfigurationException('You can not use a label column with a component column');
+            throw new DataTableConfigurationException('You can not use a label column with the component column: '.$this->getTitle());
         }
 
         $attributes = [];
@@ -40,7 +40,7 @@ class LivewireComponentColumn extends Column
             $attributes = call_user_func($this->getAttributesCallback(), $value, $row, $this);
 
             if (! is_array($attributes)) {
-                throw new DataTableConfigurationException('The return type of callback must be an array');
+                throw new DataTableConfigurationException('The return type of callback must be an array for ComponentColumn: '.$this->getTitle());
             }
         }
 

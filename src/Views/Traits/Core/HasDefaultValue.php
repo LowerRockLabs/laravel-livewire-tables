@@ -4,11 +4,11 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
 trait HasDefaultValue
 {
-    protected ?string $defaultValue = null;
+    protected string $defaultValue = '';
 
     public function hasDefaultValue(): bool
     {
-        return $this->defaultValue !== null;
+        return $this->defaultValue !== null && $this->defaultValue !== '';
     }
 
     public function getDefaultValue(): string

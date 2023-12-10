@@ -31,7 +31,6 @@ class ImageColumn extends Column
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
 
-
         if (! $this->hasLocationCallback()) {
             throw new NoLocationException('You must specify a location callback for the ImageColumn:'.$this->getTitle());
         }

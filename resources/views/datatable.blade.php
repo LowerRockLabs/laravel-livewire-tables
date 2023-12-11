@@ -1,13 +1,9 @@
 @php($tableName = $this->getTableName())
 
-<div @if($this->getContextMenuIsEnabled()) x-data="tableContextMenu({{ $this->getContextMenuIsEnabled() }})" @endif>
-    @if($this->getContextMenuIsEnabled())
-        <x-livewire-tables::includes.context-menu :component="$this"  />
-    @endif
+<div @if($this->getContextMenuIsEnabled() && !$this->currentlyReorderingStatus) x-data="tableContextMenu({{ $this->getContextMenuIsEnabled() }})" @endif>
+    <x-livewire-tables::includes.context-menu :component="$this" />
     <x-livewire-tables::wrapper :component="$this" :tableName="$tableName">
         
-
-
         @if ($this->hasConfigurableAreaFor('before-tools'))
             @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
         @endif

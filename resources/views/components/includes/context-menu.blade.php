@@ -1,4 +1,5 @@
 @props(['component'])
+@if($this->getContextMenuIsEnabled() && !$this->currentlyReorderingStatus)
 <template x-teleport="body">
         <div x-cloak x-show="contextMenuOpen" @click.away="contextMenuOpen=false" x-ref="contextmenu" 
         {{ 
@@ -15,3 +16,6 @@
 
         </div>
 </template>
+@else
+<span></span>
+@endif

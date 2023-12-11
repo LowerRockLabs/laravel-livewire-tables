@@ -38,5 +38,4 @@ trait ContextMenuConfiguration
 
         return $this;
     }
-
 }

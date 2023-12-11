@@ -17,6 +17,4 @@ trait WithContextMenu
     public ?string $contextMenuBlade = null;
 
     public array $contextMenuAttributes = ['default' => true];
-
-
 }

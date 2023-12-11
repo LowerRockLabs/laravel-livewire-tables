@@ -3,6 +3,8 @@ title: Context Menu
 weight: 8
 ---
 
+**NOTE - THIS FEATURE IS CURRENTLY IN BETA**
+
 There is a "whole table" context menu, with the following configuration abilities:
 
 ## enableContextMenu
@@ -25,7 +27,7 @@ To disable the Context Menu
     }
 ```
 
-## disableContextMenu
+## setContextMenuContent
 
 To disable the Context Menu, you may define the content within the configure() method.
 
@@ -52,5 +54,18 @@ You have available the AlpineJS parameter "contextRowPrimaryKey" for use.
             <div @click="contextMenuOpen=false" class="relative flex cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 outline-none pl-8  data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
                 <span>Reload</span>
             </div>');
+    }
+```
+
+## setContextMenuAttributes
+
+To set default classes for the context menu, you may define them here.  Note that this will over-write the standard classes, unless "default" is set to true.
+```php
+    public function configure(): void
+    {
+        $this->setContextMenuAttributes([
+            'class' => 'z-50 min-w-[8rem] text-neutral-800 rounded-md border border-neutral-200/70 bg-white text-sm fixed p-1 shadow-md w-12',
+            'default' => true,
+        ]);
     }
 ```

@@ -1,14 +1,8 @@
 @php($tableName = $this->getTableName())
 
-<div x-data="tableContextMenu()" @contextmenu="contextMenuToggle(event)">
+<div @if($this->getContextMenuIsEnabled()) x-data="tableContextMenu()" @contextmenu="contextMenuToggle(event)" @endif>
     @if($this->getContextMenuIsEnabled())
-        <x-livewire-tables::includes.context-menu>
-            @if($this->hasContextMenuBlade())
-                @include($this->getContextMenuBlade())
-            @else
-                {!! $this->getContextMenuContent() !!}
-            @endif
-        </x-livewire-tables::includes.context-menu>
+        <x-livewire-tables::includes.context-menu :component="$this"  />
     @endif
     <x-livewire-tables::wrapper :component="$this" :tableName="$tableName">
         

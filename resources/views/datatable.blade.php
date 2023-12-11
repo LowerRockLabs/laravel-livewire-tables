@@ -1,7 +1,19 @@
 @php($tableName = $this->getTableName())
 
-<div>
+<div x-data="tableContextMenu()" @contextmenu="contextMenuToggle(event)">
+    @if($this->getContextMenuIsEnabled())
+        <x-livewire-tables::includes.contextmenu />
+            @if($this->hasContextMenuBlade())
+                @include($this->getContextMenuBlade())
+            @else
+                {!! $this->getContextMenuContent() !!}
+            @endif
+        </x-livewire-tables::includes.contextmenu>
+    @endif
     <x-livewire-tables::wrapper :component="$this" :tableName="$tableName">
+        
+
+
         @if ($this->hasConfigurableAreaFor('before-tools'))
             @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
         @endif
@@ -73,5 +85,7 @@
         <x-livewire-tables::pagination :rows="$rows" />
 
         @includeIf($customView)
+        
+
     </x-livewire-tables::wrapper>
 </div>

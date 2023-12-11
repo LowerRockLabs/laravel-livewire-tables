@@ -17,6 +17,7 @@ trait HasAllTraits
         WithCollapsingColumns,
         WithColumnSelect,
         WithConfigurableAreas,
+        WithContextMenu,
         WithCustomisations,
         WithDebugging,
         WithEvents,

@@ -55,8 +55,6 @@ You may of course use Livewire dispatch methods or similar to open Modals, or pa
             </div>');
     }
 ```
-
-
 ## setContextMenuAttributes
 
 To set default classes for the context menu, you may define them here.  Note that this will over-write the standard classes, unless "default" is set to true.
@@ -72,6 +70,18 @@ To set default classes for the context menu, you may define them here.  Note tha
             'class' => 'z-50 min-w-[8rem] text-neutral-800 rounded-md border border-neutral-200/70 bg-white text-sm fixed p-1 shadow-md w-12',
             'default' => true,
         ]);
+    }
+```
+
+## setContextMenuBlade
+Should you prefer to use a blade to contain your context menu code, you can use the following approach, noting that you will be able access the Alpine Property "contextRowPrimaryKey" within your blade.  
+Note that this does not receive the ContextMenuAttributes defined above.
+
+```php
+    public function configure(): void
+    {
+        $this->enableContextMenu();
+        $this->setContextMenuBlade('context-menu-test');
     }
 ```
 

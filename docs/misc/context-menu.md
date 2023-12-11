@@ -51,6 +51,6 @@ You have available the AlpineJS parameter "contextRowPrimaryKey" for use.
             </div>
             <div @click="contextMenuOpen=false" class="relative flex cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 outline-none pl-8  data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
                 <span>Reload</span>
-            </div>';);
+            </div>');
     }
 ```

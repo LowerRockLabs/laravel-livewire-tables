@@ -2,7 +2,7 @@
 
 <div x-data="tableContextMenu()" @contextmenu="contextMenuToggle(event)">
     @if($this->getContextMenuIsEnabled())
-        <x-livewire-tables::includes.context-menu />
+        <x-livewire-tables::includes.context-menu>
             @if($this->hasContextMenuBlade())
                 @include($this->getContextMenuBlade())
             @else

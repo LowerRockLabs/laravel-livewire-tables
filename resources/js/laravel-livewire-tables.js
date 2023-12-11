@@ -354,22 +354,11 @@ document.addEventListener('alpine:init', () => {
             }
         },
         init(){
-                this.$watch('contextMenuOpen', function(value){
-                    if (this.contextMenuIsEnabled)
-                    {
-        
-                        if(value === true){ document.body.classList.add('overflow-hidden') }
-                        else { document.body.classList.remove('overflow-hidden') }
-                    }
-                    else
-                    {
-                        this.contextMenuOpen = false;
-                    }
-                });
-                window.addEventListener('resize', function(event) { contextMenuOpen = false; })
-    
+            this.$watch('contextMenuOpen', function(value){
+                if(value === true){ document.body.classList.add('overflow-hidden') }
+                else { document.body.classList.remove('overflow-hidden') }
+            });
         },
     }));
 
- 
 });

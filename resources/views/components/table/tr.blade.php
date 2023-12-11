@@ -5,7 +5,7 @@
     $customAttributes = $component->getTrAttributes($row, $rowIndex);
 @endphp
 
-<tr
+<tr @if($component->getContextMenuIsEnabled()) @contextmenu="contextMenuToggle(event)" @endif
     rowpk='{{ $row->{$component->getPrimaryKey()} }}'
     x-on:dragstart.self="currentlyReorderingStatus && dragStart(event)"
     x-on:drop.prevent="currentlyReorderingStatus && dropEvent(event)"

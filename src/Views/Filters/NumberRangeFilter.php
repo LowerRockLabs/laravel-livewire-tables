@@ -6,13 +6,11 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class NumberRangeFilter extends Filter
 {
-    public array $options = [];
-
-    public string $viewPath = 'livewire-tables::components.tools.filters.number-range';
+    protected string $view = 'livewire-tables::components.tools.filters.number-range';
 
     public string $configPath = 'livewire-tables.numberRange.defaultConfig';
 
-    public function options(array $options = []): NumberRangeFilter
+    public function options(array $options = []): self
     {
         $this->options = [...config('livewire-tables.numberRange.defaultOptions'), ...$options];
 
@@ -76,9 +74,17 @@ class NumberRangeFilter extends Filter
         return false;
     }
 
-    public function getDefaultValue(): array|string
+    public function getDefaultValue(): mixed
     {
         return [];
+    }
+
+    /**
+     * Gets the Default Value for this Filter via the Component
+     */
+    public function getFilterDefaultValue(): mixed
+    {
+        return $this->getDefaultValue();
     }
 
     public function getFilterPillValue($values): ?string

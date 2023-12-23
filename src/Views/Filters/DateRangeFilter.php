@@ -8,7 +8,7 @@ class DateRangeFilter extends Filter
 {
     public array $options = [];
 
-    public string $viewPath = 'livewire-tables::components.tools.filters.date-range';
+    protected string $view = 'livewire-tables::components.tools.filters.date-range';
 
     public string $configPath = 'livewire-tables.dateRange.defaultConfig';
 
@@ -124,6 +124,14 @@ class DateRangeFilter extends Filter
     public function getDefaultValue(): array
     {
         return [];
+    }
+
+    /**
+     * Gets the Default Value for this Filter via the Component
+     */
+    public function getFilterDefaultValue(): mixed
+    {
+        return $this->getDefaultValue();
     }
 
     public function getFilterPillValue($value): ?string

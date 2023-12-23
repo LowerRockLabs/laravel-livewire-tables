@@ -2,49 +2,14 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasSelectOptions;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class MultiSelectDropdownFilter extends Filter
 {
-    public array $options = [];
+    use HasSelectOptions;
 
-    public string $viewPath = 'livewire-tables::components.tools.filters.multi-select-dropdown';
-
-    protected string $firstOption = '';
-
-    public function setFirstOption(string $firstOption): MultiSelectDropdownFilter
-    {
-        $this->firstOption = $firstOption;
-
-        return $this;
-    }
-
-    public function getFirstOption(): string
-    {
-        return $this->firstOption;
-    }
-
-    public function options(array $options = []): MultiSelectDropdownFilter
-    {
-        $this->options = $options;
-
-        return $this;
-    }
-
-    public function getOptions(): array
-    {
-        return $this->options;
-    }
-
-    public function getKeys(): array
-    {
-        return collect($this->getOptions())
-            ->keys()
-            ->map(fn ($value) => (string) $value)
-            ->filter(fn ($value) => strlen($value))
-            ->values()
-            ->toArray();
-    }
+    protected string $view = 'livewire-tables::components.tools.filters.multi-select-dropdown';
 
     public function validate(int|string|array $value): array|int|string|bool
     {

@@ -3,48 +3,13 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasSelectOptions;
 
 class MultiSelectFilter extends Filter
 {
-    public array $options = [];
+    use HasSelectOptions;
 
-    public string $viewPath = 'livewire-tables::components.tools.filters.multi-select';
-
-    protected string $firstOption = '';
-
-    public function setFirstOption(string $firstOption): MultiSelectFilter
-    {
-        $this->firstOption = $firstOption;
-
-        return $this;
-    }
-
-    public function getFirstOption(): string
-    {
-        return $this->firstOption;
-    }
-
-    public function options(array $options = []): MultiSelectFilter
-    {
-        $this->options = $options;
-
-        return $this;
-    }
-
-    public function getOptions(): array
-    {
-        return $this->options;
-    }
-
-    public function getKeys(): array
-    {
-        return collect($this->getOptions())
-            ->keys()
-            ->map(fn ($value) => (string) $value)
-            ->filter(fn ($value) => strlen($value))
-            ->values()
-            ->toArray();
-    }
+    protected string $view = 'livewire-tables::components.tools.filters.multi-select';
 
     public function validate(int|string|array $value): array|int|string|bool
     {

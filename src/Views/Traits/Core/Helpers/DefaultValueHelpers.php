@@ -9,7 +9,7 @@ trait DefaultValueHelpers
         return $this->defaultValue !== null && $this->defaultValue !== '';
     }
 
-    public function getDefaultValue(): string
+    public function getDefaultValue(): mixed
     {
         return $this->defaultValue;
     }

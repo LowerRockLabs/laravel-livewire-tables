@@ -6,16 +6,20 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
-
-trait ConfigConfiguration
+trait SelectOptionsConfiguration
 {
-    /**
-     * @param  array<mixed>  $config
-     */
-    public function config(array $config = []): self
+    public function options(array $options = []): self
     {
-        $this->config = $config;
+        $this->options = $options;
 
         return $this;
     }
+
+    public function setFirstOption(string $firstOption): self
+    {
+        $this->firstOption = $firstOption;
+
+        return $this;
+    }
+
 }

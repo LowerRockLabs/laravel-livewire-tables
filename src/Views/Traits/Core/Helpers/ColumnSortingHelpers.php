@@ -2,6 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core\Helpers;
 
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
+
 trait ColumnSortingHelpers
 {
     public function getSortCallback(): ?callable

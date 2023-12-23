@@ -3,7 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\FilterConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasConfig, HasDefaultValue, HasLabel,HasView};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasConfig;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasDefaultValue;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasLabel;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasView;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\FilterHelpers;
 
 trait IsFilter

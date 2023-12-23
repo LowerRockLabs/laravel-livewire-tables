@@ -10,7 +10,7 @@ trait HasDefaultValue
     use DefaultValueConfiguration,
         DefaultValueHelpers;
 
-    protected string $defaultValue = '';
+    protected ?string $defaultValue = null;
 
     protected mixed $filterDefaultValue = null;
 }

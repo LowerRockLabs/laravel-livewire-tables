@@ -13,7 +13,7 @@ trait SelectOptionsHelpers
     {
         return $this->firstOption;
     }
-    
+
     public function getKeys(): array
     {
         return collect($this->getOptions())
@@ -23,7 +23,7 @@ trait SelectOptionsHelpers
             ->values()
             ->toArray();
     }
-    /* 
+    /*
         public function getKeys(): array
     {
         return collect($this->getOptions())

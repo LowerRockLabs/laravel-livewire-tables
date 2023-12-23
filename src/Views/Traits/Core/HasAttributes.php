@@ -12,5 +12,4 @@ trait HasAttributes
         AttributesHelpers;
 
     protected ?Closure $attributesCallback = null;
-
 }

@@ -2,11 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core\Configuration;
 
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Filter;
-
-
 trait ConfigConfiguration
 {
     /**

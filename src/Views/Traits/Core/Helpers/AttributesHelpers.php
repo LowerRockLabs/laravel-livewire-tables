@@ -23,7 +23,6 @@ trait AttributesHelpers
         return new ComponentAttributeBag($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
     }
 
-    
     /**
      * @param  array<mixed>  $attributes
      * @return mixed
@@ -38,5 +37,4 @@ trait AttributesHelpers
             return $key.'="'.$attributes[$key].'"';
         }, array_keys($attributes)));
     }
-
 }

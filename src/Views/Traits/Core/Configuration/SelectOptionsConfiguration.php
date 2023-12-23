@@ -2,10 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core\Configuration;
 
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Filter;
-
 trait SelectOptionsConfiguration
 {
     public function options(array $options = []): self
@@ -21,5 +17,4 @@ trait SelectOptionsConfiguration
 
         return $this;
     }
-
 }

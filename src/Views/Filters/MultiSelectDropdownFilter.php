@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasSelectOptions;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasSelectOptions;
 
 class MultiSelectDropdownFilter extends Filter
 {

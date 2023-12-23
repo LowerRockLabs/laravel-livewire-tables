@@ -8,10 +8,9 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Core\Helpers\SelectOptionsHelpe
 trait HasSelectOptions
 {
     use SelectOptionsConfiguration,
-    SelectOptionsHelpers;
+        SelectOptionsHelpers;
 
     public array $options = [];
 
     protected string $firstOption = '';
-
 }

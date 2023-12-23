@@ -6,11 +6,14 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ColumnConfiguration;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ColumnHelpers;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\RelationshipHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasColumnCollapsing, HasColumnSorting};
 
 trait IsColumn
 {
     use ColumnConfiguration,
         ColumnHelpers,
+        HasColumnCollapsing,
+        HasColumnSorting,
         RelationshipHelpers;
 
     protected ?DataTableComponent $component = null;
@@ -33,25 +36,9 @@ trait IsColumn
     // An array of relationships: i.e. address.group.name => ['address', 'group']
     protected array $relations = [];
 
-    protected bool $sortable = false;
-
-    protected mixed $sortCallback = null;
-
     protected bool $searchable = false;
 
     protected mixed $searchCallback = null;
-
-    protected bool $collapseOnMobile = false;
-
-    protected bool $collapseOnTablet = false;
-
-    protected bool $collapseAlways = false;
-
-    protected ?string $sortingPillTitle = null;
-
-    protected ?string $sortingPillDirectionAsc = null;
-
-    protected ?string $sortingPillDirectionDesc = null;
 
     protected bool $eagerLoadRelations = false;
 

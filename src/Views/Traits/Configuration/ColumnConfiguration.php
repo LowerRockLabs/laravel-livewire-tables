@@ -23,15 +23,6 @@ trait ColumnConfiguration
         return $this;
     }
 
-    public function sortable(?callable $callback = null): self
-    {
-        $this->sortable = true;
-
-        $this->sortCallback = $callback;
-
-        return $this;
-    }
-
     public function format(callable $callable): Column
     {
         $this->formatCallback = $callable;
@@ -58,21 +49,6 @@ trait ColumnConfiguration
     public function setTable(string $table): self
     {
         $this->table = $table;
-
-        return $this;
-    }
-
-    public function setSortingPillTitle(string $title): self
-    {
-        $this->sortingPillTitle = $title;
-
-        return $this;
-    }
-
-    public function setSortingPillDirections(string $asc, string $desc): self
-    {
-        $this->sortingPillDirectionAsc = $asc;
-        $this->sortingPillDirectionDesc = $desc;
 
         return $this;
     }

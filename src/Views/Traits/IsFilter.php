@@ -14,6 +14,7 @@ trait IsFilter
         FilterHelpers,
         HasLabel,
         HasDefaultValue,
+        HasConfig,
         HasView;
 
     protected string $name;
@@ -29,8 +30,6 @@ trait IsFilter
     protected bool $resetByClearButton = true;
 
     protected mixed $filterCallback = null;
-
-    public array $config = [];
 
     protected ?string $filterPillTitle = null;
 

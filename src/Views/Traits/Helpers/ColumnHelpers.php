@@ -140,8 +140,6 @@ trait ColumnHelpers
         return $row->{$this->getRelationString().'.'.$this->getField()};
     }
 
-
-
     public function getSearchCallback(): ?callable
     {
         return $this->searchCallback;
@@ -156,8 +154,6 @@ trait ColumnHelpers
     {
         return $this->searchCallback !== null;
     }
-
-
 
     public function eagerLoadRelationsIsEnabled(): bool
     {

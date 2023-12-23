@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core\Configuration;
 
 trait ColumnSortingConfiguration
 {
-
     public function sortable(?callable $callback = null): self
     {
         $this->sortable = true;
@@ -28,5 +27,4 @@ trait ColumnSortingConfiguration
 
         return $this;
     }
-
 }

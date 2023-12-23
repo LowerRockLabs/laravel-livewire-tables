@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core\Helpers;
 
 trait ColumnCollapsingHelpers
 {
-
     public function shouldCollapseOnMobile(): bool
     {
         return $this->collapseOnMobile;
@@ -19,5 +18,4 @@ trait ColumnCollapsingHelpers
     {
         return $this->collapseAlways;
     }
-
 }

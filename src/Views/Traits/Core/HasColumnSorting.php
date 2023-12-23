@@ -8,14 +8,14 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Core\Helpers\ColumnSortingHelpe
 trait HasColumnSorting
 {
     use ColumnSortingConfiguration,
-    ColumnSortingHelpers;
+        ColumnSortingHelpers;
 
     protected ?string $sortingPillTitle = null;
 
     protected ?string $sortingPillDirectionAsc = null;
 
     protected ?string $sortingPillDirectionDesc = null;
-    
+
     protected bool $sortable = false;
 
     protected mixed $sortCallback = null;

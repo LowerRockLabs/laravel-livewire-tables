@@ -8,13 +8,11 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Core\Helpers\ColumnCollapsingHe
 trait HasColumnCollapsing
 {
     use ColumnCollapsingConfiguration,
-    ColumnCollapsingHelpers;
-    
+        ColumnCollapsingHelpers;
+
     protected bool $collapseOnMobile = false;
 
     protected bool $collapseOnTablet = false;
 
     protected bool $collapseAlways = false;
-
-
 }

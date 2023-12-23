@@ -23,7 +23,7 @@ trait ConfigHelpers
     {
         return $this->config[$key] ?? null;
     }
-    
+
     public function hasConfigs(): bool
     {
         return count($this->getConfigs()) > 0;
@@ -33,6 +33,4 @@ trait ConfigHelpers
     {
         return array_key_exists($key, $this->getConfigs()) && $this->getConfig($key) !== null;
     }
-
-
 }

@@ -13,5 +13,4 @@ trait ConfigConfiguration
 
         return $this;
     }
-
 }

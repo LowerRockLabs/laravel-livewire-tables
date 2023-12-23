@@ -64,5 +64,4 @@ trait ColumnSortingHelpers
 
         return $direction === 'asc' ? $component->getDefaultSortingLabelAsc() : $component->getDefaultSortingLabelDesc();
     }
-
 }

@@ -8,8 +8,7 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Core\Helpers\ConfigHelpers;
 trait HasConfig
 {
     use ConfigConfiguration,
-    ConfigHelpers;
-    
-    public array $config = [];
+        ConfigHelpers;
 
+    public array $config = [];
 }

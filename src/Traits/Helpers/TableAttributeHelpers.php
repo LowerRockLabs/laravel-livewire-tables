@@ -93,4 +93,15 @@ trait TableAttributeHelpers
     {
         return $this->trUrlTargetCallback ? call_user_func($this->trUrlTargetCallback, $row) : null;
     }
+
+    public function getTableTitle(): ?string
+    {
+        return $this->tableTitle;
+    }
+
+    public function getTableTitleAttributes(): array
+    {
+        return $this->tableTitleAttributes : ['default' => true];
+    }
+
 }

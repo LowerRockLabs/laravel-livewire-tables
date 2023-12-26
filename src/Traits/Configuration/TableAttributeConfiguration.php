@@ -118,4 +118,19 @@ trait TableAttributeConfiguration
 
         return $this;
     }
+
+    public function setTableTitle(string $tableTitle): self
+    {
+        $this->tableTitle = $tableTitle;
+
+        return $this;
+    }
+
+    public function setTableTitleAttributes(array $attributes = []): self
+    {
+        $this->tableTitleAttributes = [...['default' => true], ...$attributes];
+
+        return $this;
+    }
+
 }

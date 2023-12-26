@@ -31,4 +31,8 @@ trait WithTableAttributes
     protected $trUrlCallback;
 
     protected $trUrlTargetCallback;
+
+    protected $tableTitle = '';
+
+    protected array $tableTitleAttributes = ['default' => true];
 }

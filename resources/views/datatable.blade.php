@@ -1,6 +1,7 @@
 @php($tableName = $this->getTableName())
 
 <div>
+    <h5 @class($this->getTableTitleAttributes())>{{ $this->getTableTitle() }}</h5>
     <x-livewire-tables::wrapper :component="$this" :tableName="$tableName">
         @if ($this->hasConfigurableAreaFor('before-tools'))
             @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))

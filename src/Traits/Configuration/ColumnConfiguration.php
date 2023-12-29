@@ -54,10 +54,14 @@ trait ColumnConfiguration
     public function enableColumnOrdering(): self
     {
         $this->columnOrderingEnabled = true;
+
+        return $this;
     }
 
     public function disableColumnOrdering(): self
     {
         $this->columnOrderingEnabled = false;
+
+        return $this;
     }
 }

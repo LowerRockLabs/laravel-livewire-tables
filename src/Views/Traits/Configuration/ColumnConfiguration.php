@@ -189,5 +189,4 @@ trait ColumnConfiguration
 
         return $this;
     }
-
 }

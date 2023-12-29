@@ -49,8 +49,7 @@ trait WithColumns
         $this->callHook('columnsSet');
         $this->callTraitHook('columnsSet');
 
-        if ($this->isColumnOrderingEnabled())
-        {
+        if ($this->isColumnOrderingEnabled()) {
             $this->columns = $this->columns->sortBy('columnOrder');
         }
 

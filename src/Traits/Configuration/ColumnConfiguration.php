@@ -60,6 +60,4 @@ trait ColumnConfiguration
     {
         $this->columnOrderingEnabled = false;
     }
-
-
 }

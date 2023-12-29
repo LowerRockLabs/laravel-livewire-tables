@@ -253,4 +253,9 @@ trait ColumnHelpers
 
         return $this->shouldAlwaysCollapse;
     }
+
+    public function isColumnOrderingEnabled(): bool
+    {
+        return $this->columnOrderingEnabled;
+    }
 }

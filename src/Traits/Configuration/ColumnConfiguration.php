@@ -50,4 +50,16 @@ trait ColumnConfiguration
         unset($this->shouldMobileCollapse);
         unset($this->shouldTabletCollapse);
     }
+
+    public function enableColumnOrdering(): self
+    {
+        $this->columnOrderingEnabled = true;
+    }
+
+    public function disableColumnOrdering(): self
+    {
+        $this->columnOrderingEnabled = false;
+    }
+
+
 }

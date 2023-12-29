@@ -28,6 +28,8 @@ trait WithColumns
 
     public int $visibleColumnCount;
 
+    protected bool $columnOrderingEnabled = false;
+
     /**
      * Sets up Columns
      */
@@ -46,6 +48,11 @@ trait WithColumns
         // Fire Lifecycle Hooks for columnsSet
         $this->callHook('columnsSet');
         $this->callTraitHook('columnsSet');
+
+        if ($this->isColumnOrderingEnabled())
+        {
+            $this->columns = $this->columns->sortBy('columnOrder');
+        }
 
         if ($this->columns->count() == 0) {
             throw new NoColumnsException('You must have defined a minimum of one Column for the table to function');

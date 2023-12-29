@@ -182,4 +182,12 @@ trait ColumnConfiguration
     {
         $this->displayColumnLabel = $status;
     }
+
+    public function setOrder(int $columnOrder): self
+    {
+        $this->columnOrder = $columnOrder;
+
+        return $this;
+    }
+
 }

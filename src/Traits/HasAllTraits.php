@@ -13,7 +13,8 @@ trait HasAllTraits
         WithSorting,
         WithSearch,
         WithPagination;
-    use WithBulkActions,
+    use WithActions,
+        WithBulkActions,
         WithCollapsingColumns,
         WithColumnSelect,
         WithConfigurableAreas,

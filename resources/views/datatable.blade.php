@@ -6,6 +6,8 @@
             @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
         @endif
 
+        <x-livewire-tables::tools.actions />
+
         <x-livewire-tables::tools>
             <x-livewire-tables::tools.sorting-pills />
             <x-livewire-tables::tools.filter-pills />

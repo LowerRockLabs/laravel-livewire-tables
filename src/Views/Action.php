@@ -8,7 +8,7 @@ class Action
 {
     use HasWireElement;
     use HasAttributes;
-    
+
     public string $label;
 
     public string $icon = '';
@@ -16,7 +16,6 @@ class Action
     public string $route = '#';
 
     protected bool $hidden = false;
-
 
     public function __construct(?string $label = null)
     {

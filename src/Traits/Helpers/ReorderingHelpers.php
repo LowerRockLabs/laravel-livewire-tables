@@ -2,6 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Closure;
+use Illuminate\View\ComponentAttributeBag;
+
 trait ReorderingHelpers
 {
     public function getReorderMethod(): string
@@ -88,4 +91,25 @@ trait ReorderingHelpers
     {
         return $this->getTableName().'-reordering-backup';
     }
+
+    public function getReorderBtnAttributes(): array
+    {
+        return $this->hasReorderBtnAttributesCallback() ? call_user_func($this->getReorderBtnAttributesCallback()) : ['default' => true];
+    }
+
+    public function getReorderBtnAttributesBag(): ComponentAttributeBag
+    {
+        return new ComponentAttributeBag($this->hasReorderBtnAttributesCallback() ? app()->call($this->getReorderBtnAttributesCallback()) : []);
+    }
+
+    public function getReorderBtnAttributesCallback(): ?Closure
+    {
+        return $this->reorderBtnAttributesCallback;
+    }
+
+    public function hasReorderBtnAttributesCallback(): bool
+    {
+        return $this->reorderBtnAttributesCallback !== null;
+    }
+
 }

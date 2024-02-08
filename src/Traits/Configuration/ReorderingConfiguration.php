@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
+use Closure;
+
 trait ReorderingConfiguration
 {
     public function setReorderStatus(bool $status): self
@@ -81,4 +83,12 @@ trait ReorderingConfiguration
 
         return $this;
     }
+
+    public function setReorderBtnAttributes(Closure $callback): self
+    {
+        $this->reorderBtnAttributesCallback = $callback;
+
+        return $this;
+    }
+
 }

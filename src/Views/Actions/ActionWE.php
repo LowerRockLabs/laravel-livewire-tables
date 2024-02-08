@@ -8,5 +8,4 @@ class ActionWE extends \Rappasoft\LaravelLivewireTables\Views\BaseAction
 {
     use HasAttributes;
     use HasWireElement;
-
 }

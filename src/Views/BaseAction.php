@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views;
 
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes};
 use Illuminate\View\ComponentAttributeBag;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes};
 
 class BaseAction
 {
@@ -96,5 +96,4 @@ class BaseAction
     {
         return new ComponentAttributeBag($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback()) : []);
     }
-
 }

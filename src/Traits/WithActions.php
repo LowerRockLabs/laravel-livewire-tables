@@ -15,9 +15,9 @@ trait WithActions
 
     public function hasActions(): bool
     {
-        return !empty($this->actions);
+        return ! empty($this->actions);
     }
-    
+
     public function actions(): array
     {
         return [];

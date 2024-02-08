@@ -28,7 +28,6 @@ trait HasWireElement
         return $this->wireElementType == '$dispatch';
     }
 
-
     public function wireModal($component, $params = []): self
     {
         $this->wireElementType = 'modal';

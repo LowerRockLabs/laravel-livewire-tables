@@ -2,9 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Closure;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ReorderingConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ReorderingHelpers;
-use Closure;
 
 trait WithReordering
 {
@@ -26,9 +26,8 @@ trait WithReordering
     public string $defaultReorderDirection = 'asc';
 
     public array $orderedItems = [];
-    
-    protected ?Closure $reorderBtnAttributesCallback = null;
 
+    protected ?Closure $reorderBtnAttributesCallback = null;
 
     public function setupReordering(): void
     {

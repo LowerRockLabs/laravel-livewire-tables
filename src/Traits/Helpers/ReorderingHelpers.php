@@ -111,5 +111,4 @@ trait ReorderingHelpers
     {
         return $this->reorderBtnAttributesCallback !== null;
     }
-
 }

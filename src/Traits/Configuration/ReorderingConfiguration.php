@@ -90,5 +90,4 @@ trait ReorderingConfiguration
 
         return $this;
     }
-
 }

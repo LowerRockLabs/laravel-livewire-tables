@@ -54,4 +54,6 @@ trait IsColumn
     protected bool $clickable = true;
 
     protected ?string $customSlug = null;
+
+    public int $columnOrder = 999;
 }

@@ -6,7 +6,6 @@ use Closure;
 
 trait ManyColumnConfiguration
 {
-
     public function setValueCallback(Closure $valueCallback): self
     {
         $this->valueCallback = $valueCallback;

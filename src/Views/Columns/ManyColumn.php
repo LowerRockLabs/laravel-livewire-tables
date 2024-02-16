@@ -2,11 +2,11 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
+use Closure;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Illuminate\Support\HtmlString;
-use Closure;
 
 class ManyColumn extends Column
 {
@@ -17,9 +17,13 @@ class ManyColumn extends Column
         \Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasCallback;
 
     protected string $view = 'livewire-tables::includes.columns.many';
+
     protected string $separator = '<br />';
+
     protected string $relation = '';
+
     protected string $relatedValue = '';
+
     protected ?Closure $valueCallback = null;
 
     public function __construct(string $title, ?string $from = null)
@@ -27,5 +31,4 @@ class ManyColumn extends Column
         parent::__construct($title, $from);
         $this->label(fn () => null);
     }
-
 }

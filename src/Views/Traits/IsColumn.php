@@ -54,4 +54,8 @@ trait IsColumn
     protected bool $clickable = true;
 
     protected ?string $customSlug = null;
+
+    protected bool $countColumn = false;
+
+    protected string $countField = '';
 }

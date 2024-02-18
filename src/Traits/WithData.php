@@ -12,6 +12,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Livewire\Attributes\Computed;
 
 trait WithData
 {
@@ -24,9 +25,7 @@ trait WithData
         $this->setBuilder($this->builder());
     }
 
-    /**
-     * Retrieves the rows for the executed query
-     */
+    #[Computed]
     public function getRows(): Collection|CursorPaginator|Paginator|LengthAwarePaginator
     {
         // Setup the Base Query
@@ -195,12 +194,19 @@ trait WithData
 
         if ($this->getExcludeDeselectedColumnsFromQuery()) {
             foreach ($this->getSelectedColumnsForQuery() as $column) {
-                $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
+                    $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
+            }
+            foreach ($this->getColumns()->reject(fn (Column $column) => $this->columnSelectIsEnabledForColumn($column) == false)->reject(fn (Column $column) => $column->getCountField() == null) as $column) {
+                $this->setBuilder($this->getBuilder()->withCount($column->getCountField()));    
             }
         } else {
             foreach ($this->getColumns()->reject(fn (Column $column) => $column->isLabel()) as $column) {
                 $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
             }
+            foreach ($this->getColumns()->reject(fn (Column $column) => $column->getCountField() == null) as $column) {
+                    $this->setBuilder($this->getBuilder()->withCount($column->getCountField()));    
+            }
+
         }
 
         return $this->getBuilder();
@@ -250,16 +256,5 @@ trait WithData
 
         // If model does not exist
         throw new DataTableConfigurationException('You must either specify a model or implement the builder method.');
-    }
-
-    /**
-     * Add Rows And Generic Data to View
-     */
-    public function renderingWithData(\Illuminate\View\View $view, array $data = []): void
-    {
-        $view->with([
-            'filterGenericData' => $this->getFilterGenericData(),
-            'rows' => $this->getRows(),
-        ]);
     }
 }

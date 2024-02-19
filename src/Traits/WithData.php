@@ -10,9 +10,9 @@ use Illuminate\Pagination\CursorPaginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Livewire\Attributes\Computed;
 
 trait WithData
 {
@@ -194,17 +194,17 @@ trait WithData
 
         if ($this->getExcludeDeselectedColumnsFromQuery()) {
             foreach ($this->getSelectedColumnsForQuery() as $column) {
-                    $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
+                $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
             }
             foreach ($this->getColumns()->reject(fn (Column $column) => $this->columnSelectIsEnabledForColumn($column) == false)->reject(fn (Column $column) => $column->getCountField() == null) as $column) {
-                $this->setBuilder($this->getBuilder()->withCount($column->getCountField()));    
+                $this->setBuilder($this->getBuilder()->withCount($column->getCountField()));
             }
         } else {
             foreach ($this->getColumns()->reject(fn (Column $column) => $column->isLabel()) as $column) {
                 $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
             }
             foreach ($this->getColumns()->reject(fn (Column $column) => $column->getCountField() == null) as $column) {
-                    $this->setBuilder($this->getBuilder()->withCount($column->getCountField()));    
+                $this->setBuilder($this->getBuilder()->withCount($column->getCountField()));
             }
 
         }

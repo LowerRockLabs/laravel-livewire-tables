@@ -2,9 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables;
 
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\Traits\HasAllTraits;
-use Livewire\Attributes\Computed;
 
 abstract class DataTableComponent extends Component
 {

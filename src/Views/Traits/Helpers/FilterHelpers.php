@@ -59,12 +59,10 @@ trait FilterHelpers
         return isset($this->filterBy);
     }
 
-
     public function getFilterBy(): string
     {
         return $this->filterBy;
     }
-
 
     public function hasFilterCallback(): bool
     {

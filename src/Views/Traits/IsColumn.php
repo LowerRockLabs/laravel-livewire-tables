@@ -55,5 +55,7 @@ trait IsColumn
 
     protected ?string $customSlug = null;
 
-    public int $columnOrder = 999;
+    protected bool $countColumn = false;
+
+    protected string $countField = '';
 }

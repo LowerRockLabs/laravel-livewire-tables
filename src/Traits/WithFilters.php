@@ -62,6 +62,17 @@ trait WithFilters
 
                         ($filter->getFilterCallback())($this->getBuilder(), $value);
                     }
+                    else if ($filter->getKey() === $key && $filter->hasFilterBy()) {
+                        // Let the filter class validate the value
+                        $value = $filter->validate($value);
+                        
+                        if ($value === false) {
+                            continue;
+                        }
+                        $this->setBuilder($this->getBuilder()->where($filter->getFilterBy(), $value));
+                    }
+
+
                 }
             }
         }

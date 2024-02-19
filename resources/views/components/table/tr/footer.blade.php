@@ -1,8 +1,7 @@
 @aware(['component', 'tableName'])
-@props(['rows', 'filterGenericData'])
 
 <x-livewire-tables::table.tr.plain
-    :customAttributes="$this->getFooterTrAttributes($rows)"
+    :customAttributes="$this->getFooterTrAttributes($this->getRows)"
     wire:key="{{ $tableName .'-footer' }}"
 >
     {{-- Adds a Column For Bulk Actions--}}
@@ -21,8 +20,8 @@
         @continue($column->isHidden())
         @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
         @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus() && $this->getHideReorderColumnUnlessReorderingStatus())
-        <x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true"  wire:key="{{ $tableName .'-footer-shown-'.$colIndex }}" :column="$column" :customAttributes="$this->getFooterTdAttributes($column, $rows, $colIndex)">
-            {{ $column->getFooterContents($rows, $filterGenericData) }}
+        <x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true"  wire:key="{{ $tableName .'-footer-shown-'.$colIndex }}" :column="$column" :customAttributes="$this->getFooterTdAttributes($column, $this->getRows, $colIndex)">
+            {{ $column->getFooterContents($this->getRows, $this->getFilterGenericData) }}
         </x-livewire-tables::table.td.plain>
     @endforeach
 </x-livewire-tables::table.tr.plain>

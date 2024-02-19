@@ -205,4 +205,14 @@ trait ColumnHelpers
     {
         return $this->displayColumnLabel ?? true;
     }
+
+    public function isCountColumn(): bool
+    {
+        return $this->isCountColumn ?? false;
+    }
+
+    public function getCountField()
+    {
+        return $this->countField;
+    }
 }

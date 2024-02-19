@@ -37,4 +37,6 @@ trait IsFilter
     protected mixed $filterDefaultValue = null;
 
     public array $genericDisplayData = [];
+
+    protected ?string $filterBy;
 }

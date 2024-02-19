@@ -47,6 +47,25 @@ trait FilterHelpers
         return $this;
     }
 
+    public function filterBy(string $filterBy): Filter
+    {
+        $this->filterBy = $filterBy;
+
+        return $this;
+    }
+
+    public function hasFilterBy(): bool
+    {
+        return isset($this->filterBy);
+    }
+
+
+    public function getFilterBy(): string
+    {
+        return $this->filterBy;
+    }
+
+
     public function hasFilterCallback(): bool
     {
         return $this->filterCallback !== null;

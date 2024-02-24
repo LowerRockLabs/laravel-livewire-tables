@@ -26,7 +26,7 @@
                 @endif
                 <x-livewire-tables::table.th.collapsed-columns />
 
-                @foreach($columns as $index => $column)
+                @foreach($this->shownColumns as $index => $column)
                     @continue($column->isHidden())
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
                     @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus() && $this->getHideReorderColumnUnlessReorderingStatus())
@@ -57,7 +57,7 @@
                         <x-livewire-tables::table.td.collapsed-columns wire:key="{{ $tableName }}-row-collapsed-{{ $row->{$this->getPrimaryKey()} }}" :rowIndex="$rowIndex" />
                     @endif
 
-                    @foreach($columns as $colIndex => $column)
+                    @foreach($this->shownColumns as $colIndex => $column)
                         @continue($column->isHidden())
                         @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
                         @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus() && $this->getHideReorderColumnUnlessReorderingStatus())

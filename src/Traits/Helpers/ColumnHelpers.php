@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Livewire\Attributes\Computed;
 
 trait ColumnHelpers
 {
@@ -34,6 +35,13 @@ trait ColumnHelpers
 
         $this->columns = collect([...$this->prependedColumns, ...$columns, ...$this->appendedColumns]);
     }
+
+    #[Computed]
+    public function shownColumns(): Collection
+    {
+        return $this->columns->sortBy('columnOrder');
+    }
+
 
     public function getColumns(): Collection
     {

@@ -13,7 +13,7 @@
         <x-livewire-tables::table.td.collapsed-columns :hidden=true :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'header-collapsed-hide' }}" rowIndex="-1"  />
     @endif
 
-    @foreach($this->getColumns() as $colIndex => $column)
+    @foreach($this->shownColumns as $colIndex => $column)
         @continue($column->isHidden())
         @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
         @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus() && $this->getHideReorderColumnUnlessReorderingStatus())

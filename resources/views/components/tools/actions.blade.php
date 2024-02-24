@@ -10,8 +10,10 @@
             ->class(['btn btn-sm btn-success' => ! $action->hasClass()])
         }}
            @if($action->hasWireElement())
-            @if($action->hasWireDispatch())
-                wire:click="$dispatch('openModal', { component: '{{ $this->modalPath }}', arguments: { modelID: ''  }})"    
+            @if($action->isWireClick())
+                wire:click="{{ $action->getWireElementComponentName() }} , @js($action->getWireElementParams())"
+            @elseif($action->hasWireDispatch())
+                wire:click="$dispatch('openModal', { component: '{{ $action->getWireElementComponentName() }}', arguments: {{ $action->getWireElementParams() }} } )"
             @else
                 wire:{{ $action->getWireElementType() }}="{{ $action->getWireElementComponentName() }} , @js($action->getWireElementParams())"
             @endif

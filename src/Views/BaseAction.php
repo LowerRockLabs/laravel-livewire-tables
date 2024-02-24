@@ -3,15 +3,14 @@
 namespace Rappasoft\LaravelLivewireTables\Views;
 
 use Illuminate\View\ComponentAttributeBag;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasIcon};
 
 class BaseAction
 {
     use HasAttributes;
+    use HasIcon;
 
     public string $label;
-
-    public string $icon = '';
 
     public string $route = '#';
 
@@ -33,18 +32,6 @@ class BaseAction
         $this->attributes['href'] = $route;
 
         return $this;
-    }
-
-    public function icon($icon): self
-    {
-        $this->icon = $icon;
-
-        return $this;
-    }
-
-    public function hasIcon(): bool
-    {
-        return $this->icon !== '';
     }
 
     public function hasClass(): bool

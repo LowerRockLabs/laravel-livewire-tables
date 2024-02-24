@@ -14,6 +14,22 @@ trait HasWireElement
 
     protected mixed $wireElementCallback = null;
 
+    protected ?string $wireAction = null;
+
+    public function click($action, $params = []): self
+    {
+        $this->wireElementType = 'click';
+        $this->wireElementComponentName = $action;
+        $this->wireElementParams = $params;
+
+        return $this;
+    }
+
+    public function isWireClick(): bool
+    {
+        return $this->wireElementType == 'click';
+    }
+
     public function wireClick($component, $params = []): self
     {
         $this->wireElementType = '$dispatch';
@@ -22,7 +38,7 @@ trait HasWireElement
 
         return $this;
     }
-
+    
     public function hasWireDispatch(): bool
     {
         return $this->wireElementType == '$dispatch';
@@ -86,8 +102,8 @@ trait HasWireElement
         return $this->wireElementType;
     }
 
-    public function getWireElementParams(): array
+    public function getWireElementParams()
     {
-        return $this->wireElementParams;
+        return json_encode($this->wireElementParams);
     }
 }

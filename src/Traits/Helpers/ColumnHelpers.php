@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
-use Rappasoft\LaravelLivewireTables\Views\Column;
 use Livewire\Attributes\Computed;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ColumnHelpers
 {
@@ -41,7 +41,6 @@ trait ColumnHelpers
     {
         return $this->columns->sortBy('columnOrder');
     }
-
 
     public function getColumns(): Collection
     {

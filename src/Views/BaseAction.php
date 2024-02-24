@@ -89,7 +89,7 @@ class BaseAction
 
     public function getAttributes(): array
     {
-        return $this->hasAttributesCallback() ? array_merge( ['default' => true, 'default-styling' => true, 'default-colors' => true ], call_user_func($this->getAttributesCallback())) : ['default' => true, 'default-styling' => true, 'default-colors' => true ];
+        return $this->hasAttributesCallback() ? array_merge(['default' => true, 'default-styling' => true, 'default-colors' => true], call_user_func($this->getAttributesCallback())) : ['default' => true, 'default-styling' => true, 'default-colors' => true];
     }
 
     public function getAttributesBag(): ComponentAttributeBag

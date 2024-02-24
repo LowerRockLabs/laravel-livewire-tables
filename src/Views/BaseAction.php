@@ -29,12 +29,12 @@ class BaseAction
     public function route($route): self
     {
         $this->route = $route;
-        $this->attributes['href'] = $route;
+      //  $this->attributes['href'] = $route;
 
         return $this;
     }
 
-    public function hasClass(): bool
+    /*public function hasClass(): bool
     {
         return isset($this->attributes['class']) && $this->attributes['class'] !== '';
     }
@@ -55,7 +55,7 @@ class BaseAction
         $this->attributes['class'] .= "btn btn-{$outlineClass}success btn-sm";
 
         return $this;
-    }
+    }*/
 
     public function hideIf($condition): self
     {

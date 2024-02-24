@@ -38,7 +38,7 @@ trait HasWireElement
 
         return $this;
     }
-    
+
     public function hasWireDispatch(): bool
     {
         return $this->wireElementType == '$dispatch';

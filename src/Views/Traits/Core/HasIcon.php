@@ -20,5 +20,4 @@ trait HasIcon
     {
         return $this->icon !== '';
     }
-
 }

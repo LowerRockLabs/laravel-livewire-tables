@@ -79,13 +79,13 @@ trait HasWireElement
         return $this->wireElementCallback !== null;
     }
 
-    public function setWireElement(): void
+    /*public function setWireElement(): void
     {
         $wireElement = $this->hasWireElementCallback() ? app()->call($this->getWireElementCallback(), ['row' => $row]) : [];
         $this->wireElementType = $wireElement['type'] ?? null;
         $this->wireElementComponentName = $wireElement['component'] ?? null;
         $this->wireElementParams = $wireElement['params'] ?? [];
-    }
+    }*/
 
     public function hasWireElement(): bool
     {

@@ -37,7 +37,7 @@ trait ColumnHelpers
 
     public function getColumns(): Collection
     {
-        return $this->columns;
+        return $this->columns->sortBy('columnOrder');
     }
 
     public function getColumn(string $qualifiedColumn): ?Column

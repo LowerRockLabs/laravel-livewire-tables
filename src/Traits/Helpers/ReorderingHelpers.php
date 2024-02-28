@@ -26,19 +26,19 @@ trait ReorderingHelpers
         return $this->getReorderStatus() === false;
     }
 
-    #[Computed(persist: true, seconds: 600)]
+    #[Computed()]
     public function getCurrentlyReorderingStatus(): bool
     {
         return $this->currentlyReorderingStatus;
     }
 
-    #[Computed(persist: true, seconds: 600)]
+    #[Computed()]
     public function currentlyReorderingIsEnabled(): bool
     {
         return $this->getCurrentlyReorderingStatus() === true;
     }
 
-    #[Computed(persist: true, seconds: 600)]
+    #[Computed()]
     public function currentlyReorderingIsDisabled(): bool
     {
         return $this->getCurrentlyReorderingStatus() === false;

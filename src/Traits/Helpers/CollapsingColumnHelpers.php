@@ -11,19 +11,19 @@ trait CollapsingColumnHelpers
         return $this->collapsingColumnsStatus;
     }
 
-    #[Computed(persist: true, seconds: 600)]
+    #[Computed()]
     public function hasCollapsingColumns(): bool
     {
         return $this->getCollapsingColumnsStatus() === true;
     }
 
-    #[Computed(persist: true, seconds: 600)]
+    #[Computed()]
     public function collapsingColumnsAreEnabled(): bool
     {
         return $this->getCollapsingColumnsStatus() === true;
     }
 
-    #[Computed(persist: true, seconds: 600)]
+    #[Computed()]
     public function collapsingColumnsAreDisabled(): bool
     {
         return $this->getCollapsingColumnsStatus() === false;

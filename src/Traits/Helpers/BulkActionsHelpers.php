@@ -16,7 +16,7 @@ trait BulkActionsHelpers
     {
         return $this->getBulkActionsStatus() === true;
     }
-    
+
     #[Computed(persist: true, seconds: 600)]
     public function bulkActionsAreDisabled(): bool
     {

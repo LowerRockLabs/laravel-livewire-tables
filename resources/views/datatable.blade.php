@@ -4,10 +4,6 @@
     <x-livewire-tables::wrapper :component="$this" :tableName="$tableName">
         @includeWhen($this->hasConfigurableAreaFor('before-tools'), $this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
 
-        @if($this->hasActions())
-            <x-livewire-tables::tools.actions />
-        @endif
-
         <x-livewire-tables::tools>
             <x-livewire-tables::tools.sorting-pills />
             <x-livewire-tables::tools.filter-pills />

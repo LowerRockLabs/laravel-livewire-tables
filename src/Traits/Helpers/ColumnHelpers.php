@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Livewire\Attributes\Computed;
 
 trait ColumnHelpers
 {
@@ -105,6 +106,7 @@ trait ColumnHelpers
         return $this->getColumns()->count();
     }
 
+    #[Computed(persist: true, seconds: 600)]
     public function hasCollapsedColumns(): bool
     {
         if ($this->shouldCollapseOnMobile() || $this->shouldCollapseOnTablet() || $this->shouldCollapseAlways()) {

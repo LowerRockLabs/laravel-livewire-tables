@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Livewire\Attributes\Computed;
+
 trait BulkActionsHelpers
 {
     public function getBulkActionsStatus(): bool
@@ -9,11 +11,13 @@ trait BulkActionsHelpers
         return $this->bulkActionsStatus;
     }
 
+    #[Computed(persist: true, seconds: 600)]
     public function bulkActionsAreEnabled(): bool
     {
         return $this->getBulkActionsStatus() === true;
     }
-
+    
+    #[Computed(persist: true, seconds: 600)]
     public function bulkActionsAreDisabled(): bool
     {
         return $this->getBulkActionsStatus() === false;
@@ -49,6 +53,7 @@ trait BulkActionsHelpers
         return $this->getHideBulkActionsWhenEmptyStatus() === false;
     }
 
+    #[Computed(persist: true, seconds: 600)]
     public function hasBulkActions(): bool
     {
         return count($this->bulkActions()) > 0;

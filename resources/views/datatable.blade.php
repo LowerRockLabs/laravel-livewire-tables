@@ -17,10 +17,14 @@
                 @if($this->getCurrentlyReorderingStatus())
                     <x-livewire-tables::table.th.reorder x-cloak x-show="currentlyReorderingStatus" />
                 @endif
+                
                 @if($this->bulkActionsAreEnabled() && $this->hasBulkActions())
                     <x-livewire-tables::table.th.bulk-actions :displayMinimisedOnReorder="true" />
                 @endif
-                <x-livewire-tables::table.th.collapsed-columns />
+
+                @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
+                    <x-livewire-tables::table.th.collapsed-columns />
+                @endif
 
                 @foreach($columns as $index => $column)
                     @continue($column->isHidden())
@@ -38,14 +42,21 @@
                 <x-livewire-tables::includes.loading colCount="{{ $this->columns->count()+1 }}" />
             @endif
 
-
-            <x-livewire-tables::table.tr.bulk-actions :rows="$rows" :displayMinimisedOnReorder="true" />
+            @if($this->bulkActionsAreEnabled() && $this->hasBulkActions())
+                <x-livewire-tables::table.tr.bulk-actions :rows="$rows" :displayMinimisedOnReorder="true" />
+            @endif
 
             @forelse ($rows as $rowIndex => $row)
                 <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex">
                     <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $tableName }}-row-reorder-{{ $row->{$this->getPrimaryKey()} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :rowIndex="$rowIndex" />
-                    <x-livewire-tables::table.td.bulk-actions wire:key="{{ $tableName }}-row-bulk-act-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex"/>
-                    <x-livewire-tables::table.td.collapsed-columns wire:key="{{ $tableName }}-row-collapsed-{{ $row->{$this->getPrimaryKey()} }}" :rowIndex="$rowIndex" />
+                    
+                    @if($this->bulkActionsAreEnabled() && $this->hasBulkActions())
+                        <x-livewire-tables::table.td.bulk-actions wire:key="{{ $tableName }}-row-bulk-act-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex"/>
+                    @endif
+
+                    @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
+                        <x-livewire-tables::table.td.collapsed-columns wire:key="{{ $tableName }}-row-collapsed-{{ $row->{$this->getPrimaryKey()} }}" :rowIndex="$rowIndex" />
+                    @endif
 
                     @foreach($columns as $colIndex => $column)
                         @continue($column->isHidden())
@@ -58,7 +69,10 @@
                     @endforeach
                 </x-livewire-tables::table.tr>
 
-                <x-livewire-tables::table.collapsed-columns :row="$row" :rowIndex="$rowIndex" />
+                @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
+                    <x-livewire-tables::table.collapsed-columns :row="$row" :rowIndex="$rowIndex" />
+                @endif
+
             @empty
                 <x-livewire-tables::table.empty />
             @endforelse

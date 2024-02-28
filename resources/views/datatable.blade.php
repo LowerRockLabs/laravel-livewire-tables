@@ -2,9 +2,7 @@
 
 <div>
     <x-livewire-tables::wrapper :component="$this" :tableName="$tableName">
-        @if ($this->hasConfigurableAreaFor('before-tools'))
-            @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
-        @endif
+        @includeWhen($this->hasConfigurableAreaFor('before-tools'), $this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
 
         @if($this->hasActions())
             <x-livewire-tables::tools.actions />
@@ -18,7 +16,7 @@
 
         <x-livewire-tables::table>
             <x-slot name="thead">
-                @if($this->getCurrentlyReorderingStatus())
+                @if($this->getCurrentlyReorderingStatus)
                     <x-livewire-tables::table.th.reorder x-cloak x-show="currentlyReorderingStatus" />
                 @endif
                 @if($this->bulkActionsAreEnabled && $this->hasBulkActions)
@@ -32,7 +30,7 @@
                 @foreach($columns as $index => $column)
                     @continue($column->isHidden())
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
-                    @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus() && $this->getHideReorderColumnUnlessReorderingStatus())
+                    @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus && $this->getHideReorderColumnUnlessReorderingStatus())
 
                     <x-livewire-tables::table.th wire:key="{{ $tableName.'-table-head-'.$index }}" :column="$column" :index="$index" />
                 @endforeach
@@ -51,7 +49,7 @@
 
             @forelse ($rows as $rowIndex => $row)
                 <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $row->{$this->getPrimaryKey()} }}" :row="$row" :rowIndex="$rowIndex">
-                    @if($this->getCurrentlyReorderingStatus())
+                    @if($this->getCurrentlyReorderingStatus)
                     <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $tableName }}-row-reorder-{{ $row->{$this->getPrimaryKey()} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :rowIndex="$rowIndex" />
                     @endif
                     @if($this->bulkActionsAreEnabled && $this->hasBulkActions)
@@ -65,7 +63,7 @@
                     @foreach($columns as $colIndex => $column)
                         @continue($column->isHidden())
                         @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
-                        @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus() && $this->getHideReorderColumnUnlessReorderingStatus())
+                        @continue($column->isReorderColumn() && !$this->getCurrentlyReorderingStatus && $this->getHideReorderColumnUnlessReorderingStatus())
 
                         <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $row->{$this->getPrimaryKey()} . '-datatable-td-' . $column->getSlug() }}"  :column="$column" :colIndex="$colIndex">
                             {{ $column->renderContents($row) }}

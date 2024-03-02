@@ -1,7 +1,7 @@
 @aware(['component', 'tableName'])
 @props(['filterGenericData'])
 
-<div x-cloak x-show="!currentlyReorderingStatus && filtersOpen" 
+<div tableSection="filter-slidedown-wrapper" dusk="filter-slidedown-wrapper" x-cloak x-show="!currentlyReorderingStatus && filtersOpen" 
     @class([
         'container' => $component->isBootstrap(),
     ])

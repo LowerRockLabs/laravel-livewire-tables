@@ -1,7 +1,7 @@
 @aware(['component', 'tableName'])
 
 @if ($component->filtersAreEnabled() && $component->filterPillsAreEnabled() && $component->hasAppliedVisibleFiltersForPills())
-    <div>
+    <div tableSection="filter-pills-wrapper" dusk="filter-pills-wrapper">
         <div @class([
             'mb-4 px-4 md:p-0' => $component->isTailwind(),
             'mb-3' => $component->isBootstrap(),

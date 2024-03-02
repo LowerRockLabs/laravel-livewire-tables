@@ -1,10 +1,11 @@
 @aware(['component', 'tableName'])
-<div @class([
+<div tableSection="perpage-wrapper" dusk="perpage-wrapper"
+    @class([
         'ml-0 ml-md-2' => $component->isBootstrap4(),
         'ms-0 ms-md-2' => $component->isBootstrap5(),
     ])
 >
-    <select wire:model.live="perPage" id="{{ $tableName }}-perPage"
+    <select wire:model.live="perPage" id="{{ $tableName }}-perPage"  dusk="perpage-select"
         {{ 
             $attributes->merge($component->getPerPageFieldAttributes())
             ->class([

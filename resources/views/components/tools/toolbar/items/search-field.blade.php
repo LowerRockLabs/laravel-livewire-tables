@@ -1,11 +1,11 @@
 @aware(['component', 'tableName'])
 
-<div x-cloak x-show="!currentlyReorderingStatus" tableSection="search-field-wrapper" dusk="search-field-wrapper"
+<div x-cloak x-show="!currentlyReorderingStatus" tableSection="search-field-wrapper"
     @class([
         'mb-3 mb-md-0 input-group' => $component->isBootstrap(),
         'flex rounded-md shadow-sm' => $component->isTailwind(),
     ])>
-        <input tableSection="search-field-input" dusk="search-field-input"
+        <input tableSection="search-field-input"
             wire:model{{ $component->getSearchOptions() }}="search"
             placeholder="{{ $component->getSearchPlaceholder() }}"
             type="text"
@@ -25,7 +25,7 @@
         <div @class([
                     'd-inline-flex h-100 align-items-center ' => $component->isBootstrap(),
                 ])>
-                <div dusk="search-clear-button"
+                <div tableSection="search-clear-button"
                     wire:click="clearSearch"
 
                     @class([

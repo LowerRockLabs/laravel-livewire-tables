@@ -1,5 +1,5 @@
 @aware(['component', 'tableName'])
-<div tableSection="bulk-actions-wrapper" dusk="bulk-actions-wrapper"
+<div tableSection="bulk-actions-wrapper"
     x-data="{ open: false, childElementOpen: false, isTailwind: @js($component->isTailwind()), isBootstrap: @js($component->isBootstrap()) }"
     x-cloak x-show="(selectedItems.length > 0 || alwaysShowBulkActions)"
     @class([

@@ -5,7 +5,7 @@
     @include($component->getConfigurableAreaFor('before-toolbar'), $component->getParametersForConfigurableArea('before-toolbar'))
 @endif
 
-<div tableSection="toolbar-wrapper" dusk="toolbar-wrapper" 
+<div tableSection="toolbar-wrapper"
     @class([
         'd-md-flex justify-content-between mb-3' => $component->isBootstrap(),
         'md:flex md:justify-between mb-4 px-4 md:p-0' => $component->isTailwind(),

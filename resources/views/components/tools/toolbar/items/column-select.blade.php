@@ -1,6 +1,6 @@
 @aware(['component', 'tableName'])
 @if ($component->isTailwind())
-<div tableSection="column-select-wrapper" dusk="column-select-wrapper" class="@if ($component->getColumnSelectIsHiddenOnMobile()) hidden sm:block @elseif ($component->getColumnSelectIsHiddenOnTablet()) hidden md:block @endif mb-4 w-full md:w-auto md:mb-0 md:ml-2">
+<div tableSection="column-select-wrapper" class="@if ($component->getColumnSelectIsHiddenOnMobile()) hidden sm:block @elseif ($component->getColumnSelectIsHiddenOnTablet()) hidden md:block @endif mb-4 w-full md:w-auto md:mb-0 md:ml-2">
     <div
         x-data="{ open: false, childElementOpen: false }"
         @keydown.window.escape="if (!childElementOpen) { open = false }"
@@ -79,7 +79,7 @@
     </div>
 </div>
 @elseif ($component->isBootstrap())
-<div tableSection="column-select-wrapper" dusk="column-select-wrapper"
+<div tableSection="column-select-wrapper" 
     @class([
         'd-none d-sm mb-3 mb-md-0 pl-0 pl-md-2' => $component->getColumnSelectIsHiddenOnMobile() && $component->isBootstrap4(),
         'd-none d-md-block mb-3 mb-md-0 pl-0 pl-md-2' => $component->getColumnSelectIsHiddenOnTablet() && $component->isBootstrap4(),

@@ -1,7 +1,7 @@
 @aware(['component', 'tableName'])
 
 @if ($component->isTailwind())
-    <div tableSection="sorting-pills-wrapper" dusk="sorting-pills-wrapper">
+    <div tableSection="sorting-pills-wrapper">
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
             <div class="mb-4 px-4 md:p-0" x-cloak x-show="!currentlyReorderingStatus">
                 <small class="text-gray-700 dark:text-white">@lang('Applied Sorting'):</small>
@@ -42,7 +42,7 @@
         @endif
     </div>
 @elseif ($component->isBootstrap4())
-    <div tableSection="sorting-pills-wrapper" dusk="sorting-pills-wrapper">
+    <div tableSection="sorting-pills-wrapper">
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
             <div class="mb-3" x-cloak x-show="!currentlyReorderingStatus">
                 <small>@lang('Applied Sorting'):</small>
@@ -82,7 +82,7 @@
         @endif
     </div>
 @elseif ($component->isBootstrap5())
-    <div tableSection="sorting-pills-wrapper" dusk="sorting-pills-wrapper">
+    <div tableSection="sorting-pills-wrapper">
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
             <div class="mb-3" x-cloak x-show="!currentlyReorderingStatus">
                 <small>@lang('Applied Sorting'):</small>

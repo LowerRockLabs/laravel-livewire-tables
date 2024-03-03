@@ -6,7 +6,7 @@
 @endif
 
 @if ($component->isTailwind())
-    <div tableSection="pagination-wrapper" dusk="pagination-wrapper">
+    <div tableSection="pagination-wrapper">
         @if ($component->paginationVisibilityIsEnabled())
             <div class="mt-4 px-4 md:p-0 sm:flex justify-between items-center space-y-4 sm:space-y-0">
                 <div>
@@ -48,7 +48,7 @@
         @endif
     </div>
 @elseif ($component->isBootstrap4())
-    <div tableSection="pagination-wrapper" dusk="pagination-wrapper">
+    <div tableSection="pagination-wrapper">
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
                 <div class="row mt-3">
@@ -101,7 +101,7 @@
         @endif
     </div>
 @elseif ($component->isBootstrap5())
-    <div tableSection="pagination-wrapper" dusk="pagination-wrapper">
+    <div tableSection="pagination-wrapper">
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
                 <div class="row mt-3">

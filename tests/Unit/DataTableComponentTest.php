@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests;
+namespace Rappasoft\LaravelLivewireTables\Tests\Unit;
 
 use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Tests\Unit\Http\Livewire\FailingTables\NoColumnsTable;

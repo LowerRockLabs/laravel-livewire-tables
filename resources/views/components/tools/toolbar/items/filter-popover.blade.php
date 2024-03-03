@@ -1,6 +1,6 @@
 @aware(['component', 'tableName'])
 @if($component->isBootstrap())
-    <ul
+    <ul tableSection="filter-popover-wrapper" 
         x-cloak
         @class([
             'dropdown-menu w-100 mt-md-5' => $component->isBootstrap4(),
@@ -41,7 +41,7 @@
         @endif
     </ul>
 @else
-    <div
+    <div tableSection="filter-popover-wrapper"
         x-cloak x-show="filterPopoverOpen"
         x-transition:enter="transition ease-out duration-100"
         x-transition:enter-start="transform opacity-0 scale-95"

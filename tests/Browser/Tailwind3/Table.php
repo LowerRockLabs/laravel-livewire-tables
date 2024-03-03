@@ -9,7 +9,7 @@ class Table extends Component
     public function render()
     {
         return <<<'HTML'
-        <div dusk='component-view'>
+        <div tableSection='component-view'>
             <livewire:pets-table />
         </div>
         HTML;

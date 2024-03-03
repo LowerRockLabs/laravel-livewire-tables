@@ -1,7 +1,7 @@
 @php($tableName = $this->getTableName())
 
 <div tableSection="datatable-wrapper">
-    <x-livewire-tables::wrapper :component="$this" :tableName="$tableName" tableSection="component-wrapper">
+    <x-livewire-tables::wrapper :component="$this" :tableName="$tableName">
         @if ($this->hasConfigurableAreaFor('before-tools'))
             @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
         @endif

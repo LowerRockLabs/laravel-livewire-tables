@@ -27,7 +27,7 @@
     "require-dev": {
         "ext-sqlite3": "*",
         "brianium/paratest": "^5.0|^6.0|^7.0|^8.0",
-        "joshhanley/livewire-dusk-testbench": "^3.0@beta",
+        "joshhanley/livewire-dusk-testbench": "dev-AddClassAssertions",
         "laravel/pint": "^1.10",
         "monolog/monolog": "*",
         "nunomaduro/collision": "^6.0|^7.0|^8.0",
@@ -62,5 +62,10 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:lrljoe/livewire-dusk-testbench.git"
+        }
+    ]
 }

@@ -27,6 +27,7 @@
     "require-dev": {
         "ext-sqlite3": "*",
         "brianium/paratest": "^5.0|^6.0|^7.0|^8.0",
+        "joshhanley/livewire-dusk-testbench": "^3.0@beta",
         "laravel/pint": "^1.10",
         "monolog/monolog": "*",
         "nunomaduro/collision": "^6.0|^7.0|^8.0",

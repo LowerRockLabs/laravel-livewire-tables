@@ -10,9 +10,13 @@
          failOnEmptyTestSuite="false" 
          beStrictAboutOutputDuringTests="true" >
     <testsuites>
-        <testsuite name="Laravel Livewire Tables Test Suite">
-            <directory>tests</directory>
+        <testsuite name="Laravel Livewire Tables Unit Test">
+            <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
+        <testsuite name="Laravel Livewire Tables Browser Test">
+            <directory suffix="Test.php">./tests/Browser</directory>
+        </testsuite>
+
     </testsuites>
     <source>
         <include>

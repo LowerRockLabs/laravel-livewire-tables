@@ -2,11 +2,11 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Browser;
 
-use LivewireDuskTestbench\TestCase as LivewireDuskTestbenchTestCase;
-use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
 use Livewire\LivewireServiceProvider;
+use LivewireDuskTestbench\TestCase as LivewireDuskTestbenchTestCase;
+use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
 
 class TestCase extends LivewireDuskTestbenchTestCase
 {

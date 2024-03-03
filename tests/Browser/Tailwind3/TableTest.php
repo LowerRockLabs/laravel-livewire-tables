@@ -12,8 +12,7 @@ class TableTest extends TestCase
     public function counter_component_can_be_used_in_another_component()
     {
         Livewire::visit(PetsTable::class)
-                ->assertSeeAnythingIn('@component-view')
-                ->assertSeeIn('@component-view', 0)
-        ;
+            ->assertSeeAnythingIn('@component-view')
+            ->assertSeeIn('@component-view', 0);
     }
 }

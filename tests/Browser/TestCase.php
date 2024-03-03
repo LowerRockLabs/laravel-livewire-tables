@@ -14,6 +14,6 @@ class TestCase extends LivewireDuskTestbenchTestCase
     public function configureViewsDirectory(): string
     {
         // Resolves to 'tests/Browser/views'
-        return __DIR__ . '/views';
+        return __DIR__.'/views';
     }
 }

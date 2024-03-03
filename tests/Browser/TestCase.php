@@ -2,15 +2,15 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Browser;
 
-use LivewireDuskTestbench\TestCase as LivewireDuskTestbenchTestCase;
-use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
-use Rappasoft\LaravelLivewireTables\Tests\Browser\LaravelLivewireTablesTestServiceProvider;
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
 use Illuminate\Encryption\Encrypter;
-use Livewire\LivewireServiceProvider;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Models\{Breed,Pet,Species,Veterinary};
 use Illuminate\Support\Facades\DB;
+use Livewire\LivewireServiceProvider;
+use LivewireDuskTestbench\TestCase as LivewireDuskTestbenchTestCase;
+use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
+use Rappasoft\LaravelLivewireTables\Tests\Browser\LaravelLivewireTablesTestServiceProvider;
+use Rappasoft\LaravelLivewireTables\Tests\Unit\Models\{Breed,Pet,Species,Veterinary};
 
 class TestCase extends LivewireDuskTestbenchTestCase
 {
@@ -77,7 +77,7 @@ class TestCase extends LivewireDuskTestbenchTestCase
     public function viewsDirectory(): string
     {
         // Resolves to 'tests/Browser/views'
-        return __DIR__ . '/views';
+        return __DIR__.'/views';
     }
 
     public function getEnvironmentSetUp($app): void
@@ -108,5 +108,4 @@ class TestCase extends LivewireDuskTestbenchTestCase
             ]);
         }
     }
-
 }

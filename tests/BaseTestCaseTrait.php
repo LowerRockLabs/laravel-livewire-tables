@@ -68,7 +68,6 @@ trait BaseTestCaseTrait
         }
     }
 
-    
     protected function setupBasicTable()
     {
         $view = view('livewire-tables::datatable');
@@ -109,7 +108,7 @@ trait BaseTestCaseTrait
             LivewireServiceProvider::class,
             LaravelLivewireTablesServiceProvider::class,
             BladeIconsServiceProvider::class,
-            BladeHeroiconsServiceProvider::class
+            BladeHeroiconsServiceProvider::class,
         ];
     }
 
@@ -134,7 +133,7 @@ trait BaseTestCaseTrait
         $app['config']->set('cache.default', 'array');
         $app['config']->set('view.cache', false);
         $app['config']->set('view.compiled', realpath(storage_path('framework/views')).'/'.rand(0, 100));
-        
+
         if (file_exists(__DIR__.'/../database/sqlite.database')) {
             $app['config']->set('database.connections.sqlite', [
                 'driver' => 'sqlite',
@@ -149,5 +148,4 @@ trait BaseTestCaseTrait
             ]);
         }
     }
-
 }

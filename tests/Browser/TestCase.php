@@ -2,13 +2,13 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Browser;
 
-use LivewireDuskTestbench\TestCase as LivewireDuskTestbenchTestCase;
-use Laravel\Dusk\Dusk;
-use Rappasoft\LaravelLivewireTables\Tests\BaseTestCaseTrait;
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
-use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
+use Laravel\Dusk\Dusk;
 use Livewire\LivewireServiceProvider;
+use LivewireDuskTestbench\TestCase as LivewireDuskTestbenchTestCase;
+use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
+use Rappasoft\LaravelLivewireTables\Tests\BaseTestCaseTrait;
 
 class TestCase extends LivewireDuskTestbenchTestCase
 {
@@ -24,7 +24,6 @@ class TestCase extends LivewireDuskTestbenchTestCase
             LaravelLivewireTablesTestServiceProvider::class,
         ];
     }
-
 
     public function setUp(): void
     {
@@ -46,4 +45,3 @@ class TestCase extends LivewireDuskTestbenchTestCase
         return __DIR__.'/views';
     }
 }
-

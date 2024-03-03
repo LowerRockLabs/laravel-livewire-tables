@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\DB;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
+use Rappasoft\LaravelLivewireTables\Tests\BaseTestCaseTrait;
 use Rappasoft\LaravelLivewireTables\Tests\Livewire\{PetsTable,PetsTableUnpaginated};
 use Rappasoft\LaravelLivewireTables\Tests\Models\{Breed,Pet,Species,Veterinary};
-use Rappasoft\LaravelLivewireTables\Tests\BaseTestCaseTrait;
 
 class TestCase extends Orchestra
 {
@@ -29,5 +29,4 @@ class TestCase extends Orchestra
         $this->setupUnpaginatedTable();
 
     }
-
 }

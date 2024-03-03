@@ -8,7 +8,7 @@ abstract class FilterTestCase extends TestCase
 {
     protected static $filterInstance;
 
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
     }

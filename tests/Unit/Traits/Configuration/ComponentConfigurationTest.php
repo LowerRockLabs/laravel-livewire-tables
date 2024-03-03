@@ -3,7 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Configuration;
 
 use Illuminate\Database\Eloquent\Model;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Models\Pet;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\Unit\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 

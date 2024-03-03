@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Models;
+namespace Rappasoft\LaravelLivewireTables\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -3,7 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Visuals;
 
 use Livewire\Livewire;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Unit\TestCase;
 
 class BulkActionsVisualsTest extends TestCase

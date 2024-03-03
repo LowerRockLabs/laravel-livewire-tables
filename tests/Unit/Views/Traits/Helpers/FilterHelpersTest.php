@@ -4,10 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Traits\Helpers;
 
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Tests\Unit\TestCase;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\{MultiSelectDropdownFilter,MultiSelectFilter,SelectFilter,TextFilter};
 
 class FilterHelpersTest extends TestCase
 {

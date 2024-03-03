@@ -1,10 +1,9 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Models;
+namespace Rappasoft\LaravelLivewireTables\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo,BelongsToMany};
 
 class Pet extends Model
 {

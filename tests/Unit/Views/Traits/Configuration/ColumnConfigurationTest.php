@@ -3,8 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\Unit\TestCase;
-use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
 class ColumnConfigurationTest extends TestCase
 {

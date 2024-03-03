@@ -3,7 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Visuals;
 
 use Livewire\Livewire;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Http\Livewire\PetsTableLoadingPlaceholder;
+use Rappasoft\LaravelLivewireTables\Tests\Livewire\PetsTableLoadingPlaceholder;
 use Rappasoft\LaravelLivewireTables\Tests\Unit\TestCase;
 
 class LoadingPlaceholderVisualsTest extends TestCase

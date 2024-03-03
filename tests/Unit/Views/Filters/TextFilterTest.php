@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 final class TextFilterTest extends FilterTestCase
 {
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
         self::$filterInstance = TextFilter::make('Active');

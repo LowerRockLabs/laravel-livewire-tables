@@ -6,8 +6,8 @@ use Exception;
 use Illuminate\View\ViewException;
 use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Http\Livewire\FailingTables\{BrokenSecondaryHeaderTable, NoBuildMethodTable, NoPrimaryKeyTable};
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Http\Livewire\{PetsTable,PetsTableAttributes};
+use Rappasoft\LaravelLivewireTables\Tests\Livewire\FailingTables\{BrokenSecondaryHeaderTable, NoBuildMethodTable, NoPrimaryKeyTable};
+use Rappasoft\LaravelLivewireTables\Tests\Livewire\{PetsTable,PetsTableAttributes};
 use Rappasoft\LaravelLivewireTables\Tests\Unit\TestCase;
 
 class ComponentVisualsTest extends TestCase

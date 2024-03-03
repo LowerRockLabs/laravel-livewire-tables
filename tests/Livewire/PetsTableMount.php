@@ -1,47 +1,25 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Http\Livewire;
+namespace Rappasoft\LaravelLivewireTables\Tests\Livewire;
 
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Models\Breed;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Models\Species;
+use Rappasoft\LaravelLivewireTables\Tests\Models\{Breed,Pet,Species};
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
-use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
+use Rappasoft\LaravelLivewireTables\Views\Columns\{ImageColumn,LinkColumn};
+use Rappasoft\LaravelLivewireTables\Views\Filters\{DateFilter,DateTimeFilter,MultiSelectDropdownFilter,MultiSelectFilter,NumberFilter,SelectFilter,TextFilter};
 
-class PetsTable extends DataTableComponent
+class PetsTableMount extends DataTableComponent
 {
     public $model = Pet::class;
 
-    public string $paginationTest = 'standard';
+    public ?int $mountBreed = null;
 
-    public function enableDetailedPagination(string $type = 'standard')
+    public function mount(?int $mountBreed = null)
     {
-        $this->setPerPageAccepted([1, 3, 5, 10, 15, 25, 50])->setPerPage(3);
-        $this->setPaginationMethod($type);
-        $this->setDisplayPaginationDetailsEnabled();
-
-    }
-
-    public function disableDetailedPagination(string $type = 'standard')
-    {
-        $this->setPerPageAccepted([1, 3, 5, 10, 15, 25, 50])->setPerPage(3);
-        $this->setPaginationMethod($type);
-        $this->setDisplayPaginationDetailsDisabled();
-    }
-
-    public function setPaginationTest(string $type)
-    {
-        $this->paginationTest = $type;
+        if (isset($mountBreed)) {
+            $this->mountBreed = $mountBreed;
+        }
     }
 
     public function configure(): void
@@ -166,5 +144,14 @@ class PetsTable extends DataTableComponent
                 ->setCustomFilterLabel('livewire-tables::tests.testFilterLabel')
                 ->setFilterPillBlade('livewire-tables::tests.testFilterPills'),
         ];
+    }
+
+    public function builder(): Builder
+    {
+        if (isset($this->mountBreed)) {
+            return Pet::where('breed_id', $this->mountBreed);
+        }
+
+        return Pet::query();
     }
 }

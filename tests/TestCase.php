@@ -1,34 +1,33 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit;
+namespace Rappasoft\LaravelLivewireTables\Tests;
 
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
+use Illuminate\Encryption\Encrypter;
+use Illuminate\Support\Facades\DB;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
+use Rappasoft\LaravelLivewireTables\Tests\Livewire\{PetsTable,PetsTableUnpaginated};
+use Rappasoft\LaravelLivewireTables\Tests\Models\{Breed,Pet,Species,Veterinary};
 use Rappasoft\LaravelLivewireTables\Tests\BaseTestCaseTrait;
 
 class TestCase extends Orchestra
 {
     use BaseTestCaseTrait;
 
-    protected function getPackageProviders($app): array
+    /**
+     * Setup the test environment.
+     */
+    protected function setUp(): void
     {
-        return [
-            LivewireServiceProvider::class,
-            LaravelLivewireTablesServiceProvider::class,
-            BladeIconsServiceProvider::class,
-            BladeHeroiconsServiceProvider::class,
-        ];
-    }
+        parent::setUp();
 
-    public function setUp(): void
-    {
-        parent::setup();
         $this->setupTestDatabaseTables();
         $this->setupBasicTable();
         $this->setupUnpaginatedTable();
 
     }
+
 }

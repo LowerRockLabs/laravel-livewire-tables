@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Configuration;
 
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Unit\TestCase;
 
 class FingerprintConfigurationTest extends TestCase

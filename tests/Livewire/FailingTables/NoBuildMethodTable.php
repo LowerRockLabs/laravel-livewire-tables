@@ -1,32 +1,20 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Http\Livewire;
+namespace Rappasoft\LaravelLivewireTables\Tests\Livewire\FailingTables;
 
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Models\Breed;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Models\Species;
+use Rappasoft\LaravelLivewireTables\Tests\Models\{Breed,Pet,Species};
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
-use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
+use Rappasoft\LaravelLivewireTables\Views\Columns\{ImageColumn,LinkColumn};
+use Rappasoft\LaravelLivewireTables\Views\Filters\{DateFilter,DateTimeFilter,MultiSelectDropdownFilter,MultiSelectFilter,NumberFilter,SelectFilter,TextFilter};
 
-class PetsTableLoadingPlaceholder extends DataTableComponent
+class NoBuildMethodTable extends DataTableComponent
 {
-    public $model = Pet::class;
-
     public function configure(): void
     {
-        $this->setPrimaryKey('id')
-            ->setLoadingPlaceholderEnabled()
-            ->setLoadingPlaceholderContent('TestLoadingPlaceholderContentTestTest');
+        $this->setPrimaryKey('id');
+
     }
 
     public function columns(): array

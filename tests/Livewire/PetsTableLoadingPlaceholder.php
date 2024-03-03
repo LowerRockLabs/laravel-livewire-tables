@@ -1,53 +1,23 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Http\Livewire;
+namespace Rappasoft\LaravelLivewireTables\Tests\Livewire;
 
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Models\Breed;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Models\Species;
+use Rappasoft\LaravelLivewireTables\Tests\Models\{Breed,Pet,Species};
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
-use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
+use Rappasoft\LaravelLivewireTables\Views\Columns\{ImageColumn,LinkColumn};
+use Rappasoft\LaravelLivewireTables\Views\Filters\{DateFilter,DateTimeFilter,MultiSelectDropdownFilter,MultiSelectFilter,NumberFilter,SelectFilter,TextFilter};
 
-class PetsTableAttributes extends DataTableComponent
+class PetsTableLoadingPlaceholder extends DataTableComponent
 {
     public $model = Pet::class;
 
     public function configure(): void
     {
         $this->setPrimaryKey('id')
-            ->setTrAttributes(function ($row, $index) {
-                if ($index === 0) {
-                    return [
-                        'testTrAttribute' => 'testTrAttributeValueForTestSuiteIndex0',
-                        'default' => false,
-                    ];
-                }
-                if ($index === 1) {
-                    return [
-                        'testTrAttribute' => 'testTrAttributeValueForTestSuiteIndex1',
-                        'default' => false,
-                    ];
-                }
-                if ($index === 500) {
-                    return [
-                        'testTrAttribute' => 'testTrAttributeValueForTestSuiteNotSeen',
-                        'default' => false,
-                    ];
-                }
-
-                return [];
-            });
-
+            ->setLoadingPlaceholderEnabled()
+            ->setLoadingPlaceholderContent('TestLoadingPlaceholderContentTestTest');
     }
 
     public function columns(): array

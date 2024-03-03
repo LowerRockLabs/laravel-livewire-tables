@@ -8,7 +8,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
 
 final class DateTimeFilterTest extends FilterTestCase
 {
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
         self::$filterInstance = DateTimeFilter::make('Active');

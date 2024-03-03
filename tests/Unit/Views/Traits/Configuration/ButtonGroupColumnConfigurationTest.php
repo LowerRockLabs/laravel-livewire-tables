@@ -3,8 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\Unit\TestCase;
-use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
-use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\{ButtonGroupColumn,LinkColumn};
 
 class ButtonGroupColumnConfigurationTest extends TestCase
 {

@@ -3,12 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\Unit\TestCase;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\{DateFilter,DateTimeFilter,MultiSelectFilter,NumberFilter,SelectFilter,TextFilter};
 
 class FilterHelpersTest extends TestCase
 {

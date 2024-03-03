@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Browser;
 
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\Livewire\PetsTable;
 
 class LaravelLivewireTablesTestServiceProvider extends ServiceProvider
 {

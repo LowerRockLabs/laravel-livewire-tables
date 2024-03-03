@@ -1,9 +1,9 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Http\Livewire;
+namespace Rappasoft\LaravelLivewireTables\Tests\Livewire;
 
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Models\Pet;
+use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class PetsTableNoFilters extends DataTableComponent

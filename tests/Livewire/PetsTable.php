@@ -1,15 +1,15 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Http\Livewire\FailingTables;
+namespace Rappasoft\LaravelLivewireTables\Tests\Livewire;
 
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Tests\Unit\Models\{Breed,Pet,Species};
+use Rappasoft\LaravelLivewireTables\Tests\Models\{Breed,Pet,Species};
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\{ImageColumn,LinkColumn};
 use Rappasoft\LaravelLivewireTables\Views\Filters\{DateFilter,DateTimeFilter,MultiSelectDropdownFilter,MultiSelectFilter,NumberFilter,SelectFilter,TextFilter};
 
-class BrokenSecondaryHeaderTable extends DataTableComponent
+class PetsTable extends DataTableComponent
 {
     public $model = Pet::class;
 
@@ -47,9 +47,6 @@ class BrokenSecondaryHeaderTable extends DataTableComponent
                 ->sortable()
                 ->setSortingPillTitle('Key')
                 ->setSortingPillDirections('0-9', '9-0'),
-
-            Column::make('BrokenSecondaryHeader')->label(fn () => 'My Label')->secondaryHeader('Test123123'),
-
             Column::make('Sort')
                 ->sortable()
                 ->excludeFromColumnSelect(),

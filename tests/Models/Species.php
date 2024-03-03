@@ -1,18 +1,18 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Models;
+namespace Rappasoft\LaravelLivewireTables\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Veterinary extends Model
+class Species extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'veterinaries';
+    protected $table = 'species';
 
     /**
      * @var bool
@@ -27,11 +27,10 @@ class Veterinary extends Model
     protected $fillable = [
         'id',
         'name',
-        'phone',
     ];
 
-    public function pets(): BelongsToMany
+    public function pets(): HasMany
     {
-        return $this->belongsToMany(Pet::class);
+        return $this->hasMany(Pet::class);
     }
 }

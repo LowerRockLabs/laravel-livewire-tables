@@ -2,13 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Mechanisms;
 
+use PHPUnit\Framework\Attributes\Depends;
 use Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-use PHPUnit\Framework\Attributes\Depends;
 
 class RappasoftFrontendAssetsTest extends TestCase
 {
-
     public function testJsResponseSetupCacheEnabled(): array
     {
         config()->set('livewire-tables.cache_assets', true);
@@ -22,7 +21,6 @@ class RappasoftFrontendAssetsTest extends TestCase
 
         return ['lastModified' => $lastModified, 'responseHeaders' => $response->headers->all()];
     }
-
 
     public function testJsResponseSetupCacheDisabled(): array
     {
@@ -38,7 +36,6 @@ class RappasoftFrontendAssetsTest extends TestCase
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-
     public function testCssResponseSetupCacheEnabled(): array
     {
         config()->set('livewire-tables.cache_assets', true);
@@ -52,7 +49,6 @@ class RappasoftFrontendAssetsTest extends TestCase
 
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
-
 
     public function testCssResponseSetupCacheDisabled(): array
     {
@@ -70,7 +66,6 @@ class RappasoftFrontendAssetsTest extends TestCase
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-
     public function testThirdPartyCssResponseSetupCacheEnabled(): array
     {
         config()->set('livewire-tables.cache_assets', true);
@@ -86,7 +81,6 @@ class RappasoftFrontendAssetsTest extends TestCase
 
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
-
 
     public function testThirdPartyCssResponseSetupCacheDisabled(): array
     {
@@ -104,7 +98,6 @@ class RappasoftFrontendAssetsTest extends TestCase
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-
     public function testThirdPartyJsResponseSetupCacheEnabled(): array
     {
         config()->set('livewire-tables.cache_assets', true);
@@ -118,7 +111,6 @@ class RappasoftFrontendAssetsTest extends TestCase
 
         return ['lastModified' => $lastModified, 'responseHeaders' => $response->headers->all()];
     }
-
 
     public function testThirdPartyJsResponseSetupCacheDisabled(): array
     {
@@ -134,7 +126,6 @@ class RappasoftFrontendAssetsTest extends TestCase
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-
     public function test_styles()
     {
         $assets = app(RappasoftFrontendAssets::class);
@@ -145,7 +136,6 @@ class RappasoftFrontendAssetsTest extends TestCase
 
         $this->assertTrue($assets->hasRenderedRappsoftTableStyles);
     }
-
 
     public function test_scripts()
     {
@@ -158,7 +148,6 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertTrue($assets->hasRenderedRappsoftTableScripts);
     }
 
-
     public function test_thirdPartystyles()
     {
         $assets = app(RappasoftFrontendAssets::class);
@@ -169,7 +158,6 @@ class RappasoftFrontendAssetsTest extends TestCase
 
         $this->assertTrue($assets->hasRenderedRappsoftTableThirdPartyStyles);
     }
-
 
     public function test_thirdPartyscripts()
     {

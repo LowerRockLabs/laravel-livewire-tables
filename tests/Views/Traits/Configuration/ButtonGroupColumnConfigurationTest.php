@@ -8,7 +8,6 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class ButtonGroupColumnConfigurationTest extends TestCase
 {
-
     public function test_button_group_column_can_set_buttons(): void
     {
         $column = ButtonGroupColumn::make('Actions')

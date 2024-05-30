@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class FooterHelpersTest extends TestCase
 {
-
     public function test_can_get_footer_status(): void
     {
         $this->assertTrue($this->basicTable->footerIsEnabled());
@@ -19,7 +18,6 @@ class FooterHelpersTest extends TestCase
 
         $this->assertTrue($this->basicTable->footerIsEnabled());
     }
-
 
     public function test_can_get_use_header_as_footer_status(): void
     {

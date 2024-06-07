@@ -33,6 +33,8 @@ trait WithSearch
 
     protected array $searchFieldAttributes = [];
 
+    protected bool $clearSelectedOnSearchIsEnabled = true;
+
     protected function queryStringWithSearch(): array
     {
         if ($this->queryStringIsEnabled() && $this->searchIsEnabled()) {
@@ -71,8 +73,11 @@ trait WithSearch
         $this->resetComputedPage();
 
         // Clear bulk actions on search
-        $this->clearSelected();
-        $this->setSelectAllDisabled();
+        if ($this->getClearSelectedOnSearchStatus())
+        {
+            $this->clearSelected();
+            $this->setSelectAllDisabled();    
+        }
 
         if (is_null($value) || $value === '') {
             $this->clearSearch();

@@ -125,4 +125,27 @@ trait FilterConfiguration
     {
         $this->filterGenericData = $filterGenericData;
     }
+
+
+    public function setClearSelectedOnFilterStatus(bool $status = true): self
+    {
+        $this->clearSelectedOnFilterIsEnabled = $status;
+
+        return $this;
+    }
+
+    public function setClearSelectedOnFilterStatusEnabled(): self
+    {
+        $this->setClearSelectedOnFilterStatus(true);
+
+        return $this;
+    }
+
+    public function setClearSelectedOnFilterStatusDisabled(): self
+    {
+        $this->setClearSelectedOnFilterStatus(false);
+
+        return $this;
+    }
+
 }

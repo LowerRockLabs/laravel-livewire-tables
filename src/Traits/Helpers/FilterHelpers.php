@@ -320,4 +320,10 @@ trait FilterHelpers
 
         return $this->filterGenericData;
     }
+
+    public function getClearSelectedOnFilterStatus(): bool
+    {
+        return $this->clearSelectedOnFilterIsEnabled ?? true;
+    }
+
 }

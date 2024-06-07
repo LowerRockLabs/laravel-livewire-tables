@@ -31,6 +31,8 @@ trait WithFilters
 
     public array $filterGenericData = [];
 
+    protected bool $clearSelectedOnFilterIsEnabled = true;
+
     public function filters(): array
     {
         return [];
@@ -72,10 +74,14 @@ trait WithFilters
     public function updatedFilterComponents(string|array|null $value, string $filterName): void
     {
         $this->resetComputedPage();
+        
+        if ($this->getClearSelectedOnFilterStatus())
+        {
+            // Clear bulk actions on filter
+            $this->clearSelected();
+            $this->setSelectAllDisabled();
+        }
 
-        // Clear bulk actions on filter
-        $this->clearSelected();
-        $this->setSelectAllDisabled();
 
         // Clear filters on empty value
         $filter = $this->getFilterByKey($filterName);

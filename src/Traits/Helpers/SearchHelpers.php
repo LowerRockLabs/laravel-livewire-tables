@@ -135,4 +135,9 @@ trait SearchHelpers
     {
         return count($this->searchFieldAttributes) ? $this->searchFieldAttributes : ['default' => true];
     }
+
+    public function getClearSelectedOnSearchStatus(): bool
+    {
+        return $this->clearSelectedOnSearchIsEnabled ?? true;
+    }
 }

@@ -126,7 +126,6 @@ trait FilterConfiguration
         $this->filterGenericData = $filterGenericData;
     }
 
-
     public function setClearSelectedOnFilterStatus(bool $status = true): self
     {
         $this->clearSelectedOnFilterIsEnabled = $status;
@@ -147,5 +146,4 @@ trait FilterConfiguration
 
         return $this;
     }
-
 }

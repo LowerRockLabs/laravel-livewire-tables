@@ -74,14 +74,12 @@ trait WithFilters
     public function updatedFilterComponents(string|array|null $value, string $filterName): void
     {
         $this->resetComputedPage();
-        
-        if ($this->getClearSelectedOnFilterStatus())
-        {
+
+        if ($this->getClearSelectedOnFilterStatus()) {
             // Clear bulk actions on filter
             $this->clearSelected();
             $this->setSelectAllDisabled();
         }
-
 
         // Clear filters on empty value
         $filter = $this->getFilterByKey($filterName);

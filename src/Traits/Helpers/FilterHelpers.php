@@ -325,5 +325,4 @@ trait FilterHelpers
     {
         return $this->clearSelectedOnFilterIsEnabled ?? true;
     }
-
 }

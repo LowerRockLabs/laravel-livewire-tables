@@ -157,7 +157,6 @@ trait SearchConfiguration
         return $this;
     }
 
-
     public function setClearSelectedOnSearchStatus(bool $status = true): self
     {
         $this->clearSelectedOnSearchIsEnabled = $status;
@@ -178,5 +177,4 @@ trait SearchConfiguration
 
         return $this;
     }
-
 }

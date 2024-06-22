@@ -30,7 +30,7 @@ class ViewComponentColumn extends Column
             throw new DataTableConfigurationException('You can not use a label column with a component column');
         }
 
-        if (!$this->hasComponentReference()) {
+        if (! $this->hasComponentReference()) {
             throw new DataTableConfigurationException('You must setComponentReference when using a View Component Column');
         }
 
@@ -52,7 +52,8 @@ class ViewComponentColumn extends Column
             }
         }
         $viewComponent = new ($this->getComponentReference())($attributes);
+
         return $viewComponent->render();
-        
+
     }
 }

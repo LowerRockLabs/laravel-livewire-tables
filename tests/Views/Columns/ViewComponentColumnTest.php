@@ -42,5 +42,4 @@ final class ViewComponentColumnTest extends TestCase
         $column = ViewComponentColumn::make('Name');
         $column->getContents($row);
     }
-
 }

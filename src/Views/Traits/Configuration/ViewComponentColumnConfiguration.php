@@ -26,4 +26,3 @@ trait ViewComponentColumnConfiguration
     }
 
 }
-s

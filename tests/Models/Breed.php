@@ -13,7 +13,6 @@ class Breed extends Model
      */
     protected $table = 'breeds';
 
-
     /**
      * @var bool
      */

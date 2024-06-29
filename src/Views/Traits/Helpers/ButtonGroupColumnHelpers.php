@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Helpers;
 
-use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 use Illuminate\Support\Collection;
+use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 trait ButtonGroupColumnHelpers
 {

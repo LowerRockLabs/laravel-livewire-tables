@@ -15,7 +15,6 @@ class Pet extends Model
      */
     protected $table = 'pets';
 
-
     /**
      * @var bool
      */

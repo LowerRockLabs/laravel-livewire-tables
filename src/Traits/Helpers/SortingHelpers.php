@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
-use Livewire\Attributes\On;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\On;
 
 trait SortingHelpers
 {

@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
-use Rappasoft\LaravelLivewireTables\Views\Column;
 use Illuminate\Support\Collection;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ColumnSelectConfiguration
 {

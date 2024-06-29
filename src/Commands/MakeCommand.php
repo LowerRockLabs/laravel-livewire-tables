@@ -97,9 +97,6 @@ class MakeCommand extends Command implements PromptsForMissingInput
         return $classPath;
     }
 
-    /**
-     * @param  mixed  $path
-     */
     protected function ensureDirectoryExists(mixed $path): void
     {
         if (! File::isDirectory(dirname($path))) {

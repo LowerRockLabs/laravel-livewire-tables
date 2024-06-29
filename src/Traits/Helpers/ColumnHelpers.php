@@ -13,7 +13,7 @@ trait ColumnHelpers
     public function setColumns(): void
     {
         $this->prependedColumns = $this->getPrependedColumns();
-        
+
         $columns = (new Collection($this->columns()))
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
@@ -213,7 +213,7 @@ trait ColumnHelpers
 
     public function getAppendedColumns(): Collection
     {
-        
+
         return (new Collection($this->appendedColumns ?? $this->appendColumns()))
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {

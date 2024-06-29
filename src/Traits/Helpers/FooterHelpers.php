@@ -2,9 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
-use Rappasoft\LaravelLivewireTables\Views\Column;
 use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Support\Collection;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait FooterHelpers
 {

@@ -2,10 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
+use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions,IsArrayFilter};
-use Illuminate\Support\Collection;
 
 class MultiSelectDropdownFilter extends Filter
 {
@@ -40,7 +40,7 @@ class MultiSelectDropdownFilter extends Filter
     public function getFilterPillValue($value): ?string
     {
         $values = [];
-        
+
         foreach ($value as $item) {
             $found = $this->getCustomFilterPillValue($item)
                         ?? (new Collection($this->getOptions()))

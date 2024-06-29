@@ -3,10 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\LivewireComponentColumnConfiguration;
@@ -42,8 +42,8 @@ class LivewireComponentColumn extends Column
                 throw new DataTableConfigurationException('The return type of callback must be an array');
             }
         }
-       
-        $implodedAttributes =  (new Collection($attributes))->map(function ($value, $key) {
+
+        $implodedAttributes = (new Collection($attributes))->map(function ($value, $key) {
             return ':'.$key.'="$'.$key.'"';
         })->implode(' ');
 

@@ -106,8 +106,6 @@ class PetsTable extends DataTableComponent
                 ->sortable()
                 ->deselected(),
 
-        
-
         ];
     }
 

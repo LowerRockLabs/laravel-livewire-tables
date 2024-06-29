@@ -17,7 +17,7 @@ trait HasAttributes
 
         return $this;
     }
-    
+
     public function getAttributesCallback(): ?Closure
     {
         return $this->attributesCallback;

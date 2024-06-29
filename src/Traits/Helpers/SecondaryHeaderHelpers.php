@@ -2,9 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
-use Rappasoft\LaravelLivewireTables\Views\Column;
-use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\AbstractPaginator;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait SecondaryHeaderHelpers
 {

@@ -2,10 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
+use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions,IsStringFilter};
-use Illuminate\Support\Collection;
 
 class SelectFilter extends Filter
 {
@@ -44,7 +44,7 @@ class SelectFilter extends Filter
     public function getFilterPillValue($value): ?string
     {
         return $this->getCustomFilterPillValue($value)
-            ?? (new Collection($this->getOptions())) 
+            ?? (new Collection($this->getOptions()))
                 ->mapWithKeys(fn ($options, $optgroupLabel) => is_iterable($options) ? $options : [$optgroupLabel => $options])[$value]
             ?? null;
     }

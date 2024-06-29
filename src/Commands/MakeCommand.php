@@ -100,7 +100,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
     /**
      * @param  mixed  $path
      */
-    protected function ensureDirectoryExists($path): void
+    protected function ensureDirectoryExists(mixed $path): void
     {
         if (! File::isDirectory(dirname($path))) {
             File::makeDirectory(dirname($path), 0777, true, true);
@@ -147,7 +147,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
     /*
     * Credits to Harm Smits: https://stackoverflow.com/a/67099502/2263114
     */
-    private function getClassesList($file): array
+    private function getClassesList(mixed $file): array
     {
         $classes = [];
         $namespace = '';
@@ -215,7 +215,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
         return $columns;
     }
 
-    protected function possibleModels()
+    protected function possibleModels(): array
     {
         $modelPath = is_dir(app_path('Models')) ? app_path('Models') : app_path();
 

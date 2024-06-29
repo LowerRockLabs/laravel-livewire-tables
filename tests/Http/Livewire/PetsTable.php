@@ -8,6 +8,7 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
@@ -24,7 +25,7 @@ class PetsTable extends DataTableComponent
 
     public string $paginationTest = 'standard';
 
-    public function enableDetailedPagination(string $type = 'standard')
+    public function enableDetailedPagination(string $type = 'standard'): void
     {
         $this->setPerPageAccepted([1, 3, 5, 10, 15, 25, 50])->setPerPage(3);
         $this->setPaginationMethod($type);
@@ -32,14 +33,14 @@ class PetsTable extends DataTableComponent
 
     }
 
-    public function disableDetailedPagination(string $type = 'standard')
+    public function disableDetailedPagination(string $type = 'standard'): void
     {
         $this->setPerPageAccepted([1, 3, 5, 10, 15, 25, 50])->setPerPage(3);
         $this->setPaginationMethod($type);
         $this->setDisplayPaginationDetailsDisabled();
     }
 
-    public function setPaginationTest(string $type)
+    public function setPaginationTest(string $type): void
     {
         $this->paginationTest = $type;
     }
@@ -49,6 +50,9 @@ class PetsTable extends DataTableComponent
         $this->setPrimaryKey('id');
     }
 
+    /**
+     * @return array<int, Column> $columns
+     */
     public function columns(): array
     {
         return [
@@ -101,9 +105,15 @@ class PetsTable extends DataTableComponent
             Column::make('Last Visit', 'last_visit')
                 ->sortable()
                 ->deselected(),
+
+        
+
         ];
     }
 
+    /**
+     * @return array<int, \Rappasoft\LaravelLivewireTables\Views\Filter> $filters
+     */
     public function filters(): array
     {
         return [

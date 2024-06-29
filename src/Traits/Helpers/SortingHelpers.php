@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Livewire\Attributes\On;
+use Illuminate\Support\Collection;
 
 trait SortingHelpers
 {
@@ -28,7 +29,7 @@ trait SortingHelpers
     public function setSorts(array $sorts = []): array
     {
 
-        return $this->sorts = collect($sorts)
+        return $this->sorts = (new Collection($sorts))
             ->reject(fn ($dir, $column) => ! in_array($column, $this->getSortableColumns()->toArray(), true))
             ->toArray();
     }

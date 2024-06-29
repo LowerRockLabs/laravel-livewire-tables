@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
+use Illuminate\Support\Collection;
 
 class LivewireComponentFilter extends Filter
 {
@@ -37,7 +38,7 @@ class LivewireComponentFilter extends Filter
     public function setLivewireComponent(string $livewireComponent): self
     {
 
-        $class = '\\'.config('livewire.class_namespace').'\\'.collect(str($livewireComponent)->explode('.'))->map(fn ($segment) => (string) str($segment)->studly())->join('\\');
+        $class = '\\'.config('livewire.class_namespace').'\\'.(new Collection(str($livewireComponent)->explode('.')))->map(fn ($segment) => (string) str($segment)->studly())->join('\\');
 
         if (! class_exists($class)) {
             throw new DataTableConfigurationException('You must specify a valid path to your Livewire Component Filter.');

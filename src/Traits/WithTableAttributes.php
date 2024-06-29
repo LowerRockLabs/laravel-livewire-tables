@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Closure;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\TableAttributeConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\TableAttributeHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait WithTableAttributes
 {
@@ -21,15 +22,15 @@ trait WithTableAttributes
 
     protected array $tbodyAttributes = [];
 
-    protected $thAttributesCallback;
+    protected mixed $thAttributesCallback = null;
 
-    protected $thSortButtonAttributesCallback;
+    protected mixed $thSortButtonAttributesCallback = null;
 
-    protected $trAttributesCallback;
+    protected mixed $trAttributesCallback = null;
 
-    protected $tdAttributesCallback;
+    protected mixed $tdAttributesCallback = null;
 
-    protected $trUrlCallback;
+    protected mixed $trUrlCallback = null;
 
-    protected $trUrlTargetCallback;
+    protected mixed $trUrlTargetCallback = null;
 }

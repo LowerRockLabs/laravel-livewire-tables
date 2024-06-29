@@ -16,9 +16,9 @@ trait WithFooter
 
     protected bool $columnsWithFooter = false;
 
-    protected $footerTrAttributesCallback;
+    protected mixed $footerTrAttributesCallback = null;
 
-    protected $footerTdAttributesCallback;
+    protected mixed $footerTdAttributesCallback = null;
 
     public function setupFooter(): void
     {

@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasWireables;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Filters\{HasOptions,IsStringFilter};
+use Illuminate\Support\Collection;
 
 class SelectFilter extends Filter
 {
@@ -22,8 +23,8 @@ class SelectFilter extends Filter
 
     public function getKeys(): array
     {
-        return collect($this->getOptions())
-            ->map(fn ($value, $key) => is_iterable($value) ? collect($value)->keys() : $key)
+        return (new Collection($this->getOptions()))
+            ->map(fn ($value, $key) => is_iterable($value) ? (new Collection($value))->keys() : $key)
             ->flatten()
             ->map(fn ($value) => (string) $value)
             ->filter(fn ($value) => strlen($value) > 0)
@@ -43,7 +44,7 @@ class SelectFilter extends Filter
     public function getFilterPillValue($value): ?string
     {
         return $this->getCustomFilterPillValue($value)
-            ?? collect($this->getOptions())
+            ?? (new Collection($this->getOptions())) 
                 ->mapWithKeys(fn ($options, $optgroupLabel) => is_iterable($options) ? $options : [$optgroupLabel => $options])[$value]
             ?? null;
     }

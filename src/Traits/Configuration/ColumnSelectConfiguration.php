@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Collection;
 
 trait ColumnSelectConfiguration
 {
@@ -85,10 +86,9 @@ trait ColumnSelectConfiguration
 
     public function setDefaultDeselectedColumns(): array
     {
-        return collect($this->getColumns()
+        return (new Collection($this->getColumns()))
             ->reject(fn (Column $column) => ! $column->isSelectable())
             ->reject(fn (Column $column) => $column->isSelectable() && $column->isSelected())
-        )
             ->keyBy(function (Column $column, int $key) {
                 return $column->getSlug();
             })

@@ -104,7 +104,7 @@ trait FilterHelpers
     public function getFilters(): Collection
     {
         if (! isset($this->filterCollection)) {
-            $this->filterCollection = collect($this->filters());
+            $this->filterCollection = new Collection($this->filters());
         }
 
         return $this->filterCollection;
@@ -173,7 +173,7 @@ trait FilterHelpers
             ->map(fn (Filter $filter) => $filter->getKey())
             ->toArray();
 
-        return collect($this->filterComponents ?? [])
+        return (new Collection($this->filterComponents ?? []))
             ->filter(fn ($value, $key) => in_array($key, $validFilterKeys, true))
             ->toArray();
     }
@@ -185,7 +185,7 @@ trait FilterHelpers
 
     public function hasAppliedVisibleFiltersWithValuesThatCanBeCleared(): bool
     {
-        return collect($this->getAppliedFiltersWithValues())
+        return (new Collection($this->getAppliedFiltersWithValues()))
             ->map(fn ($_item, $key) => $this->getFilterByKey($key))
             ->reject(fn (Filter $filter) => $filter->isHiddenFromMenus() && ! $filter->isResetByClearButton())
             ->count() > 0;
@@ -193,7 +193,7 @@ trait FilterHelpers
 
     public function getFilterBadgeCount(): int
     {
-        return collect($this->getAppliedFiltersWithValues())
+        return (new Collection($this->getAppliedFiltersWithValues()))
             ->map(fn ($_item, $key) => $this->getFilterByKey($key))
             ->reject(fn (Filter $filter) => $filter->isHiddenFromFilterCount())
             ->count();
@@ -201,7 +201,7 @@ trait FilterHelpers
 
     public function hasAppliedVisibleFiltersForPills(): bool
     {
-        return collect($this->getAppliedFiltersWithValues())
+        return (new Collection($this->getAppliedFiltersWithValues()))
             ->map(fn ($_item, $key) => $this->getFilterByKey($key))
             ->reject(fn (Filter $filter) => $filter->isHiddenFromPills())
             ->count() > 0;
@@ -312,7 +312,7 @@ trait FilterHelpers
         return ! empty($this->filterGenericData);
     }
 
-    public function getFilterGenericData()
+    public function getFilterGenericData(): array
     {
         if (! $this->hasFilterGenericData()) {
             $this->setFilterGenericData($this->generateFilterGenericData());

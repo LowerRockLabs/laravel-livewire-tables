@@ -171,7 +171,7 @@ trait WithData
         return $this->getBuilder();
     }
 
-    protected function performJoin($table, $foreign, $other, $type = 'left'): Builder
+    protected function performJoin(string $table, string $foreign, string $other, string $type = 'left'): Builder
     {
         $joins = [];
 

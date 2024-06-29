@@ -33,7 +33,7 @@ trait WithColumns
      */
     public function bootedWithColumns(): void
     {
-        $this->columns = collect();
+        $this->columns = new Collection();
 
         // Sets Columns
         // Fire Lifecycle Hooks for settingColumns

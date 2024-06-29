@@ -18,7 +18,7 @@ trait RelationshipHelpers
 
     public function getRelations(): Collection
     {
-        return collect($this->relations);
+        return new Collection($this->relations);
     }
 
     public function getRelationString(): ?string

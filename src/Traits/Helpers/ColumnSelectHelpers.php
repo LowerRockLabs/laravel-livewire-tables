@@ -135,11 +135,10 @@ trait ColumnSelectHelpers
 
     public function getDefaultVisibleColumns(): array
     {
-        return collect($this->getColumns()
+        $collect = new Collection($this->getColumns());
+        return $collect
             ->reject(fn (Column $column) => $column->isHidden())
             ->reject(fn (Column $column) => $column->isSelectable() && ! $column->isSelected())
-
-        )
             ->map(fn ($column) => $column->getSlug())
             ->values()
             ->toArray();

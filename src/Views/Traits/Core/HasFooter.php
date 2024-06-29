@@ -3,6 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\AbstractPaginator;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
@@ -52,10 +54,9 @@ trait HasFooter
     }
 
     /**
-     * @param  mixed  $rows
      * @return mixed
      */
-    public function getFooterContents($rows, array $filterGenericData)
+    public function getFooterContents(Collection|AbstractPaginator|array $rows, array $filterGenericData)
     {
         $value = null;
         $callback = $this->getFooterCallback();

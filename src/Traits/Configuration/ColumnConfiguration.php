@@ -3,12 +3,13 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Collection;
 
 trait ColumnConfiguration
 {
     public function setPrependedColumns(array $prependedColumns): void
     {
-        $this->prependedColumns = collect($prependedColumns)
+        $this->prependedColumns = (new Collection($prependedColumns))
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setComponent($this);
@@ -27,7 +28,8 @@ trait ColumnConfiguration
 
     public function setAppendedColumns(array $appendedColumns): void
     {
-        $this->appendedColumns = collect($appendedColumns)
+        $appendedColumns = new Collection($appendedColumns);
+        $this->appendedColumns = $appendedColumns
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
                 $column->setComponent($this);

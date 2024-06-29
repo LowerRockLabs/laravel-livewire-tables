@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Filters;
 
 use Closure;
 use Illuminate\View\ComponentAttributeBag;
+use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
 trait HasOptions
@@ -38,7 +39,7 @@ trait HasOptions
 
     public function getKeys(): array
     {
-        return collect($this->getOptions())
+        return (new Collection($this->getOptions()))
             ->keys()
             ->map(fn ($value) => (string) $value)
             ->filter(fn ($value) => strlen($value))

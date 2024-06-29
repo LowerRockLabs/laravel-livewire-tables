@@ -3,6 +3,9 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
 use Illuminate\Support\HtmlString;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\AbstractPaginator;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
@@ -52,10 +55,9 @@ trait HasSecondaryHeader
     }
 
     /**
-     * @param  mixed  $rows
      * @return mixed
      */
-    public function getSecondaryHeaderContents($rows, array $filterGenericData)
+    public function getSecondaryHeaderContents(Collection|Model|AbstractPaginator|array $rows, array $filterGenericData)
     {
         $value = null;
         $callback = $this->getSecondaryHeaderCallback();

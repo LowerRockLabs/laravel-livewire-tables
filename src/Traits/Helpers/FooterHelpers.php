@@ -3,6 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Pagination\AbstractPaginator;
+use Illuminate\Support\Collection;
 
 trait FooterHelpers
 {
@@ -42,10 +44,9 @@ trait FooterHelpers
     }
 
     /**
-     * @param  mixed  $rows
      * @return array<mixed>
      */
-    public function getFooterTrAttributes($rows): array
+    public function getFooterTrAttributes(Collection|AbstractPaginator|array $rows): array
     {
         return $this->footerTrAttributesCallback ? call_user_func($this->footerTrAttributesCallback, $rows) : ['default' => true];
     }

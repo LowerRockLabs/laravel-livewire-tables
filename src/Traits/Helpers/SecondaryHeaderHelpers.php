@@ -3,6 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Pagination\AbstractPaginator;
+use Illuminate\Database\Eloquent\Collection;
 
 trait SecondaryHeaderHelpers
 {
@@ -27,19 +29,18 @@ trait SecondaryHeaderHelpers
     }
 
     /**
-     * @param  mixed  $rows
      * @return array<mixed>
      */
-    public function getSecondaryHeaderTrAttributes($rows): array
+    public function getSecondaryHeaderTrAttributes(Collection|AbstractPaginator|array $rows): array
     {
         return $this->secondaryHeaderTrAttributesCallback ? call_user_func($this->secondaryHeaderTrAttributesCallback, $rows) : ['default' => true];
     }
 
     /**
-     * @param  mixed  $rows
+     * @param  array  $rows
      * @return array<mixed>
      */
-    public function getSecondaryHeaderTdAttributes(Column $column, $rows, int $index): array
+    public function getSecondaryHeaderTdAttributes(Column $column, Collection|AbstractPaginator|array $rows, int $index): array
     {
         return $this->secondaryHeaderTdAttributesCallback ? call_user_func($this->secondaryHeaderTdAttributesCallback, $column, $rows, $index) : ['default' => true];
     }

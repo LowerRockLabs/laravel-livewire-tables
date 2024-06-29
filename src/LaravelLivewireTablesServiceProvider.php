@@ -40,7 +40,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
 
     }
 
-    public function consoleCommands()
+    public function consoleCommands(): void
     {
         if ($this->app->runningInConsole()) {
 

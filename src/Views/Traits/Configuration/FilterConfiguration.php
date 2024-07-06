@@ -76,4 +76,13 @@ trait FilterConfiguration
 
         return $this;
     }
+
+    public function setCustomFilterPillValueCallback(callable $callable): self
+    {
+        $this->filterPillValueCallback = $callable;
+
+        return $this;
+    }
+
+
 }

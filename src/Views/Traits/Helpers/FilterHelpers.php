@@ -162,4 +162,14 @@ trait FilterHelpers
     {
         return view($this->getViewPath(), $this->getFilterDisplayData());
     }
+
+    public function hasCustomFilterPillValueCallback(): bool
+    {
+        return isset($this->filterPillValueCallback);
+    }
+    public function getCustomFilterPillValueCallback(string $value): ?string
+    {
+        return call_user_func($this->filterPillValueCallback, $value) ?? '';
+    }
+
 }

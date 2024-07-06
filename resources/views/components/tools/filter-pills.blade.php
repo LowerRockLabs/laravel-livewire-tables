@@ -30,7 +30,7 @@
                             'badge rounded-pill bg-info d-inline-flex align-items-center' => $component->isBootstrap5(),
                         ])
                     >
-                        {{ $filter->getFilterPillTitle() }}: {{ $filter->getFilterPillValue($value) }}
+                    {{ $filter->getFilterPillTitle() }}: {{ $filter->hasCustomFilterPillValueCallback() ? $filter->getCustomFilterPillValueCallback($value) : $filter->getFilterPillValue($value) }}
 
                         @if ($component->isTailwind())
                             <button

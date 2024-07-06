@@ -167,9 +167,9 @@ trait FilterHelpers
     {
         return isset($this->filterPillValueCallback);
     }
+
     public function getCustomFilterPillValueCallback(string $value): ?string
     {
         return call_user_func($this->filterPillValueCallback, $value) ?? '';
     }
-
 }

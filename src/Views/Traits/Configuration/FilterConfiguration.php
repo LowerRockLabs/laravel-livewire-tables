@@ -83,6 +83,4 @@ trait FilterConfiguration
 
         return $this;
     }
-
-
 }

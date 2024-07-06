@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\FilterHelpers;
+use Rappasoft\LaravelLivewireTables\Views\Filters\ComputedSelectFilter;
 
 trait WithFilters
 {
@@ -55,7 +56,14 @@ trait WithFilters
                 foreach ($this->getAppliedFiltersWithValues() as $key => $value) {
                     if ($filter->getKey() === $key && $filter->hasFilterCallback()) {
                         // Let the filter class validate the value
-                        $value = $filter->validate($value);
+                        if ($filter instanceof ComputedSelectFilter)
+                        {
+                            $value = $filter->validate($value, $this->{$filter->getComputedOptions()});
+                        }
+                        else
+                        {
+                            $value = $filter->validate($value);
+                        }
 
                         if ($value === false) {
                             continue;

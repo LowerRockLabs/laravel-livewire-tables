@@ -56,12 +56,9 @@ trait WithFilters
                 foreach ($this->getAppliedFiltersWithValues() as $key => $value) {
                     if ($filter->getKey() === $key && $filter->hasFilterCallback()) {
                         // Let the filter class validate the value
-                        if ($filter instanceof ComputedSelectFilter)
-                        {
+                        if ($filter instanceof ComputedSelectFilter) {
                             $value = $filter->validate($value, $this->{$filter->getComputedOptions()});
-                        }
-                        else
-                        {
+                        } else {
                             $value = $filter->validate($value);
                         }
 

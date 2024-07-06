@@ -77,15 +77,16 @@ class ComputedSelectFilter extends Filter
             ->toArray();
     }
 
-    public function validate(string $value, $options): array|string|bool
-    {
-        if (! in_array($value, collect($options)
-            ->keys()
+    public function validate(string $value, $opti            ->keys()
             ->map(fn ($value) => (string) $value)
             ->filter(fn ($value) => strlen($value))
             ->values()
             ->toArray())) {
 
+) => strlen($value))
+        ->values()
+        ->toArray())) {
+             false;
         }
 
         return $value;

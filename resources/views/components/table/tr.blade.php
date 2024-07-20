@@ -5,8 +5,7 @@
     $customAttributes = $component->getTrAttributes($row, $rowIndex);
 @endphp
 
-<tr
-    rowpk='{{ $row->{$component->getPrimaryKey()} }}'
+<tr rowpk='{{ $row->{$component->getPrimaryKey()} }}'
     x-on:dragstart.self="currentlyReorderingStatus && dragStart(event)"
     x-on:drop.prevent="currentlyReorderingStatus && dropEvent(event)"
     x-on:dragover.prevent.throttle.500ms="currentlyReorderingStatus && dragOverEvent(event)"

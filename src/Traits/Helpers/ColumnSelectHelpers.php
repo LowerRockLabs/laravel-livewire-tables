@@ -149,4 +149,13 @@ trait ColumnSelectHelpers
     {
         return $this->getSelectableSelectedColumns()->count() === $this->getSelectableColumns()->count();
     }
+
+    public function getVisibleColumns(): array
+    {
+        return $this->getColumns()
+            ->reject(fn (Column $column) => $column->isHidden())
+            ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)))
+            ->values()
+            ->toArray();
+    }
 }

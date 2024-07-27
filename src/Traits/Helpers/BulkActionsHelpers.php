@@ -126,8 +126,7 @@ trait BulkActionsHelpers
      */
     public function updatedSelected(): void
     {
-        if (!$this->getDelaySelectAllStatus())
-        {
+        if (! $this->getDelaySelectAllStatus()) {
             $this->setSelectAllDisabled();
         }
     }
@@ -255,19 +254,15 @@ trait BulkActionsHelpers
 
     public function getSelectedRows(): array
     {
-        if ($this->getDelaySelectAllStatus() && $this->selectAllIsEnabled())
-        {
-           return (clone $this->baseQuery())->select($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->pluck($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->map(fn ($item) => (string) $item)->toArray();
-        }
-        else
-        {
+        if ($this->getDelaySelectAllStatus() && $this->selectAllIsEnabled()) {
+            return (clone $this->baseQuery())->select($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->pluck($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->map(fn ($item) => (string) $item)->toArray();
+        } else {
             return $this->selected;
         }
     }
-    
+
     public function getDelaySelectAllStatus(): bool
     {
         return $this->delaySelectAll ?? false;
     }
-
 }

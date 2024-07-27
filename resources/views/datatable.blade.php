@@ -1,6 +1,6 @@
 @php($tableName = $this->getTableName())
 
-<div>
+<div x-data="tableWrapper($wire, {{ $this->showBulkActionsDropdownAlpine() }}, '{{ $this->getTableAttributes()['id'] }}', '{{ $this->getPrimaryKey() }}')">
     <x-livewire-tables::wrapper :component="$this" :tableName="$tableName">
         @if ($this->hasConfigurableAreaFor('before-tools'))
             @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))

@@ -38,6 +38,10 @@ trait WithCustomisations
 
         $view = $view->with([
             'customView' => method_exists($this, 'customView') ? $this->customView() : '',
+            'isBootstrap' => $this->isBootstrap(),
+            'isBootstrap4' => $this->isBootstrap4(),
+            'isBootstrap5' => $this->isBootstrap5(),
+            'isTailwind' => $this->isTailwind(),
         ]);
 
     }

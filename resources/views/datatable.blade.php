@@ -1,7 +1,7 @@
 @php($tableName = $this->getTableName())
 
 <div>
-    <x-livewire-tables::wrapper :component="$this" :tableName="$tableName">
+    <x-livewire-tables::wrapper :component="$this" :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5 :tableName="$tableName">
         @if ($this->hasConfigurableAreaFor('before-tools'))
             @include($this->getConfigurableAreaFor('before-tools'), $this->getParametersForConfigurableArea('before-tools'))
         @endif

@@ -1,3 +1,4 @@
+@aware(['isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 <div @class([
                 'items-center content-center place-content-center place-items-center' => $isTailwind,
             ])

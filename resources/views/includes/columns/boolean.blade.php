@@ -1,4 +1,5 @@
-@if ($component->isTailwind())
+@aware(['isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@if ($isTailwind)
     @if ($status)
         @if ($type === 'icons')
             @if ($successValue === true)
@@ -28,7 +29,7 @@
             @endif
         @endif
     @endif
-@elseif ($component->isBootstrap())
+@elseif ($isBootstrap)
     @if ($status)
         @if ($type === 'icons')
             @if ($successValue === true)

@@ -13,10 +13,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait ColumnHelpers
 {
-    public function getComponent(): ?DataTableComponent
-    {
-        return $this->component;
-    }
 
     public function hasFrom(): bool
     {
@@ -145,11 +141,11 @@ trait ColumnHelpers
         return $this->eagerLoadRelations === true;
     }
 
-    public function isReorderColumn(): bool
+    public function getIsReorderColumn(): bool
     {
-        return $this->getField() === $this->component->getDefaultReorderColumn();
+        return $this->isReorderColumn;
     }
-
+    
     public function hasFormatter(): bool
     {
         return $this->formatCallback !== null;
@@ -187,7 +183,7 @@ trait ColumnHelpers
     public function isClickable(): bool
     {
         return $this->clickable &&
-            $this->component->hasTableRowUrl() &&
+            $this->getHasTableRowUrl() &&
             ! $this instanceof LinkColumn;
     }
 
@@ -205,4 +201,31 @@ trait ColumnHelpers
     {
         return $this->displayColumnLabel ?? true;
     }
+
+    public function getHasTableRowUrl()
+    {
+        return $this->hasTableRowUrl;
+    }
+    
+
+    public function isTailwind(): bool
+    {
+        return $this->theme != 'bootstrap-4' && $this->theme != 'bootstrap-5';
+    }
+
+    public function isBootstrap(): bool
+    {
+        return $this->theme == 'bootstrap-4' || $this->theme == 'bootstrap-5';
+    }
+
+    public function isBootstrap4(): bool
+    {
+        return $this->theme == 'bootstrap-4';
+    }
+
+    public function isBootstrap5(): bool
+    {
+        return $this->theme == 'bootstrap-5';
+    }
+
 }

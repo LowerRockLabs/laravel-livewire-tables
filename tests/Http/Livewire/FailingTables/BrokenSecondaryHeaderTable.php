@@ -62,7 +62,7 @@ class BrokenSecondaryHeaderTable extends DataTableComponent
             Column::make('Age'),
 
             Column::make('Breed', 'breed.name')
-                ->secondaryHeaderFilter('breed')
+                ->secondaryHeader('haha')
                 ->footer($this->getFilterByKey('breed'))
                 ->sortable(
                     fn (Builder $query, string $direction) => $query->orderBy('pets.id', $direction)

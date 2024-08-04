@@ -43,7 +43,7 @@
 
 
             @if($this->showBulkActionsSections)
-                <x-livewire-tables::table.tr.bulk-actions :rows="$rows" :displayMinimisedOnReorder="true" />
+                <x-livewire-tables::table.tr.bulk-actions :displayMinimisedOnReorder="true" />
             @endif
 
             @forelse ($rows as $rowIndex => $row)
@@ -79,9 +79,9 @@
             @if ($this->footerIsEnabled() && $this->hasColumnsWithFooter())
                 <x-slot name="tfoot">
                     @if ($this->useHeaderAsFooterIsEnabled())
-                        <x-livewire-tables::table.tr.secondary-header :rows="$rows" :$filterGenericData />
+                        <x-livewire-tables::table.tr.secondary-header :rows="$rows" :$filterGenericData  :$selectedVisibleColumns />
                     @else
-                        <x-livewire-tables::table.tr.footer :rows="$rows"  :$filterGenericData />
+                        <x-livewire-tables::table.tr.footer :rows="$rows"  :$filterGenericData  :$selectedVisibleColumns />
                     @endif
                 </x-slot>
             @endif

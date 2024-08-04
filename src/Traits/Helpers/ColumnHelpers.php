@@ -18,7 +18,10 @@ trait ColumnHelpers
         $columns = collect($this->columns())
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
-                $column->setComponent($this);
+                $column->setTheme($this->getTheme());
+                $column->setHasTableRowUrl($this->hasTableRowUrl());
+                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
+
                 if ($column instanceof AggregateColumn) {
                     if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
                         $this->addExtraWithCount($column->getDataSource());
@@ -44,6 +47,7 @@ trait ColumnHelpers
 
         $this->columns = collect([...$this->prependedColumns, ...$columns, ...$this->appendedColumns]);
     }
+
 
     public function getColumns(): Collection
     {
@@ -207,7 +211,10 @@ trait ColumnHelpers
         return collect($this->prependedColumns ?? $this->prependColumns())
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
-                $column->setComponent($this);
+                $column->setTheme($this->getTheme());
+                $column->setHasTableRowUrl($this->hasTableRowUrl());
+                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
+                
                 if ($column instanceof AggregateColumn) {
                     if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
                         $this->addExtraWithCount($column->getDataSource());
@@ -235,7 +242,10 @@ trait ColumnHelpers
         return collect($this->appendedColumns ?? $this->appendColumns())
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
-                $column->setComponent($this);
+                $column->setTheme($this->getTheme());
+                $column->setHasTableRowUrl($this->hasTableRowUrl());
+                $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
+
                 if ($column instanceof AggregateColumn) {
                     if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
                         $this->addExtraWithCount($column->getDataSource());

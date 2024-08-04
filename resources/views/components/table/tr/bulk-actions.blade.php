@@ -1,5 +1,4 @@
 @aware(['component', 'tableName'])
-@props(['rows'])
 
 @if ($component->bulkActionsAreEnabled() && $component->hasBulkActions())
     @php

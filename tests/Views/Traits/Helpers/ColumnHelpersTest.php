@@ -295,7 +295,9 @@ final class ColumnHelpersTest extends TestCase
         $this->assertTrue($column->hasSecondaryHeader());
         $this->assertTrue($column->hasSecondaryHeaderCallback());
         $this->assertIsCallable($column->getSecondaryHeaderCallback());
-        $this->assertSame('Hi', $column->getSecondaryHeaderContents([], []));
+        $this->assertSame('Hi', $column->getSecondaryHeaderContents([]));
+
+
     }
 
     public function test_can_check_if_column_has_footer(): void
@@ -311,6 +313,6 @@ final class ColumnHelpersTest extends TestCase
         $this->assertTrue($column->hasFooter());
         $this->assertTrue($column->hasFooterCallback());
         $this->assertIsCallable($column->getFooterCallback());
-        $this->assertSame('Hi', $column->getFooterContents([], []));
+        $this->assertSame('Hi', $column->getFooterContents([]));
     }
 }

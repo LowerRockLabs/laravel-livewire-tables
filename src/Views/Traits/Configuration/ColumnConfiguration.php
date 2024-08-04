@@ -7,13 +7,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ColumnConfiguration
 {
-    public function setComponent(DataTableComponent $component): self
-    {
-        $this->component = $component;
-
-        return $this;
-    }
-
     public function label(callable $callback): self
     {
         $this->from = null;
@@ -83,4 +76,26 @@ trait ColumnConfiguration
     {
         $this->displayColumnLabel = $status;
     }
+
+    public function setTheme(string $theme): self
+    {
+        $this->theme = $theme;
+
+        return $this;
+    }
+
+    public function setHasTableRowUrl(bool $hasTableRowUrl): self
+    {
+        $this->hasTableRowUrl = $hasTableRowUrl;
+
+        return $this;
+    }
+
+    public function setIsReorderColumn(bool $isReorderColumn): self
+    {
+        $this->isReorderColumn = $isReorderColumn;
+
+        return $this;
+    }
+
 }

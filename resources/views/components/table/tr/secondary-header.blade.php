@@ -18,7 +18,15 @@
 
     @foreach($selectedVisibleColumns as $colIndex => $column)
         <x-livewire-tables::table.td.plain :column="$column" :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-secondary-header-show-'.$column->getSlug() }}"  :customAttributes="$this->getSecondaryHeaderTdAttributes($column, $rows, $colIndex)">
-            {{ $column->getSecondaryHeaderContents($rows, $filterGenericData) }}
+            @if($column->hasSecondaryHeader() && $column->hasSecondaryHeaderCallback())
+                @if( $column->secondaryHeaderCallbackIsFilter())
+                    {{ $column->getSecondaryHeaderFilter($column->getSecondaryHeaderCallback(), $filterGenericData) }}    
+                @elseif($column->secondaryHeaderCallbackIsString())
+                    {{ $column->getSecondaryHeaderFilter($this->getFilterByKey($column->getSecondaryHeaderCallback()), $filterGenericData) }}
+                @else
+                    {{ $column->getSecondaryHeaderContents($rows) }}
+                @endif
+            @endif
         </x-livewire-tables::table.td.plain>
     @endforeach
 </x-livewire-tables::table.tr.plain>

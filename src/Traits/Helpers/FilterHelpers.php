@@ -133,6 +133,14 @@ trait FilterHelpers
         });
     }
 
+    public function hasFilterByKey(string $key)
+    {
+        return $this->getFilters()->first(function ($filter) use ($key) {
+            return $filter->getKey() === $key;
+        }) !== null;
+    }
+
+
     #[On('setFilter')]
     #[On('set-filter')]
     public function setFilter(string $filterKey, string|array|null $value): void

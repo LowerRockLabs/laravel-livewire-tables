@@ -48,7 +48,6 @@ trait ColumnHelpers
         $this->columns = collect([...$this->prependedColumns, ...$columns, ...$this->appendedColumns]);
     }
 
-
     public function getColumns(): Collection
     {
         return $this->columns;
@@ -214,7 +213,7 @@ trait ColumnHelpers
                 $column->setTheme($this->getTheme());
                 $column->setHasTableRowUrl($this->hasTableRowUrl());
                 $column->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
-                
+
                 if ($column instanceof AggregateColumn) {
                     if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
                         $this->addExtraWithCount($column->getDataSource());

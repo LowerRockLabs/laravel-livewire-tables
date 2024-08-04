@@ -13,7 +13,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait ColumnHelpers
 {
-
     public function hasFrom(): bool
     {
         return $this->from !== null;
@@ -145,7 +144,7 @@ trait ColumnHelpers
     {
         return $this->isReorderColumn;
     }
-    
+
     public function hasFormatter(): bool
     {
         return $this->formatCallback !== null;
@@ -206,7 +205,6 @@ trait ColumnHelpers
     {
         return $this->hasTableRowUrl;
     }
-    
 
     public function isTailwind(): bool
     {
@@ -227,5 +225,4 @@ trait ColumnHelpers
     {
         return $this->theme == 'bootstrap-5';
     }
-
 }

@@ -140,7 +140,6 @@ trait FilterHelpers
         }) !== null;
     }
 
-
     #[On('setFilter')]
     #[On('set-filter')]
     public function setFilter(string $filterKey, string|array|null $value): void

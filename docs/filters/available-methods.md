@@ -3,7 +3,7 @@ title: Available Methods
 weight: 4
 ---
 
-## Component Methods
+# Component Methods
 
 These are the available filters configuration methods on the component.
 
@@ -11,7 +11,7 @@ These are the available filters configuration methods on the component.
 
 Filters are **enabled by default** but will only show up if you have at least one defined.
 
-### setFiltersStatus
+## setFiltersStatus
 
 Enable/disable filters for the whole component.
 
@@ -23,7 +23,7 @@ public function configure(): void
 }
 ```
 
-### setFiltersEnabled
+## setFiltersEnabled
 
 Enable filters for the component.
 

@@ -3,7 +3,7 @@ title: Available Methods
 weight: 4
 ---
 
-Component Methods
+## Component Methods
 
 These are the available filters configuration methods on the component.
 
@@ -23,7 +23,7 @@ public function configure(): void
 }
 ```
 
-## setFiltersEnabled
+### setFiltersEnabled
 
 Enable filters for the component.
 
@@ -35,7 +35,7 @@ public function configure(): void
 }
 ```
 
-## setFiltersDisabled
+### setFiltersDisabled
 
 Disable filters for the component.
 
@@ -49,7 +49,7 @@ public function configure(): void
 
 ---
 
-## setFiltersVisibilityStatus
+### setFiltersVisibilityStatus
 
 **Enabled by default**, show/hide the filters dropdown.
 
@@ -61,7 +61,7 @@ public function configure(): void
 }
 ```
 
-## setFiltersVisibilityEnabled
+### setFiltersVisibilityEnabled
 
 Show the filters dropdown for the component.
 
@@ -73,7 +73,7 @@ public function configure(): void
 }
 ```
 
-## setFiltersVisibilityDisabled
+### setFiltersVisibilityDisabled
 
 Hide the filters dropdown for the component.
 
@@ -87,7 +87,7 @@ public function configure(): void
 
 ---
 
-## setFilterPillsStatus
+### setFilterPillsStatus
 
 **Enabled by default**, show/hide the filter pills.
 
@@ -99,7 +99,7 @@ public function configure(): void
 }
 ```
 
-## setFilterPillsEnabled
+### setFilterPillsEnabled
 
 Show the filter pills for the component.
 
@@ -111,7 +111,7 @@ public function configure(): void
 }
 ```
 
-## setFilterPillsDisabled
+### setFilterPillsDisabled
 
 Hide the filter pills for the component.
 
@@ -125,7 +125,7 @@ public function configure(): void
 
 ---
 
-## setFilterLayout
+### setFilterLayout
 
 Set the filter layout for the component.
 
@@ -136,7 +136,7 @@ public function configure(): void
 }
 ```
 
-## setFilterLayoutPopover
+### setFilterLayoutPopover
 
 Set the filter layout to popover.
 
@@ -149,7 +149,7 @@ public function configure(): void
 
 Set the filter layout to slide down.
 
-## setFilterLayoutSlideDown
+### setFilterLayoutSlideDown
 
 ```php
 public function configure(): void
@@ -158,7 +158,7 @@ public function configure(): void
 }
 ```
 
-## setFilterSlideDownDefaultStatusEnabled
+### setFilterSlideDownDefaultStatusEnabled
 
 Set the filter slide down to visible by default
 
@@ -170,7 +170,7 @@ public function configure(): void
 }
 ```
 
-## setFilterSlideDownDefaultStatusDisabled
+### setFilterSlideDownDefaultStatusDisabled
 
 Set the filter slide down to collapsed by default
 

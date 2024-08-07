@@ -1,9 +1,7 @@
 ---
-title: Available Methods (Component)
+title: Component Methods
 weight: 5
 ---
-
-Component Methods
 
 These are the available filters configuration methods on the component.
 

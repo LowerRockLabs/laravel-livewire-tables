@@ -1,9 +1,7 @@
 ---
-title: Available Methods (Filter)
+title: Filter Methods
 weight: 6
 ---
-
-Filter Methods
 
 The following methods are available on the filter object.
 

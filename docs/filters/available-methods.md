@@ -11,7 +11,7 @@ These are the available filters configuration methods on the component.
 
 Filters are **enabled by default** but will only show up if you have at least one defined.
 
-## setFiltersStatus
+### setFiltersStatus
 
 Enable/disable filters for the whole component.
 

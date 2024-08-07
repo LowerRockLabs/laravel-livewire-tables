@@ -14,10 +14,6 @@ public function filters(): array
 
 This method will return an array of filter objects. There are a few filter types to choose from:
 
-
-
-
-
 ## Filter Keys
 
 By default, the filter key is just the snake version of the filter name. This is used to generate the query string as well as look up the filter object in necessary places. Each filter should have a unique key.

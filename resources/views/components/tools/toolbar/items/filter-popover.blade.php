@@ -1,4 +1,3 @@
-@aware(['component', 'tableName','isBootstrap','isBootstrap4','isBootstrap5'])
 @if($this->isBootstrap)
     <ul
         x-cloak
@@ -9,19 +8,19 @@
         x-bind:class="{ 'show': filterPopoverOpen }"
         role="menu"
     >
-        @foreach ($this->getVisibleFilters() as $filter)
+        @foreach ($this->getVisibleFilters as $filter)
             <div
-                wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar"
+                wire:key="{{ $this->getTableName }}-filter-{{ $filter->getKey() }}-toolbar"
                 @class([
                     'p-2' => $this->isBootstrap,
                 ])
-                id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
+                id="{{ $this->getTableName }}-filter-{{ $filter->getKey() }}-wrapper"
             >
                 {{ $filter->setGenericDisplayData($this->getFilterGenericData)->render() }}
             </div>
         @endforeach
 
-        @if ($this->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
+        @if ($this->hasAppliedVisibleFiltersWithValuesThatCanBeCleared)
             <div
                 @class([
                     'dropdown-divider' => $this->isBootstrap,
@@ -54,19 +53,19 @@
         aria-orientation="vertical"
         aria-labelledby="filters-menu"
     >
-        @foreach ($this->getVisibleFilters() as $filter)
+        @foreach ($this->getVisibleFilters as $filter)
             <div class="py-1" role="none">
                 <div
                     class="block px-4 py-2 text-sm text-gray-700 space-y-1"
                     role="menuitem"
-                    id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
+                    id="{{ $this->getTableName }}-filter-{{ $filter->getKey() }}-wrapper"
                 >
                     {{ $filter->setGenericDisplayData($this->getFilterGenericData)->render() }}
                 </div>
             </div>
         @endforeach
 
-        @if ($this->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
+        @if ($this->hasAppliedVisibleFiltersWithValuesThatCanBeCleared)
             <div class="block px-4 py-3 text-sm text-gray-700 dark:text-white" role="menuitem">
                 <button
                     x-on:click="filterPopoverOpen = false"

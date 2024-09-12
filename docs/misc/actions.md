@@ -252,6 +252,20 @@ public function actions(): array
 }
 ```
 
+## Label Attributes
+This supports the new setLabelAttributes method to customise the appearance of the Button Text:
+
+```php
+public function actions(): array
+{
+    return [
+        Action::make('Edit Item')
+        ->setLabelAttributes(['class' => 'text-2xl']),
+    ];
+}
+```
+
+
 ## Extending
 
 You can extend the Base Action class which can be a useful timesaver, when you wish to re-use the same look/feel of an Action, but wish to set a different route (for example).

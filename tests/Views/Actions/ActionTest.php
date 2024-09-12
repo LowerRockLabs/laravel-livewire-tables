@@ -23,6 +23,22 @@ final class ActionTest extends TestCase
         $this->assertSame('Update Summaries', $action->getLabel());
     }
 
+    public function test_can_get_action_button_label_attributes(): void
+    {
+        $action = Action::make('Update Summaries')
+            ->setActionAttributes(['class' => 'dark:bg-green-500 dark:text-white dark:border-green-600 dark:hover:border-green-900 dark:hover:bg-green-800', 'default-styling' => true, 'default-colors' => true])
+            ->setIcon('fas fa-minus')
+            ->setIconAttributes(['class' => 'font-sm text-sm'])
+            ->wireNavigate()
+            ->route('dashboard2')
+            ->setLabelAttributes(['class' => 'text-3xl']);
+
+        $this->assertSame(['class' => 'text-3xl', 'default' => false, 'default-colors' => false, 'default-styling' => false], $action->getLabelAttributes());
+        $bag = new \Illuminate\View\ComponentAttributeBag(['class' => 'text-3xl', 'default' => false, 'default-colors' => false, 'default-styling' => false]);
+        $this->assertSame($bag->getAttributes(), $action->getLabelAttributesBag()->getAttributes());
+
+    }
+
     public function test_can_get_action_button_icon(): void
     {
         $action = Action::make('Update Summaries')

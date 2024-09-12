@@ -7,6 +7,7 @@ use Illuminate\View\ComponentAttributeBag;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Actions\{HasActionAttributes, HasRoute};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\HasVisibility;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasIcon, HasLabel, HasLabelAttributes, HasTheme, HasView, HasWireActions};
+
 class Action extends Component
 {
     use HasActionAttributes,

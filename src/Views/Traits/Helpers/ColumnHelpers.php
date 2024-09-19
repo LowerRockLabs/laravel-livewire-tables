@@ -103,7 +103,7 @@ trait ColumnHelpers
     }
 
     // TODO: Test
-    public function getContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function getContents(Model $row): null|string|\BackedEnum|HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Contracts\View\View
     {
         if ($this->isLabel()) {
             $value = call_user_func($this->getLabelCallback(), $row, $this);

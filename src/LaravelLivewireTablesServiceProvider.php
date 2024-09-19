@@ -28,6 +28,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         $this->loadJsonTranslationsFrom(
             __DIR__.'/../resources/lang'
         );
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'livewire-tables');
 
         // Override if Published
         $this->loadJsonTranslationsFrom(

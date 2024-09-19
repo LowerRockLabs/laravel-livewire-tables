@@ -16,7 +16,7 @@ trait HasView
 
     public function hasView(): bool
     {
-        return (isset($this->view) && $this->view !== null);
+        return isset($this->view) && $this->view !== null;
     }
 
     public function getView(): string

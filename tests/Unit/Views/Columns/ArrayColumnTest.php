@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit\Views\Columns;
 
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ArrayColumn;
 
 final class ArrayColumnTest extends TestCase

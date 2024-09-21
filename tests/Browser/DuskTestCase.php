@@ -30,7 +30,6 @@ abstract class DuskTestCase extends BaseTestCase
      * Define routes setup.
      *
      * @param  \Illuminate\Routing\Router  $router
-     *
      * @return void
      */
     protected function defineRoutes($router)
@@ -38,11 +37,11 @@ abstract class DuskTestCase extends BaseTestCase
         Route::get('/tailwind', function () {
             return view('users.tw');
         })->name('tw');
-        
+
         Route::get('/tailwind-slidedown', function () {
             return view('users.tw', ['displayStyle' => 'slide-down']);
         })->name('tw-slidedown');
-        
+
     }
 
     /**
@@ -53,8 +52,8 @@ abstract class DuskTestCase extends BaseTestCase
     public static function prepare(): void
     {
         if (! static::runningInSail()) {
-           static::startChromeDriver();
-       }
+            static::startChromeDriver();
+        }
     }
 
     /**

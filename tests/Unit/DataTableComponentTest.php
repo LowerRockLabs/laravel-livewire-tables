@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Unit;
 
 use Livewire\Livewire;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\{NoColumnsTable,NoPrimaryKeyTable};
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 
 class DataTableComponentTest extends TestCase
 {

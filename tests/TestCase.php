@@ -11,11 +11,7 @@ use Orchestra\Testbench\TestCase as Orchestra;
 use Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{BreedsTable,PetsTable,PetsTableEvents,PetsTableUnpaginated,PetsTableWithOwner,SpeciesTable};
 use Rappasoft\LaravelLivewireTables\Tests\Http\TestComponent;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Owner;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Species;
-use Rappasoft\LaravelLivewireTables\Tests\Models\Veterinary;
+use Rappasoft\LaravelLivewireTables\Tests\Models\{Breed,Owner,Pet,Species,Veterinary};
 
 class TestCase extends Orchestra
 {

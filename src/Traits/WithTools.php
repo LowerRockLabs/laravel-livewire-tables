@@ -13,4 +13,9 @@ trait WithTools
     protected bool $toolsStatus = true;
 
     protected bool $toolBarStatus = true;
+
+    protected array $toolsAttributes = ['default-styling' => true, 'default-colors' => true, 'class' => ''];
+
+    protected array $toolBarAttributes = ['default-styling' => true, 'default-colors' => true, 'class' => ''];
+
 }

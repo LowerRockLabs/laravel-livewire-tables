@@ -40,6 +40,11 @@ trait HasCustomAttributes
         return new ComponentAttributeBag($this->getCustomAttributes($propertyName));
     }
 
+    public function getCustomAttributesBagFromArray(array $attributesArray): ComponentAttributeBag
+    {
+        return new ComponentAttributeBag($attributesArray);
+    }
+
     public function setCustomAttributes(string $propertyName, array $customAttributes): self
     {
         $this->{$propertyName} = $customAttributes;

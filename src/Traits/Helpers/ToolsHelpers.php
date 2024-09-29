@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Livewire\Attributes\Computed;
+use Illuminate\View\ComponentAttributeBag;
 
 trait ToolsHelpers
 {
@@ -105,4 +106,27 @@ trait ToolsHelpers
     {
         return $this->hasActions() && $this->showActionsInToolbar();
     }
+
+    public function getToolsAttributes(): array
+    {
+        return $this->getCustomAttributes(propertyName: 'toolsAttributes', default: false, classicMode: false);
+    }
+
+    public function getToolsAttributesBag(string $propertyName): ComponentAttributeBag
+    {
+        return $this->getCustomAttributesBagFromArray($this->getToolsAttributes());
+    }
+
+    public function getToolBarAttributes(): array
+    {
+        return $this->getCustomAttributes(propertyName: 'toolBarAttributes', default: false, classicMode: false);
+    }
+
+    public function getToolBarAttributesBag(string $propertyName): ComponentAttributeBag
+    {
+        return $this->getCustomAttributesBagFromArray($this->getToolBarAttributes());
+
+    }
+
+
 }

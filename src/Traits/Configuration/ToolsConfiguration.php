@@ -51,5 +51,4 @@ trait ToolsConfiguration
 
         return $this;
     }
-
 }

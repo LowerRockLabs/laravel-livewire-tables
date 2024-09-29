@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
-use Livewire\Attributes\Computed;
 use Illuminate\View\ComponentAttributeBag;
+use Livewire\Attributes\Computed;
 
 trait ToolsHelpers
 {
@@ -127,6 +127,4 @@ trait ToolsHelpers
         return $this->getCustomAttributesBagFromArray($this->getToolBarAttributes());
 
     }
-
-
 }

@@ -23,6 +23,7 @@
                 ->except(['default','default-styling','default-colors']) }}
             
         >
+            @if($this->hasTableCaptionMessage()) <caption>{{ $this->getTableCaptionMessage() }}</caption> @endif
             <thead wire:key="{{ $tableName }}-thead"
                 {{ $attributes->merge($customAttributes['thead'])
                     ->class(['bg-gray-50 dark:bg-gray-800' => $customAttributes['thead']['default'] ?? true])

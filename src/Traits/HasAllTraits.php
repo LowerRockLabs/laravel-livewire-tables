@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Rappasoft\LaravelLivewireTables\Traits\Core\HasCustomAttributes;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Core\HasTheme;
+use Rappasoft\LaravelLivewireTables\Traits\Features\{HasTableCaption};
 
 trait HasAllTraits
 {
@@ -35,4 +36,6 @@ trait HasAllTraits
         WithSessionStorage,
         WithTableAttributes,
         WithTools;
+
+    use HasTableCaption;
 }

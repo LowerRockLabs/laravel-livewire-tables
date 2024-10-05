@@ -7,8 +7,7 @@ trait TableCaptionConfiguration
     public function setTableCaptionMessage(string $tableCaptionMessage): self
     {
         $this->tableCaptionMessage = $tableCaptionMessage;
-        
+
         return $this;
     }
-
 }

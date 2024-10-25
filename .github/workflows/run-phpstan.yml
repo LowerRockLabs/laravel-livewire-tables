@@ -91,17 +91,10 @@ jobs:
       - name: Install PHPStan
         run: composer require larastan/larastan:^2.0 --dev --no-interaction
 
-      - uses: actions/cache/restore@v4
-        id: larastan-restore
+      - uses: actions/cache@v4
         with:
           path: ./build/phpstan
           key: phpstan-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}
 
       - name: Run PHPStan Tests
         run: ./vendor/bin/phpstan analyse
-
-      - uses: actions/cache/save@v4
-        id: larastan-save
-        with:
-          path: ./build/phpstan
-          key: phpstan-${{ matrix.os }}-P${{ matrix.php }}-L${{ matrix.laravel }}

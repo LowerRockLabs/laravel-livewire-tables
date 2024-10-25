@@ -32,7 +32,7 @@ jobs:
           ref: ${{ github.ref }}
           running-workflow-name: 'Fix PHP code style issues'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 90
+          wait-interval: 20
 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -119,7 +119,7 @@ jobs:
           ref: ${{ github.ref }}
           running-workflow-name: 'Fix PHP code style issues'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 90
+          wait-interval: 20
 
       - name: Checkout code
         uses: actions/checkout@v4

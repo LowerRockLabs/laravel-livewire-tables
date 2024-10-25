@@ -95,9 +95,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .phpstan.cache
-          key: phpstan-result-cache-${​{ github.run_id }}
-          restore-keys: |
-            phpstan-result-cache-
+          key: ${{ github.run_id }}-phpstan-result-cache
+          restore-keys: phpstan-result-cache-
 
       - name: Run PHPStan Tests
         run: ./vendor/bin/phpstan analyse

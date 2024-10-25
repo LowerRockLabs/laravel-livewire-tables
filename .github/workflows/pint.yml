@@ -15,6 +15,7 @@ permissions:
 
 jobs:
   php-code-styling:
+    name: Fix Styling
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +27,7 @@ jobs:
       - name: Fix PHP code style issues
         uses: aglipanci/laravel-pint-action@latest
 
-      - name: Commit changes
+      - name: Commit styling changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Fix styling

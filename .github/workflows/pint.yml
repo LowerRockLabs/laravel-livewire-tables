@@ -15,7 +15,6 @@ permissions:
 
 jobs:
   php-code-styling:
-    name: Fix Styling
     runs-on: ubuntu-latest
 
     steps:

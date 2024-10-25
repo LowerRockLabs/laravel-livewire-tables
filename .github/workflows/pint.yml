@@ -7,8 +7,6 @@ on:
       - '*/*'       # matches every branch containing a single '/'
       - '**'        # matches every branch
       - '!master'
-    paths:
-      - '**.php'
 
 permissions:
   contents: write

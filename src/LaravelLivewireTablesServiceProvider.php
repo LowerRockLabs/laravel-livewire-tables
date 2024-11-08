@@ -25,15 +25,12 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         );
 
         // Load Default Translations
-        $this->loadJsonTranslationsFrom(
-            __DIR__.'/../resources/lang'
-        );
-
-        // Override if Published
-        $this->loadJsonTranslationsFrom(
-            $this->app->langPath('vendor/livewire-tables')
-        );
-
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'livewire-tables');
+ 
+        $this->publishes([
+            __DIR__.'/../resources/lang' => $this->app->langPath('livewire-tables'),
+        ]);
+    
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewire-tables');
 
         $this->consoleCommands();

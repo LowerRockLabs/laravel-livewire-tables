@@ -3,11 +3,10 @@ name: run-tests-pcov-pull
 on:
   push:
     branches:
-      - 'development'
-  pull_request:
-    branches:
-      - 'development'
-      - 'master'
+      - '*'         # matches every branch that doesn't contain a '/'
+      - '*/*'       # matches every branch containing a single '/'
+      - '**'        # matches every branch
+      - '!master'
 
 jobs:
   test:

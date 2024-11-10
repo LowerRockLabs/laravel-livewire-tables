@@ -27,7 +27,6 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         // Load Default Translations
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'livewire-tables');
 
-
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewire-tables');
 
         $this->consoleCommands();

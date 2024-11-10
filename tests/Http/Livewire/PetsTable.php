@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\App;
 use Livewire\Attributes\On;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
@@ -18,7 +19,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
-use Illuminate\Support\Facades\App;
 
 class PetsTable extends DataTableComponent
 {
@@ -30,7 +30,7 @@ class PetsTable extends DataTableComponent
     {
         App::setLocale($locale);
     }
-    
+
     public function enableDetailedPagination(string $type = 'standard')
     {
         $this->setPerPageAccepted([1, 3, 5, 10, 15, 25, 50])->setPerPage(3);

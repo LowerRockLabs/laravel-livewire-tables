@@ -62,10 +62,10 @@ trait ComponentHelpers
      */
     public function getEmptyMessage(): string
     {
-        if ($this->emptyMessage == 'No items found, try to broaden your search')
-        {
+        if ($this->emptyMessage == 'No items found, try to broaden your search') {
             return __('livewire-tables::core.No items found, try to broaden your search');
         }
+
         return $this->emptyMessage;
     }
 

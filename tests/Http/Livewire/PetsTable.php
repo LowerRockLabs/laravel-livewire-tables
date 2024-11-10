@@ -18,6 +18,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
+use Illuminate\Support\Facades\App;
 
 class PetsTable extends DataTableComponent
 {
@@ -25,6 +26,11 @@ class PetsTable extends DataTableComponent
 
     public string $paginationTest = 'standard';
 
+    public function changeLocale(string $locale)
+    {
+        App::setLocale($locale);
+    }
+    
     public function enableDetailedPagination(string $type = 'standard')
     {
         $this->setPerPageAccepted([1, 3, 5, 10, 15, 25, 50])->setPerPage(3);

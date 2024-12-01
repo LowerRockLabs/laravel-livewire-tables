@@ -3,12 +3,10 @@ name: run-tests-pcov-pull
 on:
   push:
     branches:
-      - 'development'
-      - 'master'
-  pull_request:
-    branches:
-      - 'development'
-      - 'master'
+      - '*'         # matches every branch that doesn't contain a '/'
+      - '*/*'       # matches every branch containing a single '/'
+      - '**'        # matches every branch
+
 
 jobs:
   test:
@@ -37,6 +35,13 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.extensions }}
           key: ${{ env.extensionKey }}
+
+      - name: Cache extensions
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.extcache.outputs.dir }}
+          key: ${{ steps.extcache.outputs.key }}
+          restore-keys: ${{ steps.extcache.outputs.key }}
           
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -48,13 +53,6 @@ jobs:
           coverage: pcov
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Cache extensions
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.extcache.outputs.dir }}
-          key: ${{ steps.extcache.outputs.key }}
-          restore-keys: ${{ steps.extcache.outputs.key }}
 
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
@@ -91,7 +89,7 @@ jobs:
         run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Unit Test Suite" --cache-directory=".phpunit.cache/code-coverage" --strict-coverage --coverage-clover ./coverage.xml
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:

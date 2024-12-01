@@ -86,7 +86,7 @@ jobs:
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Run Unit Tests
-        run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Unit Test Suite" --cache-directory=".phpunit.cache/code-coverage" --strict-coverage --coverage-clover ./coverage.xml
+        run: php ./vendor/bin/phpunit --testsuite "Laravel Livewire Tables Unit Test Suite" --cache-directory=".phpunit.cache/code-coverage" --strict-coverage --log-junit junit.xml
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
@@ -94,7 +94,7 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
           token: $CODECOV_TOKEN
-          files: ./coverage.xml
+          files: ./junit.xml
           verbose: true
 
 

@@ -1,6 +1,5 @@
 /*jshint esversion: 6 */
-
-function tableReorder() {
+export function tableReorder() {
     Alpine.data('reorderFunction', (wire, tableID, primaryKeyName) => ({
         dragging: false,
         reorderEnabled: false,
@@ -21,8 +20,6 @@ function tableReorder() {
         reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
         dragStart(event) {
             this.$nextTick(() => { this.setupEvenOddClasses() });
-
-
             this.sourceID = event.target.id;
             event.dataTransfer.effectAllowed = 'move';
             event.dataTransfer.setData('text/plain', event.target.id);
@@ -69,13 +66,6 @@ function tableReorder() {
             if (newPosition < originalPosition) {
                 loopStart = newPosition;
             }
- 
-            /* 
-            let evenList = parentNode.querySelectorAll("table[tableType='rappasoft-laravel-livewire-tables']>tbody>tr:nth-child(even of tr.rappasoft-striped-row) ").forEach(function (elem) {
-                elem.classList.remove(...this.oddNotInEven);
-                row.classList.add(...this.evenNotInOdd);
-            });
-            */
             let nextLoop = 'even';
             for (let i = 1, row; row = table.rows[i]; i++) {
                 if (!row.classList.contains('hidden') && !row.classList.contains('md:hidden') ) {
@@ -144,4 +134,4 @@ function tableReorder() {
         }
     }));
 }
-   export default tableReorder;
+export default tableReorder;

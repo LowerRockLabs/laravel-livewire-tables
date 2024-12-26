@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 
-function fpf() {
+export function fpf() {
     Alpine.data('flatpickrFilter', (wire, filterKey, filterConfig, refLocation, locale) => ({
         wireValues: wire.entangle('filterComponents.' + filterKey),
         flatpickrInstance: flatpickr(refLocation, {
@@ -31,16 +31,21 @@ function fpf() {
             onChange: function (selectedDates, dateStr, instance) {
                 if (selectedDates.length > 1) {
                     var dates = dateStr.split(' ');
-
                     var wireDateArray = {};
                     window.childElementOpen = false;
                     window.filterPopoverOpen = false;
                     wireDateArray = { 'minDate': dates[0], 'maxDate': (typeof dates[2] === "undefined") ? dates[0] : dates[2] };
                     wire.set('filterComponents.' + filterKey, wireDateArray);
                 }
-
             },
         }),
+        changedValue: function(value) {
+            if (value.length < 5)
+            {
+                this.flatpickrInstance.setDate([]);   
+                wire.set('filterComponents.' + filterKey, {});
+            }
+        },
         setupWire() {
             if (this.wireValues !== undefined) {
                 if (this.wireValues.minDate !== undefined && this.wireValues.maxDate !== undefined) {
@@ -62,7 +67,6 @@ function fpf() {
     
     
     }));
-
 }
 
 export default fpf;

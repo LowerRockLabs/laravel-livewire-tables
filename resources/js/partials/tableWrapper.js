@@ -1,7 +1,8 @@
 /*jshint esversion: 6 */
 
-function tableWrapper() {
+export function tableWrapper() {
     Alpine.data('tableWrapper', (wire, showBulkActionsAlpine) => ({
+        shouldBeDisplayed: wire.entangle('shouldBeDisplayed'),
         listeners: [],
         childElementOpen: false,
         filtersOpen: wire.entangle('filterSlideDownDefaultVisible'),

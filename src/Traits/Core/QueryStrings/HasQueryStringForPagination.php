@@ -6,9 +6,9 @@ trait HasQueryStringForPagination
 {
     protected function queryStringHasQueryStringForPagination(): array
     {
-        return (($this->queryStringIsEnabled() || $this->queryStringForPaginationEnabled()) && $this->paginationIsEnabled()) ? 
+        return (($this->queryStringIsEnabled() || $this->queryStringForPaginationEnabled()) && $this->paginationIsEnabled()) ?
         [
-            'perPage' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForPagination()]
+            'perPage' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForPagination()],
         ] : [];
 
     }

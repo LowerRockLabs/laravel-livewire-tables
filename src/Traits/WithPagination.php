@@ -5,9 +5,9 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Livewire\Attributes\Locked;
 use Livewire\WithPagination as LivewirePagination;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\PaginationConfiguration;
+use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForPagination;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\PaginationHelpers;
 use Rappasoft\LaravelLivewireTables\Traits\Styling\HasPaginationStyling;
-use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForPagination;
 
 trait WithPagination
 {

@@ -15,6 +15,7 @@ trait WithQueryString
     public array $queryStringConfig = [
         'columns' => ['status' => false, 'alias' => null],
         'filter' => ['status' => false, 'alias' => null],
+        'perPage' => ['status' => false, 'alias' => null],
         'search' => ['status' => true, 'alias' => null],
         'sorts' => ['status' => true, 'alias' => null],
     ];

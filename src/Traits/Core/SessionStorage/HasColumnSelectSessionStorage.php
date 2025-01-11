@@ -64,5 +64,4 @@ trait HasColumnSelectSessionStorage
     {
         session()->forget($this->getColumnSelectSessionKey());
     }
-
 }

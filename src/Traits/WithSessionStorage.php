@@ -2,12 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
-use Rappasoft\LaravelLivewireTables\Traits\Core\SessionStorage\{HasFilterSessionStorage,HasColumnSelectSessionStorage};
+use Rappasoft\LaravelLivewireTables\Traits\Core\SessionStorage\{HasColumnSelectSessionStorage, HasFilterSessionStorage};
 
 trait WithSessionStorage
 {
     use HasFilterSessionStorage,
-    HasColumnSelectSessionStorage;
+        HasColumnSelectSessionStorage;
 
     public array $sessionStorageStatus = [
         'columnselect' => true,
@@ -18,7 +18,7 @@ trait WithSessionStorage
     {
         return $this->sessionStorageStatus[$name] ?? false;
     }
-    
+
     protected function setSessionStorageStatus(string $name, bool $status): self
     {
         $this->sessionStorageStatus[$name] = $status;

@@ -119,5 +119,4 @@ trait FilterMenuStylingHelpers
 
         return $orderedFilters;
     }
-
 }

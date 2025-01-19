@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Filters;
 
-use Livewire\Attributes\Locked;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Locked;
 
 trait HasFiltersStatus
 {

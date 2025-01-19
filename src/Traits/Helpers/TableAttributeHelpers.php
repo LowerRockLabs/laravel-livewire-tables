@@ -102,38 +102,32 @@ trait TableAttributeHelpers
     {
         return isset($this->trAttributesCallback) ? call_user_func($this->trAttributesCallback, $row, $index) : ['default' => true];
     }
-    
+
     public function getTdAttributesForBlade(Column $column, Model $row, int $colIndex, int $rowIndex, ?string $tableRowUrl, ?string $tableRowUrlTarget): array
     {
         $isClickable = $column->isClickable();
 
-        $initialAttributes = ['default' => true, 
-        'shouldCollapseNever' => $column->shouldCollapseNever() ?? true,
-        'shouldCollapseAlways' => $column->shouldCollapseAlways() ?? false,
-        'shouldCollapseOnTablet' => $column->shouldCollapseOnTablet() ?? false,
-        'shouldCollapseOnMobile' => $column->shouldCollapseOnMobile() ?? false,
-        'isClickable' => $isClickable,
+        $initialAttributes = ['default' => true,
+            'shouldCollapseNever' => $column->shouldCollapseNever() ?? true,
+            'shouldCollapseAlways' => $column->shouldCollapseAlways() ?? false,
+            'shouldCollapseOnTablet' => $column->shouldCollapseOnTablet() ?? false,
+            'shouldCollapseOnMobile' => $column->shouldCollapseOnMobile() ?? false,
+            'isClickable' => $isClickable,
         ];
 
-        if ($isClickable && is_null($tableRowUrl))
-        {
-            if ($tableRowUrlTarget === 'navigate')
-            {
+        if ($isClickable && is_null($tableRowUrl)) {
+            if ($tableRowUrlTarget === 'navigate') {
                 $initialAttributes['wire:navigate'] = '';
                 $initialAttributes['href'] = $tableRowUrl;
-            }
-            else
-            {
+            } else {
                 $initialAttributes['onclick'] = "window.open('".$tableRowUrl."', '".$tableRowUrlTarget."')";
 
             }
         }
 
-        if (isset($this->tdAttributesCallback))
-        {
+        if (isset($this->tdAttributesCallback)) {
             $initialAttributes = array_merge($initialAttributes, call_user_func($this->tdAttributesCallback, $column, $row, $colIndex, $rowIndex));
         }
-
 
         return $initialAttributes;
 
@@ -143,35 +137,29 @@ trait TableAttributeHelpers
     {
         $isClickable = $column->isClickable();
 
-        $initialAttributes = ['default' => true, 
-        'shouldCollapseNever' => $column->shouldCollapseNever() ?? true,
-        'shouldCollapseAlways' => $column->shouldCollapseAlways() ?? false,
-        'shouldCollapseOnTablet' => $column->shouldCollapseOnTablet() ?? false,
-        'shouldCollapseOnMobile' => $column->shouldCollapseOnMobile() ?? false,
-        'isClickable' => $isClickable,
+        $initialAttributes = ['default' => true,
+            'shouldCollapseNever' => $column->shouldCollapseNever() ?? true,
+            'shouldCollapseAlways' => $column->shouldCollapseAlways() ?? false,
+            'shouldCollapseOnTablet' => $column->shouldCollapseOnTablet() ?? false,
+            'shouldCollapseOnMobile' => $column->shouldCollapseOnMobile() ?? false,
+            'isClickable' => $isClickable,
         ];
 
-        if ($isClickable && $this->hasTableRowUrl())
-        {
+        if ($isClickable && $this->hasTableRowUrl()) {
             $tableRowUrl = $this->getTableRowUrl($row);
-            $tableRowTarget = $this->getTableRowUrlTarget($row)?? '_self';
-            if ($tableRowTarget === 'navigate')
-            {
+            $tableRowTarget = $this->getTableRowUrlTarget($row) ?? '_self';
+            if ($tableRowTarget === 'navigate') {
                 $initialAttributes['wire:navigate'] = '';
                 $initialAttributes['href'] = $tableRowUrl;
-            }
-            else
-            {
+            } else {
                 $initialAttributes['onclick'] = "window.open('".$tableRowUrl."', '".$tableRowTarget."')";
 
             }
         }
 
-        if (isset($this->tdAttributesCallback))
-        {
+        if (isset($this->tdAttributesCallback)) {
             $initialAttributes = array_merge($initialAttributes, call_user_func($this->tdAttributesCallback, $column, $row, $colIndex, $rowIndex));
         }
-
 
         return $initialAttributes;
     }

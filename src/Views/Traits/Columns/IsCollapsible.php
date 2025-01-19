@@ -78,5 +78,4 @@ trait IsCollapsible
             'shouldCollapseOnMobile' => $this->shouldCollapseOnMobile() ?? false,
         ];
     }
-
 }

@@ -23,5 +23,4 @@ trait HasFilterMenuStyling
     protected array $filterSlidedownWrapperAttributes = ['class' => '', 'default-colors' => true, 'default-styling' => true];
 
     protected ?Closure $filterSlidedownRowCallback;
-
 }

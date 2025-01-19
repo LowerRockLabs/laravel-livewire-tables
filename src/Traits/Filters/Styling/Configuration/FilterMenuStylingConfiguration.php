@@ -82,6 +82,4 @@ trait FilterMenuStylingConfiguration
 
         return $this;
     }
-
-
 }

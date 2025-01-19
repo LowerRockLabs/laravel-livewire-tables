@@ -36,7 +36,6 @@ trait SortingHelpers
         return $this->sorts[$field] ?? null;
     }
 
-
     public function hasSorts(): bool
     {
         return count($this->getSorts()) > 0;
@@ -46,7 +45,6 @@ trait SortingHelpers
     {
         return $this->getSort($field) !== null;
     }
-
 
     public function isSortAsc(string $field): bool
     {
@@ -134,8 +132,6 @@ trait SortingHelpers
         $activeSorts = $this->getSorts();
 
         return $this->getColumnsForColumnSortPills($activeSorts);
-        
-        
-    }
 
+    }
 }

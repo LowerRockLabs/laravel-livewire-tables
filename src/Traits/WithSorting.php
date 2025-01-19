@@ -5,10 +5,10 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SortingConfiguration;
+use Rappasoft\LaravelLivewireTables\Traits\Core\HandlesColumnSortPills;
 use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForSort;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SortingHelpers;
 use Rappasoft\LaravelLivewireTables\Traits\Styling\HasSortingPillsStyling;
-use Rappasoft\LaravelLivewireTables\Traits\Core\HandlesColumnSortPills;
 
 trait WithSorting
 {

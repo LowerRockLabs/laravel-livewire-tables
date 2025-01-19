@@ -4,7 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Filters\Styling\Configuration;
 
 trait FilterPillsStylingConfiguration
 {
-
     public function setFilterPillsStatus(bool $status): self
     {
         $this->filterPillsStatus = $status;

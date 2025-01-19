@@ -144,5 +144,4 @@ trait SortingConfiguration
     {
         unset($this->sorts[$field]);
     }
-
 }

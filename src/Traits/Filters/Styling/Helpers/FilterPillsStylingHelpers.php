@@ -12,7 +12,7 @@ trait FilterPillsStylingHelpers
     {
         return $this->filtersAreEnabled() && $this->filterPillsAreEnabled() && $this->hasAppliedVisibleFiltersForPills();
     }
-    
+
     #[Computed]
     public function getFilterPillsItemAttributes(): array
     {
@@ -53,5 +53,4 @@ trait FilterPillsStylingHelpers
             ->reject(fn (Filter $filter) => $filter->isHiddenFromPills())
             ->count() > 0;
     }
-
 }

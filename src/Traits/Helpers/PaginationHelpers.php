@@ -90,7 +90,7 @@ trait PaginationHelpers
     {
         return $this->perPageVisibilityStatus;
     }
-    
+
     #[Computed]
     public function perPageVisibilityIsEnabled(): bool
     {

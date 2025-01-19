@@ -65,7 +65,7 @@
                     }}
                 >
                     <div class="py-1" role="menu" aria-orientation="vertical">
-                        @foreach ($this->getBulkActions() as $action => $title)
+                        @tableloop ($this->getBulkActions() as $action => $title)
                             <button
                                 wire:click="{{ $action }}"
                                 @if($this->hasConfirmationMessage($action))
@@ -85,7 +85,7 @@
                             >
                                 <span>{{ $title }}</span>
                             </button>
-                        @endforeach
+                        @endtableloop
                     </div>
                 </div>
             </div>
@@ -101,7 +101,7 @@
                 }}
                 aria-labelledby="{{ $tableName }}-bulkActionsDropdown"
             >
-                @foreach ($this->getBulkActions() as $action => $title)
+                @tableloop ($this->getBulkActions() as $action => $title)
                     <a
                         href="#"
                         @if($this->hasConfirmationMessage($action))
@@ -119,7 +119,7 @@
                     >
                         {{ $title }}
                     </a>
-                @endforeach
+                @endtableloop
             </div>
         @endif
 

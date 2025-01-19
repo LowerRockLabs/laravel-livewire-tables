@@ -1,5 +1,5 @@
 @aware([ 'tableName','primaryKey','isTailwind','isBootstrap'])
-@props(['row', 'rowIndex'])
+@props(['row', 'rowIndex', 'tableRowUrl', 'tableRowUrlTarget'])
 
 @php
     $customAttributes = $this->getTrAttributes($row, $rowIndex);

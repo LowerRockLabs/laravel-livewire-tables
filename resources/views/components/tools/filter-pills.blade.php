@@ -1,6 +1,6 @@
 @aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 
-@if ($this->filtersAreEnabled() && $this->filterPillsAreEnabled() && $this->hasAppliedVisibleFiltersForPills())
+@if ($this->filtersAreEnabled && $this->filterPillsAreEnabled() && $this->hasAppliedVisibleFiltersForPills())
     <div>
         <div @class([
             'mb-4 px-4 md:p-0' => $isTailwind,
@@ -13,7 +13,7 @@
                 {{ __($this->getLocalisationPath.'Applied Filters') }}:
             </small>
 
-            @foreach($this->getAppliedFiltersWithValues() as $filterSelectName => $value)
+            @tableloop($this->getAppliedFiltersWithValues() as $filterSelectName => $value)
                 @php($filter = $this->getFilterByKey($filterSelectName))
                 @continue(is_null($filter) || $filter->isHiddenFromPills())
                 @php( $filterPillTitle = $filter->getFilterPillTitle())
@@ -26,7 +26,7 @@
                 @else
                     <x-livewire-tables::tools.filter-pills.item :$filterPillTitle :$filterPillValue :$filterSelectName :$separator/>
                 @endif
-            @endforeach
+            @endtableloop
             <x-livewire-tables::tools.filter-pills.buttons.reset-all />
         </div>
     </div>

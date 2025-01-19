@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Traits\Core\Filters;
+namespace Rappasoft\LaravelLivewireTables\Traits\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Events\FilterApplied;

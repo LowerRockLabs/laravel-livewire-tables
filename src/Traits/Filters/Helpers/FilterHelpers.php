@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
+namespace Rappasoft\LaravelLivewireTables\Traits\Filters\Helpers;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;

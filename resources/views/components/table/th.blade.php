@@ -1,34 +1,37 @@
+@aware(['isTailwind','isBootstrap'])
 @props(['column', 'index'])
 
 @php
     $allThAttributes = $this->getAllThAttributes($column);
-    $customThAttributes = $allThAttributes['customAttributes'];
+    $columnTitle = $column->getTitle();
     $customSortButtonAttributes = $allThAttributes['sortButtonAttributes'];
-    $customLabelAttributes = $allThAttributes['labelAttributes'];
-    $customIconAttributes = $this->getThSortIconAttributes($column);
-    $direction = $column->hasField() ? $this->getSort($column->getColumnSelectName()) : $this->getSort($column->getSlug()) ?? null;
+    $customThAttributes = $allThAttributes['customAttributes'];
 @endphp
 
 <th {{
     $attributes->merge($customThAttributes)
         ->class([
-            'text-gray-500 dark:bg-gray-800 dark:text-gray-400' => $this->isTailwind && (($customThAttributes['default-colors'] ?? true) || ($customThAttributes['default'] ?? true)),
-            'px-6 py-3 text-left text-xs font-medium whitespace-nowrap uppercase tracking-wider' => $this->isTailwind && (($customThAttributes['default-styling'] ?? true) || ($customThAttributes['default'] ?? true)),
-            'hidden' => $this->isTailwind && $column->shouldCollapseAlways(),
-            'hidden md:table-cell' => $this->isTailwind && $column->shouldCollapseOnMobile(),
-            'hidden lg:table-cell' => $this->isTailwind && $column->shouldCollapseOnTablet(),
-            '' => $this->isBootstrap && ($customThAttributes['default'] ?? true),
-            'd-none' => $this->isBootstrap && $column->shouldCollapseAlways(),
-            'd-none d-md-table-cell' => $this->isBootstrap && $column->shouldCollapseOnMobile(),
-            'd-none d-lg-table-cell' => $this->isBootstrap && $column->shouldCollapseOnTablet(),
+            'text-gray-500 dark:bg-gray-800 dark:text-gray-400' => $isTailwind && (($customThAttributes['default-colors'] ?? true) || ($customThAttributes['default'] ?? true)),
+            'px-6 py-3 text-left text-xs font-medium whitespace-nowrap uppercase tracking-wider' => $isTailwind && (($customThAttributes['default-styling'] ?? true) || ($customThAttributes['default'] ?? true)),
+            'hidden' => $isTailwind && ($allThAttributes['shouldCollapseAlways'] ?? false),
+            'hidden md:table-cell' => $isTailwind && ($allThAttributes['shouldCollapseOnMobile'] ?? false),
+            'hidden lg:table-cell' => $isTailwind && ($allThAttributes['shouldCollapseOnTablet'] ?? false),
+            '' => $isBootstrap && ($customThAttributes['default'] ?? true),
+            'd-none' => $isBootstrap && ($allThAttributes['shouldCollapseAlways'] ?? false),
+            'd-none d-md-table-cell' => $isBootstrap && ($allThAttributes['shouldCollapseOnMobile'] ?? false),
+            'd-none d-lg-table-cell' => $isBootstrap && ($allThAttributes['shouldCollapseOnTablet'] ?? false),
         ])
         ->except(['default', 'default-colors', 'default-styling'])
 }}>
     @if($column->getColumnLabelStatus())
-        @unless ($this->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
-            <x-livewire-tables::table.th.label :$customLabelAttributes :columnTitle="$column->getTitle()" />
+        @unless ($this->sortingIsEnabled && ($column->isSortable() || $column->hasSortCallback()))
+            <x-livewire-tables::table.th.label :customLabelAttributes="$allThAttributes['labelAttributes']" :$columnTitle />
         @else
-            @if ($this->isTailwind)
+            @php
+                $direction = $column->hasField() ? $this->getSort($column->getColumnSelectName()) : ($this->getSort($column->getSlug()) ?? null);
+
+            @endphp
+            @if ($isTailwind)
 
                 <button wire:click="sortBy('{{ $column->getColumnSortKey() }}')" {{
                         $attributes->merge($customSortButtonAttributes)
@@ -38,10 +41,10 @@
                             ])
                             ->except(['default', 'default-colors', 'default-styling', 'wire:key'])
                 }}>
-                    <x-livewire-tables::table.th.label :$customLabelAttributes :columnTitle="$column->getTitle()" />
-                    <x-livewire-tables::table.th.sort-icons :$direction :$customIconAttributes />
+                    <x-livewire-tables::table.th.label :customLabelAttributes="$allThAttributes['labelAttributes']" :$columnTitle />
+                    <x-livewire-tables::table.th.sort-icons :$direction :customIconAttributes="$allThAttributes['sortIconAttributes']" />
                 </button>
-            @elseif ($this->isBootstrap)
+            @elseif ($isBootstrap)
                 <div wire:click="sortBy('{{ $column->getColumnSortKey() }}')" {{
                         $attributes->merge($customSortButtonAttributes)
                             ->class([
@@ -49,8 +52,8 @@
                             ])
                             ->except(['default', 'default-colors', 'default-styling', 'wire:key'])
                 }}>
-                    <x-livewire-tables::table.th.label :$customLabelAttributes :columnTitle="$column->getTitle()" />
-                    <x-livewire-tables::table.th.sort-icons :$direction :$customIconAttributes />
+                    <x-livewire-tables::table.th.label :customLabelAttributes="$allThAttributes['labelAttributes']" :$columnTitle />
+                    <x-livewire-tables::table.th.sort-icons :$direction :customIconAttributes="$allThAttributes['sortIconAttributes']" />
 
                 </div>
             @endif

@@ -13,14 +13,14 @@
     }}
 >
     <div @class([
-            'd-md-flex' => $this->isBootstrap,
-            'w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2' => $this->isTailwind,
+            'd-md-flex' => $isBootstrap,
+            'w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2' => $isTailwind,
         ])
     >
         @if ($this->hasConfigurableAreaFor('toolbar-left-start'))
             <div x-cloak x-show="!currentlyReorderingStatus" @class([
-                'mb-3 mb-md-0 input-group' => $this->isBootstrap,
-                'flex rounded-md shadow-sm' => $this->isTailwind,
+                'mb-3 mb-md-0 input-group' => $isBootstrap,
+                'flex rounded-md shadow-sm' => $isTailwind,
             ])>
                 @include($this->getConfigurableAreaFor('toolbar-left-start'), $this->getParametersForConfigurableArea('toolbar-left-start'))
             </div>
@@ -34,7 +34,7 @@
             <x-livewire-tables::tools.toolbar.items.search-field />
         @endif
 
-        @if ($this->filtersAreEnabled() && $this->filtersVisibilityIsEnabled() && $this->hasVisibleFilters())
+        @if ($this->filtersAreEnabled && $this->filtersVisibilityIsEnabled() && $this->hasVisibleFilters())
             <x-livewire-tables::tools.toolbar.items.filter-button />
         @endif
 
@@ -44,8 +44,8 @@
 
         @if ($this->hasConfigurableAreaFor('toolbar-left-end'))
             <div x-cloak x-show="!currentlyReorderingStatus" @class([
-                'mb-3 mb-md-0 input-group' => $this->isBootstrap,
-                'flex rounded-md shadow-sm' => $this->isTailwind,
+                'mb-3 mb-md-0 input-group' => $isBootstrap,
+                'flex rounded-md shadow-sm' => $isTailwind,
             ])>
                 @include($this->getConfigurableAreaFor('toolbar-left-end'), $this->getParametersForConfigurableArea('toolbar-left-end'))
             </div>
@@ -54,8 +54,8 @@
 
     <div x-cloak x-show="!currentlyReorderingStatus"
         @class([
-            'd-md-flex' => $this->isBootstrap,
-            'md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2' => $this->isTailwind,
+            'd-md-flex' => $isBootstrap,
+            'md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2' => $isTailwind,
         ])
     >
         @includeWhen($this->hasConfigurableAreaFor('toolbar-right-start'), $this->getConfigurableAreaFor('toolbar-right-start'), $this->getParametersForConfigurableArea('toolbar-right-start'))
@@ -68,11 +68,11 @@
             <x-livewire-tables::tools.toolbar.items.bulk-actions />
         @endif
 
-        @if ($this->columnSelectIsEnabled())
+        @if ($this->columnSelectIsEnabled)
             <x-livewire-tables::tools.toolbar.items.column-select />
         @endif
 
-        @if ($this->paginationIsEnabled() && $this->perPageVisibilityIsEnabled())
+        @if ($this->paginationIsEnabled && $this->perPageVisibilityIsEnabled)
             <x-livewire-tables::tools.toolbar.items.pagination-dropdown />
         @endif
 
@@ -80,7 +80,7 @@
     </div>
 </div>
 @if (
-    $this->filtersAreEnabled() &&
+    $this->filtersAreEnabled &&
     $this->filtersVisibilityIsEnabled() &&
     $this->hasVisibleFilters() &&
     $this->isFilterLayoutSlideDown()

@@ -25,7 +25,7 @@
                 'text-start pt-3 p-2' => $isBootstrap,
         ])>
             <div>
-                @foreach($this->getCollapsedColumnsForContent as $colIndex => $column)
+                @tableloop($this->getCollapsedColumnsForContent as $colIndex => $column)
 
                     <p wire:key="{{ $tableName }}-row-{{ $row->{$primaryKey} }}-collapsed-contents-{{ $colIndex }}" @class([
                             'block mb-2 hidden' => $isTailwind,
@@ -45,7 +45,7 @@
                             {{ $column->setIndexes($rowIndex, $colIndex)->renderContents($row) }}
                         @endif
                     </p>
-                @endforeach
+                @endtableloop
             </div>
         </td>
     </tr>

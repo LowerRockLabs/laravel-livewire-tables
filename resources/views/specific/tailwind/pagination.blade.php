@@ -53,7 +53,7 @@
 
                         {{-- Pagination Elements --}}
                         @if ($elements ?? null)
-                            @foreach ($elements as $element)
+                            @tableloop ($elements as $element)
                                 {{-- "Three Dots" Separator --}}
                                 @if (is_string($element))
                                     <span aria-disabled="true">
@@ -63,7 +63,7 @@
 
                                 {{-- Array Of Links --}}
                                 @if (is_array($element))
-                                    @foreach ($element as $page => $url)
+                                    @tableloop ($element as $page => $url)
                                         <span wire:key="paginator-{{ $paginator->getPageName() }}-{{ $this->numberOfPaginatorsRendered[$paginator->getPageName()] }}-page{{ $page }}">
                                             @if ($page == $paginator->currentPage())
                                                 <span aria-current="page">
@@ -75,9 +75,9 @@
                                                 </button>
                                             @endif
                                         </span>
-                                    @endforeach
+                                    @endtableloop
                                 @endif
-                            @endforeach
+                            @endtableloop
                         @endif
 
                         <span>

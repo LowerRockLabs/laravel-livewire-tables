@@ -1,19 +1,21 @@
+@aware(['isTailwind','isBootstrap'])
+@props(['actionWrapperAttributes' => $this->getActionWrapperAttributes, 'showActionsInToolbar' => true, 'actionsPosition'])
 <div {{ $attributes
-            ->merge($this->getActionWrapperAttributes)
+            ->merge($actionWrapperAttributes)
             ->class([
-                'flex flex-cols py-2 space-x-2' => $this->isTailwind && ($this->getActionWrapperAttributes['default-styling'] ?? true),
-                '' => $this->isTailwind && ($this->getActionWrapperAttributes['default-colors'] ?? true),
-                'd-flex flex-cols py-2 space-x-2' => $this->isBootstrap && ($this->getActionWrapperAttributes['default-styling'] ?? true),
-                '' => $this->isBootstrap && ($this->getActionWrapperAttributes['default-colors'] ?? true),
-                'justify-start' => $this->getActionsPosition === 'left',
-                'justify-center' => $this->getActionsPosition === 'center',
-                'justify-end' => $this->getActionsPosition === 'right',
-                'pl-2' => $this->showActionsInToolbar && $this->getActionsPosition === 'left',
-                'pr-2' => $this->showActionsInToolbar && $this->getActionsPosition === 'right',
+                'flex flex-cols py-2 space-x-2' => $isTailwind && ($actionWrapperAttributes['default-styling'] ?? true),
+                '' => $isTailwind && ($actionWrapperAttributes['default-colors'] ?? true),
+                'd-flex flex-cols py-2 space-x-2' => $isBootstrap && ($actionWrapperAttributes['default-styling'] ?? true),
+                '' => $isBootstrap && ($actionWrapperAttributes['default-colors'] ?? true),
+                'justify-start' => $actionsPosition === 'left',
+                'justify-center' => $actionsPosition === 'center',
+                'justify-end' => $actionsPosition === 'right',
+                'pl-2' => $showActionsInToolbar && $actionsPosition === 'left',
+                'pr-2' => $showActionsInToolbar && $actionsPosition === 'right',
             ])
             ->except(['default','default-styling','default-colors'])
         }} >
-    @foreach($this->getActions as $action)
+    @tableloop($this->getActions as $action)
         {{ $action->render() }}
-    @endforeach
+    @endtableloop
 </div>

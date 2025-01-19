@@ -1,8 +1,9 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Traits\Core\Filters;
+namespace Rappasoft\LaravelLivewireTables\Traits\Filters;
 
 use Livewire\Attributes\Locked;
+use Livewire\Attributes\Computed;
 
 trait HasFiltersStatus
 {
@@ -14,6 +15,7 @@ trait HasFiltersStatus
         return $this->filtersStatus;
     }
 
+    #[Computed]
     public function filtersAreEnabled(): bool
     {
         return $this->getFiltersStatus() === true;

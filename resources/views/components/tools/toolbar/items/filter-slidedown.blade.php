@@ -18,7 +18,7 @@
         }} 
 
 >
-    @foreach ($this->getFiltersByRow() as $filterRowIndex => $filtersInRow)
+    @tableloop ($this->getFiltersByRow() as $filterRowIndex => $filtersInRow)
         @php($defaultAttributes = $this->getFilterSlidedownRowAttributes($filterRowIndex))
         <div {{ $attributes
             ->merge($defaultAttributes)
@@ -32,7 +32,7 @@
             ->except(['default','default-colors','default-styling'])
         }} 
         >
-            @foreach ($filtersInRow as $filter)
+            @tableloop ($filtersInRow as $filter)
                 <div
                     @class([
                         'space-y-1 mb-4' =>
@@ -70,7 +70,7 @@
                 >
                     {{ $filter->setGenericDisplayData($this->getFilterGenericData)->render() }}
                 </div>
-            @endforeach
+            @endtableloop
         </div>
-    @endforeach
+    @endtableloop
 </div>

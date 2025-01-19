@@ -17,7 +17,7 @@
 
         <x-livewire-tables::wrapper :component="$this" :tableName="$tableName" :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5>
             @if($this->hasActions && !$this->showActionsInToolbar)
-                <x-livewire-tables::includes.actions/>
+                <x-livewire-tables::includes.actions :actionWrapperAttributes="$this->getActionWrapperAttributes" :showActionsInToolbar="$this->showActionsInToolbar" :actionsPosition="$this->getActionsPosition" />
             @endif
 
             @includeWhen(
@@ -27,31 +27,7 @@
             )
 
             @if($this->shouldShowTools)
-            <x-livewire-tables::tools>
-                @if ($this->showSortPillsSection)
-                    <x-livewire-tables::tools.sorting-pills />
-                @endif
-                @if($this->showFilterPillsSection)
-                    <x-livewire-tables::tools.filter-pills />
-                @endif
-
-                @includeWhen(
-                    $this->hasConfigurableAreaFor('before-toolbar'),
-                    $this->getConfigurableAreaFor('before-toolbar'),
-                    $this->getParametersForConfigurableArea('before-toolbar')
-                )
-
-                @if($this->shouldShowToolBar)
-                    <x-livewire-tables::tools.toolbar />
-                @endif
-
-                @includeWhen(
-                    $this->hasConfigurableAreaFor('after-toolbar'),
-                    $this->getConfigurableAreaFor('after-toolbar'),
-                    $this->getParametersForConfigurableArea('after-toolbar')
-                )
-
-            </x-livewire-tables::tools>
+            <x-livewire-tables::tools />
             @endif
 
             <x-livewire-tables::table>
@@ -67,9 +43,9 @@
                         <x-livewire-tables::table.th.collapsed-columns />
                     @endif
 
-                    @foreach($this->selectedVisibleColumns as $index => $column)
+                    @tableloop($this->selectedVisibleColumns as $index => $column)
                         <x-livewire-tables::table.th wire:key="{{ $tableName.'-table-head-'.$index }}" :$column :$index />
-                    @endforeach
+                    @endtableloop
                 </x-slot>
 
                 @if($this->secondaryHeaderIsEnabled() && $this->hasColumnsWithSecondaryHeader())
@@ -82,36 +58,39 @@
                 @if($this->showBulkActionsSections)
                     <x-livewire-tables::table.tr.bulk-actions  :displayMinimisedOnReorder="true" />
                 @endif
+                
+                @if(!empty($rows = $this->getRows))
 
-                @forelse ($this->getRows as $rowIndex => $row)
-                    <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $row->{$primaryKey} }}" :$row :$rowIndex>
-                        @if($this->getCurrentlyReorderingStatus)
-                            <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $tableName }}-row-reorder-{{ $row->{$primaryKey} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :$rowIndex />
-                        @endif
-                        @if($this->showBulkActionsSections)
-                            <x-livewire-tables::table.td.bulk-actions wire:key="{{ $tableName }}-row-bulk-act-{{ $row->{$primaryKey} }}" :$row :$rowIndex />
-                        @endif
+                    @tableloop($rows as $rowIndex => $row)
+                        <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $row->{$primaryKey} }}" :$row :$rowIndex :tableRowUrl="$this->getTableRowUrl($row)" :tableRowUrlTarget="$this->getTableRowUrlTarget($row)">
+                            @if($this->getCurrentlyReorderingStatus)
+                                <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $tableName }}-row-reorder-{{ $row->{$primaryKey} }}" :rowID="$tableName.'-'.$row->{$this->getPrimaryKey()}" :$rowIndex />
+                            @endif
+                            @if($this->showBulkActionsSections)
+                                <x-livewire-tables::table.td.bulk-actions wire:key="{{ $tableName }}-row-bulk-act-{{ $row->{$primaryKey} }}" :$row :$rowIndex />
+                            @endif
+                            @if ($this->showCollapsingColumnSections)
+                                <x-livewire-tables::table.td.collapsed-columns wire:key="{{ $tableName }}-row-collapsed-{{ $row->{$primaryKey} }}" :$rowIndex />
+                            @endif
+
+                            @tableloop($this->selectedVisibleColumns as $colIndex => $column)
+                                <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $row->{$primaryKey} . '-datatable-td-' . $column->getSlug() }}"  :$column :$colIndex>
+                                    @if($column->isHtml())
+                                        {!! $column->setIndexes($rowIndex, $colIndex)->renderContents($row) !!}
+                                    @else
+                                        {{ $column->setIndexes($rowIndex, $colIndex)->renderContents($row) }}
+                                    @endif
+                                </x-livewire-tables::table.td>
+                            @endtableloop
+                        </x-livewire-tables::table.tr>
+
                         @if ($this->showCollapsingColumnSections)
-                            <x-livewire-tables::table.td.collapsed-columns wire:key="{{ $tableName }}-row-collapsed-{{ $row->{$primaryKey} }}" :$rowIndex />
+                            <x-livewire-tables::table.collapsed-columns :$row :$rowIndex />
                         @endif
-
-                        @foreach($this->selectedVisibleColumns as $colIndex => $column)
-                            <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $row->{$primaryKey} . '-datatable-td-' . $column->getSlug() }}"  :$column :$colIndex>
-                                @if($column->isHtml())
-                                    {!! $column->setIndexes($rowIndex, $colIndex)->renderContents($row) !!}
-                                @else
-                                    {{ $column->setIndexes($rowIndex, $colIndex)->renderContents($row) }}
-                                @endif
-                            </x-livewire-tables::table.td>
-                        @endforeach
-                    </x-livewire-tables::table.tr>
-
-                    @if ($this->showCollapsingColumnSections)
-                        <x-livewire-tables::table.collapsed-columns :$row :$rowIndex />
-                    @endif
-                @empty
+                    @endtableloop
+                @else
                     <x-livewire-tables::table.empty />
-                @endforelse
+                @endif
 
                 @if ($this->footerIsEnabled() && $this->hasColumnsWithFooter())
                     <x-slot name="tfoot">

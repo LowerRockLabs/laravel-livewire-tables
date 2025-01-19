@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Traits\Core\Filters;
+namespace Rappasoft\LaravelLivewireTables\Traits\Filters;
 
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Locked;

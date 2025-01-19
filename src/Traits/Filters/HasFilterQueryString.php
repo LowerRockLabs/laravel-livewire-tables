@@ -1,6 +1,6 @@
 <?php
 
-namespace Rappasoft\LaravelLivewireTables\Traits\Core\Filters;
+namespace Rappasoft\LaravelLivewireTables\Traits\Filters;
 
 use Livewire\Attributes\Locked;
 

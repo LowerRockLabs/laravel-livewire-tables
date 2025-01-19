@@ -68,4 +68,15 @@ trait IsCollapsible
     {
         return ($this->shouldCollapseOnMobile() === false) && ($this->shouldCollapseOnTablet() === false) && ($this->shouldCollapseAlways() === false);
     }
+
+    public function getCollapseParameters(): array
+    {
+        return [
+            'shouldCollapseNever' => $this->shouldCollapseNever() ?? true,
+            'shouldCollapseAlways' => $this->shouldCollapseAlways() ?? false,
+            'shouldCollapseOnTablet' => $this->shouldCollapseOnTablet() ?? false,
+            'shouldCollapseOnMobile' => $this->shouldCollapseOnMobile() ?? false,
+        ];
+    }
+
 }

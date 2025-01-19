@@ -16,7 +16,7 @@
         <x-livewire-tables::table.td.collapsed-columns :displayMinimisedOnReorder="true" rowIndex="-1" :hidden="true" wire:key="{{ $tableName.'-footer-collapse' }}" />
     @endif
 
-    @foreach($this->selectedVisibleColumns as $colIndex => $column)
+    @tableloop($this->selectedVisibleColumns as $colIndex => $column)
         <x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true"  wire:key="{{ $tableName .'-footer-shown-'.$colIndex }}" :column="$column" :customAttributes="$this->getFooterTdAttributes($column, $this->getRows, $colIndex)">
 
             @if($column->hasFooter() && $column->hasFooterCallback())
@@ -30,5 +30,5 @@
             @endif
 
         </x-livewire-tables::table.td.plain>
-    @endforeach
+    @endtableloop
 </x-livewire-tables::table.tr.plain>

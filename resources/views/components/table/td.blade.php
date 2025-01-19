@@ -1,30 +1,26 @@
-@aware([ 'row', 'rowIndex', 'tableName', 'primaryKey','isTailwind','isBootstrap'])
+@aware([ 'row', 'rowIndex', 'tableName', 'primaryKey','isTailwind','isBootstrap', 'tableRowUrl', 'tableRowUrlTarget'])
 @props(['column', 'colIndex'])
 
 @php
-    $customAttributes = $this->getTdAttributes($column, $row, $colIndex, $rowIndex)
+    $customTdAttributes = $this->getTdAttributesForBlade($column, $row, $colIndex, $rowIndex, $tableRowUrl, $tableRowUrlTarget);
+
 @endphp
 
 <td wire:key="{{ $tableName . '-table-td-'.$row->{$primaryKey}.'-'.$column->getSlug() }}"
-    @if ($column->isClickable())
-        @if($this->getTableRowUrlTarget($row) === 'navigate') wire:navigate href="{{ $this->getTableRowUrl($row) }}"
-        @else onclick="window.open('{{ $this->getTableRowUrl($row) }}', '{{ $this->getTableRowUrlTarget($row) ?? '_self' }}')"
-        @endif
-    @endif
         {{
-            $attributes->merge($customAttributes)
+            $attributes->merge($customTdAttributes)
                 ->class([
-                    'px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white' => $isTailwind && ($customAttributes['default'] ?? true),
-                    'hidden' =>  $isTailwind && $column && $column->shouldCollapseAlways(),
-                    'hidden md:table-cell' => $isTailwind && $column && $column->shouldCollapseOnMobile(),
-                    'hidden lg:table-cell' => $isTailwind && $column && $column->shouldCollapseOnTablet(),
-                    '' => $isBootstrap && ($customAttributes['default'] ?? true),
-                    'd-none' => $isBootstrap && $column && $column->shouldCollapseAlways(),
-                    'd-none d-md-table-cell' => $isBootstrap && $column && $column->shouldCollapseOnMobile(),
-                    'd-none d-lg-table-cell' => $isBootstrap && $column && $column->shouldCollapseOnTablet(),
-                    'laravel-livewire-tables-cursor' => $isBootstrap && $column && $column->isClickable(),
+                    'px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white' => $isTailwind && ($customTdAttributes['default'] ?? true),
+                    'hidden' =>  $isTailwind && ($customTdAttributes['shouldCollapseAlways'] ?? false),
+                    'hidden md:table-cell' => $isTailwind && ($customTdAttributes['shouldCollapseOnMobile'] ?? false),
+                    'hidden lg:table-cell' => $isTailwind && ($customTdAttributes['shouldCollapseOnTablet'] ?? false),
+                    '' => $isBootstrap && ($customTdAttributes['default'] ?? true),
+                    'd-none' => $isBootstrap && $customTdAttributes['shouldCollapseAlways'],
+                    'd-none d-md-table-cell' => $isBootstrap && $customTdAttributes['shouldCollapseOnMobile'],
+                    'd-none d-lg-table-cell' => $isBootstrap && $customTdAttributes['shouldCollapseOnTablet'],
+                    'laravel-livewire-tables-cursor' => $isBootstrap && $column->isClickable(),
                 ])
-                ->except(['default','default-styling','default-colors'])
+                ->except(['default','default-styling','default-colors', 'shouldCollapseNever', 'shouldCollapseAlways', 'shouldCollapseOnMobile', 'shouldCollapseOnTablet'])
         }}
     >
         {{ $slot }}

@@ -2,6 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Configuration;
 
+use Livewire\Attributes\On;
+
 trait SortingConfiguration
 {
     protected function setupDefaultSorting(): void
@@ -98,4 +100,49 @@ trait SortingConfiguration
 
         return $this;
     }
+
+    /**
+     * @param  array<mixed>  $sorts
+     * @return array<mixed>
+     */
+    public function setSorts(array $sorts = []): array
+    {
+
+        return $this->sorts = collect($sorts)
+            ->reject(fn ($dir, $column) => ! in_array($column, $this->getSortableColumns()->toArray(), true))
+            ->toArray();
+    }
+
+    #[On('setSort')]
+    #[On('set-sort')]
+    public function setSort(string $field, string $direction): string
+    {
+        return $this->sorts[$field] = $direction;
+    }
+
+    public function setSortAsc(string $field): string
+    {
+        return $this->setSort($field, 'asc');
+    }
+
+    public function setSortDesc(string $field): string
+    {
+        return $this->setSort($field, 'desc');
+    }
+
+    /**
+     * Clear the sorts array
+     */
+    #[On('clearSorts')]
+    #[On('clearsorts')]
+    public function clearSorts(): void
+    {
+        $this->sorts = [];
+    }
+
+    public function clearSort(string $field): void
+    {
+        unset($this->sorts[$field]);
+    }
+
 }

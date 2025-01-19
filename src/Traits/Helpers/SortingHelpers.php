@@ -26,22 +26,9 @@ trait SortingHelpers
                     unset($this->sorts[$column]);
                 }
             }
-
         }
 
         return $this->sorts;
-    }
-
-    /**
-     * @param  array<mixed>  $sorts
-     * @return array<mixed>
-     */
-    public function setSorts(array $sorts = []): array
-    {
-
-        return $this->sorts = collect($sorts)
-            ->reject(fn ($dir, $column) => ! in_array($column, $this->getSortableColumns()->toArray(), true))
-            ->toArray();
     }
 
     public function getSort(string $field): ?string
@@ -49,12 +36,6 @@ trait SortingHelpers
         return $this->sorts[$field] ?? null;
     }
 
-    #[On('setSort')]
-    #[On('set-sort')]
-    public function setSort(string $field, string $direction): string
-    {
-        return $this->sorts[$field] = $direction;
-    }
 
     public function hasSorts(): bool
     {
@@ -66,30 +47,6 @@ trait SortingHelpers
         return $this->getSort($field) !== null;
     }
 
-    /**
-     * Clear the sorts array
-     */
-    #[On('clearSorts')]
-    #[On('clearsorts')]
-    public function clearSorts(): void
-    {
-        $this->sorts = [];
-    }
-
-    public function clearSort(string $field): void
-    {
-        unset($this->sorts[$field]);
-    }
-
-    public function setSortAsc(string $field): string
-    {
-        return $this->setSort($field, 'asc');
-    }
-
-    public function setSortDesc(string $field): string
-    {
-        return $this->setSort($field, 'desc');
-    }
 
     public function isSortAsc(string $field): bool
     {
@@ -101,11 +58,13 @@ trait SortingHelpers
         return $this->getSort($field) === 'desc';
     }
 
+    #[Computed]
     public function sortingIsEnabled(): bool
     {
         return $this->getSortingStatus() === true;
     }
 
+    #[Computed]
     public function sortingIsDisabled(): bool
     {
         return $this->getSortingStatus() === false;
@@ -168,4 +127,15 @@ trait SortingHelpers
     {
         return $this->sortingIsEnabled() && $this->sortingPillsAreEnabled() && $this->hasSorts();
     }
+
+    #[Computed]
+    public function getSortedColumnsForPills(): array
+    {
+        $activeSorts = $this->getSorts();
+
+        return $this->getColumnsForColumnSortPills($activeSorts);
+        
+        
+    }
+
 }

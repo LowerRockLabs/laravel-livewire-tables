@@ -8,13 +8,15 @@ use Rappasoft\LaravelLivewireTables\Traits\Configuration\SortingConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForSort;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SortingHelpers;
 use Rappasoft\LaravelLivewireTables\Traits\Styling\HasSortingPillsStyling;
+use Rappasoft\LaravelLivewireTables\Traits\Core\HandlesColumnSortPills;
 
 trait WithSorting
 {
     use SortingConfiguration,
         SortingHelpers,
         HasQueryStringForSort,
-        HasSortingPillsStyling;
+        HasSortingPillsStyling,
+        HandlesColumnSortPills;
 
     public array $sorts = [];
 

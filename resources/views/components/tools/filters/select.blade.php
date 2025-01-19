@@ -15,17 +15,17 @@
                 ])
                 ->except(['default-styling','default-colors']) 
             }}>
-            @foreach($filter->getOptions() as $key => $value)
+            @tableloop($filter->getOptions() as $key => $value)
                 @if (is_iterable($value))
                     <optgroup label="{{ $key }}">
-                        @foreach ($value as $optionKey => $optionValue)
+                        @tableloop ($value as $optionKey => $optionValue)
                             <option value="{{ $optionKey }}">{{ $optionValue }}</option>
-                        @endforeach
+                        @endtableloop
                     </optgroup>
                 @else
                     <option value="{{ $key }}">{{ $value }}</option>
                 @endif
-            @endforeach
+            @endtableloop
         </select>
     </div>
 </div>

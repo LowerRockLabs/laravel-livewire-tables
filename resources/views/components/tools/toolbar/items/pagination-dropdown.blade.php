@@ -16,13 +16,13 @@
             ->except(['default','default-styling','default-colors']) 
         }}
     >
-        @foreach ($this->getPerPageAccepted() as $item)
+        @tableloop ($this->getPerPageAccepted() as $item)
             <option
                 value="{{ $item }}"
                 wire:key="{{ $tableName }}-per-page-{{ $item }}"
             >
                 {{ $item === -1 ? __($this->getLocalisationPath.'All') : $item }}
             </option>
-        @endforeach
+        @endtableloop
     </select>
 </div>

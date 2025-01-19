@@ -129,8 +129,20 @@ final class ComponentConfigurationTest extends TestCase
             return ['default' => true, 'here' => 'there'];
         });
 
-        $this->assertSame($this->basicTable->getTdAttributes($this->basicTable->columns()[1], Pet::find(1), 0, 1), ['default' => true, 'here' => 'there']);
-        $this->assertSame($this->basicTable->getTdAttributes($this->basicTable->columns()[0], Pet::find(2), 1, 1), ['default' => false, 'this' => 'that']);
+        $genericArray = [
+            'default' => true,
+            'shouldCollapseNever' => true,
+            'shouldCollapseAlways' => false,
+            'shouldCollapseOnTablet' => false,
+            'shouldCollapseOnMobile' => false,
+            'isClickable' => false,
+        ];
+
+        $idArray = array_merge($genericArray, ['default' => false, 'this' => 'that']);
+        $defaultArray = array_merge($genericArray, ['here' => 'there']);
+
+        $this->assertSame($this->basicTable->getTdAttributes($this->basicTable->columns()[1], Pet::find(1), 0, 1), $defaultArray);
+        $this->assertSame($this->basicTable->getTdAttributes($this->basicTable->columns()[0], Pet::find(2), 1, 1), $idArray);
     }
 
     public function test_can_set_empty_message(): void

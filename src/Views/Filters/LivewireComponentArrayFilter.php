@@ -18,35 +18,33 @@ class LivewireComponentArrayFilter extends Filter
 
     public function validate(array $value): array|bool
     {
+       // $this->options($valueArray);
 
         return $value;
     }
 
     public function isEmpty(array $value = []): bool
     {
-        return empty($value) || (count($value) == 1 && (is_null($value[0]) || $value[0] == ''));
+        if(empty($value) || count($value) == 0)
+        {
+            return true;
+        }
+        
+
+        return false;
     }
 
     /**
      * Gets the Default Value for this Filter via the Component
      */
-    public function getFilterDefaultValue(): ?string
+    public function getFilterDefaultValue(): ?array
     {
         return $this->filterDefaultValue ?? null;
     }
 
     public function getFilterPillValue($value): array|string|bool|null
     {
-        $values = [];
-        foreach ($value as $key => $item) {
-
-            $found = $this->getCustomFilterPillValue($item) ?? ($this->options[$item] ?? $item);
-            if ($found) {
-                $values[] = $found;
-            }
-        }
-
-        return $values;
+        return [];
     }
 
     public function getKeys(): array

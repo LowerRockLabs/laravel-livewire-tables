@@ -41,6 +41,17 @@ trait FilterHelpers
         });
     }
 
+    public function getAppliedFiltersCollection(): Collection
+    {
+        $validFilterKeys = $this->getFilters()
+            ->map(fn (Filter $filter) => $filter->getKey())
+            ->toArray();
+
+        return collect($this->filterComponents ?? [])
+            ->filter(fn ($value, $key) => in_array($key, $validFilterKeys, true));
+    }
+
+
     /**
      * @return array<mixed>
      */
@@ -92,10 +103,29 @@ trait FilterHelpers
     public function getAppliedFiltersWithValues(): array
     {
         return $this->appliedFilters = array_filter($this->getAppliedFilters(), function ($item, $key) {
-            $filter = $this->getFilterByKey($key);
-            $item = (! is_null($item) && ! $filter->isEmpty($item)) ? $filter->validate($item) : $item;
+            if (is_null($item) || is_null($filter = $this->getFilterByKey($key)))
+            {
+                return false;
+            }
+            
+            $validatedValue = $filter->validate($item);
 
-            return ! $filter->isEmpty($item) && (is_array($item) ? count($item) : $item !== null);
+            if(is_null($validatedValue) || $filter->isEmpty($validatedValue) || $validatedValue == "null")
+            {
+                return false;
+            }
+            else
+            {
+                if(is_array($validatedValue))
+                {
+                    if(array_key_exists(0,$validatedValue) && (is_null($validatedValue[0]) || $validatedValue[0] == "null"))
+                    {
+                        return false;
+
+                    }
+                }
+            }
+            return true;
         }, ARRAY_FILTER_USE_BOTH);
     }
 
@@ -111,4 +141,5 @@ trait FilterHelpers
     {
         return count($this->getAppliedFiltersWithValues());
     }
+
 }

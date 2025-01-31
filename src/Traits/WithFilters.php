@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Locked;
-use Rappasoft\LaravelLivewireTables\Traits\Filters\{HasFilterGenericData, HasFilterMenu, HasFilterPills, HasFilterQueryString, HasFiltersCore, HasFiltersStatus, HasFiltersVisibility};
+use Rappasoft\LaravelLivewireTables\Traits\Filters\{HandlesLivewireComponentFilters, HandlesPillsData, HasFilterCore, HasFilterGenericData, HasFilterMenu, HasFilterPills, HasFilterQueryString, HasFiltersStatus, HasFiltersVisibility};
 
 trait WithFilters
 {
@@ -14,7 +14,9 @@ trait WithFilters
         HasFilterPills,
         HasFilterQueryString,
         HasFiltersVisibility,
-        HasFiltersCore;
+        HasFilterCore,
+        HandlesPillsData,
+        HandlesLivewireComponentFilters;
 
     // Set in JS
     public array $filterComponents = [];

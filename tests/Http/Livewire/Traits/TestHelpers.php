@@ -12,11 +12,11 @@ trait TestHelpers
 
         $this->boot();
         $this->bootedComponentUtilities();
-        $this->bootedHasFiltersCore();
+        $this->bootedHasFilterCore();
         $this->bootedWithColumns();
         $this->bootedWithColumnSelect();
         $this->booted();
-        $this->mountHasFiltersCore();
+        $this->mountHasFilterCore();
         $this->mountComponentUtilities();
         $this->mountWithSorting();
         $this->renderAll($view);

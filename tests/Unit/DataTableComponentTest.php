@@ -68,9 +68,9 @@ class DataTableComponentTest extends TestCase
     {
         $this->expectException(\Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException::class);
         $table = new NoColumnsTable;
-        $table->mountHasFiltersCore();
+        $table->mountHasFilterCore();
         $table->boot();
-        $table->bootedHasFiltersCore();
+        $table->bootedHasFilterCore();
         $table->bootedComponentUtilities();
         $table->bootedWithColumns();
         $table->bootedWithColumnSelect();

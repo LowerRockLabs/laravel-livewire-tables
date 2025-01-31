@@ -4,22 +4,6 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
 trait FilterConfiguration
 {
-    public function setFilterPillTitle(string $title): self
-    {
-        $this->filterPillTitle = $title;
-
-        return $this;
-    }
-
-    /**
-     * @param  array<mixed>  $values
-     */
-    public function setFilterPillValues(array $values): self
-    {
-        $this->filterPillValues = $values;
-
-        return $this;
-    }
 
     public function notResetByClearButton(): self
     {
@@ -28,19 +12,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    public function setCustomFilterLabel(string $filterCustomLabel): self
-    {
-        $this->filterCustomLabel = $filterCustomLabel;
-
-        return $this;
-    }
-
-    public function setFilterPillBlade(string $blade): self
-    {
-        $this->filterCustomPillBlade = $blade;
-
-        return $this;
-    }
 
     /**
      * Sets a Default Value via the Filter Component

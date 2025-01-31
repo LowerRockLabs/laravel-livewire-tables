@@ -30,9 +30,9 @@ final class WithMountTest extends TestCase
         $table2 = new PetsTableMount;
         $table2->boot();
         $table2->mount(202);
-        $table2->mountHasFiltersCore();
+        $table2->mountHasFilterCore();
         $table2->bootedComponentUtilities();
-        $table2->bootedHasFiltersCore();
+        $table2->bootedHasFilterCore();
         $table2->bootedWithColumns();
         $table2->bootedWithColumnSelect();
         $table2->booted();
@@ -46,8 +46,8 @@ final class WithMountTest extends TestCase
         $table3 = new PetsTableMount;
         $table3->boot();
         $table3->mount();
-        $table3->mountHasFiltersCore();
-        $table3->bootedHasFiltersCore();
+        $table3->mountHasFilterCore();
+        $table3->bootedHasFilterCore();
         $table3->bootedComponentUtilities();
         $table3->bootedWithColumns();
         $table3->bootedWithColumnSelect();

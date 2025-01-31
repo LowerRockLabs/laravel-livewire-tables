@@ -43,27 +43,22 @@ trait FilterPillsHelpers
     {
         return $this->appliedFilters = array_filter($this->getAppliedFilters(), function ($item, $key) {
             $filter = $this->getFilterByKey($key);
-            if ($filter->isHiddenFromPills() || is_null($item))
-            {
+            if ($filter->isHiddenFromPills() || is_null($item)) {
                 return false;
             }
             $validatedValue = $filter->validate($item);
 
-            if(is_null($validatedValue) || $filter->isEmpty($validatedValue) || $validatedValue == "null")
-            {
+            if (is_null($validatedValue) || $filter->isEmpty($validatedValue) || $validatedValue == 'null') {
                 return false;
-            }
-            else
-            {
-                if(is_array($validatedValue))
-                {
-                    if(array_key_exists(0,$validatedValue) && (is_null($validatedValue[0]) || $validatedValue[0] == "null"))
-                    {
+            } else {
+                if (is_array($validatedValue)) {
+                    if (array_key_exists(0, $validatedValue) && (is_null($validatedValue[0]) || $validatedValue[0] == 'null')) {
                         return false;
 
                     }
                 }
             }
+
             return is_array($validatedValue) ? count($validatedValue) : $validatedValue !== null;
         }, ARRAY_FILTER_USE_BOTH);
     }
@@ -73,5 +68,4 @@ trait FilterPillsHelpers
         return count($this->getAppliedFiltersWithValuesForPills());
 
     }
-
 }

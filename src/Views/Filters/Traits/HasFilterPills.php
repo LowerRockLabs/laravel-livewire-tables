@@ -5,11 +5,10 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 trait HasFilterPills
 {
     protected ?string $filterPillTitle = null;
-    
+
     protected array $filterPillValues = [];
 
     protected ?string $filterCustomPillBlade = null;
-
 
     public function setFilterPillTitle(string $title): self
     {
@@ -66,7 +65,7 @@ trait HasFilterPills
         return $this->getCustomFilterPillValues()[$value] ?? null;
     }
 
-        /**
+    /**
      * Determine if filter has a Custom Pill Blade
      */
     public function hasCustomPillBlade(): bool
@@ -81,5 +80,4 @@ trait HasFilterPills
     {
         return $this->filterCustomPillBlade;
     }
-
 }

@@ -51,7 +51,6 @@ trait FilterHelpers
             ->filter(fn ($value, $key) => in_array($key, $validFilterKeys, true));
     }
 
-
     /**
      * @return array<mixed>
      */
@@ -103,28 +102,23 @@ trait FilterHelpers
     public function getAppliedFiltersWithValues(): array
     {
         return $this->appliedFilters = array_filter($this->getAppliedFilters(), function ($item, $key) {
-            if (is_null($item) || is_null($filter = $this->getFilterByKey($key)))
-            {
+            if (is_null($item) || is_null($filter = $this->getFilterByKey($key))) {
                 return false;
             }
-            
+
             $validatedValue = $filter->validate($item);
 
-            if(is_null($validatedValue) || $filter->isEmpty($validatedValue) || $validatedValue == "null")
-            {
+            if (is_null($validatedValue) || $filter->isEmpty($validatedValue) || $validatedValue == 'null') {
                 return false;
-            }
-            else
-            {
-                if(is_array($validatedValue))
-                {
-                    if(array_key_exists(0,$validatedValue) && (is_null($validatedValue[0]) || $validatedValue[0] == "null"))
-                    {
+            } else {
+                if (is_array($validatedValue)) {
+                    if (array_key_exists(0, $validatedValue) && (is_null($validatedValue[0]) || $validatedValue[0] == 'null')) {
                         return false;
 
                     }
                 }
             }
+
             return true;
         }, ARRAY_FILTER_USE_BOTH);
     }
@@ -141,5 +135,4 @@ trait FilterHelpers
     {
         return count($this->getAppliedFiltersWithValues());
     }
-
 }

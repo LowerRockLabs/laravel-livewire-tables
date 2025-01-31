@@ -57,13 +57,10 @@ trait FilterHelpers
         return $this->filterCallback;
     }
 
-
-
     public function isResetByClearButton(): bool
     {
         return $this->resetByClearButton === true;
     }
-
 
     /**
      * Determines if the Filter has a Default Value via the Component

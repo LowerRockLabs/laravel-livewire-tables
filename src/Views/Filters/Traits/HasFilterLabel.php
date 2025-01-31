@@ -7,7 +7,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\Styling\HandlesFilterLa
 trait HasFilterLabel
 {
     use HandlesFilterLabelAttributes;
-    
+
     protected ?string $filterCustomLabel = null;
 
     public function setCustomFilterLabel(string $filterCustomLabel): self
@@ -16,7 +16,6 @@ trait HasFilterLabel
 
         return $this;
     }
-
 
     /**
      * Returns whether the filter has a custom label blade
@@ -33,5 +32,4 @@ trait HasFilterLabel
     {
         return $this->filterCustomLabel ?? '';
     }
-
 }

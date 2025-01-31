@@ -9,6 +9,5 @@ trait HandlesCoreMethodsForExternalFilter
         $this->setupFilter();
     }
 
-    protected function setupFilter(): void
-    {}
+    protected function setupFilter(): void {}
 }

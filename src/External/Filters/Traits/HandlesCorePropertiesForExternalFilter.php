@@ -45,6 +45,4 @@ trait HandlesCorePropertiesForExternalFilter
     {
         return $this->tableComponent;
     }
-
-
 }

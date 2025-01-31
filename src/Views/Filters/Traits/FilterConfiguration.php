@@ -4,14 +4,12 @@ namespace Rappasoft\LaravelLivewireTables\Views\Filters\Traits;
 
 trait FilterConfiguration
 {
-
     public function notResetByClearButton(): self
     {
         $this->resetByClearButton = false;
 
         return $this;
     }
-
 
     /**
      * Sets a Default Value via the Filter Component

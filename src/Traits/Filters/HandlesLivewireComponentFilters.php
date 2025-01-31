@@ -6,7 +6,6 @@ use Livewire\Attributes\On;
 
 trait HandlesLivewireComponentFilters
 {
-
     protected bool $hasExternalFilters = false;
 
     public function tableHasExternalFilters(): bool
@@ -32,11 +31,9 @@ trait HandlesLivewireComponentFilters
 
             $setup['original'] = $this->getFilters();
             $filterArray = $this->filterCollection->toArray();
-            foreach($filterArray as $index => $filter)
-            {
-                if($filter->getKey() == $filterKey)
-                {
-                    $options = collect($values)->pluck('value','id')->toArray();
+            foreach ($filterArray as $index => $filter) {
+                if ($filter->getKey() == $filterKey) {
+                    $options = collect($values)->pluck('value', 'id')->toArray();
                     $filter->options($options);
                     $filterArray[$index] = $filter;
                 }

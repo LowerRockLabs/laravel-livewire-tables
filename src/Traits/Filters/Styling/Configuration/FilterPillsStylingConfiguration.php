@@ -20,7 +20,7 @@ trait FilterPillsStylingConfiguration
     {
         return $this->setShowFilterPillsWhileLoading(false);
     }
-    
+
     protected function setFilterPillsItemAttributes(array $attributes = []): self
     {
         return $this->mergeCustomAttributes(propertyName: 'filterPillsItemAttributes', customAttributes: $attributes);

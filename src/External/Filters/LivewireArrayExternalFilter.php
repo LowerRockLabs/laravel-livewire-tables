@@ -2,8 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\External\Filters;
 
-use Livewire\Component;
 use Livewire\Attributes\{Locked, Modelable, Renderless};
+use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\External\Filters\Traits\{HandlesCoreMethodsForExternalFilter,HandlesCorePropertiesForExternalFilter,HandlesTableEventsForExternalFilter, HandlesUpdateStatusForExternalFilter};
 
 abstract class LivewireArrayExternalFilter extends Component
@@ -21,12 +21,10 @@ abstract class LivewireArrayExternalFilter extends Component
 
     public array $optionsSelected = [];
 
-
     #[Renderless]
     public function updatedOptionsSelected($value)
     {
-        if(!$this->skipUpdate)
-        {
+        if (! $this->skipUpdate) {
             if (! $this->needsUpdating) {
                 $this->needsUpdating = true;
             }

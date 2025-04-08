@@ -415,50 +415,6 @@ document.addEventListener('alpine:init', () => {
         }
     }));
 
-    Alpine.data('booleanFilterLatest', (data) => ({
-        booleanFilterKey: data.filterKey,
-        booleanFilterDefaultValue: data.defaultValue,
-        switchOn: false, 
-        value: false, 
-        toggleStatus()
-        {
-            let tempValue = Boolean(Number(this.$wire.get('filterComponents.'+this.booleanFilterKey) ?? this.value));
-            let newBoolean = !tempValue;
-            this.switchOn = this.value = newBoolean;
-            return Number(newBoolean);
-        },
-        toggleStatusWithUpdate()
-        {
-            let newValue = this.toggleStatus();
-            this.$wire.set('filterComponents.'+this.booleanFilterKey, newValue);
-        },
-        toggleStatusWithReset()
-        {
-            let newValue = this.toggleStatus();
-            this.$wire.call('resetFilter',this.booleanFilterKey);
-        },
-        setSwitchOn(val)
-        {
-            let number = Number(val ?? 0);
-            this.switchOn = Boolean(number); 
-        },
-        init() { 
-
-            this.$nextTick(() => { 
-                this.value = this.$wire.get('filterComponents.'+this.booleanFilterKey) ?? this.booleanFilterDefaultValue;
-                this.setSwitchOn(this.value ?? 0);
-            });
-
-            this.listeners.push(
-                Livewire.on('filter-was-set', (detail) => {
-                    if(detail.tableName == this.tableName && detail.filterKey == this.booleanFilterKey) { 
-                        this.switchOn = detail.value ?? this.booleanFilterDefaultValue; 
-                    }
-                })
-            );
-        }
-    }));
-
 
 
     Alpine.data('numberRangeFilter', (wire, filterKey, parentElementPath, filterConfig, childElementRoot) => ({

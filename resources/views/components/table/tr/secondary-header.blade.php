@@ -1,4 +1,4 @@
-@aware([ 'tableName'])
+@aware([ 'tableName', 'hasCollapsingColumns', 'showBulkActionsSections'])
 
 <x-livewire-tables::table.tr.plain :rowIndex="-1"
     :customAttributes="$this->getSecondaryHeaderTrAttributes($this->getRows)"
@@ -7,11 +7,11 @@
     {{-- TODO: Remove --}}
     <x-livewire-tables::table.td.plain x-cloak x-show="currentlyReorderingStatus" :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-header-test' }}" />
 
-    @if ($this->showBulkActionsSections)
+    @if ($showBulkActionsSections)
         <x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-header-hasBulkActions' }}" />
     @endif
 
-    @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
+    @if ($hasCollapsingColumns)
         <x-livewire-tables::table.td.collapsed-columns :hidden=true :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'header-collapsed-hide' }}"  />
     @endif
 

@@ -1,14 +1,12 @@
-@aware([ 'tableName', 'primaryKey','isTailwind','isBootstrap', 'collapsingColumnDetails'])
-@props(['row', 'rowIndex'])
+@aware([ 'tableName', 'primaryKey','isTailwind','isBootstrap', 'collapsingColumnDetails', 'rowPk','row', 'rowIndex','customAttributes', 'hasCollapsingColumns'])
 
-@if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
-    @php($customAttributes = $this->getTrAttributes($row, $rowIndex))
+@if ($hasCollapsingColumns)
     <tr x-data
         @toggle-row-content.window="($event.detail.tableName === '{{ $tableName }}' && $event.detail.row === {{ $rowIndex }}) ? $el.classList.toggle('{{ $isBootstrap ? 'd-none' : 'hidden' }}') : null"
         {{
             $attributes->merge([
                     'wire:loading.class.delay' => 'opacity-50 dark:bg-gray-900 dark:opacity-60',
-                    'wire:key' => $tableName.'-row-'.$row->{$primaryKey}.'-collapsed-contents',
+                    'wire:key' => $tableName.'-row-'.$rowPk.'-collapsed-contents',
                 ])
                 ->merge($customAttributes)
                 ->class($isTailwind ? [
@@ -29,7 +27,7 @@
 
 
                 @tableloop($collapsingColumnDetails as $colIndex => $columnData)
-                    <div wire:key="{{ $tableName }}-row-{{ $row->{$primaryKey} }}-collapsed-contents-{{ $colIndex }}" 
+                    <div wire:key="{{ $tableName }}-row-{{ $rowPk }}-collapsed-contents-{{ $colIndex }}" 
                         x-data="{ value: '', 
                             init() { 
                                 $nextTick(() => { 
@@ -45,7 +43,7 @@
                                 'd-block mb-2',
                                 'd-sm-none' => !$columnData['shouldCollapseAlways'] && !$columnData['shouldCollapseOnTablet'] && !$columnData['shouldCollapseOnMobile'],
                                 'd-md-none' => !$columnData['shouldCollapseAlways'] && !$columnData['shouldCollapseOnTablet'] && $columnData['shouldCollapseOnMobile'],
-                                'd-lg-none' => !$columnData['houldCollapseAlway'] && ($columnData['shouldCollapseOnTablet'] || $columnData['shouldCollapseOnMobile']),
+                                'd-lg-none' => !$columnData['shouldCollapseAlways'] && ($columnData['shouldCollapseOnTablet'] || $columnData['shouldCollapseOnMobile']),
 
                         ])>
                                 <strong>{{ $columnData['title'] }}</strong>: <br />

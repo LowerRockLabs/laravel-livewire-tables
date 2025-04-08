@@ -1,12 +1,7 @@
-@aware([ 'tableName','primaryKey','isTailwind','isBootstrap'])
-@props(['row', 'rowIndex'])
-
-@php
-    $customAttributes = $this->getTrAttributes($row, $rowIndex);
-@endphp
+@aware([ 'tableName','primaryKey','isTailwind','isBootstrap','row', 'rowPk', 'rowIndex', 'customAttributes'])
 
 <tr
-    rowpk='{{ $row->{$primaryKey} }}'
+    rowpk='{{ $rowPk }}'
     x-on:dragstart.self="currentlyReorderingStatus && dragStart(event)"
     x-on:drop.prevent="currentlyReorderingStatus && dropEvent(event)"
     x-on:dragover.prevent.throttle.500ms="currentlyReorderingStatus && dragOverEvent(event)"
@@ -16,9 +11,9 @@
     @else
         wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
     @endif
-    id="{{ $tableName }}-row-{{ $row->{$primaryKey} }}"
+    id="{{ $tableName }}-row-{{ $rowPk }}"
     :draggable="currentlyReorderingStatus"
-    wire:key="{{ $tableName }}-tablerow-tr-{{ $row->{$primaryKey} }}"
+    wire:key="{{ $tableName }}-tablerow-tr-{{ $rowPk }}"
     loopType="{{ ($rowIndex % 2 === 0) ? 'even' : 'odd' }}"
     {{
         $attributes->merge($customAttributes)

@@ -1,18 +1,18 @@
-@aware([ 'tableName'])
+@aware([ 'tableName', 'showBulkActionsSections','hasCollapsingColumns'])
 
 <x-livewire-tables::table.tr.plain :rowIndex="-1"
     :customAttributes="$this->getFooterTrAttributes($this->getRows)"
     wire:key="{{ $tableName .'-footer' }}"
 >
     {{-- Adds a Column For Bulk Actions--}}
-    @if (!$this->bulkActionsAreEnabled() || !$this->hasBulkActions())
+    @if (!$showBulkActionsSections)
         <x-livewire-tables::table.td.plain x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $tableName . '-footer-bulkactions-1' }}" />
-    @elseif ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
+    @elseif ($showBulkActionsSections)
         <x-livewire-tables::table.td.plain wire:key="{{ $tableName . '-footer-bulkactions-2' }}" />
     @endif
 
     {{-- Adds a Column If Collapsing Columns Exist --}}
-    @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
+    @if ($hasCollapsingColumns)
         <x-livewire-tables::table.td.collapsed-columns :displayMinimisedOnReorder="true"  :hidden="true" wire:key="{{ $tableName.'-footer-collapse' }}" />
     @endif
 

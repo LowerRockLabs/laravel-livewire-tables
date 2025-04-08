@@ -20,7 +20,7 @@
 @php($shouldCollapseAlways = $this->shouldCollapseAlways())
 @php($shouldCollapseOnTablet = $this->shouldCollapseOnTablet())
 @php($shouldCollapseOnMobile = $this->shouldCollapseOnMobile())
-
+@php($coreTableAttributes = $this->getCoreTableAttributes())
 
 <div>
     <div x-data="{ currentlyReorderingStatus: false }">
@@ -32,7 +32,7 @@
                 $this->getParametersForConfigurableArea('before-wrapper')
             )
 
-            <x-livewire-tables::wrapper :$tableName :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5 :$localisationPath :$collapsingColumnDetails :$tdAttributes :$tdCheckboxAttributes :$collapsingColumnButtonExpandAttributes :$collapsingColumnButtonCollapseAttributes :$hasCollapsingColumns :$shouldCollapseAlways :$shouldCollapseOnTablet :$shouldCollapseOnMobile>
+            <x-livewire-tables::wrapper :$tableName :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5 :$localisationPath :$collapsingColumnDetails :$tdAttributes :$tdCheckboxAttributes :$collapsingColumnButtonExpandAttributes :$collapsingColumnButtonCollapseAttributes :$hasCollapsingColumns :$shouldCollapseAlways :$shouldCollapseOnTablet :$shouldCollapseOnMobile :$currentlyReorderingStatus :$showBulkActionsSections :$coreTableAttributes :$showCollapsingColumnSections :$selectedVisibleColumns>
                 @if($this->hasActions() && !$this->showActionsInToolbar())
                     <x-livewire-tables::includes.actions/>
                 @endif
@@ -103,8 +103,8 @@
 
                         @tableloop ($currentRows as $rowIndex => $row)
                             @php($rowPk = $row->{$primaryKey})
-                            <x-livewire-tables::table.tbody wire:key="{{ $tableName }}-row-wrap-{{ $rowPk }}" :$row :$rowIndex :$rowPk />
-                            
+                            <x-livewire-tables::table.tbody wire:key="{{ $tableName }}-row-wrap-{{ $rowPk }}" :$row :$rowIndex :$rowPk :customAttributes="$this->getTrAttributes($row, $rowIndex)" />
+
                         @endtableloop
                     @else
                         <x-livewire-tables::table.empty />

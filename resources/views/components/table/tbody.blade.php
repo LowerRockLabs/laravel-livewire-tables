@@ -1,11 +1,5 @@
-@aware(['tableName'])
-@props(['row','rowIndex','rowPk'])
-@php($coreTableAttributes = $this->getCoreTableAttributes())
-@php($currentlyReorderingStatus = $this->getCurrentlyReorderingStatus())
-@php($showBulkActionsSections = $this->showBulkActionsSections())
-@php($showCollapsingColumnSections = $this->showCollapsingColumnSections())
-@php($selectedVisibleColumns = $this->selectedVisibleColumns())
-
+@aware(['tableName','showBulkActionsSections', 'coreTableAttributes', 'currentlyReorderingStatus', 'showCollapsingColumnSections', 'selectedVisibleColumns'])
+@props(['row','rowIndex','rowPk','customAttributes'])
 
 <tbody {{ $attributes->merge($coreTableAttributes['tbody'])
         ->class([
@@ -15,7 +9,7 @@
         ->except(['default','default-styling','default-colors']) 
     }} x-data
 >
-    <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $rowPk }}" :$row :$rowIndex :$rowPk>
+    <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $rowPk }}" >
                             
         @if($currentlyReorderingStatus)
             <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" />
@@ -39,6 +33,6 @@
     </x-livewire-tables::table.tr>
 
     @if ($showCollapsingColumnSections)
-        <x-livewire-tables::table.collapsed-columns :$row :$rowIndex />
+        <x-livewire-tables::table.collapsed-columns  />
     @endif
 </tbody>

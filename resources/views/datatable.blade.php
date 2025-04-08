@@ -1,16 +1,16 @@
-@php($tableName = $this->getTableName)
-@php($tableId = $this->getTableId)
-@php($primaryKey = $this->getPrimaryKey)
-@php($isTailwind = $this->isTailwind)
-@php($isBootstrap = $this->isBootstrap)
-@php($isBootstrap4 = $this->isBootstrap4)
-@php($isBootstrap5 = $this->isBootstrap5)
-@php($localisationPath = $this->getLocalisationPath)
-@php($getCurrentlyReorderingStatus = $this->getCurrentlyReorderingStatus)
-@php($currentlyReorderingStatus = $this->getCurrentlyReorderingStatus)
-@php($showBulkActionsSections = $this->showBulkActionsSections)
-@php($showCollapsingColumnSections = $this->showCollapsingColumnSections)
-@php($selectedVisibleColumns = $this->selectedVisibleColumns)
+@php($tableName = $this->getTableName())
+@php($tableId = $this->getTableId())
+@php($primaryKey = $this->getPrimaryKey())
+@php($isTailwind = $this->isTailwind())
+@php($isBootstrap = $this->isBootstrap())
+@php($isBootstrap4 = $this->isBootstrap4())
+@php($isBootstrap5 = $this->isBootstrap5())
+@php($localisationPath = $this->getLocalisationPath())
+@php($getCurrentlyReorderingStatus = $this->getCurrentlyReorderingStatus())
+@php($currentlyReorderingStatus = $this->getCurrentlyReorderingStatus())
+@php($showBulkActionsSections = $this->showBulkActionsSections())
+@php($showCollapsingColumnSections = $this->showCollapsingColumnSections())
+@php($selectedVisibleColumns = $this->selectedVisibleColumns())
 @php($collapsingColumnDetails = $this->getCollapsedColumnsForContentNew())
 @php($tdAttributes = $this->getBulkActionsTdAttributes())
 @php($tdCheckboxAttributes = $this->getBulkActionsTdCheckboxAttributes())
@@ -21,6 +21,9 @@
 @php($shouldCollapseOnTablet = $this->shouldCollapseOnTablet())
 @php($shouldCollapseOnMobile = $this->shouldCollapseOnMobile())
 @php($coreTableAttributes = $this->getCoreTableAttributes())
+@php($hasDisplayLoadingPlaceholder = $this->hasDisplayLoadingPlaceholder())
+@php($hasTableRowUrl = $this->hasTableRowUrl())
+
 
 <div>
     <div x-data="{ currentlyReorderingStatus: false }">
@@ -32,7 +35,7 @@
                 $this->getParametersForConfigurableArea('before-wrapper')
             )
 
-            <x-livewire-tables::wrapper :$tableName :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5 :$localisationPath :$collapsingColumnDetails :$tdAttributes :$tdCheckboxAttributes :$collapsingColumnButtonExpandAttributes :$collapsingColumnButtonCollapseAttributes :$hasCollapsingColumns :$shouldCollapseAlways :$shouldCollapseOnTablet :$shouldCollapseOnMobile :$currentlyReorderingStatus :$showBulkActionsSections :$coreTableAttributes :$showCollapsingColumnSections :$selectedVisibleColumns>
+            <x-livewire-tables::wrapper :$tableName :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5 :$localisationPath :$collapsingColumnDetails :$tdAttributes :$tdCheckboxAttributes :$collapsingColumnButtonExpandAttributes :$collapsingColumnButtonCollapseAttributes :$hasCollapsingColumns :$shouldCollapseAlways :$shouldCollapseOnTablet :$shouldCollapseOnMobile :$currentlyReorderingStatus :$showBulkActionsSections :$coreTableAttributes :$showCollapsingColumnSections :$selectedVisibleColumns :$hasDisplayLoadingPlaceholder :$hasTableRowUrl>
                 @if($this->hasActions() && !$this->showActionsInToolbar())
                     <x-livewire-tables::includes.actions/>
                 @endif
@@ -84,11 +87,11 @@
                     $this->getParametersForConfigurableArea('after-tools')
                 )
 
-                <x-livewire-tables::table :bulkActionsTdAttributes="$this->getBulkActionsTdAttributes" :bulkActionsTdCheckboxAttributes="$this->getBulkActionsTdCheckboxAttributes">
+                <x-livewire-tables::table :bulkActionsTdAttributes="$this->getBulkActionsTdAttributes()" :bulkActionsTdCheckboxAttributes="$this->getBulkActionsTdCheckboxAttributes()">
 
                     <x-livewire-tables::table.thead />
 
-                    @if($this->shouldShowSecondaryHeader)
+                    @if($this->shouldShowSecondaryHeader())
                         <x-livewire-tables::table.tr.secondary-header  />
                     @endif
 
@@ -111,7 +114,7 @@
                     @endif
                     
 
-                    @if ($this->shouldShowFooter)
+                    @if ($this->shouldShowFooter())
                         <x-livewire-tables::table.tfoot />
                     @endif
                 </x-livewire-tables::table>

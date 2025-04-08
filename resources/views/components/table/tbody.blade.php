@@ -1,5 +1,17 @@
 @aware(['tableName','showBulkActionsSections', 'coreTableAttributes', 'currentlyReorderingStatus', 'showCollapsingColumnSections', 'selectedVisibleColumns'])
 @props(['row','rowIndex','rowPk','customAttributes'])
+@php
+if ($this->hasTableRowUrl())
+{
+    $rowUrl = $this->getTableRowUrl($row);
+    $rowTarget = $this->getTableRowUrlTarget($row);
+}
+else
+{
+    $rowUrl = '';
+    $rowTarget = '';
+} 
+@endphp
 
 <tbody {{ $attributes->merge($coreTableAttributes['tbody'])
         ->class([
@@ -9,7 +21,7 @@
         ->except(['default','default-styling','default-colors']) 
     }} x-data
 >
-    <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $rowPk }}" >
+    <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $rowPk }}" :$rowUrl :$rowTarget >
                             
         @if($currentlyReorderingStatus)
             <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" />
@@ -22,7 +34,7 @@
         @endif
 
         @tableloop($selectedVisibleColumns as $colIndex => $column)
-            <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $rowPk . '-datatable-td-' . $column->getSlug() }}"  :$column :$colIndex >
+            <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $rowPk . '-datatable-td-' . $column->getSlug() }}"  :$column :$colIndex  >
                 @if($column->isHtml())
                     {!! $column->setIndexes($rowIndex, $colIndex)->renderContents($row) !!}
                 @else

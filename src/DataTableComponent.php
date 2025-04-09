@@ -36,6 +36,35 @@ abstract class DataTableComponent extends Component
     "isHtml" => false
     "title" => "Created At"
     ]*/
-        return view('livewire-tables::datatable');
+        return view('livewire-tables::datatable')->with(
+            [
+                'tableName' => $this->getTableName(),
+                'tableId' => $this->getTableId(),
+                'primaryKey' => $this->getPrimaryKey(),
+                'isTailwind' => $this->isTailwind(),
+                'isBootstrap' => $this->isBootstrap(),
+                'isBootstrap4' => $this->isBootstrap4(),
+                'isBootstrap5' => $this->isBootstrap5(),
+                'localisationPath' => $this->getLocalisationPath(),
+                'getCurrentlyReorderingStatus' => $this->getCurrentlyReorderingStatus(),
+                'currentlyReorderingStatus' => $this->getCurrentlyReorderingStatus(),
+                'showBulkActionsSections' => $this->showBulkActionsSections(),
+                'showCollapsingColumnSections' => $this->showCollapsingColumnSections(),
+                'selectedVisibleColumns' => $this->selectedVisibleColumns(),
+                'columnCollapseInfo' => $this->getCollapsedColumnsForContentAll(),
+                'collapsingColumnDetails' => $this->getCollapsedColumnsForContentNew(),
+                'tdAttributes' => $this->getBulkActionsTdAttributes(),
+                'tdCheckboxAttributes' => $this->getBulkActionsTdCheckboxAttributes(),
+                'collapsingColumnButtonExpandAttributes' => $this->getCollapsingColumnButtonExpandAttributes(),
+                'collapsingColumnButtonCollapseAttributes' => $this->getCollapsingColumnButtonCollapseAttributes(),
+                'hasCollapsingColumns' => ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns()),
+                'shouldCollapseAlways' => $this->shouldCollapseAlways(),
+                'shouldCollapseOnTablet' => $this->shouldCollapseOnTablet(),
+                'shouldCollapseOnMobile' => $this->shouldCollapseOnMobile(),
+                'coreTableAttributes' => $this->getCoreTableAttributes(),
+                'hasDisplayLoadingPlaceholder' => $this->hasDisplayLoadingPlaceholder(),
+                'hasTableRowUrl' => $this->hasTableRowUrl(),
+                'colspanCount' => $this->getColspanCount(),
+            ]);
     }
 }

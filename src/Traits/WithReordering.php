@@ -49,15 +49,11 @@ trait WithReordering
 
     public function enablePaginatedReordering(): void {}
 
-
     public function toggleReordering(): void
     {
-        if($this->currentlyReorderingStatus)
-        {
+        if ($this->currentlyReorderingStatus) {
             $this->disableReordering();
-        }
-        else
-        {
+        } else {
             $this->enableReordering();
         }
     }

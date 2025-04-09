@@ -1,6 +1,7 @@
-@aware([ 'tableName', 'hasCollapsingColumns', 'showBulkActionsSections'])
+@aware([ 'tableName', 'hasCollapsingColumns', 'showBulkActionsSections', 'currentlyReorderingStatus'])
 
-<x-livewire-tables::table.tr.plain :rowIndex="-1"
+@if(!$currentlyReorderingStatus)
+<x-livewire-tables::table.tr.plain data-id="tr-secondaryheader" :rowIndex="-1"
     :customAttributes="$this->getSecondaryHeaderTrAttributes($this->getRows)"
     wire:key="{{ $tableName .'-secondary-header' }}"
 >
@@ -29,3 +30,4 @@
         </x-livewire-tables::table.td.plain>
     @endforeach
 </x-livewire-tables::table.tr.plain>
+@endif

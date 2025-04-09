@@ -1,13 +1,15 @@
 @aware(['isTailwind','isBootstrap'])
 @props(['customAttributes' => [], 'displayMinimisedOnReorder' => true, 'rowIndex' => "-1" ])
 
-<tr {{ $attributes
+<tr  data-id="tr-plain" {{ $attributes
         ->merge($customAttributes)
         ->class($isTailwind ? [
+            'ignoresort',
             'laravel-livewire-tables-reorderingMinimised',
-            'bg-white dark:bg-gray-700 dark:text-white' => ($customAttributes['default'] ?? true),
+            '' => ($customAttributes['default'] ?? true),
         ] : 
         [
+            'ignoresort',
             'laravel-livewire-tables-reorderingMinimised',
             '' => $customAttributes['default'] ?? true,
         ])

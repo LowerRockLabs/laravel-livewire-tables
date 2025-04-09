@@ -1,4 +1,4 @@
-@aware(['tableName','showBulkActionsSections', 'coreTableAttributes', 'currentlyReorderingStatus', 'showCollapsingColumnSections', 'selectedVisibleColumns'])
+@aware(['tableName','showBulkActionsSections', 'coreTableAttributes', 'currentlyReorderingStatus', 'showCollapsingColumnSections', 'selectedVisibleColumns', 'columnCollapseInfo'])
 @props(['row','rowIndex','rowPk','customAttributes'])
 @php
 if ($this->hasTableRowUrl())
@@ -13,9 +13,10 @@ else
 } 
 @endphp
 
-<tbody {{ $attributes->merge($coreTableAttributes['tbody'])
+<tbody @if($currentlyReorderingStatus) x-sort:item="'{{$rowPk}}'" data-id="{{$rowPk}}" @endif {{ $attributes->merge($coreTableAttributes['tbody'])
         ->class([
-            'bg-white divide-gray-200 dark:bg-gray-800 dark:divide-none' => $coreTableAttributes['tbody']['default-colors'] ?? ($coreTableAttributes['tbody']['default'] ?? true),
+            'odd:bg-white odd:dark:bg-gray-700 odd:dark:text-white even:bg-gray-50 even:dark:bg-gray-800 even:dark:text-white',
+            'divide-gray-200 dark:divide-none' => $coreTableAttributes['tbody']['default-colors'] ?? ($coreTableAttributes['tbody']['default'] ?? true),
             'divide-y' => $coreTableAttributes['tbody']['default-styling'] ?? ($coreTableAttributes['tbody']['default'] ?? true),
         ])
         ->except(['default','default-styling','default-colors']) 
@@ -34,7 +35,7 @@ else
         @endif
 
         @tableloop($selectedVisibleColumns as $colIndex => $column)
-            <x-livewire-tables::table.td wire:key="{{ $tableName . '-' . $rowPk . '-datatable-td-' . $column->getSlug() }}"  :$column :$colIndex  >
+            <x-livewire-tables::table.td :colData="$columnCollapseInfo[$colIndex] ?? []" :slug="$columnCollapseInfo[$colIndex] ? $columnCollapseInfo[$colIndex]['slug'] : $column->getSlug()" :$colIndex :customAttributes="$this->getTdAttributes($column, $row, $colIndex, $rowIndex)"  >
                 @if($column->isHtml())
                     {!! $column->setIndexes($rowIndex, $colIndex)->renderContents($row) !!}
                 @else

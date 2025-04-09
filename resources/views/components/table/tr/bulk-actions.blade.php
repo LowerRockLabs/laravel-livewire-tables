@@ -1,20 +1,19 @@
-@aware([ 'tableName', 'isTailwind', 'isBootstrap', 'localisationPath'])
+@aware([ 'tableName', 'isTailwind', 'isBootstrap', 'localisationPath', 'colspanCount', 'currentlyReorderingStatus'])
 
-@if ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
+@if ($this->bulkActionsAreEnabled() && $this->hasBulkActions() && !$currentlyReorderingStatus)
     @php
-        $colspan = $this->getColspanCount();
         $selectAll = $this->selectAllIsEnabled();
         $simplePagination = $this->isPaginationMethod('simple');
     @endphp
 
-    <x-livewire-tables::table.tr.plain
+    <x-livewire-tables::table.tr.plain  data-id="tr-bulkactions"
         x-cloak x-show="selectedItems.length > 0 && !currentlyReorderingStatus"
         wire:key="{{ $tableName }}-bulk-select-message"
         @class([
             'bg-indigo-50 dark:bg-gray-900 dark:text-white' => $isTailwind,
         ])
     >
-        <x-livewire-tables::table.td.plain :colspan="$colspan">
+        <x-livewire-tables::table.td.plain :colspan="$colspanCount">
             <template x-if="selectedItems.length == paginationTotalItemCount || selectAllStatus">
                 <div wire:key="{{ $tableName }}-all-selected">
                     <span>

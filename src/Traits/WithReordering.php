@@ -49,12 +49,25 @@ trait WithReordering
 
     public function enablePaginatedReordering(): void {}
 
+
+    public function toggleReordering(): void
+    {
+        if($this->currentlyReorderingStatus)
+        {
+            $this->disableReordering();
+        }
+        else
+        {
+            $this->enableReordering();
+        }
+    }
+
     public function enableReordering(): void
     {
         $this->setReorderingSession();
         $this->setReorderingBackup();
         $this->resetReorderFields();
-        $this->reorderStatus = $this->currentlyReorderingStatus = $this->reorderDisplayColumn = true;
+        $this->currentlyReorderingStatus = $this->reorderDisplayColumn = true;
     }
 
     public function disableReordering(): void

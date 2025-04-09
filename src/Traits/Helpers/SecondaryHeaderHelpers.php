@@ -9,7 +9,7 @@ trait SecondaryHeaderHelpers
     #[Computed]
     public function shouldShowSecondaryHeader(): bool
     {
-        return $this->secondaryHeaderIsEnabled() && $this->hasColumnsWithSecondaryHeader();
+        return ($this->secondaryHeaderIsEnabled() && $this->hasColumnsWithSecondaryHeader());
     }
 
     public function hasColumnsWithSecondaryHeader(): bool

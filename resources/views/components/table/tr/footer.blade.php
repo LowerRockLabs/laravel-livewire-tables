@@ -1,6 +1,6 @@
 @aware([ 'tableName', 'showBulkActionsSections','hasCollapsingColumns'])
 
-<x-livewire-tables::table.tr.plain :rowIndex="-1"
+<x-livewire-tables::table.tr.plain data-id="tr-footer" :rowIndex="-1"
     :customAttributes="$this->getFooterTrAttributes($this->getRows)"
     wire:key="{{ $tableName .'-footer' }}"
 >

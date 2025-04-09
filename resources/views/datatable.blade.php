@@ -11,6 +11,7 @@
 @php($showBulkActionsSections = $this->showBulkActionsSections())
 @php($showCollapsingColumnSections = $this->showCollapsingColumnSections())
 @php($selectedVisibleColumns = $this->selectedVisibleColumns())
+@php($columnCollapseInfo = $this->getCollapsedColumnsForContentAll())
 @php($collapsingColumnDetails = $this->getCollapsedColumnsForContentNew())
 @php($tdAttributes = $this->getBulkActionsTdAttributes())
 @php($tdCheckboxAttributes = $this->getBulkActionsTdCheckboxAttributes())
@@ -23,9 +24,10 @@
 @php($coreTableAttributes = $this->getCoreTableAttributes())
 @php($hasDisplayLoadingPlaceholder = $this->hasDisplayLoadingPlaceholder())
 @php($hasTableRowUrl = $this->hasTableRowUrl())
-
+@php($colspanCount = $this->getColspanCount())
 
 <div>
+
     <div x-data="{ currentlyReorderingStatus: false }">
         <div {{ $this->getTopLevelAttributes() }}>
 
@@ -35,7 +37,7 @@
                 $this->getParametersForConfigurableArea('before-wrapper')
             )
 
-            <x-livewire-tables::wrapper :$tableName :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5 :$localisationPath :$collapsingColumnDetails :$tdAttributes :$tdCheckboxAttributes :$collapsingColumnButtonExpandAttributes :$collapsingColumnButtonCollapseAttributes :$hasCollapsingColumns :$shouldCollapseAlways :$shouldCollapseOnTablet :$shouldCollapseOnMobile :$currentlyReorderingStatus :$showBulkActionsSections :$coreTableAttributes :$showCollapsingColumnSections :$selectedVisibleColumns :$hasDisplayLoadingPlaceholder :$hasTableRowUrl>
+            <x-livewire-tables::wrapper :$tableName :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5 :$localisationPath :$collapsingColumnDetails :$tdAttributes :$tdCheckboxAttributes :$collapsingColumnButtonExpandAttributes :$collapsingColumnButtonCollapseAttributes :$hasCollapsingColumns :$shouldCollapseAlways :$shouldCollapseOnTablet :$shouldCollapseOnMobile :$currentlyReorderingStatus :$showBulkActionsSections :$coreTableAttributes :$showCollapsingColumnSections :$selectedVisibleColumns :$hasDisplayLoadingPlaceholder :$hasTableRowUrl :$colspanCount :$columnCollapseInfo>
                 @if($this->hasActions() && !$this->showActionsInToolbar())
                     <x-livewire-tables::includes.actions/>
                 @endif
@@ -88,27 +90,29 @@
                 )
 
                 <x-livewire-tables::table :bulkActionsTdAttributes="$this->getBulkActionsTdAttributes()" :bulkActionsTdCheckboxAttributes="$this->getBulkActionsTdCheckboxAttributes()">
+                    <x-slot name="thead">
+                        <x-livewire-tables::table.thead />
+                    </x-slot>
 
-                    <x-livewire-tables::table.thead />
-
-                    @if($this->shouldShowSecondaryHeader())
+                    @if($this->shouldShowSecondaryHeader() && !$this->getCurrentlyReorderingStatus())
                         <x-livewire-tables::table.tr.secondary-header  />
                     @endif
 
-                    @if($this->hasDisplayLoadingPlaceholder())
+                    @if($hasDisplayLoadingPlaceholder)
                         <x-livewire-tables::includes.loading colCount="{{ $this->columns->count()+1 }}" />
                     @endif
 
-                    @if($showBulkActionsSections)
+                    @if($showBulkActionsSections && !$this->getCurrentlyReorderingStatus())
                         <x-livewire-tables::table.tr.bulk-actions  :displayMinimisedOnReorder="true" />
                     @endif
                     @if(count($currentRows = $this->getRows) > 0)
 
                         @tableloop ($currentRows as $rowIndex => $row)
-                            @php($rowPk = $row->{$primaryKey})
-                            <x-livewire-tables::table.tbody wire:key="{{ $tableName }}-row-wrap-{{ $rowPk }}" :$row :$rowIndex :$rowPk :customAttributes="$this->getTrAttributes($row, $rowIndex)" />
+                                @php($rowPk = $row->{$primaryKey})
+                                <x-livewire-tables::table.tbody wire:key="{{ $tableName }}-row-wrap-{{ $rowPk }}" :$row :$rowIndex :$rowPk :customAttributes="$this->getTrAttributes($row, $rowIndex)" />
 
                         @endtableloop
+
                     @else
                         <x-livewire-tables::table.empty />
                     @endif

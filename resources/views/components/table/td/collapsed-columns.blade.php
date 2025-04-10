@@ -2,7 +2,7 @@
 @props(['hidden' => false])
 @if ($hasCollapsingColumns)
 
-    <td x-data="{open:false}" wire:key="{{ $tableName }}-collapsingIcon-{{ $rowIndex }}-{{ md5(now()) }}"
+    <td wire:key="{{ $tableName }}-collapsingIcon-{{ $rowIndex }}-{{ md5(now()) }}"
         {{
             $attributes
                 ->merge()
@@ -24,12 +24,12 @@
         @if (! $hidden)
             <button
                 x-cloak x-show="!currentlyReorderingStatus"
-                x-on:click.prevent="$dispatch('toggle-row-content', {'tableName': '{{ $tableName }}', 'row': {{ $rowIndex }}}); open = !open"
+                x-on:click.prevent="showCollapsed = !showCollapsed"
                 @class([
                     'border-0 bg-transparent p-0' => $isBootstrap
                 ])
             >
-                <x-heroicon-o-plus-circle x-cloak x-show="!open" {{ 
+                <x-heroicon-o-plus-circle x-cloak x-show="!showCollapsed" {{ 
                     $attributes->merge($collapsingColumnButtonExpandAttributes)
                         ->class($isTailwind ?
                         [
@@ -43,7 +43,7 @@
                         ->except(['default','default-styling','default-colors']) 
                     }}
                 />
-                <x-heroicon-o-minus-circle x-cloak x-show="open"  {{ 
+                <x-heroicon-o-minus-circle x-cloak x-show="showCollapsed"  {{ 
                     $attributes->merge($collapsingColumnButtonCollapseAttributes)
                         ->class($isTailwind ? 
                         [

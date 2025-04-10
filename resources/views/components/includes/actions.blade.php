@@ -18,7 +18,7 @@
             ])
             ->except(['default','default-styling','default-colors'])
         }} >
-    @foreach($this->getActions() as $action)
+    @tableloop($this->getActions() as $action)
         {{ $action->render() }}
-    @endforeach
+    @endtableloop
 </div>

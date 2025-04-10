@@ -39,14 +39,11 @@
                         @if($this->shouldShowToolBar())
                             <x-livewire-tables::tools.toolbar />
                         @endif
-                        @if (
-                            $this->filtersAreEnabled() &&
-                            $this->filtersVisibilityIsEnabled() &&
-                            $this->hasVisibleFilters() &&
-                            $this->isFilterLayoutSlideDown()
-                        )
+
+                        @if ($this->showFilterLayoutSlideDown())
                             <x-livewire-tables::tools.toolbar.items.filter-slidedown  />
                         @endif
+
                         @includeWhen(
                             $this->hasConfigurableAreaFor('after-toolbar'),
                             $this->getConfigurableAreaFor('after-toolbar'),
@@ -68,7 +65,7 @@
                     </x-slot>
 
                     @if($this->shouldShowSecondaryHeader() && !$this->getCurrentlyReorderingStatus())
-                        <x-livewire-tables::table.tr.secondary-header  />
+                        <x-livewire-tables::table.tr.secondary-header :filterGenericData="$this->getFilterGenericData()" />
                     @endif
 
                     @if($hasDisplayLoadingPlaceholder)

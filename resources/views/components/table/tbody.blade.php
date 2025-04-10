@@ -9,9 +9,9 @@
             'divide-y' => $coreTableAttributes['tbody']['default-styling'] ?? ($coreTableAttributes['tbody']['default'] ?? true),
         ])
         ->except(['default','default-styling','default-colors']) 
-    }} x-data
+    }} x-data="{ showCollapsed: false }"
 >
-    <x-livewire-tables::table.tr  wire:key="{{ $tableName }}-row-wrap-{{ $rowPk }}" :rowUrl="$hasTableRowUrl ? $this->getTableRowUrl($row) : ''" :rowTarget="$hasTableRowUrl ? $this->getTableRowUrlTarget($row) : ''">
+    <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $rowPk }}" :rowUrl="$hasTableRowUrl ? $this->getTableRowUrl($row) : ''" :rowTarget="$hasTableRowUrl ? $this->getTableRowUrlTarget($row) : ''">
                             
         @if($currentlyReorderingStatus)
             <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" />
@@ -35,6 +35,6 @@
     </x-livewire-tables::table.tr>
 
     @if ($showCollapsingColumnSections)
-        <x-livewire-tables::table.collapsed-columns  />
+        <x-livewire-tables::table.collapsed-columns />
     @endif
 </tbody>

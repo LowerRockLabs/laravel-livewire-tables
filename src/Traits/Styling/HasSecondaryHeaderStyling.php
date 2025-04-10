@@ -11,6 +11,13 @@ trait HasSecondaryHeaderStyling
 
     protected ?Closure $secondaryHeaderTdAttributesCallback;
 
+
+    public function hasSecondaryHeaderTrAttributes(): bool
+    {
+        return isset($this->secondaryHeaderTrAttributesCallback);
+    }
+
+
     /**
      * @param  mixed  $rows
      * @return array<mixed>
@@ -18,6 +25,11 @@ trait HasSecondaryHeaderStyling
     public function getSecondaryHeaderTrAttributes($rows): array
     {
         return isset($this->secondaryHeaderTrAttributesCallback) ? call_user_func($this->secondaryHeaderTrAttributesCallback, $rows) : ['default' => true];
+    }
+
+    public function hasSecondaryHeaderTdAttributes(): bool
+    {
+        return isset($this->secondaryHeaderTdAttributesCallback);
     }
 
     /**

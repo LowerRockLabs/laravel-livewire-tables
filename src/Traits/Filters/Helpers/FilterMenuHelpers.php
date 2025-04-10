@@ -36,6 +36,15 @@ trait FilterMenuHelpers
     {
         return $this->getFilterLayout() === 'slide-down';
     }
+    
+    public function showFilterLayoutSlideDown(): bool
+    {
+        return $this->filtersAreEnabled() &&
+        $this->filtersVisibilityIsEnabled() &&
+        $this->hasVisibleFilters() &&
+        $this->isFilterLayoutSlideDown();
+
+    }
 
     /**
      * Get whether any filter has a configured slide down row.

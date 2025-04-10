@@ -36,7 +36,7 @@ trait FilterMenuHelpers
     {
         return $this->getFilterLayout() === 'slide-down';
     }
-    
+
     public function showFilterLayoutSlideDown(): bool
     {
         return $this->filtersAreEnabled() &&

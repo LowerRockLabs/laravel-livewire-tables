@@ -11,12 +11,10 @@ trait HasSecondaryHeaderStyling
 
     protected ?Closure $secondaryHeaderTdAttributesCallback;
 
-
     public function hasSecondaryHeaderTrAttributes(): bool
     {
         return isset($this->secondaryHeaderTrAttributesCallback);
     }
-
 
     /**
      * @param  mixed  $rows

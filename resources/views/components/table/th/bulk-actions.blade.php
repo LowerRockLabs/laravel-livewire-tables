@@ -1,6 +1,6 @@
 @aware(['tableName','isTailwind', 'isBootstrap'])
 @php
-    $customAttributes = $this->hasBulkActionsThAttributes ? $this->getBulkActionsThAttributes : $this->getAllThAttributes($this->getBulkActionsColumn())['customAttributes'];
+    $customAttributes = $this->hasBulkActionsThAttributes() ? $this->getBulkActionsThAttributes() : $this->getAllThAttributes($this->getBulkActionsColumn())['customAttributes'];
     $bulkActionsThCheckboxAttributes = $this->getBulkActionsThCheckboxAttributes();
 @endphp
 
@@ -25,7 +25,7 @@
                         'border-gray-300 text-indigo-600 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600' => (($bulkActionsThCheckboxAttributes['default'] ?? true) || ($bulkActionsThCheckboxAttributes['default-colors'] ?? true)),
                         'rounded shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50 ' => ($bulkActionsThCheckboxAttributes['default'] ?? true) || ($bulkActionsThCheckboxAttributes['default-styling'] ?? true),
                     ] : [
-                        'form-check-input' => $isBootstrap && ($bulkActionsThCheckboxAttributes['default'] ?? true),
+                        'form-check-input' => ($bulkActionsThCheckboxAttributes['default'] ?? true),
                     ])->except(['default','default-styling','default-colors'])
                 }}
             />

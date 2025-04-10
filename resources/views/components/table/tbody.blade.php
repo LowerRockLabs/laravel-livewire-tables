@@ -1,17 +1,6 @@
-@aware(['tableName','showBulkActionsSections', 'coreTableAttributes', 'currentlyReorderingStatus', 'showCollapsingColumnSections', 'selectedVisibleColumns', 'columnCollapseInfo'])
+@aware(['tableName','showBulkActionsSections', 'coreTableAttributes', 'currentlyReorderingStatus', 'showCollapsingColumnSections', 'selectedVisibleColumns', 'columnCollapseInfo', 'hasTableRowUrl'])
 @props(['row','rowIndex','rowPk','customAttributes'])
-@php
-if ($this->hasTableRowUrl())
-{
-    $rowUrl = $this->getTableRowUrl($row);
-    $rowTarget = $this->getTableRowUrlTarget($row);
-}
-else
-{
-    $rowUrl = '';
-    $rowTarget = '';
-} 
-@endphp
+
 
 <tbody @if($currentlyReorderingStatus) x-sort:item="'{{$rowPk}}'" data-id="{{$rowPk}}" @endif {{ $attributes->merge($coreTableAttributes['tbody'])
         ->class([
@@ -22,7 +11,7 @@ else
         ->except(['default','default-styling','default-colors']) 
     }} x-data
 >
-    <x-livewire-tables::table.tr wire:key="{{ $tableName }}-row-wrap-{{ $rowPk }}" :$rowUrl :$rowTarget >
+    <x-livewire-tables::table.tr  wire:key="{{ $tableName }}-row-wrap-{{ $rowPk }}" :rowUrl="$hasTableRowUrl ? $this->getTableRowUrl($row) : ''" :rowTarget="$hasTableRowUrl ? $this->getTableRowUrlTarget($row) : ''">
                             
         @if($currentlyReorderingStatus)
             <x-livewire-tables::table.td.reorder x-cloak x-show="currentlyReorderingStatus" />

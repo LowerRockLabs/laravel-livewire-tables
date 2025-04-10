@@ -1,7 +1,61 @@
 /*jshint esversion: 6 */
 
+function removeHTMLTags(htmlString) {
+    // Create a new DOMParser instance
+    const parser = new DOMParser();
+    // Parse the HTML string
+    let  doc = parser.parseFromString(htmlString, 'text/html');
+    // Extract text content
+    let textContent = doc.body.innerText || "";
+    // Trim whitespace
+    let trimmedContent = textContent.trim();
+
+    return trimmedContent;
+};
+
+function eventValidation(eventTableName,standardTableName, eventTableFingerprint, standardTableFingerprint) {
+    if ((eventTableName != '' && eventTableName === standardTableName) || (eventTableFingerprint != '' && eventTableFingerpint === standardTableFingerprint)) { 
+        return true; 
+    } 
+    return false;
+};
+
 document.addEventListener('alpine:init', () => {
-    
+
+
+    Alpine.data('reorderFunction', () => ({
+        reorderedItems: [],
+
+        cancelReorder() {
+            if (this.hideReorderColumnUnlessReorderingStatus) {
+                this.reorderDisplayColumn = false;
+            }
+            this.$wire.disableReordering();
+        },
+        updateReorderedItems(items) {
+            this.reorderedItems = items;
+        },
+        saveReorderedItems() {
+            if(this.reorderedItems.length !== "undefined" && this.reorderedItems.length !== 0)
+            {
+                var filtered = this.reorderedItems.filter(function(value) {
+                    return value != 'thead';
+                });
+                if (this.hideReorderColumnUnlessReorderingStatus) {
+                    this.reorderDisplayColumn = false;
+                }    
+                this.currentlyReorderingStatus = false;
+
+                this.$wire.storeReorder(filtered);
+            }
+            else
+            {
+                this.$wire.disableReordering();
+            }
+        },
+
+    }));
+
     Alpine.data('laravellivewiretable', (wire) => ({
         tableId: '',
         showBulkActionsAlpine: false,
@@ -19,18 +73,6 @@ document.addEventListener('alpine:init', () => {
         selectAllStatus: wire.entangle('selectAll'),
         delaySelectAll: wire.entangle('delaySelectAll'),
         hideBulkActionsWhenEmpty: wire.entangle('hideBulkActionsWhenEmpty'),
-        dragging: false,
-        reorderEnabled: false,
-        sourceID: '',
-        targetID: '',
-        evenRowClasses: '',
-        oddRowClasses: '',
-        currentlyHighlightedElement: '',
-        evenRowClassArray: {},
-        oddRowClassArray: {},
-        evenNotInOdd: {},
-        oddNotInEven: {},
-        orderedRows: [],
         defaultReorderColumn: wire.entangle('defaultReorderColumn'),
         reorderStatus: wire.entangle('reorderStatus'),
         currentlyReorderingStatus: wire.entangle('currentlyReorderingStatus'),
@@ -41,6 +83,7 @@ document.addEventListener('alpine:init', () => {
         showFilterPillLabel: [],
         filterPillsSeparator: ', ',
         showFilterPillsSection: true,
+
         stripLivewireTags(data) { 
             let localHtml = data.innerHTML; 
             localHtml = localHtml.replace('<!--[if BLOCK]>', '')
@@ -50,18 +93,6 @@ document.addEventListener('alpine:init', () => {
                     .trim();
             return localHtml;
         },
-        removeHTMLTags(htmlString) {
-            // Create a new DOMParser instance
-            const parser = new DOMParser();
-            // Parse the HTML string
-            let  doc = parser.parseFromString(htmlString, 'text/html');
-            // Extract text content
-            let textContent = doc.body.innerText || "";
-            // Trim whitespace
-            let trimmedContent = textContent.trim();
-
-            return trimmedContent;
-        },        
         resetSpecificFilter(filterKey)
         {
             this.externalFilterPillsVals[filterKey] = [];
@@ -115,7 +146,6 @@ document.addEventListener('alpine:init', () => {
         },
         showFilterPillsLabel(filterKey)
         {
-            let pillsLength = this.getFilterPillsLength(filterKey);
             return (this.getFilterPillsLength(filterKey) > 0);
         },
         getFilterPillImplodedValues(filterKey, separator)
@@ -133,124 +163,6 @@ document.addEventListener('alpine:init', () => {
         showFilterPillsSeparator(filterKey,index)
         {
             return ((index+1) < (this.getFilterPillsLength(filterKey)));
-        },
-        dragStart(event) {
-            this.$nextTick(() => { this.setupEvenOddClasses() });
-            this.sourceID = event.target.id;
-            event.dataTransfer.effectAllowed = 'move';
-            event.dataTransfer.setData('text/plain', event.target.id);
-            event.target.classList.add("laravel-livewire-tables-dragging");
-        },
-        dragOverEvent(event) {
-            if (typeof this.currentlyHighlightedElement == 'object') {
-                this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
-            }
-            let target = event.target.closest('tr');
-            this.currentlyHighlightedElement = target;
- 
-            if (event.offsetY < (target.getBoundingClientRect().height / 2)) {
-                target.classList.add('laravel-livewire-tables-highlight-top');
-                target.classList.remove('laravel-livewire-tables-highlight-bottom');
-            }
-            else {
-                target.classList.remove('laravel-livewire-tables-highlight-top');
-                target.classList.add('laravel-livewire-tables-highlight-bottom');
-            }
-        },
-        dragLeaveEvent(event) {
-            event.target.closest('tr').classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
-        },
-        dropEvent(event) {
-            if (typeof this.currentlyHighlightedElement == 'object') {
-                this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
-            }
- 
-            let target = event.target.closest('tr');
-            let parent = event.target.closest('tr').parentNode;
-            let element = document.getElementById(this.sourceID).closest('tr');
-            element.classList.remove("laravel-livewire-table-dragging");
-            let originalPosition = element.rowIndex;
-            let newPosition = target.rowIndex;
-            let table = document.getElementById(this.tableId);
-            let loopStart = originalPosition;
-            if (event.offsetY > (target.getBoundingClientRect().height / 2)) {
-                parent.insertBefore(element, target.nextSibling);
-            }
-            else {
-                parent.insertBefore(element, target);
-            }
-            if (newPosition < originalPosition) {
-                loopStart = newPosition;
-            }
- 
-            /* 
-            let evenList = parentNode.querySelectorAll("table[tableType='rappasoft-laravel-livewire-tables']>tbody>tr:nth-child(even of tr.rappasoft-striped-row) ").forEach(function (elem) {
-                elem.classList.remove(...this.oddNotInEven);
-                row.classList.add(...this.evenNotInOdd);
-            });
-            */
-            let nextLoop = 'even';
-            for (let i = 1, row; row = table.rows[i]; i++) {
-                if (!row.classList.contains('hidden') && !row.classList.contains('md:hidden') ) {
-                    if (nextLoop === 'even') {
-                        row.classList.remove(...this.oddNotInEven);
-                        row.classList.add(...this.evenNotInOdd);
-                        nextLoop = 'odd';
-                    }
-                    else {
-                        row.classList.remove(...this.evenNotInOdd);
-                        row.classList.add(...this.oddNotInEven);
-                        nextLoop = 'even';
-                    }
-                }
-            }
-        },
-        reorderToggle() {
-            if (this.currentlyReorderingStatus) {
-                wire.disableReordering();
-            }
-            else {
-                if (this.hideReorderColumnUnlessReorderingStatus) {
-                    this.reorderDisplayColumn = true;
-                }
-                this.setupEvenOddClasses();
-                wire.enableReordering();
-            }
-            this.$nextTick(() => { this.setupEvenOddClasses() });
-        },
-        cancelReorder() {
-            if (this.hideReorderColumnUnlessReorderingStatus) {
-                this.reorderDisplayColumn = false;
-            }
-
-            wire.disableReordering();
- 
-        },
-        updateOrderedItems() {
-            let table = document.getElementById(this.tableId);
-            let orderedRows = [];
-            for (let i = 1, row; row = table.rows[i]; i++) {
-            orderedRows.push({ [this.primaryKeyName]: row.getAttribute('rowpk'), [this.defaultReorderColumn]: i });
-            }
-            wire.storeReorder(orderedRows);
-        },
-        setupEvenOddClasses() {
-            if (this.evenNotInOdd.length === undefined || this.evenNotInOdd.length == 0 || this.oddNotInEven.length === undefined || this.oddNotInEven.length == 0)
-            {
-                let tbody = document.getElementById(this.tableId).getElementsByTagName('tbody')[0];
-                let evenRowClassArray = [];
-                let oddRowClassArray = [];
- 
-                if (tbody.rows[0] !== undefined && tbody.rows[1] !== undefined) {
-                    evenRowClassArray = Array.from(tbody.rows[0].classList);
-                    oddRowClassArray = Array.from(tbody.rows[1].classList);
-                    this.evenNotInOdd = evenRowClassArray.filter(element => !oddRowClassArray.includes(element));
-                    this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
-
-                    evenRowClassArray = []
-                    oddRowClassArray = []
-                }
-            }
         },
         toggleSelectAll() {
             if (!this.showBulkActionsAlpine) {
@@ -325,27 +237,28 @@ document.addEventListener('alpine:init', () => {
         },
         showTable(event)
         {
-            let eventTableName = event.detail.tableName ?? '';
-            let eventTableFingerprint = event.detail.tableFingerpint ?? '';
-
-            if (((eventTableName ?? '') != '' && eventTableName === this.tableName) || (eventTableFingerprint != '' && eventTableFingerpint === this.dataTableFingerprint)) { 
+            
+            if (eventValidation(event.detail.tableName ?? '',this.tableName, event.detail.tableFingerpint ?? '', this.dataTableFingerprint)) { 
                 this.shouldBeDisplayed = true; 
             } 
         },
         hideTable(event)
         {
-            let eventTableName = event.detail.tableName ?? '';
-            let eventTableFingerprint = event.detail.tableFingerpint ?? '';
-
-            if ((eventTableName != '' && eventTableName === this.tableName) || (eventTableFingerprint != '' && eventTableFingerpint === this.dataTableFingerprint)) { 
+            if (eventValidation(event.detail.tableName ?? '',this.tableName, event.detail.tableFingerpint ?? '', this.dataTableFingerprint)) { 
                 this.shouldBeDisplayed = false; 
             } 
+        },
+        reorderToggle() {
+            wire.toggleReordering();
         },
         destroy() {
             this.listeners.forEach((listener) => {
                 listener();
             });
         },
+        init() {
+            console.log(removeHTMLTags('<strong>Help</strong>'));
+        }
     }));
 
     Alpine.data('booleanFilter', (wire,filterKey,tableName,defaultValue) => ({
@@ -632,139 +545,6 @@ document.addEventListener('alpine:init', () => {
         }
     }));
 
-    Alpine.data('reorderFunction', (wire, tableID, primaryKeyName) => ({
-        dragging: false,
-        reorderEnabled: false,
-        sourceID: '',
-        targetID: '',
-        evenRowClasses: '',
-        oddRowClasses: '',
-        currentlyHighlightedElement: '',
-        evenRowClassArray: {},
-        oddRowClassArray: {},
-        evenNotInOdd: {},
-        oddNotInEven: {},
-        orderedRows: [],
-        defaultReorderColumn: wire.get('defaultReorderColumn'),
-        reorderStatus: wire.get('reorderStatus'),
-        currentlyReorderingStatus: wire.entangle('currentlyReorderingStatus'),
-        hideReorderColumnUnlessReorderingStatus: wire.entangle('hideReorderColumnUnlessReorderingStatus'),
-        reorderDisplayColumn: wire.entangle('reorderDisplayColumn'),
-        dragStart(event) {
-            this.$nextTick(() => { this.setupEvenOddClasses() });
-            this.sourceID = event.target.id;
-            event.dataTransfer.effectAllowed = 'move';
-            event.dataTransfer.setData('text/plain', event.target.id);
-            event.target.classList.add("laravel-livewire-tables-dragging");
-        },
-        dragOverEvent(event) {
-            if (typeof this.currentlyHighlightedElement == 'object') {
-                this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
-            }
-            let target = event.target.closest('tr');
-            this.currentlyHighlightedElement = target;
- 
-            if (event.offsetY < (target.getBoundingClientRect().height / 2)) {
-                target.classList.add('laravel-livewire-tables-highlight-top');
-                target.classList.remove('laravel-livewire-tables-highlight-bottom');
-            }
-            else {
-                target.classList.remove('laravel-livewire-tables-highlight-top');
-                target.classList.add('laravel-livewire-tables-highlight-bottom');
-            }
-        },
-        dragLeaveEvent(event) {
-            event.target.closest('tr').classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
-        },
-        dropEvent(event) {
-            if (typeof this.currentlyHighlightedElement == 'object') {
-                this.currentlyHighlightedElement.classList.remove('laravel-livewire-tables-highlight-bottom', 'laravel-livewire-tables-highlight-top');
-            }
- 
-            let target = event.target.closest('tr');
-            let parent = event.target.closest('tr').parentNode;
-            let element = document.getElementById(this.sourceID).closest('tr');
-            element.classList.remove("laravel-livewire-table-dragging");
-            let originalPosition = element.rowIndex;
-            let newPosition = target.rowIndex;
-            let table = document.getElementById(tableID);
-            let loopStart = originalPosition;
-            if (event.offsetY > (target.getBoundingClientRect().height / 2)) {
-                parent.insertBefore(element, target.nextSibling);
-            }
-            else {
-                parent.insertBefore(element, target);
-            }
-            if (newPosition < originalPosition) {
-                loopStart = newPosition;
-            }
-            let nextLoop = 'even';
-            for (let i = 1, row; row = table.rows[i]; i++) {
-                if (!row.classList.contains('hidden') && !row.classList.contains('md:hidden') ) {
-                    if (nextLoop === 'even') {
-                        row.classList.remove(...this.oddNotInEven);
-                        row.classList.add(...this.evenNotInOdd);
-                        nextLoop = 'odd';
-                    }
-                    else {
-                        row.classList.remove(...this.evenNotInOdd);
-                        row.classList.add(...this.oddNotInEven);
-                        nextLoop = 'even';
-                    }
-                }
-            }
-        },
-        reorderToggle() {
-            this.$nextTick(() => { this.setupEvenOddClasses() });
-            if (this.currentlyReorderingStatus) {
-                wire.disableReordering();
- 
-            }
-            else {
-                this.setupEvenOddClasses();
-                if (this.hideReorderColumnUnlessReorderingStatus) {
-                    this.reorderDisplayColumn = true;
-                }
-                wire.enableReordering();
- 
-            }
-        },
-        cancelReorder() {
-            if (this.hideReorderColumnUnlessReorderingStatus) {
-                this.reorderDisplayColumn = false;
-            }
-            wire.disableReordering();
- 
-        },
-        updateOrderedItems() {
-            let table = document.getElementById(tableID);
-            let orderedRows = [];
-            for (let i = 1, row; row = table.rows[i]; i++) {
-            orderedRows.push({ [primaryKeyName]: row.getAttribute('rowpk'), [this.defaultReorderColumn]: i });
-            }
-            wire.storeReorder(orderedRows);
-        },
-        setupEvenOddClasses() {
-            if (this.evenNotInOdd.length === undefined || this.evenNotInOdd.length == 0 || this.oddNotInEven.length === undefined || this.oddNotInEven.length == 0)
-            {
-                let tbody = document.getElementById(tableID).getElementsByTagName('tbody')[0];
-                let evenRowClassArray = [];
-                let oddRowClassArray = [];
- 
-                if (tbody.rows[0] !== undefined && tbody.rows[1] !== undefined) {
-                    evenRowClassArray = Array.from(tbody.rows[0].classList);
-                    oddRowClassArray = Array.from(tbody.rows[1].classList);
-                    this.evenNotInOdd = evenRowClassArray.filter(element => !oddRowClassArray.includes(element));
-                    this.oddNotInEven = oddRowClassArray.filter(element => !evenRowClassArray.includes(element));
-
-                    evenRowClassArray = []
-                    oddRowClassArray = []
-                }
-            }
-        },
-        init() {
-        }
-    }));
 
     Alpine.data('filterPillsHandler', (data) => ({
         localData: data,
@@ -796,7 +576,7 @@ document.addEventListener('alpine:init', () => {
 
                 if(!this.shouldRenderAsHTML)
                 {
-                    joinedValues = this.removeHTMLTags(joinedValues);
+                    joinedValues = removeHTMLTags(joinedValues);
                 }
 
                 if (joinedValues !== null)
@@ -835,7 +615,7 @@ document.addEventListener('alpine:init', () => {
                 let eventPillItem = event.detail.pillItem ?? '';
                 if(!this.shouldRenderAsHTML)
                 {
-                    eventPillItem = this.removeHTMLTags(eventPillItem);
+                    eventPillItem = removeHTMLTags(eventPillItem);
                 }
     
                 if(eventPillItem != "")
@@ -904,12 +684,12 @@ document.addEventListener('alpine:init', () => {
         selectedItems: wire.entangle('selectedItems'), 
         sendValueToPill(value)
         {
-            let sentValue = this.removeHTMLTags(value);
+            let sentValue = removeHTMLTags(value);
             this.$dispatch('filterpillupdate', { tableName: this.tableName, filterKey: this.externalFilterKey, pillItem: sentValue });
         },
         overridePill(values)
         {
-            let sentValue = this.removeHTMLTags(values);
+            let sentValue = removeHTMLTags(values);
             this.$dispatch('filterpillupdate', { tableName: this.tableName, filterKey: this.externalFilterKey, pillItem: sentValue });
         },
         syncItems(items) { 

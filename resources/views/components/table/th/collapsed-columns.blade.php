@@ -4,7 +4,7 @@
         $attributes->merge()
             ->class($isTailwind ? [
                 'table-cell dark:bg-gray-800 laravel-livewire-tables-reorderingMinimised',
-                'sm:hidden' => !$shouldCollapseOnTablet && !shouldCollapseAlways,
+                'sm:hidden' => !$shouldCollapseOnTablet && !$shouldCollapseAlways,
                 'md:hidden' => !$shouldCollapseOnMobile && !$shouldCollapseOnTablet && !$shouldCollapseAlways,
                 'lg:hidden' =>  !$shouldCollapseAlways,
             ] : [

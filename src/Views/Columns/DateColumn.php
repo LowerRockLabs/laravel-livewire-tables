@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Carbon\Carbon;
 use DateTime;
+use Carbon\Exceptions\InvalidFormatException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
@@ -36,10 +37,36 @@ class DateColumn extends Column
                     return $dateTime->format($this->getOutputFormat());
                 } else {
                     // Check if format matches what is expected and return Carbon instance if so, otherwise emptyValue
-                    return Carbon::canBeCreatedFromFormat($dateTime, $this->getInputFormat()) ? Carbon::createFromFormat($this->getInputFormat(), $dateTime)->format($this->getOutputFormat()) : $this->getEmptyValue();
+                    if (Carbon::canBeCreatedFromFormat($dateTime, $this->getInputFormat()))
+                    {
+                        return Carbon::createFromFormat($this->getInputFormat(), $dateTime)->format($this->getOutputFormat());
+                    }
+                    else
+                    {
+                        try {
+                            if ($date = Carbon::parse($dateTime))
+                            {
+                                return $date->format($this->getOutputFormat());
+                            }    
+                        }
+                        catch (InvalidFormatException $e)
+                        {
+                            return $this->getEmptyValue();
+                        }
+                        catch (\Exception $e)
+                        {
+                            return $this->getEmptyValue();
+                        }
+                    }
+                    return $this->getEmptyValue();
                 }
             }
-        } catch (\Exception $exception) {
+        }
+        catch (InvalidFormatException $e)
+        {
+            return $this->getEmptyValue();
+        }
+        catch (\Exception $exception) {
             return $this->getEmptyValue();
         }
 

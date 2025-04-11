@@ -1,6 +1,6 @@
 @aware([ 'tableName','isTailwind','isBootstrap'])
 @props([])
-@php($toolBarAttributes = $this->getToolBarAttributesBag)
+@php($toolBarAttributes = $this->getToolBarAttributesBag())
 
 <div
     {{
@@ -64,12 +64,12 @@
             <x-livewire-tables::includes.actions/>
         @endif
 
-        @if ($this->showBulkActionsDropdownAlpine() && $this->shouldAlwaysHideBulkActionsDropdownOption != true)
+        @if ($this->showBulkActionsDropdownAlpine() && $this->shouldAlwaysHideBulkActionsDropdownOption() != true)
             <x-livewire-tables::tools.toolbar.items.bulk-actions />
         @endif
 
-        @if ($this->columnSelectIsEnabled)
-            <x-livewire-tables::tools.toolbar.items.column-select />
+        @if ($this->columnSelectIsEnabled())
+            <x-livewire-tables::tools.toolbar.items.column-select :buttonAttributes="$this->getColumnSelectButtonAttributes()" :checkboxAttributes="$this->getColumnSelectMenuOptionCheckboxAttributes()" />
         @endif
 
         @if ($this->showPaginationDropdown())

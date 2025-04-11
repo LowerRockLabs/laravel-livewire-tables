@@ -1,5 +1,4 @@
 @aware(['tableName','isTailwind','isBootstrap', 'currentlyReorderingStatus'])
-@props(['bulkActionsTdAttributes','bulkActionsTdCheckboxAttributes'])
 
 @php($coreTableAttributes = $this->getCoreTableAttributes())
 

@@ -1,16 +1,20 @@
-@aware(['tableName'])
-@if($this->isBootstrap)
+@aware(['tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@php
+$filterGenericData = $this->getFilterGenericData();
+$filterPopoverAttributes = $this->getFilterPopoverAttributes();
+@endphp
+@if($isBootstrap)
     <ul x-cloak {{ $attributes
-            ->merge($this->getFilterPopoverAttributes())
+            ->merge($filterPopoverAttributes)
             ->merge(['role' => 'menu'])
             ->class([
-                'w-100' => $this->getFilterPopoverAttributes['default-width'] ?? true,
-                'dropdown-menu mt-md-5' => $this->isBootstrap4,
-                'dropdown-menu' => $this->isBootstrap5,
+                'w-100' => $filterPopoverAttributes['default-width'] ?? true,
+                'dropdown-menu mt-md-5' => $isBootstrap4,
+                'dropdown-menu' => $isBootstrap5,
             ]) }} x-bind:class="{ 'show': filterPopoverOpen }">
         @tableloop ($this->getVisibleFilters() as $filter)
             <div id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper" wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar" class="p-2">
-                {{ $filter->setGenericDisplayData($this->getFilterGenericData())->render() }}
+                {{ $filter->setGenericDisplayData($filterGenericData)->render() }}
             </div>
         @endtableloop
 
@@ -23,7 +27,7 @@
     <div x-cloak x-show="filterPopoverOpen"
         {{ 
             $attributes
-            ->merge($this->getFilterPopoverAttributes())
+            ->merge($filterPopoverAttributes)
             ->merge([
                 'role' => 'menu',
                 'aria-orientation' => 'vertical',
@@ -36,9 +40,9 @@
                 'x-transition:leave-end' => 'transform opacity-0 scale-95',
             ])
             ->class([
-                'w-full md:w-56' => $this->getFilterPopoverAttributes()['default-width'] ?? true,
-                'origin-top-left absolute left-0 mt-2 rounded-md shadow-lg ring-1 ring-opacity-5 divide-y focus:outline-none z-50' => $this->getFilterPopoverAttributes()['default-styling'] ?? true,
-                'bg-white divide-gray-100 ring-black dark:bg-gray-700 dark:text-white dark:divide-gray-600' => $this->getFilterPopoverAttributes()['default-colors'] ?? true,
+                'w-full md:w-56' => $filterPopoverAttributes['default-width'] ?? true,
+                'origin-top-left absolute left-0 mt-2 rounded-md shadow-lg ring-1 ring-opacity-5 divide-y focus:outline-none z-50' => $filterPopoverAttributes['default-styling'] ?? true,
+                'bg-white divide-gray-100 ring-black dark:bg-gray-700 dark:text-white dark:divide-gray-600' => $filterPopoverAttributes['default-colors'] ?? true,
             ])
             ->except(['x-cloak', 'x-show', 'default','default-width', 'default-styling','default-colors']) 
         }}>
@@ -46,7 +50,7 @@
         @tableloop ($this->getVisibleFilters() as $filter)
             <div class="py-1" role="none">
                 <div id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper" wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-toolbar" class="block px-4 py-2 text-sm text-gray-700 space-y-1" role="menuitem">
-                    {{ $filter->setGenericDisplayData($this->getFilterGenericData())->render() }}
+                    {{ $filter->setGenericDisplayData($filterGenericData)->render() }}
                 </div>
             </div>
         @endtableloop

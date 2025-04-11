@@ -1,4 +1,5 @@
 @aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5', 'localisationPath'])
+@props(['buttonAttributes' => [], 'checkboxAttributes' => []])
 @if ($isTailwind)
     <div class="@if ($this->getColumnSelectIsHiddenOnMobile()) hidden sm:block @elseif ($this->getColumnSelectIsHiddenOnTablet()) hidden md:block @endif mb-4 w-full md:w-auto md:mb-0 md:ml-2">
         <div
@@ -14,10 +15,10 @@
                         x-on:click="open = !open"
                         type="button"
                         {{
-                            $attributes->merge($this->getColumnSelectButtonAttributes())
+                            $attributes->merge($buttonAttributes)
                             ->class([
-                                'inline-flex justify-center px-4 py-2 w-full text-sm font-medium rounded-md border shadow-sm focus:ring focus:ring-opacity-50' => $this->getColumnSelectButtonAttributes()['default-styling'],
-                                'text-gray-700 bg-white border-gray-300 hover:bg-gray-50 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $this->getColumnSelectButtonAttributes()['default-colors'],
+                                'inline-flex justify-center px-4 py-2 w-full text-sm font-medium rounded-md border shadow-sm focus:ring focus:ring-opacity-50' => $buttonAttributes['default-styling'] ?? true,
+                                'text-gray-700 bg-white border-gray-300 hover:bg-gray-50 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $buttonAttributes['default-colors'] ?? true,
                             ])
                             ->except(['default-styling', 'default-colors'])
                         }}
@@ -53,10 +54,10 @@
                             >
                                 <input
                                     {{
-                                        $attributes->merge($this->getColumnSelectMenuOptionCheckboxAttributes())
+                                        $attributes->merge($checkboxAttributes)
                                         ->class([
-                                            'transition duration-150 ease-in-out rounded shadow-sm focus:ring focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-wait' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-styling'],
-                                            'text-indigo-600 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-colors'],
+                                            'transition duration-150 ease-in-out rounded shadow-sm focus:ring focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-wait' => $checkboxAttributes['default-styling'] ?? true,
+                                            'text-indigo-600 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600' => $checkboxAttributes['default-colors'] ?? true,
                                         ])
                                         ->except(['default-styling', 'default-colors'])
                                     }}
@@ -80,10 +81,10 @@
                                 >
                                     <input
                                         {{
-                                            $attributes->merge($this->getColumnSelectMenuOptionCheckboxAttributes())
+                                            $attributes->merge($checkboxAttributes)
                                             ->class([
-                                                'transition duration-150 ease-in-out rounded shadow-sm focus:ring focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-wait' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-styling'],
-                                                'text-indigo-600 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-colors'],
+                                                'transition duration-150 ease-in-out rounded shadow-sm focus:ring focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-wait' => $checkboxAttributes['default-styling'] ?? true,
+                                                'text-indigo-600 border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600' => $checkboxAttributes['default-colors'] ?? true,
                                             ])
                                             ->except(['default-styling', 'default-colors'])
                                         }}
@@ -120,9 +121,9 @@
             <button
                 x-on:click="open = !open"
                 {{
-                    $attributes->merge($this->getColumnSelectButtonAttributes())
+                    $attributes->merge($buttonAttributes)
                     ->class([
-                        'btn dropdown-toggle d-block w-100 d-md-inline' => $this->getColumnSelectButtonAttributes()['default-styling'],
+                        'btn dropdown-toggle d-block w-100 d-md-inline' => $buttonAttributes['default-styling'] ?? true,
                     ])
                     ->except(['default-styling', 'default-colors'])
                 }}
@@ -160,9 +161,9 @@
                             wire:loading.attr="disabled"
                             type="checkbox"
                             {{
-                                $attributes->merge($this->getColumnSelectMenuOptionCheckboxAttributes())
+                                $attributes->merge($checkboxAttributes)
                                 ->class([
-                                    'form-check-input' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-styling'],
+                                    'form-check-input' => $checkboxAttributes['default-styling'] ?? true,
                                 ])
                                 ->except(['default-styling', 'default-colors'])
                             }}
@@ -205,9 +206,9 @@
                                 wire:loading.attr="disabled"
                                 type="checkbox"
                                 {{
-                                    $attributes->merge($this->getColumnSelectMenuOptionCheckboxAttributes())
+                                    $attributes->merge($checkboxAttributes)
                                     ->class([
-                                        'form-check-input' => $this->getColumnSelectMenuOptionCheckboxAttributes()['default-styling'],
+                                        'form-check-input' => $checkboxAttributes['default-styling'] ?? true,
                                     ])
                                     ->except(['default-styling', 'default-colors'])
                                 }}

@@ -1,4 +1,3 @@
-
 <div>
 
     <div x-data="{ currentlyReorderingStatus: false }">
@@ -10,7 +9,33 @@
                 $this->getParametersForConfigurableArea('before-wrapper')
             )
 
-            <x-livewire-tables::wrapper :$tableName :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5 :$localisationPath :$collapsingColumnDetails :$tdAttributes :$tdCheckboxAttributes :$collapsingColumnButtonExpandAttributes :$collapsingColumnButtonCollapseAttributes :$hasCollapsingColumns :$shouldCollapseAlways :$shouldCollapseOnTablet :$shouldCollapseOnMobile :$currentlyReorderingStatus :$showBulkActionsSections :$coreTableAttributes :$showCollapsingColumnSections :$selectedVisibleColumns :$hasDisplayLoadingPlaceholder :$hasTableRowUrl :$colspanCount :$columnCollapseInfo>
+            <x-livewire-tables::wrapper 
+            :tableName="$tableName"
+            :primaryKey="$primaryKey"
+            :isTailwind="$this->isTailwind()" 
+            :isBootstrap="$this->isBootstrap()"
+            :isBootstrap4="$this->isBootstrap4()" 
+            :isBootstrap5="$this->isBootstrap5()" 
+            :localisationPath="$this->getLocalisationPath()" 
+            :collapsingColumnDetails="$this->getCollapsedColumnsForContentNew()" 
+            :bulkActionsTdAttributes="$this->getBulkActionsTdAttributes()" 
+            :bulkActionsTdCheckboxAttributes="$this->getBulkActionsTdCheckboxAttributes()" 
+            :collapsingColumnButtonExpandAttributes="$this->getCollapsingColumnButtonExpandAttributes()" 
+            :collapsingColumnButtonCollapseAttributes="$this->getCollapsingColumnButtonCollapseAttributes()" 
+            :hasCollapsingColumns="($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())" 
+            :shouldCollapseAlways="$this->shouldCollapseAlways()" 
+            :shouldCollapseOnTablet="$this->shouldCollapseOnTablet()" 
+            :shouldCollapseOnMobile="$this->shouldCollapseOnMobile()" 
+            :currentlyReorderingStatus="$this->getCurrentlyReorderingStatus()" 
+            :showBulkActionsSections="$this->showBulkActionsSections()" 
+            :coreTableAttributes="$this->getCoreTableAttributes()" 
+            :showCollapsingColumnSections="$this->showCollapsingColumnSections()" 
+            :selectedVisibleColumns="$this->selectedVisibleColumns()" 
+            :hasDisplayLoadingPlaceholder="$this->hasDisplayLoadingPlaceholder()" 
+            :hasTableRowUrl="$this->hasTableRowUrl()" 
+            :colspanCount="$this->getColspanCount()" 
+            :columnCollapseInfo="$this->getCollapsedColumnsForContentAll()"
+            >
                 @if($this->hasActions() && !$this->showActionsInToolbar())
                     <x-livewire-tables::includes.actions/>
                 @endif
@@ -22,35 +47,7 @@
                 )
 
                 @if($this->shouldShowTools())
-                    <x-livewire-tables::tools >
-                        @if ($this->showSortPillsSection())
-                            <x-livewire-tables::tools.sorting-pills />
-                        @endif
-                        @if($this->showFilterPillsSection())
-                            <x-livewire-tables::tools.filter-pills />
-                        @endif
-
-                        @includeWhen(
-                            $this->hasConfigurableAreaFor('before-toolbar'),
-                            $this->getConfigurableAreaFor('before-toolbar'),
-                            $this->getParametersForConfigurableArea('before-toolbar')
-                        )
-
-                        @if($this->shouldShowToolBar())
-                            <x-livewire-tables::tools.toolbar />
-                        @endif
-
-                        @if ($this->showFilterLayoutSlideDown())
-                            <x-livewire-tables::tools.toolbar.items.filter-slidedown  />
-                        @endif
-
-                        @includeWhen(
-                            $this->hasConfigurableAreaFor('after-toolbar'),
-                            $this->getConfigurableAreaFor('after-toolbar'),
-                            $this->getParametersForConfigurableArea('after-toolbar')
-                        )
-
-                    </x-livewire-tables::tools>
+                    <x-livewire-tables::tools />
                 @endif
 
                 @includeWhen(
@@ -59,7 +56,7 @@
                     $this->getParametersForConfigurableArea('after-tools')
                 )
 
-                <x-livewire-tables::table :bulkActionsTdAttributes="$this->getBulkActionsTdAttributes()" :bulkActionsTdCheckboxAttributes="$this->getBulkActionsTdCheckboxAttributes()">
+                <x-livewire-tables::table >
                     <x-slot name="thead">
                         <x-livewire-tables::table.thead />
                     </x-slot>
@@ -68,11 +65,11 @@
                         <x-livewire-tables::table.tr.secondary-header :filterGenericData="$this->getFilterGenericData()" />
                     @endif
 
-                    @if($hasDisplayLoadingPlaceholder)
+                    @if($this->hasDisplayLoadingPlaceholder())
                         <x-livewire-tables::includes.loading colCount="{{ $this->columns->count()+1 }}" />
                     @endif
 
-                    @if($showBulkActionsSections && !$this->getCurrentlyReorderingStatus())
+                    @if($this->showBulkActionsSections() && !$this->getCurrentlyReorderingStatus())
                         <x-livewire-tables::table.tr.bulk-actions  :displayMinimisedOnReorder="true" />
                     @endif
                     @if(count($currentRows = $this->getRows) > 0)

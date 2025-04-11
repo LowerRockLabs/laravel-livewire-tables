@@ -20,5 +20,4 @@ class DateTimeColumn extends DateColumn
     public string $emptyValue = '';
 
     protected string $view = 'livewire-tables::includes.columns.date';
-
 }

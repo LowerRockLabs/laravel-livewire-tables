@@ -3,8 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
 use Carbon\Carbon;
-use DateTime;
 use Carbon\Exceptions\InvalidFormatException;
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
@@ -37,36 +37,26 @@ class DateColumn extends Column
                     return $dateTime->format($this->getOutputFormat());
                 } else {
                     // Check if format matches what is expected and return Carbon instance if so, otherwise emptyValue
-                    if (Carbon::canBeCreatedFromFormat($dateTime, $this->getInputFormat()))
-                    {
+                    if (Carbon::canBeCreatedFromFormat($dateTime, $this->getInputFormat())) {
                         return Carbon::createFromFormat($this->getInputFormat(), $dateTime)->format($this->getOutputFormat());
-                    }
-                    else
-                    {
+                    } else {
                         try {
-                            if ($date = Carbon::parse($dateTime))
-                            {
+                            if ($date = Carbon::parse($dateTime)) {
                                 return $date->format($this->getOutputFormat());
-                            }    
-                        }
-                        catch (InvalidFormatException $e)
-                        {
+                            }
+                        } catch (InvalidFormatException $e) {
                             return $this->getEmptyValue();
-                        }
-                        catch (\Exception $e)
-                        {
+                        } catch (\Exception $e) {
                             return $this->getEmptyValue();
                         }
                     }
+
                     return $this->getEmptyValue();
                 }
             }
-        }
-        catch (InvalidFormatException $e)
-        {
+        } catch (InvalidFormatException $e) {
             return $this->getEmptyValue();
-        }
-        catch (\Exception $exception) {
+        } catch (\Exception $exception) {
             return $this->getEmptyValue();
         }
 

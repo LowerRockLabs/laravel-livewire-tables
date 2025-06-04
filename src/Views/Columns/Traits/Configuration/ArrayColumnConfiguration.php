@@ -37,7 +37,6 @@ trait ArrayColumnConfiguration
         return $this;
     }
 
-    
     public function wrapperStart(string $value): self
     {
         $this->outputWrapperStart = $value;
@@ -53,33 +52,30 @@ trait ArrayColumnConfiguration
     }
 
     /**
-     * Undocumented function
+     * Setup Flex Col Behaviour
      *
-     * @param array<mixed> $attribs
-     * @return self
+     * @param  array<mixed>  $attribs
      */
     public function flexCol(array $attribs = []): self
     {
         $bag = new ComponentAttributeBag(['class' => $this->isTailwind() ? 'flex flex-col' : 'd-flex d-flex-col']);
 
         return $this->wrapperStart('<div '.$bag->merge($attribs).'>')
-        ->wrapperEnd('</div>')
-        ->separator("");
+            ->wrapperEnd('</div>')
+            ->separator('');
     }
 
     /**
-     * Undocumented function
+     * Setup Flex Row Behaviour
      *
-     * @param array<mixed> $attribs
-     * @return self
+     * @param  array<mixed>  $attribs
      */
     public function flexRow(array $attribs = []): self
     {
         $bag = new ComponentAttributeBag(['class' => $this->isTailwind() ? 'flex flex-row' : 'd-flex d-flex-row']);
 
         return $this->wrapperStart('<div '.$bag->merge($attribs).'>')
-        ->wrapperEnd('</div>')
-        ->separator("");
+            ->wrapperEnd('</div>')
+            ->separator('');
     }
-
 }

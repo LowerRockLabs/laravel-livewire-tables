@@ -4,30 +4,10 @@ namespace Rappasoft\LaravelLivewireTables\DataTransferObjects;
 
 class FilterGenericData
 {
-    public string $tableName;
-
-    public string $filterLayout;
-
-    public bool $isTailwind = false;
-
-    public bool $isTailwind4 = false;
-
-    public bool $isBootstrap4 = false;
-
-    public bool $isBootstrap5 = false;
-
-    public function __construct(string $tableName, string $filterLayout, bool $isTailwind = false, bool $isBootstrap4 = false, bool $isBootstrap5 = false, bool $isTailwind4 = false)
-    {
-        $this->tableName = $tableName;
-        $this->filterLayout = $filterLayout;
-        $this->isTailwind = $isTailwind;
-        $this->isTailwind4 = $isTailwind4;
-        $this->isBootstrap4 = $isBootstrap4;
-        $this->isBootstrap5 = $isBootstrap5;
-    }
+    public function __construct(public string $tableName, public string $filterLayout, public bool $isTailwind = false, public bool $isBootstrap4 = false, public bool $isBootstrap5 = false) {}
 
     /**
-     * Undocumented function
+     * Convert To Array
      *
      * @return array<mixed>
      */

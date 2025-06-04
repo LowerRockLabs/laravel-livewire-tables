@@ -41,26 +41,10 @@ class ArrayColumn extends BaseColumn
      */
     protected mixed $outputFormat = null;
 
-    /**
-     * Undocumented variable
-     *
-     * @var string|null
-     */
-    public ?string $outputWrapperStart;
+    public ?string $outputWrapperStart = null;
 
-    /**
-     * Undocumented variable
-     *
-     * @var string|null
-     */
-    public ?string $outputWrapperEnd;
+    public ?string $outputWrapperEnd = null;
 
-    /**
-     * Undocumented function
-     *
-     * @param string $title
-     * @param string|null $from
-     */
     public function __construct(string $title, ?string $from = null)
     {
         parent::__construct($title, $from);
@@ -94,10 +78,10 @@ class ArrayColumn extends BaseColumn
 
         $returnedValue = (! empty($outputValues) ? implode($this->getSeparator(), $outputValues) : $this->getEmptyValue());
 
-        if ($this->hasOutputWrapperStart() && $this->hasOutputWrapperEnd())
-        {
-            $returnedValue = $this->getOutputWrapperStart() . $returnedValue . $this->getOutputWrapperEnd();
+        if ($this->hasOutputWrapperStart() && $this->hasOutputWrapperEnd()) {
+            $returnedValue = $this->getOutputWrapperStart().$returnedValue.$this->getOutputWrapperEnd();
         }
+
         return new HtmlString($returnedValue);
     }
 }

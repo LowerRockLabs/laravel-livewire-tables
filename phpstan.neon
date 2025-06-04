@@ -13,21 +13,25 @@ parameters:
     treatPhpDocTypesAsCertain: false
     reportUnmatchedIgnoredErrors: false
     ignoreErrors:
-        - identifier: argument.type
-        - identifier: argument.templateType
-        - identifier: new.static
+        - identifier: missingType.generics
+        - identifier: missingType.iterableValue
+        - identifier: trait.unused
+        - identifier: deadCode.unreachable
+        - identifier: booleanNot.alwaysTrue
+          paths:
+            - src/Views/Columns/Traits/HasDataTableComponent.php
+        - identifier: notIdentical.alwaysTrue
+          paths:
+            - src/Traits/Filters/Helpers/FilterPillsHelpers.php
+            - src/Traits/Helpers/CustomisationsHelpers.php
+            - src/Traits/Helpers/QueryHelpers.php
+            - src/Views/Columns/Traits/HasSlot.php
+            - src/Views/Columns/Traits/Helpers/ArrayColumnHelpers.php
         - identifier: function.alreadyNarrowedType
           paths: 
             - src/Views/Filters/MultiSelectDropdownFilter.php
             - src/Views/Filters/Traits/HasOptions.php
             - src/Views/Traits/Core/HasView.php
-        - identifier: missingType.generics
+        - identifier: unset.possiblyHookedProperty
           paths:
-            - src/Traits/WithData.php
-        - identifier: empty.offset
-          paths:
-            - src/Traits/Filters/Helpers/FilterMenuHelpers.php
-        - identifier: isset.offset
-          paths:
-            - src/Traits/Filters/Helpers/FilterMenuHelpers.php
-        - message: '# \$view of function view expects view-string\|null, string given.#'
+            - src/Traits/Configuration/CollapsingColumnConfiguration.php

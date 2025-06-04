@@ -5,7 +5,6 @@ namespace Rappasoft\LaravelLivewireTables\Views\Columns\Traits\Helpers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait LivewireComponentColumnHelpers
@@ -23,8 +22,6 @@ trait LivewireComponentColumnHelpers
 
     /**
      * Determines whether a Livewire Component has been set
-     *
-     * @return boolean
      */
     public function hasLivewireComponent(): bool
     {
@@ -33,9 +30,6 @@ trait LivewireComponentColumnHelpers
 
     /**
      * Retrieves attributes based on callback
-     *
-     * @param Model $row
-     * @return array<mixed>
      */
     protected function retrieveAttributes(Model $row): array
     {
@@ -56,28 +50,26 @@ trait LivewireComponentColumnHelpers
 
     /**
      * Runs pre-checks
-     *
-     * @return boolean
      */
     protected function runPreChecks(): bool
     {
         if (! $this->hasLivewireComponent()) {
             throw new DataTableConfigurationException('You must define a Livewire Component for this column');
+
+            return false;
         }
 
         if ($this->isLabel()) {
             throw new DataTableConfigurationException('You can not use a label column with a Livewire Component column');
+
+            return false;
         }
 
         return true;
     }
 
-    
     /**
      * Implodes defined attributes to be used
-     *
-     * @param array<mixed> $attributes
-     * @return string
      */
     protected function implodeAttributes(array $attributes): string
     {
@@ -88,10 +80,6 @@ trait LivewireComponentColumnHelpers
 
     /**
      * getBlade Render
-     *
-     * @param array<mixed> $attributes
-     * @param string $key
-     * @return string
      */
     protected function getBlade(array $attributes, string $key): string
     {
@@ -99,18 +87,14 @@ trait LivewireComponentColumnHelpers
             '<livewire:dynamic-component :component="$component" :key="$key" '.$this->implodeAttributes($attributes).' />',
             [
                 'component' => $this->getLivewireComponent(),
-                'key' => $key,
+                'key' => \Illuminate\Support\Str::random(),
                 ...$attributes,
             ],
         );
     }
-    
+
     /**
-     * Gets HTML String
-     *
-     * @param array<mixed> $attributes
-     * @param string $key
-     * @return HtmlString
+     * Gets HTML STring
      */
     protected function getHtmlString(array $attributes, string $key): HtmlString
     {

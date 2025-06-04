@@ -6,15 +6,10 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 
 class DebuggableData
 {
-    public DataTableComponent $component;
-
-    public function __construct(DataTableComponent $component)
-    {
-        $this->component = $component;
-    }
+    public function __construct(public DataTableComponent $component) {}
 
     /**
-     * Undocumented function
+     * Returns data to an array
      *
      * @return array<mixed>
      */

@@ -39,10 +39,9 @@ trait ArrayColumnHelpers
         return $this->outputFormat;
     }
 
-    
     public function hasOutputWrapperStart(): bool
     {
-        return isset($this->outputWrapperStart) && ($this->outputWrapperStart !== null && is_string($this->outputWrapperStart));
+        return $this->outputWrapperStart !== null && is_string($this->outputWrapperStart);
     }
 
     public function getOutputWrapperStart(): string
@@ -52,7 +51,7 @@ trait ArrayColumnHelpers
 
     public function hasOutputWrapperEnd(): bool
     {
-        return isset($this->outputWrapperEnd) && ($this->outputWrapperEnd !== null && is_string($this->outputWrapperEnd));
+        return $this->outputWrapperEnd !== null && is_string($this->outputWrapperEnd);
     }
 
     public function getOutputWrapperEnd(): string

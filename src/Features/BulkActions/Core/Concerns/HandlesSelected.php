@@ -29,7 +29,7 @@ trait HandlesSelected
     public function getSelected(): array
     {
         if ($this->getSelectAllStatus()) {
-            $selectedItems = (clone $this->baseQuery())->pluck($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey());
+            $selectedItems = (clone $this->baseQuery())->pluck($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey())->toArray();
             $this->setSelected($selectedItems);
             return $selectedItems;
         } 

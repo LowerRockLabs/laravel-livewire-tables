@@ -39,4 +39,14 @@ trait ProvidesEnhancementDefaults
         return $this;
     }
 
+    protected function setupEnhancedDefaultsWithSearch(): self
+    {
+        $this->setModernColumnSelectEnabled()
+            ->setQueryStringForColumnSelectEnabled()
+            ->setActionsInToolbarEnabled()
+            ->setExcludeDeselectedColumnsFromQueryEnabled()
+            ->setSearchOnlyColumnsEnabled();
+        return $this;
+    }
+
 }

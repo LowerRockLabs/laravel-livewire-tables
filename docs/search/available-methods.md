@@ -233,7 +233,15 @@ public function configure(): void
 
 By default, the Search input will display regardless of whether any Columns are searchable.  This allows for the search terms to be used in your builder() method.
 
-However - if you are using the native search() capability, and are utlising Selectable Columns, you may wish to show/hide the Search method, so that it is only displayed when Searchable Columns are visible.
+However - if you are using the native search() capability, and are utlising Selectable Columns, and have excluded deselected Columns from the query via:
+```php
+public function configure(): void
+{
+    $this->setExcludeDeselectedColumnsFromQueryEnabled();
+}
+```
+
+Then you may wish to show/hide the Search method, so that it is only displayed when Searchable Columns are visible.
 
 Should you wish to only display the Search input when Searchable Columns are visible, you should use:
 

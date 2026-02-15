@@ -34,7 +34,8 @@ trait ProvidesEnhancementDefaults
         {
             $this->setModernColumnSelectEnabled()
                 ->setActionsInToolbarEnabled()
-                ->setExcludeDeselectedColumnsFromQueryEnabled();
+                ->setExcludeDeselectedColumnsFromQueryEnabled()
+                ->setDelaySelectAllEnabled();
         }
         return $this;
     }
@@ -42,9 +43,10 @@ trait ProvidesEnhancementDefaults
     protected function setupEnhancedDefaultsWithSearch(): self
     {
         $this->setModernColumnSelectEnabled()
-            ->setQueryStringForColumnSelectEnabled()
             ->setActionsInToolbarEnabled()
             ->setExcludeDeselectedColumnsFromQueryEnabled()
+            ->setQueryStringForColumnSelectEnabled()
+            ->setDelaySelectAllEnabled()
             ->setSearchOnlyColumnsEnabled();
         return $this;
     }

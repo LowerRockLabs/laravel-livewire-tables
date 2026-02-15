@@ -21,12 +21,51 @@ trait FilterHelpers
     /**
      * Undocumented function
      *
+     * @return FilterCollection<int|Filter>
+     */
+    public function getPrependedFilters(): FilterCollection
+    {
+        return $this->prependedFilters ?? new FilterCollection($this->prependFilters());
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @return FilterCollection<int|Filter>
+     */
+    public function getAppendedFilters(): FilterCollection
+    {
+        return $this->appendedFilters ?? new FilterCollection($this->appendFilters());
+    }
+    /**
+     * Prepend Filters.
+     *
+     * @return array<mixed>
+     */
+     public function prependFilters(): array
+    {
+        return [];
+    }
+
+    /**
+     * Append Filters
+     *
+     * @return array<mixed>
+     */
+    public function appendFilters(): array
+    {
+        return [];
+    }
+
+    /**
+     * Undocumented function
+     *
      * @return FilterCollection<int,Filter>
      */
     public function getFilters(): FilterCollection
     {
         if (! isset($this->filterCollection)) {
-            $this->filterCollection = new FilterCollection($this->filters());
+            $this->filterCollection = $this->getPrependedFilters()->concat(new FilterCollection($this->filters()))->concat($this->getAppendedFilters());
         }
 
         return $this->filterCollection;

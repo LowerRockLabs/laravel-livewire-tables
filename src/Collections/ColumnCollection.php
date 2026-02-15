@@ -37,11 +37,15 @@ class ColumnCollection extends Collection
         return $this->reject(fn (Column $column) => !$column->isSortable() && !$column->hasSortCallback());
     }
 
+    public function searchable(): self 
+    {
+        return $this->filter(fn (Column $column) => $column->isSearchable() || $column->hasSearchCallback());
+    }
+
     public function visibleSortableColumns(): self 
     {
         return $this
             ->visible()
-            ->selected()
             ->sortable();
     }
 
@@ -55,7 +59,20 @@ class ColumnCollection extends Collection
     {
         return $this
             ->visible()
-            ->selected()
+            ->sortable()
+            ->whereIn('slug', $sortKeys)
+            ->keyBy('slug');
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param array<mixed> $sortKeys
+     * @return self
+     */
+    public function sortableColumnsKeyed(array $sortKeys = []): self 
+    {
+        return $this
             ->sortable()
             ->whereIn('slug', $sortKeys)
             ->keyBy('slug');
@@ -130,6 +147,29 @@ class ColumnCollection extends Collection
     public function visibleSelectable(): self 
     {
         return $this->visible()->selectable();
+    }
+
+
+
+    /**
+     * Undocumented function
+     *
+     * @param array<mixed> $selectedColumns
+     * @return self
+     */
+    public function selectedSelectable(array $selectedColumns): self 
+    {
+        return $this
+        ->reject(function (Column $column) use ($selectedColumns) {
+            return ($column->isSelectable() && !empty($selectedColumns) && !in_array($column->getSlug(), $selectedColumns, true));
+        });
+    }
+
+    public function addSlugValue(): self 
+    {
+        return $this->each(function (Column $column) {
+            $column->slugVal = $column->getSlug();
+        });
     }
 
 }

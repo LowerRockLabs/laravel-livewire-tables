@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Events\SearchApplied;
 use Rappasoft\LaravelLivewireTables\Features\Search\QueryString\HasQueryStringForSearch;
-use Rappasoft\LaravelLivewireTables\Features\Search\Styling\{HasSearchIcon, HasSearchInput};
-use Rappasoft\LaravelLivewireTables\Features\Search\Traits\{HandlesSearchModifiers,HandlesSearchStatus, HandlesSearchTrim,HandlesSearchVisibility};
+use Rappasoft\LaravelLivewireTables\Features\Search\Styling\{HasSearchIcon, HasSearchInputStyling};
+use Rappasoft\LaravelLivewireTables\Features\Search\Traits\{HandlesSearchInput,HandlesSearchModifiers,HandlesSearchStatus, HandlesSearchTrim,HandlesSearchVisibility};
+use Rappasoft\LaravelLivewireTables\Collections\ColumnCollection;
 
 trait WithSearch
 {
@@ -17,14 +18,16 @@ trait WithSearch
         HandlesSearchVisibility,
         HasQueryStringForSearch,
         HasSearchIcon,
-        HasSearchInput;
+        HasSearchInputStyling,
+        HandlesSearchInput;
+
 
     /**
-    * Undocumented variable
-    *
-    * @var string
-    */
-    public string $search = '';
+     * Undocumented variable
+     *
+     * @var ?ColumnCollection<int|string,\Rappasoft\LaravelLivewireTables\Features\Columns\Views\Column>
+     */
+    protected ?ColumnCollection $searchableColumns;
 
     /**
      * Undocumented function
@@ -33,13 +36,15 @@ trait WithSearch
      */
     public function applySearch(): Builder
     {
-        if ($this->searchIsEnabled() && $this->hasSearch()) {
+        if ($this->searchIsEnabled() && $this->shouldApplySearch() && $this->hasSearch()) {
 
-            $searchableColumns = $this->getSearchableColumns();
+            $searchableColumns = $this->getSearchableSelectedColumns();
+
             $search = $this->getSearch();
 
             $this->callHook('searchUpdated', ['value' => $search]);
             $this->callTraitHook('searchUpdated', ['value' => $search]);
+
             if ($this->getEventStatusSearchApplied() && $search != null) {
                 event(new SearchApplied($this->getTableName(), $search));
             }
@@ -61,84 +66,19 @@ trait WithSearch
     }
 
     /**
-     * Undocumented function
+     * Pre-Render Setup for Search
      *
-     * @param string|null $value
+     * @param \Illuminate\View\View $view
+     * @param array<mixed> $data
      * @return void
      */
-    public function updatedSearch(string|null $value): void
+    public function renderingWithSearch(\Illuminate\View\View $view, array $data = []): void
     {
-
-        if(!$this->reloading)
+        if(!$this->shouldDisplaySearch())
         {
-            if ($this->shouldTrimSearchString() && $this->search != trim($value)) {
-                $this->search = $value = trim($value);
-            }
-
-            $this->resetComputedPage();
-
-            // Clear bulk actions on search - if enabled
-            if ($this->getClearSelectedOnSearch()) {
-                $this->clearSelected();
-                $this->setSelectAllDisabled();
-            }
-
-            if (is_null($value) || $value === '') {
-                $this->clearSearch();
-            }
+            $this->clearSearch();
+            $this->setSearchVisibilityDisabled();
         }
     }
-
     
-    /**
-     * hasSearch
-     *
-     * @return boolean
-     *     #[Computed]
-     */
-    public function hasSearch(): bool
-    {
-        return $this->search != '';
-    }
-
-    /**
-     * getSearch
-     *  #[Computed]
-     * @return string
-     */
-    public function getSearch(): string
-    {
-        if ($this->shouldTrimSearchString() && $this->search != trim($this->search)) {
-            $this->search = trim($this->search);
-        }
-
-        return $this->search ?? '';
-    }
-
-    /**
-     * Search the search query from the table array
-     *
-     * @return void
-     */
-     public function clearSearch(): void
-    {
-        $this->search = '';
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @param string $query
-     * @return self
-     */
-    public function setSearch(string $query): self
-    {
-        if ($this->shouldTrimSearchString()) {
-            $this->search = trim($query);
-        } else {
-            $this->search = $query;
-        }
-
-        return $this;
-    }
 }

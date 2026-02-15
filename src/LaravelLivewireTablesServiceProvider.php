@@ -108,6 +108,7 @@ class LaravelLivewireTablesServiceProvider extends ServiceProvider
         }
 
         \Livewire\Livewire::component('laravel-livewire-tables.filter-pills', \Rappasoft\LaravelLivewireTables\Features\Pills\FilterPills\PillsWidget::class);
+        \Livewire\Livewire::component('laravel-livewire-tables.simple-modals.manager', \Rappasoft\LaravelLivewireTables\Features\SimpleModals\Core\SimpleModalManager::class);
 
     }
 }

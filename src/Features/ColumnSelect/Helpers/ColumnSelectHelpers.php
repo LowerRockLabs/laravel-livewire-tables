@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Features\ColumnSelect\Helpers;
 
+use Illuminate\Support\Arr;
 use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Features\Columns\Views\Column;
 use Rappasoft\LaravelLivewireTables\Collections\ColumnCollection;
@@ -17,7 +18,7 @@ trait ColumnSelectHelpers
      */
     public function columnSelectIsEnabledForColumn(string|Column $column): bool
     {
-        return !empty($this->selectedColumns) && in_array($column instanceof Column ? $column->getSlug() : $column, $this->selectedColumns, true);
+        return !empty($this->getSelectedColumns()) && in_array($column instanceof Column ? $column->getSlug() : $column, $this->getSelectedColumns(), true);
     }
 
 
@@ -29,7 +30,7 @@ trait ColumnSelectHelpers
      */
     public function getExcludeDeselectedColumnsFromQuery(): bool
     {
-        return $this->columnSelectConfig['excludeDeselectedColumnsFromQuery'];
+        return $this->columnSelectConfig['excludeDeselectedColumnsFromQuery'] ?? false;
     }
 
 
@@ -43,7 +44,7 @@ trait ColumnSelectHelpers
         $items = [];
         foreach($this->getSelectableColumns() as $col)
         {
-           $items[strval($col->getSlug())] = in_array(strval($col->getSlug()), $this->selectedColumns ?? []);
+           $items[strval($col->getSlug())] = in_array(strval($col->getSlug()), $this->getSelectedColumns() ?? []);
         }
         return $items;
     }
@@ -61,7 +62,7 @@ trait ColumnSelectHelpers
         {
             $stringSlug = strval($col->getSlug());
 
-            $items[$stringSlug] = ['selected' => in_array($stringSlug, $this->selectedColumns ?? []), 'slug' => $stringSlug, 'title' => $col->getColumnSelectTitle()];
+            $items[$stringSlug] = ['selected' => in_array($stringSlug, $this->getSelectedColumns() ?? []), 'slug' => $stringSlug, 'title' => $col->getColumnSelectTitle()];
         }
         return $items;
     }
@@ -92,7 +93,7 @@ trait ColumnSelectHelpers
         return $this->getColumns()
             ->visible()
             ->selectable()
-            ->reject(fn (Column $column) => !in_array($column->getSlug(), $this->selectedColumns ?? []))
+            ->reject(fn (Column $column) => !in_array($column->getSlug(), $this->getSelectedColumns() ?? []))
             ->rejectInvisibleWhileReordering($this->currentlyReorderingIsEnabled())
             ->values();
     }
@@ -130,10 +131,40 @@ trait ColumnSelectHelpers
      */
     public function getSelectedColumnsForQuery(): array
     {
-        return $this->getColumns()
+        $cols = $this->getColumns()
             ->visible()
-            ->reject(fn (Column $column) => $column->isLabel())
-            ->reject(fn (Column $column) => ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)))
+            ->reject(fn (Column $column) => $column->isLabel());
+
+        if ($this->getExcludeDeselectedColumnsFromQuery()) {
+            $currentSorts = $this->getSorts();
+            $cols->reject(function(Column $column) use ($currentSorts) {
+                if($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column))
+                {
+                    if(!$column->isSortable())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        if(in_array($column->getSlug(), $currentSorts))
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+                elseif($column->isSelectable() && in_array($column->getSlug(), $this->getSelectedColumns()))
+                {
+                    return false;
+                }
+                return true;
+            });
+        }
+
+        return $cols
             ->rejectInvisibleWhileReordering($this->currentlyReorderingIsEnabled())
             ->values()
             ->toArray();
@@ -247,7 +278,7 @@ trait ColumnSelectHelpers
      */
     public function allVisibleColumnsAreSelected(): bool
     {
-        return count($this->selectedColumns) === count($this->getDefaultVisibleColumns());
+        return count($this->getSelectedColumns()) === count($this->getDefaultVisibleColumns());
     }
 
     /**
@@ -257,7 +288,7 @@ trait ColumnSelectHelpers
      */
     public function allSelectedColumnsAreVisibleByDefault(): bool
     {
-        return count($this->selectedColumns) === count($this->getDefaultVisibleColumns());
+        return count($this->getSelectedColumns()) === count($this->getDefaultVisibleColumns());
     }
 
     /**
@@ -284,8 +315,8 @@ trait ColumnSelectHelpers
         }
 
         // Set to either the default set or what is stored in the session
-        $selectedColumns = (count($this->selectedColumns) > 1) ?
-            $this->selectedColumns :
+        $selectedColumns = (count($this->getSelectedColumns()) > 1) ?
+            $this->getSelectedColumns() :
             session()->get($this->getColumnSelectSessionKey(), $this->getDefaultVisibleColumns());
 
         // Check to see if there are any excluded that are already stored in the enabled and remove them
@@ -305,8 +336,8 @@ trait ColumnSelectHelpers
      */
     protected function defaultSelectedColumns(): array
     {
-        $selectedColumns = (count($this->selectedColumns) > 1) ?
-            $this->selectedColumns :
+        $selectedColumns = (count($this->getSelectedColumns()) > 1) ?
+            $this->getSelectedColumns() :
             session()->get($this->getColumnSelectSessionKey(), $this->getDefaultVisibleColumns());
 
         foreach ($this->getColumns() as $column) {
@@ -349,11 +380,29 @@ trait ColumnSelectHelpers
         {
             return true;
         }
-        if ((empty($this->selectedColumns) && $column->isSelected()) || in_array($column->getSlug(), $this->selectedColumns))
+        if ((empty($this->getSelectedColumns()) && $column->isSelected()) || in_array($column->getSlug(), $this->getSelectedColumns()))
         {
             return true;
         }
         return false;
+    }
+
+    /**
+     * fixColumnSelectConfig
+     *
+     * @return array<string,mixed>
+     */
+    protected function fixColumnSelectConfig(): array
+    {
+        $updatedArray = [];
+        $generateColumnSelect = $this->generateColumnSelect();
+        $updatedArray['selectableColumns'] = $generateColumnSelect;
+        $updatedArray['selectableColumnCount'] = count($generateColumnSelect);
+        $updatedArray['selectableSelectedColumnCount'] = count(Arr::where($generateColumnSelect, function (mixed $value, string $key) {
+            return ($value == "true");
+        }));
+
+        return $updatedArray;
     }
 
 }

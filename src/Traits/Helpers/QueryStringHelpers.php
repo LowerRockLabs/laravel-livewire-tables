@@ -11,7 +11,7 @@ trait QueryStringHelpers
 
     public function getQueryStringStatus(): bool
     {
-        return true;
+        return $this->queryStringStatus;
     }
 
     public function queryStringIsEnabled(): bool
@@ -54,6 +54,11 @@ trait QueryStringHelpers
 
     protected function getQueryStringConfigStatus(string $type): bool
     {
+        if(!$this->hasQueryStringConfigStatus($type))
+        {
+            $this->setQueryStringConfigStatus($type,  $this->getQueryStringStatus());
+        }
+
         return $this->getQueryStringConfig($type)['status'] ?? $this->getQueryStringStatus();
     }
 
@@ -64,6 +69,10 @@ trait QueryStringHelpers
 
     protected function getQueryStringConfigAlias(string $type): string
     {
-        return $this->getQueryStringConfig($type)['alias'] ?? $this->getQueryStringAlias().'-'.$type;
+        if(!$this->hasQueryStringConfigAlias($type))
+        {
+            $this->setQueryStringConfigAlias($type,  $this->getQueryStringAlias().'_'.$type);
+        }
+        return $this->getQueryStringConfig($type)['alias'] ?? $this->getQueryStringAlias().'_'.$type;
     }
 }

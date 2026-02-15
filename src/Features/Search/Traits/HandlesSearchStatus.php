@@ -9,6 +9,9 @@ trait HandlesSearchStatus
     #[Locked]
     public bool $searchStatus = true;
 
+    #[Locked]
+    public bool $searchOnlyColumns = false;
+
     public function getSearchStatus(): bool
     {
         return $this->searchStatus;
@@ -67,4 +70,58 @@ trait HandlesSearchStatus
 
         return $this;
     }
+
+
+    public function getSearchOnlyColumnsStatus(): bool
+    {
+        return $this->searchOnlyColumns ?? false;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function setSearchOnlyColumnsStatus(bool $status): self
+    {
+        $this->searchOnlyColumns = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function setSearchOnlyColumnsEnabled(): self
+    {
+        return $this->setSearchOnlyColumnsStatus(true);
+    }
+
+    /**
+     * @return $this
+     */
+    protected function setSearchOnlyColumnsDisabled(): self
+    {
+        $this->search = '';
+
+        return $this->setSearchOnlyColumnsStatus(false);
+    }
+    
+    protected function shouldApplySearch(): bool
+    {
+        if ($this->searchIsEnabled())
+        {
+            if($this->getSearchOnlyColumnsStatus() && (count($this->getSearchableSelectedColumns()) == 0))
+            {
+                return false;
+            }
+            
+            return true;
+        }
+        return false;
+    }
+
+    protected function shouldDisplaySearch(): bool
+    {
+        return $this->shouldApplySearch();
+    }
+
 }

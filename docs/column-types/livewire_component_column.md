@@ -1,6 +1,6 @@
 ---
 title: Livewire Component (beta)
-weight: 14
+weight: 15
 ---
 
 Livewire Component Columns allow for the use of a Livewire Component as a Column.

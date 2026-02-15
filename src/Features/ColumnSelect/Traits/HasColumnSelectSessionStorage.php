@@ -51,14 +51,14 @@ trait HasColumnSelectSessionStorage
     {
         if ($this->shouldStoreColumnSelectInSession()) {
             $this->clearStoredColumnSelectValues();
-            session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
+            session([$this->getColumnSelectSessionKey() => $this->getSelectedColumns()]);
         }
     }
 
     public function restoreColumnSelectValues(): void
     {
         $this->selectedColumns = $this->getStoredColumnSelectValues();
-        $this->pushToQueryString($this->selectedColumns);
+        $this->pushToQueryString($this->getSelectedColumns());
     }
 
     /**

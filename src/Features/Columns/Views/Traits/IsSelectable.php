@@ -56,6 +56,17 @@ trait IsSelectable
         return $this;
     }
 
+    public function unselected(): self
+    {
+        return $this->deselected();
+    }
+
+
+    public function unselectedIf(callable|bool $value): self
+    {
+        return $this->deselectedIf($value);
+    }
+
     protected function hasColumnSelectTitle(): bool
     {
         return isset($this->columnSelectTitle);

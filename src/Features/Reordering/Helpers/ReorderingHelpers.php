@@ -165,7 +165,7 @@ trait ReorderingHelpers
             $this->getTableName() => property_exists($this, $this->getTableName()) ? $this->{$this->getTableName()} : [],
             'sorts' => $this->sorts,
             'search' => $this->search,
-            'selectedColumns' => $this->selectedColumns,
+            'selectedColumns' => $this->getSelectedColumns(),
             'sortingPillsStatus' => $this->getSortingPillsStatus(),
             'sortingStatus' => $this->getSortingStatus(),
             'paginationStatus' => $this->getPaginationStatus(),

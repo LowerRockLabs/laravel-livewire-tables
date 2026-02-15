@@ -14,14 +14,14 @@ trait HasSlug
     {
         if(!isset($this->slug))
         {
-            $this->slug = Str::slug($this->hasCustomSlug() ? $this->getCustomSlug() : $this->getTitle());
+            $this->slug = $this->getSlug();
         }
         return $this;
     }
 
     public function getSlug(): string
     {
-        return Str::slug($this->hasCustomSlug() ? $this->getCustomSlug() : ($this->slug ?? $this->getTitle()));
+        return Str::slug(($this->hasCustomSlug() ? $this->getCustomSlug() : ($this->slug ?? $this->getTitle())), '_', 'en', ['@' => 'at', '#' => 'num']);
     }
 
     public function getCustomSlug(): string

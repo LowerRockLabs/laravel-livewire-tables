@@ -1,7 +1,7 @@
 @aware([ 'dataTableFingerprint', 'selectedVisibleColumns','showBulkActionsSections','hasCollapsingColumns', 'filterGenericData', 'currentlyReorderingStatus'])
 
 <x-livewire-tables::table.tr.plain :rowIndex="-1" data-id="tfoot"
-    :customAttributes="$this->getFooterTrAttributes($this->getRows)"
+    :customAttributes="$this->getFooterTrAttributes($currentRows)"
     wire:key="{{ $dataTableFingerprint .'-footer' }}"
 >
     @if(!$currentlyReorderingStatus)
@@ -18,14 +18,14 @@
     @tableloop($selectedVisibleColumns as $colIndex => $column)
         @if($column->hasFooter() && $column->hasFooterCallback())
 
-            <x-livewire-tables::table.td.plain wire:key="{{ $dataTableFingerprint . '-footer-datatable-td-' . $column->getSlug() }}"  :$column :$colIndex  :customAttributes="$this->getFooterTdAttributes($column, $this->getRows, $colIndex)">
+            <x-livewire-tables::table.td.plain wire:key="{{ $dataTableFingerprint . '-footer-datatable-td-' . $column->getSlug() }}"  :$column :$colIndex  :customAttributes="$this->getFooterTdAttributes($column, $currentRows, $colIndex)">
 
                     @if($column->footerCallbackIsFilter())
                         {{ $column->getFooterFilter($column->getFooterCallback(), $filterGenericData) }}
                     @elseif($column->footerCallbackIsString())
                         {{ $column->getFooterFilter($this->getFilterByKey($column->getFooterCallback()), $filterGenericData) }}
                     @else
-                        {{ $column->getNewFooterContents($this->getRows) }}
+                        {{ $column->getNewFooterContents($currentRows) }}
                     @endif
             </x-livewire-tables::table.td.plain>
         @else

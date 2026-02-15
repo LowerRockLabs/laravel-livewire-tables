@@ -51,6 +51,20 @@ trait WithFilters
     protected ?FilterCollection $filterCollection;
 
     /**
+     * Undocumented variable
+     *
+     * @var FilterCollection<int|Filter>|null
+     */
+    protected ?FilterCollection $prependedFilters;
+
+    /**
+     * Undocumented variable
+     *
+     * @var FilterCollection<int|Filter>|null
+     */
+    protected ?FilterCollection $appendedFilters;
+
+    /**
      * Undocumented function
      *
      * @return array<mixed>

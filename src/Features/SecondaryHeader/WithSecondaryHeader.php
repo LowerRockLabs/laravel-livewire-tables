@@ -36,7 +36,7 @@ trait WithSecondaryHeader
             return false;
         }
         return $this->columns
-            ->reject(fn (Column $column) => $column->isHidden() || ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)) || !$column->hasSecondaryHeader())
+            ->reject(fn (Column $column) => ($column->isHidden() || ($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column)) || !$column->hasSecondaryHeader()))
             ->reject(fn (Column $column) => $this->currentlyReorderingIsEnabled() && !$column->isVisibleOnReorder())
             ->count() > 0;
     }

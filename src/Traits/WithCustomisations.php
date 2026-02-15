@@ -45,6 +45,7 @@ trait WithCustomisations
 
         $view = $view->with([
             'customView' => method_exists($this, 'customView') ? $this->customView() : '',
+            'customViewAttributes' => $this->getCustomViewAttributes(),
         ]);
 
     }

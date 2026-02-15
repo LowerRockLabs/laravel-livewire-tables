@@ -12,7 +12,7 @@ trait HasQueryStringForPagination
     protected function queryStringHasQueryStringForPagination(): array
     {
         return ($this->queryStringForPaginationEnabled()) ? 
-        ['perPage' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->hasQueryStringAliasForPagination()]] : [];
+        ['perPage' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForPagination()]] : [];
 
     }
 
@@ -63,6 +63,7 @@ trait HasQueryStringForPagination
     public function getQueryStringAliasForPagination(): string
     {
         return $this->getQueryStringConfigAlias('pagination');
+        
     }
 
     public function setQueryStringAliasForPagination(string $alias): self

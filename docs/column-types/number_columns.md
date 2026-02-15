@@ -1,6 +1,6 @@
 ---
 title: Number Columns
-weight: 15
+weight: 16
 ---
 
 Number Columns are Standard Columns, with the difference being that the defaultValue expects and returns a numeric value, rather than a string, and the Sorting Pills default to Numeric Behaviour (0-9, 9-0).

@@ -2,18 +2,19 @@
 
 namespace Rappasoft\LaravelLivewireTables\Features\ColumnSelect\QueryString;
 
-trait HasQueryStringForColumnSelect
+trait HasColumnSelectQueryString
 {
-    /**
-     * Undocumented function
-     *
-     * @return array<mixed>
-     */
-    protected function queryStringHasQueryStringForColumnSelect(): array
+    protected function queryStringHasColumnSelectQueryString(): array
     {
-        return ($this->getQueryStringStatusForColumnSelect() && $this->columnSelectIsEnabled()) ? ['columnSelectConfig.selectedColumnsQsData' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForColumnSelect()]] : [];
-
+        return $this->columnSelectIsEnabled() ? ['columnSelectConfig.selectedColumnsQsData' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAliasForColumnSelect()]]
+         : [];
     }
+
+    public function queryStringForColumnSelectIsEnabled(): bool
+    {
+        return $this->getQueryStringStatusForColumnSelect() && $this->columnSelectIsEnabled();
+    }
+
 
     protected function setupQueryStringStatusForColumnSelect(): void
     {
@@ -28,11 +29,11 @@ trait HasQueryStringForColumnSelect
         return $this->hasQueryStringConfigStatus('columns');
     }
 
-    public function getQueryStringStatusForColumnSelect(): string
+    public function getQueryStringStatusForColumnSelect(): bool
     {
        // return 'test123123';
     //    dd($this->getQueryStringConfigAlias('columns'));
-        return $this->getQueryStringConfigAlias('columns');
+        return $this->getQueryStringConfigStatus('columns');
     }
 
     public function queryStringForColumnSelectEnabled(): bool
@@ -81,6 +82,10 @@ trait HasQueryStringForColumnSelect
      */
     protected function pushToQueryString(array $selectedColumns = []): void
     {
-        $this->columnSelectConfig['selectedColumnsQsData'] = implode(",",$selectedColumns);
+        if($this->queryStringForColumnSelectIsEnabled())
+        {
+            $this->columnSelectConfig['selectedColumnsQsData'] = implode(",",$selectedColumns);
+        }
+
     }
 }

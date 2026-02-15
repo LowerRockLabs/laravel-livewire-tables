@@ -9,7 +9,6 @@ use Rappasoft\LaravelLivewireTables\Features\Columns\Views\Column;
 trait ColumnHelpers
 {
 
-
     /**
      * Undocumented function
      *
@@ -63,54 +62,6 @@ trait ColumnHelpers
             ->first();
     }
 
-    /**
-     * @return array<mixed>
-     */
-    public function getColumnRelations(): array
-    {
-        return $this->getColumns()
-            ->filter(fn (Column $column) => $column->hasRelations())
-            ->map(fn (Column $column) => $column->getRelations())
-            ->values()
-            ->toArray();
-    }
-
-    /**
-     * @return array<mixed>
-     */
-    public function getColumnRelationStrings(): array
-    {
-        return $this->getColumns()
-            ->filter(fn (Column $column) => $column->hasRelations())
-            ->map(fn (Column $column) => $column->getRelationString())
-            ->values()
-            ->toArray();
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @return ColumnCollection<int|string,Column>
-     */
-    public function getSearchableColumns(): ColumnCollection
-    {
-        return $this->getColumns()
-            ->filter(fn (Column $column) => $column->isSearchable() || $column->hasSearchCallback());
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @return ColumnCollection<int|string, Column>
-     */
-    public function getSortableColumns(): ColumnCollection
-    {
-        return isset($this->sortableColumns) ? $this->sortableColumns : $this->sortableColumns = $this->getColumns()
-            ->filter(fn (Column $column) => ($column->isSortable() || $column->hasSortCallback()))
-            ->map(fn (Column $column) => $column->getColumnSelectName() ?? $column->getSlug())
-            ->values();
-    }
-
     public function getColumnCount(): int
     {
         return $this->getColumns()->count();
@@ -156,5 +107,88 @@ trait ColumnHelpers
         return [];
     }
 
+
+
+    /**
+     * @return array<mixed>
+     */
+    public function getColumnRelations(): array
+    {
+        return $this->getColumns()
+            ->filter(fn (Column $column) => $column->hasRelations())
+            ->map(fn (Column $column) => $column->getRelations())
+            ->values()
+            ->toArray();
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    public function getColumnRelationStrings(): array
+    {
+        return $this->getColumns()
+            ->filter(fn (Column $column) => $column->hasRelations())
+            ->map(fn (Column $column) => $column->getRelationString())
+            ->values()
+            ->toArray();
+    }
+
+    /**
+     * Get Columns That Are Searchable
+     *
+     * @return ColumnCollection<int|string,Column>
+     */
+    public function getSearchableColumns(): ColumnCollection
+    {
+        return isset($this->searchableColumns) ? $this->searchableColumns : $this->searchableColumns = $this->getColumns()->searchable();
+    }
+
+
+    /**
+     * Get Columns That Are Searchable But That Are Not Present In Query
+     *
+     * @return ColumnCollection<int|string,Column>
+     */
+    public function getSearchableSelectedColumns(): ColumnCollection
+    {
+        if($this->getExcludeDeselectedColumnsFromQuery() ?? false)
+        {
+            return $this->getSearchableColumns()->selectedSelectable($this->getSelectedColumns());
+        }
+        return $this->getSearchableColumns();
+    }
+
+    
+    /**
+     * Get Columns That Are Sortable
+     *
+     * @return ColumnCollection<int|string, Column>
+     */
+    public function getSortableColumns(): ColumnCollection
+    {
+        return isset($this->sortableColumns) ? $this->sortableColumns : $this->sortableColumns = $this->getColumns()->sortable()
+            ->map(fn (Column $column) => $column->getColumnSelectName() ?? $column->getSlug())
+            ->values();
+    }
+
+
+    /**
+     * Get Columns That Are Sortable
+     *
+     * @return ColumnCollection<int|string, Column>
+     */
+    public function getSortableSelectedColumns(): ColumnCollection
+    {
+        $sortableCols = $this->getSortableColumns();
+
+        if($this->getExcludeDeselectedColumnsFromQuery() ?? false)
+        {
+            $sortableCols = $sortableCols
+            ->selectedSelectable($this->getSelectedColumns());
+        }
+        return $sortableCols
+        ->map(fn (Column $column) => $column->getColumnSelectName() ?? $column->getSlug())
+        ->values();            
+    }
 
 }

@@ -8,10 +8,14 @@ use Rappasoft\LaravelLivewireTables\Features\Sorting\Configuration\SortingConfig
 use Rappasoft\LaravelLivewireTables\Features\Sorting\QueryString\HasQueryStringForSort;
 use Rappasoft\LaravelLivewireTables\Features\Sorting\Helpers\SortingHelpers;
 use Rappasoft\LaravelLivewireTables\Features\Sorting\Styling\HasSortingPillsStyling;
+use Rappasoft\LaravelLivewireTables\Features\Sorting\Traits\{HandlesDefaultSorts, HandlesSortingConfig, HandlesSortingStatus};
 
 trait WithSorting
 {
-    use SortingConfiguration,
+    use HandlesSortingConfig,
+        HandlesDefaultSorts,
+        HandlesSortingStatus,
+        SortingConfiguration,
         SortingHelpers,
         HasQueryStringForSort,
         HandlesSortingPills,

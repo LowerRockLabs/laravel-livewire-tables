@@ -2,7 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Features\Search\Styling;
 
-trait HasSearchInput
+trait HasSearchInputStyling
 {
     /**
      * Undocumented variable

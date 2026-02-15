@@ -13,6 +13,13 @@ trait HasDefaultStringValue
         return $this;
     }
 
+    public function setDefaultValue(string $defaultValue): self
+    {
+        $this->defaultValue = $defaultValue;
+
+        return $this;
+    }
+
     public function getDefaultValue(): string
     {
         return $this->defaultValue;

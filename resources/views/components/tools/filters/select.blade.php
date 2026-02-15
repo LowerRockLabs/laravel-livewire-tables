@@ -1,7 +1,4 @@
 @aware(['dataTableFingerprint', 'localisationPath', 'filterLayout', 'isTailwind', 'isTailwind4', 'isBootstrap', 'isBootstrap4', 'isBootstrap5', 'filterMenuResetButtonAttributes'])
-@php
-    $defaultValue = ($filter->hasFilterDefaultValue() ? $filter->getFilterDefaultValue() : null)
-@endphp
  <x-livewire-tables::tools.filters.wrapper-string :$filter :$filterInputAttributes :$filterLabelAttributes :$customLabelAttributes>
     <div @class([
         'basis-full w-full flex flex-row items-center rounded-md shadow-sm' => $isTailwind,

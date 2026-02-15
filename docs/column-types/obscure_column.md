@@ -1,6 +1,6 @@
 ---
 title: Obscure Columns
-weight: 16
+weight: 17
 ---
 
 ### Obscuring Values

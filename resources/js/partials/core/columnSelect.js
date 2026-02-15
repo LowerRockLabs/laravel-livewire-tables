@@ -8,6 +8,7 @@ function columnSelect() {
             previousCols: [],
             selectableCols: wire.entangle('columnSelectConfig.selectableColumns'),
             selectableColumnCount: wire.entangle('columnSelectConfig.selectableColumnCount'),
+            selectableSelectedColumnCount: wire.entangle('columnSelectConfig.selectableSelectedColumnCount'),
             selectedCols: wire.entangle('selectedColumns'),
             timeout: 0,
             toggleAll()
@@ -41,7 +42,9 @@ function columnSelect() {
             },
             init()
             {
+
                 this.$nextTick(() => { 
+                    
                     let preCol = wire.get('selectedColumns');
                     this.previousCols = preCol;
                 });

@@ -196,5 +196,8 @@ trait ColumnHelpers
         return $arr;
     }
 
-
+    protected function inDebugMode(): bool
+    {
+        return config('livewire-tables.debug_mode', false);
+    }
 }

@@ -17,14 +17,15 @@ trait HandlesColumnSelectDropdown
         $this->selectedColumns = $this->columnSelectConfig['selected'] = $this->columnSelectConfig['selectableColumns'] = [];
         
         foreach ($this->getSelectableColumns() as $column) {
-            $this->columnSelectConfig['selected'][] = $this->selectedColumns[] = $column->getSlug();
-            $this->columnSelectConfig['selectableColumns'][$column->getSlug()] = in_array($column->getSlug(), $this->selectedColumns, true);
+            $this->columnSelectConfig['selected'][] = $column->getSlug();
+            $this->selectedColumns[] = $column->getSlug();
+            $this->columnSelectConfig['selectableColumns'][$column->getSlug()] = in_array($column->getSlug(), $this->getSelectedColumns(), true);
         }
-        $this->pushToQueryString($this->selectedColumns);
+        $this->pushToQueryString($this->getSelectedColumns());
         $this->storeColumnSelectValues();
 
         if ($this->getEventStatusColumnSelect()) {
-            event(new ColumnsSelected($this->getTableName(), $this->getColumnSelectSessionKey(), $this->selectedColumns));
+            event(new ColumnsSelected($this->getTableName(), $this->getColumnSelectSessionKey(), $this->getSelectedColumns()));
         }
     }
 
@@ -35,17 +36,15 @@ trait HandlesColumnSelectDropdown
      */
     public function deselectAllColumns(): void
     {
-        $this->selectedColumns = [];
-        $this->columnSelectConfig['selected'] = [];
+        $this->selectedColumns = $this->columnSelectConfig['selected'] = $this->columnSelectConfig['selectableColumns'] = [];
 
-        $this->columnSelectConfig['selectableColumns'] = [];
         foreach ($this->getSelectableColumns() as $column) {
             $this->columnSelectConfig['selectableColumns'][] = $column->getSlug();
         }
-        $this->pushToQueryString($this->selectedColumns);
+        $this->pushToQueryString($this->getSelectedColumns());
         session([$this->getColumnSelectSessionKey() => []]);
         if ($this->getEventStatusColumnSelect()) {
-            event(new ColumnsSelected($this->getTableName(), $this->getColumnSelectSessionKey(), $this->selectedColumns));
+            event(new ColumnsSelected($this->getTableName(), $this->getColumnSelectSessionKey(), $this->getSelectedColumns()));
         }
     }
 

@@ -17,13 +17,13 @@ trait WithQueryString
      *
      * @var array<mixed>
      */
-    // #[Locked]
-    protected array $queryStringConfig = [
+    #[Locked]
+    public array $queryStringConfig = [
         'columns' => ['status' => false, 'alias' => null],
-        'filters' => ['status' => true, 'alias' => null],
-        'pagination' => ['status' => true, 'alias' => 'perPage'],
-        'search' => ['status' => true, 'alias' => null],
-        'sorts' => ['status' => true, 'alias' => null],
+        'filters' => ['status' => false, 'alias' => null],
+        'pagination' => ['status' => false, 'alias' => null],
+        'search' => ['status' => false, 'alias' => null],
+        'sorts' => ['status' => false, 'alias' => null],
     ];
 
     #[Locked]

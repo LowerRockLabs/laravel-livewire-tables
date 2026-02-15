@@ -1,4 +1,4 @@
-@aware(['isTailwind', 'isTailwind4', 'isBootstrap', 'currentlyReorderingStatus', 'showBulkActionsSections', 'coreTableAttributes'])
+@aware(['isTailwind', 'isTailwind4', 'isBootstrap', 'currentlyReorderingStatus', 'showBulkActionsSections', 'coreTableAttributes', 'currentRows'])
 
 <thead {{ $attributes->merge($coreTableAttributes['thead'])
                 ->class($isTailwind ? [

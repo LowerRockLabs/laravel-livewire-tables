@@ -1,4 +1,4 @@
-@props(['component', 'isTailwind' => false, 'isTailwind4' => false, 'isBootstrap' => false,'isBootstrap4' => false, 'isBootstrap5' => false, 'tableName', 'primaryKey', 'collapsingColumnDetails', 'tdAttributes', 'tdCheckboxAttributes', 'collapsingColumnButtonExpandAttributes', 'collapsingColumnButtonCollapseAttributes', 'hasCollapsingColumns', 'currentlyReorderingStatus', 'hasDisplayLoadingPlaceholder', 'coreTableAttributes', 'selectedVisibleColumns', 'showBulkActionsSections', 'showCollapsingColumnSections', 'hasTrAttributes', 'collapsingColumnInfo', 'filterGenericData', 'hasTdAttributes', 'dataTableFingerprint', 'defaultBodyTextAlign', 'sortingIsEnabled', 'columnSortConfig', 'selectedVisibleColumnsData', 'customView'])
+@props(['component', 'isTailwind' => false, 'isTailwind4' => false, 'isBootstrap' => false,'isBootstrap4' => false, 'isBootstrap5' => false, 'tableName', 'primaryKey', 'collapsingColumnDetails', 'tdAttributes', 'tdCheckboxAttributes', 'collapsingColumnButtonExpandAttributes', 'collapsingColumnButtonCollapseAttributes', 'hasCollapsingColumns', 'currentlyReorderingStatus', 'hasDisplayLoadingPlaceholder', 'coreTableAttributes', 'selectedVisibleColumns', 'showBulkActionsSections', 'showCollapsingColumnSections', 'hasTrAttributes', 'collapsingColumnInfo', 'filterGenericData', 'hasTdAttributes', 'dataTableFingerprint', 'defaultBodyTextAlign', 'sortingIsEnabled', 'columnSortConfig', 'selectedVisibleColumnsData', 'customView', 'customViewAttributes'])
 <div {{ $attributes->merge($this->getComponentWrapperAttributes()) }}>
     @includeWhen($this->debugIsEnabled(),'livewire-tables::includes.debug')
     @includeWhen($this->offlineIndicatorIsEnabled(),'livewire-tables::includes.offline')
@@ -22,10 +22,12 @@
         
     @endif
 
-        {{ $slot }}
-            <x-livewire-tables::pagination />
+    {{ $slot }}
+
+    <x-livewire-tables::pagination />
 
 
-            @includeIf($customView)
+    @includeIf($customView, $customViewAttributes)
+    @includeIf($this->getSimpleModalViewPath(), $this->getSimpleModalsViewAttribs())
 
 </div>

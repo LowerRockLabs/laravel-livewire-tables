@@ -2,10 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Features\Columns\Views;
 
-use Carbon\Carbon;
-use Carbon\CarbonImmutable;
-use DateTime;
-use DateTimeImmutable;
+use Carbon\{Carbon,CarbonImmutable};
+use DateTime, DateTimeImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;

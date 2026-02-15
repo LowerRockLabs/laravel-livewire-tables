@@ -128,5 +128,4 @@ return [
          */
         'enableUserForEvent' => true,
     ],
-
 ];

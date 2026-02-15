@@ -1,22 +1,24 @@
 @aware(['isTailwind','isTailwind4', 'isBootstrap','dataTableFingerprint', 'appliedFilters'])
 
+@php($filterMenuResetButtonAttributes = $this->getFilterMenuResetButtonAttributes())
+@php($toolsAttributes = $this->getToolsAttributes())
+
 <div {{
-    $attributes->merge($this->getToolsAttributes)->merge(['x-data' => 'tools($wire)'])
-        ->class([
-            'flex-col' => ($isTailwind && ($this->getToolsAttributes['default-styling'] ?? true)),
-            'tw4ph flex-col' => ($isTailwind4 && ($this->getToolsAttributes['default-styling'] ?? true)),
-            'd-flex flex-column' => $isBootstrap && ($this->getToolsAttributes['default-styling'] ?? true),
-        ])
+    $attributes->merge($toolsAttributes)->merge(['x-data' => 'tools($wire)'])
+        ->class(['table-toolbar-section'])
+        ->class($isTailwind ? [
+            'flex-col' => ($toolsAttributes['default-styling'] ?? true),
+        ] : [])
+        ->class($isTailwind ? [
+            'flex-col' => ($toolsAttributes['default-styling'] ?? true),
+        ] : [])
+        ->class($isBootstrap ? [
+            'd-flex flex-column' => ($toolsAttributes['default-styling'] ?? true),
+        ] : [])
         ->except(['default','default-styling','default-colors'])
     }}
 >
-    @includeWhen(!$this->showActionsInToolbar(), 'livewire-tables::includes.toolbar.items.actions', $this->getToolbarActionAttributes())
 
-    @if(!(method_exists($this, 'showSortPillsSection') ? $this->showSortPillsSection() : false) && !(method_exists($this, 'showFilterPillsSection') ? $this->showFilterPillsSection() : false))
-    <div class="">
-
-    </div>
-    @endif
 
     @if(method_exists($this, 'showSortPillsSection') ? $this->showSortPillsSection() : false)
         <x-livewire-tables::tools.sorting-pills />
@@ -26,6 +28,7 @@
         <x-livewire-tables::tools.filter-pills />
     @endif
 
+    @includeWhen(!$this->showActionsInToolbar(), 'livewire-tables::includes.toolbar.items.actions', $this->getToolbarActionAttributes())
 
 
     @includeWhen(
@@ -33,7 +36,6 @@
         $this->getConfigurableAreaFor('before-toolbar'),
         $this->getParametersForConfigurableArea('before-toolbar')
     )
-    @php($filterMenuResetButtonAttributes = $this->getFilterMenuResetButtonAttributes)
 
     @if($this->shouldShowToolBar())
         <x-livewire-tables::tools.toolbar :$filterMenuResetButtonAttributes />

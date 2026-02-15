@@ -1,6 +1,6 @@
 ---
 title: Icon Columns (beta)
-weight: 10
+weight: 11
 ---
 
 Icon columns provide a way to display icons in your table without having to use `format()` or partial views.

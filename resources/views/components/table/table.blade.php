@@ -22,10 +22,11 @@
     @if(count($selectedVisibleColumns ?? []) == 0)
         <x-livewire-tables::table.no-columns />
     @else
+        @php($currentRows = $this->getRows)
+
         <x-livewire-tables::thead />
 
 
-            @php($currentRows = $this->getRows)
 
             @if(count($currentRows) > 0)
                 @tableloop ($currentRows as $rowIndex => $row)
@@ -34,6 +35,7 @@
 
                         @tableloop($selectedVisibleColumns as $colIndex => $column)
                             @php($columnTdArray = $selectedVisibleColumnsData[$column->setIndexes($rowIndex, $colIndex)->getHash()])
+
                             <x-livewire-tables::table.td x-ref="{{ $dataTableFingerprint . '_' . $rowIndex . '_' . $colIndex }}"
                                 :$columnTdArray
                                 :customAttributes="$columnTdArray['hasTdAttributesCallback'] ? $this->getTdAttributes($column, $row, $colIndex, $rowIndex) : ['default' => true, 'default-colors' => true, 'default-styling' => true]" 

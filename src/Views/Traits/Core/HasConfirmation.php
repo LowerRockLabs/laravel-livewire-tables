@@ -22,4 +22,10 @@ trait HasConfirmation
     {
         return $this->confirmMessage;
     }
+
+    public function getConfirmMessageAttribute(): array
+    {
+        return $this->hasConfirmMessage() ? ['wire:confirm' => $this->getConfirmMessage()] : [];
+    }
+
 }

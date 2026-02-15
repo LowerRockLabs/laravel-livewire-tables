@@ -6,7 +6,7 @@ use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 use Rappasoft\LaravelLivewireTables\Features\ColumnSelect\Configuration\ColumnSelectConfiguration;
 use Rappasoft\LaravelLivewireTables\Features\ColumnSelect\Helpers\ColumnSelectHelpers;
-use Rappasoft\LaravelLivewireTables\Features\ColumnSelect\QueryString\HasQueryStringForColumnSelect;
+use Rappasoft\LaravelLivewireTables\Features\ColumnSelect\QueryString\HasColumnSelectQueryString;
 use Rappasoft\LaravelLivewireTables\Features\ColumnSelect\Styling\HasColumnSelectStyling;
 use Rappasoft\LaravelLivewireTables\Features\ColumnSelect\Traits\HasColumnSelectSessionStorage;
 use Rappasoft\LaravelLivewireTables\Features\ColumnSelect\Concerns\{HandlesColumnSelectDropdown, HandlesColumnSelectRemembering, HandlesColumnSelectStatus, HandlesColumnSelectVisibility};
@@ -21,7 +21,7 @@ trait WithColumnSelect
         ColumnSelectConfiguration,
         ColumnSelectHelpers,
         HasColumnSelectSessionStorage,
-        HasQueryStringForColumnSelect,
+        HasColumnSelectQueryString,
         HasColumnSelectStyling;
 
     /**
@@ -30,7 +30,7 @@ trait WithColumnSelect
      * @var array<mixed>
      */
     #[Locked]
-    public array $columnSelectConfig = ['setupRun' => false, 'defaultDeselectedColumnsSetup' => false, 'excludeDeselectedColumnsFromQuery' => false, 'columnSelectDelay' => 1500, 'selected' => [], 'deselected' => [], 'defaultdeselected' => [], 'selectableColumns' => [], 'selectableColumnCount' => 0, 'selectedColumnsQsData' => ''];
+    public array $columnSelectConfig = ['setupRun' => false, 'defaultDeselectedColumnsSetup' => false, 'excludeDeselectedColumnsFromQuery' => false, 'columnSelectDelay' => 1500, 'selected' => [], 'deselected' => [], 'defaultdeselected' => [], 'selectableColumns' => [], 'selectableColumnCount' => 0, 'selectableSelectedColumnCount' => 0, 'selectedColumnsQsData' => ''];
 
 
     /**
@@ -71,11 +71,13 @@ trait WithColumnSelect
 
     public function bootWithColumnSelect(): void
     {
+
     }
 
 
     public function bootedWithColumnSelect(): void
     {
+        $this->columnSelectConfig['selected'] = $this->getSelectedColumns();
     }
 
 
@@ -88,9 +90,9 @@ trait WithColumnSelect
      */
     public function updatedSelectedColumns(): void
     {
-        $this->columnSelectConfig['selected'] = $this->selectedColumns;
+        $this->columnSelectConfig['selected'] = $this->getSelectedColumns();
 
-        $this->pushToQueryString($this->selectedColumns);
+        $this->pushToQueryString($this->getSelectedColumns());
         if($this->runSelectUpdates)
         {
             $this->storeColumnSelect();
@@ -102,7 +104,7 @@ trait WithColumnSelect
         $this->storeColumnSelectValues();
 
         if ($this->getEventStatusColumnSelect()) {
-            event(new ColumnsSelected($this->getTableName(), $this->getColumnSelectSessionKey(), $this->selectedColumns));
+            event(new ColumnsSelected($this->getTableName(), $this->getColumnSelectSessionKey(), $this->getSelectedColumns()));
         }
     }
 
@@ -116,14 +118,14 @@ trait WithColumnSelect
     public function renderingWithColumnSelect(\Illuminate\View\View $view, array $data = []): void
     {
 
-        if((count($this->selectedColumns) == 0) && ($this->getUnSelectableColumns()->count() == 0))
+        if((count($this->getSelectedColumns()) == 0) && ($this->getUnSelectableColumns()->count() == 0))
         {
             $this->selectedColumns = $this->getDefaultVisibleColumns();
         }
 
-        $generateColumnSelect = $this->generateColumnSelect();
-        $this->columnSelectConfig['selectableColumns'] = $generateColumnSelect;
-        $this->columnSelectConfig['selectableColumnCount'] = count($generateColumnSelect);
+        $this->columnSelectConfig = array_merge($this->columnSelectConfig, $this->fixColumnSelectConfig());
+
+
         
         $this->selectedVisibleColumnsRaw();
         if (! $this->getComputedPropertiesStatus()) {

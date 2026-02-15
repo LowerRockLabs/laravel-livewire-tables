@@ -10,9 +10,9 @@
  <x-slot:clearButton>
         <template x-if="($wire.get('appliedFilters.{{ $filter->getKey() }}') ?? null) !== null">
             <div class="w-1/12 inline-flex items-end justify-end ">
-                <button @click="toggleStatusWithReset(); filterPopoverOpen = false;" {{ $this->getFilterMenuResetButtonAttributesBag->merge(['type' => 'button'])->class([
-                            'w-min rounded-full focus:outline-none' => $isTailwind && ($this->getFilterMenuResetButtonAttributes['default-styling'] ?? true),    
-                            'text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white' => $isTailwind && ($this->getFilterMenuResetButtonAttributes['default-colors'] ?? true),    
+                <button @click="toggleStatusWithReset(); filterPopoverOpen = false;" {{ $this->getFilterMenuResetButtonAttributesBag()->merge(['type' => 'button'])->class([
+                            'w-min rounded-full focus:outline-none' => $isTailwind && ($filterMenuResetButtonAttributes['default-styling'] ?? true),    
+                            'text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white' => $isTailwind && ($filterMenuResetButtonAttributes['default-colors'] ?? true),    
                     ])->except(['default-colors','default-styling']) 
                 }}>
                     <span class="sr-only">{{ __($localisationPath.'Remove filter option') }}</span>

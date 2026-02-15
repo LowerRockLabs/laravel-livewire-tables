@@ -1,8 +1,8 @@
 @aware([ 'dataTableFingerprint','isTailwind','isTailwind4','isBootstrap','isBootstrap4','isBootstrap5', 'localisationPath'])
 @props(['jsoned'])
 @php($columnSelectButtonAttributes = $this->getColumnSelectButtonAttributes())
-@php($columnSelectMenuAttributes = $this->getColumnSelectMenuAttributes)
-@php($columnSelectMenuOptionCheckboxAttributes = $this->getColumnSelectMenuOptionCheckboxAttributes)
+@php($columnSelectMenuAttributes = $this->getColumnSelectMenuAttributes())
+@php($columnSelectMenuOptionCheckboxAttributes = $this->getColumnSelectMenuOptionCheckboxAttributes())
 @php($selectableSelectedColumnCount = $this->getSelectableSelectedColumns()->count())
 @php($columnSelectItems = $this->generateColumnSelectItems())
 
@@ -69,7 +69,7 @@
                                 for="{{ $dataTableFingerprint }}-columnSelect-selectAll-checkbox" 
                             >
                                 <x-livewire-tables::forms.checkbox
-                                    ::checked="selectedCols.length == selectableColumnCount"
+                                    ::checked="selectableColumnCount == selectableSelectedColumnCount"
                                     id="{{ $dataTableFingerprint }}-columnSelect-selectAll-checkbox" 
                                     wire:key="{{ $dataTableFingerprint }}-columnSelect-selectAll-checkbox" 
                                     wire:target="selectedColumns"

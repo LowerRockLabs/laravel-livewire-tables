@@ -7,19 +7,15 @@
 @endphp
     
 
-<tr  {{ $this->getBulkActionsAlpine()
-        ->merge(['data-id' => "bil",
+<tr  {{ $this->getBulkActionsAlpine()->merge(['data-id' => "bil",
                 'wire:key' => $dataTableFingerprint ."-bulk-select-message",
                 'x-cloak' => ''])
-        ->class($isTailwind ? [
-            'unsortable laravel-livewire-tables-reorderingMinimised bg-indigo-50 dark:bg-gray-900 dark:text-white'
-            ] : [])
-        ->class($isTailwind4 ? [
-            'unsortable laravel-livewire-tables-reorderingMinimised bg-indigo-50 dark:bg-gray-900 dark:text-white'
-            ] : [])
-        ->class($isBootstrap ? [
-            'laravel-livewire-tables-reorderingMinimised'
-            ] : []),
+        ->class([
+            'unsortable laravel-livewire-tables-reorderingMinimised bg-indigo-50 dark:bg-gray-900 dark:text-white' => $isTailwind,
+            'tw4ph unsortable laravel-livewire-tables-reorderingMinimised bg-indigo-50 dark:bg-gray-900 dark:text-white' => $isTailwind4,
+            'laravel-livewire-tables-reorderingMinimised' => $isBootstrap,
+            '' => $isBootstrap && ($customAttributes['default'] ?? true),
+        ])
         ->except(['default','default-styling','default-colors'])
     }}
 >

@@ -7,7 +7,7 @@
     $customSortButtonAttributes = $allThAttributes['sortButtonAttributes'];
     $customLabelAttributes = $allThAttributes['labelAttributes'];
     $customIconAttributes = $allThAttributes['sortIconAttributes'];
-    $direction = $allThAttributes['direction'];
+    $direction = $allThAttributes['direction'] ?? 'none';
     $columnTitle = $allThAttributes['columnTitle'];
 @endphp
 

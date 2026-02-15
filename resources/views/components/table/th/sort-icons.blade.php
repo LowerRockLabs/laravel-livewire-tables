@@ -9,18 +9,18 @@
     @if($isTailwind || $isTailwind4)
         @switch($direction)
             @case('asc')
-                <x-livewire-tables::icons.sort.up x-cloak x-show="isAsc" />
-                <x-livewire-tables::icons.sort.down_hover x-cloak x-show="isAsc" />
+                <x-livewire-tables::icons.sort.up />
+                <x-livewire-tables::icons.sort.down_hover/>
 
             @break
             @case('desc')
-                <x-livewire-tables::icons.sort.down x-cloak x-show="isDesc" />
-                <x-livewire-tables::icons.sort.clear x-cloak x-show="isDesc" />
+                <x-livewire-tables::icons.sort.down  />
+                <x-livewire-tables::icons.sort.clear />
             @break
             @default
-            <x-livewire-tables::icons.sort.unsorted x-cloak x-show="isUnsorted" />
-            <x-livewire-tables::icons.sort.up_hover x-cloak x-show="isUnsorted" />
-        @endswitch
+                <x-livewire-tables::icons.sort.unsorted  />
+                <x-livewire-tables::icons.sort.up_hover  />
+            @endswitch
     @else
         @switch($direction)
             @case('asc')

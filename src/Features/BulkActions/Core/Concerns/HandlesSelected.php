@@ -28,7 +28,16 @@ trait HandlesSelected
      */
     public function getSelected(): array
     {
-        return $this->selected;
+        if ($this->getSelectAllStatus()) {
+            $selectedItems = (clone $this->baseQuery())->pluck($this->getBuilder()->getModel()->getTable().'.'.$this->getPrimaryKey());
+            $this->setSelected($selectedItems);
+            return $selectedItems;
+        } 
+        else
+        {
+            return $this->selected;
+        }
+
     }
 
     /**

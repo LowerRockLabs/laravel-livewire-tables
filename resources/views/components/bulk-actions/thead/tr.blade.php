@@ -5,10 +5,12 @@
             'data-id' => 'bil',
             'wire:key' => $dataTableFingerprint . "-bulk-select-message",
         ])
-        ->class([
-            'bg-indigo-50 dark:bg-gray-900 dark:text-white' => $isTailwind,
-            'tw4ph bg-indigo-50 dark:bg-gray-900 dark:text-white' => $isTailwind4,
-        ])
+        ->class($isTailwind ? [
+            'bg-indigo-50 dark:bg-gray-900 dark:text-white'
+            ] : []),
+        ->class($isTailwind4 ? [
+            'bg-indigo-50 dark:bg-gray-900 dark:text-white'
+            ] : []),
     }}
 >
     {{  $slot  }}

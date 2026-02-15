@@ -1,4 +1,4 @@
-@aware([ 'dataTableFingerprint', 'selectedVisibleColumns','showBulkActionsSections','hasCollapsingColumns', 'filterGenericData', 'currentlyReorderingStatus'])
+@aware([ 'dataTableFingerprint', 'selectedVisibleColumns','showBulkActionsSections','hasCollapsingColumns', 'filterGenericData', 'currentlyReorderingStatus', 'currentRows'])
 
 <x-livewire-tables::table.tr.plain :rowIndex="-1" data-id="tfoot"
     :customAttributes="$this->getFooterTrAttributes($currentRows)"

@@ -21,12 +21,12 @@
 >
     <x-livewire-tables::table.td.plain :colIndex="'bulkactions'" :colspan="$colspan">
             <div wire:key="{{ $dataTableFingerprint }}-selected-items">
-                <span x-cloak x-show="selectedItems.length >= paginationTotalItemCount">
+                <span x-cloak x-show="(bulkActionsAllSelected || (selectedItems.length >= paginationTotalItemCount))">
                     {{ __($localisationPath.'You are currently selecting all') }}
                     @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
                     {{ __($localisationPath.'rows') }}.
                 </span>
-                <span x-cloak x-show="selectedItems.length < paginationTotalItemCount">
+                <span x-cloak x-show="(!bulkActionsAllSelected && (selectedItems.length < paginationTotalItemCount))">
                     {{ __($localisationPath.'You have selected') }}
                     <strong><span x-text="selectedItems.length"></span></strong>
                     {{ __($localisationPath.'rows, do you want to select all') }}

@@ -185,4 +185,15 @@ trait BulkActionsHelpers
         return $this->bulkActionConfig[$key] ?? true;
     }
 
+    public function runBulkAction(string $bulkAction)
+    {
+        $possibleBulkActions = $this->bulkActions();
+        if(array_key_exists($bulkAction, $possibleBulkActions))
+        {
+            $this->{$possibleBulkActions[$bulkAction]}();
+            $this->clearSelected();
+        }
+    }
+
+
 }

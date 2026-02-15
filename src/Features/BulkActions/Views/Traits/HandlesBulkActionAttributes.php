@@ -43,7 +43,7 @@ trait HandlesBulkActionAttributes
      */
     public function getButtonAttributes(): array
     {
-        $default = ['class' => '', 'default-styling' => true, 'default-colors' => true,  'role' => 'menuitem', 'type' => 'button', 'wire:click' => "runBulkAction('".$this->action."')"];
+        $default = ['class' => '', 'default-styling' => true, 'default-colors' => true,  'role' => 'menuitem', 'type' => 'button', 'wire:click' => $this->action];
         if($this->hasConfirmationMessage())
         {
             $default['wire:confirm'] = $this->confirmationMessage;

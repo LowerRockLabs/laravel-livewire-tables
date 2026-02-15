@@ -3,10 +3,15 @@
 @php($toolbarAttributes = $this->getToolBarAttributes())
 <div {{
         $attributes->merge($toolbarAttributes)
-        ->class([
-            'md:flex md:justify-between mb-2 px-4 md:p-0' => ($isTailwind && ($toolbarAttributes['default-styling'] ?? true)),
+        ->class($isTailwind ? [
+            'md:flex md:justify-between mb-2 px-4 md:p-0' => ($toolbarAttributes['default-styling'] ?? true),
+        ]: [])
+        ->class($isTailwind4 ? [
+            'md:flex md:justify-between mb-2 px-4 md:p-0' => ($toolbarAttributes['default-styling'] ?? true),
+        ]: [])
+        ->class($isBootstrap ? [
             'd-md-flex justify-content-between mb-3' => ($isBootstrap && ($toolbarAttributes['default-styling'] ?? true)),
-        ])
+        ]: [])
         ->except(['default','default-styling','default-colors'])
     }}
 >

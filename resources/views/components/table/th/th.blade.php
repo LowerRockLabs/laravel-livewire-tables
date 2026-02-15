@@ -37,7 +37,7 @@
         @else
             
             @if ($isTailwind || $isTailwind4)
-                <button x-bind="trigger" wire:click="sortBy('{{ $allThAttributes['columnSortKey'] }}')" {{
+                <button wire:click="sortBy('{{ $allThAttributes['columnSortKey'] }}')" {{
                         $attributes->merge($customSortButtonAttributes)
                             ->class($isTailwind ? [
                                 'text-gray-500 dark:text-gray-400' => (($customSortButtonAttributes['default-colors'] ?? true) || ($customSortButtonAttributes['default'] ?? true)),

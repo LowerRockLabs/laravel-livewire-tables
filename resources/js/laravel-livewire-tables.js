@@ -10,9 +10,9 @@ import fpf from "./partials/filters/fpf.js";
 import nrF from "./partials/filters/numberRange.js";
 import bulkactionsHelper from "./partials/core/bulkactionsHelper.min.js";
 import columnSelect from "./partials/core/columnSelect.js";
+import sortIcons from "./partials/core/sortIcons.js";
 
 document.addEventListener('alpine:init', () => {
-    
     table();
     tableWrap();
     filterPills();
@@ -24,4 +24,6 @@ document.addEventListener('alpine:init', () => {
     nrF();
     bulkactionsHelper();
     columnSelect();
+    sortIcons();
+
 });

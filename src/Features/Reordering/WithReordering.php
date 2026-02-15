@@ -85,9 +85,12 @@ trait WithReordering
      */
     public array $reorderConfig = [
         'currentlyReorderingStatus' => false,
+        'defaultReorderDirection' => 'asc',
         'defaultReorderColumn' => 'sort',
-        'reorderStatus' => false,
+        'hideReorderColumnUnlessReorderingStatus' => false,
         'reorderDisplayColumn' => false,
+        'reorderMethod' => 'reorder',
+        'reorderStatus' => false,
 
     ];
 

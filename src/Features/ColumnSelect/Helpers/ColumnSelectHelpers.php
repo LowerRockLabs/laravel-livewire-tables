@@ -137,8 +137,8 @@ trait ColumnSelectHelpers
 
         if ($this->getExcludeDeselectedColumnsFromQuery()) {
             $currentSorts = $this->getSorts();
-            $cols->reject(function(Column $column) use ($currentSorts) {
-                if($column->isSelectable() && ! $this->columnSelectIsEnabledForColumn($column))
+            $cols = $cols->reject(function(Column $column) use ($currentSorts) {
+                if($column->isSelectable() && !$this->columnSelectIsEnabledForColumn($column))
                 {
                     if(!$column->isSortable())
                     {
@@ -163,6 +163,8 @@ trait ColumnSelectHelpers
                 return true;
             });
         }
+
+
 
         return $cols
             ->rejectInvisibleWhileReordering($this->currentlyReorderingIsEnabled())

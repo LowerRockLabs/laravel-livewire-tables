@@ -4,7 +4,7 @@
     $defaultValue = ($filter->hasFilterDefaultValue() ? $filter->getFilterDefaultValue() : null)
 @endphp
 
-@if($isTailwind)
+@if($isTailwind || $isTailwind4)
 
 <x-livewire-tables::tools.filters.wrapper x-data="newBooleanFilter($wire, '{{ $filter->getKey() }}', '{{ $dataTableFingerprint }}', '{{ $defaultValue }}')">
     <x-slot:label>
@@ -13,10 +13,16 @@
     <x-slot:clearButton>
         <template x-if="($wire.get('appliedFilters.{{ $filter->getKey() }}') ?? null) !== null">
             <div class="w-1/12 inline-flex items-end justify-end ">
-                <button @click="toggleStatusWithReset(); filterPopoverOpen = false;" {{ $this->getFilterMenuResetButtonAttributesBag()->merge(['type' => 'button'])->class([
-                            'w-min rounded-full focus:outline-none' => $isTailwind && ($filterMenuResetButtonAttributes['default-styling'] ?? true),    
-                            'text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white' => $isTailwind && ($filterMenuResetButtonAttributes['default-colors'] ?? true),    
-                    ])->except(['default-colors','default-styling']) 
+                <button @click="toggleStatusWithReset(); filterPopoverOpen = false;" {{ $this->getFilterMenuResetButtonAttributesBag()->merge(['type' => 'button'])
+                    ->class($isTailwind ? [
+                            'w-min rounded-full focus:outline-none' => ($filterMenuResetButtonAttributes['default-styling'] ?? true),    
+                            'text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white' => ($filterMenuResetButtonAttributes['default-colors'] ?? true),    
+                    ] : [])
+                    ->class($isTailwind4 ? [
+                            'w-min rounded-full focus:outline-none' => ($filterMenuResetButtonAttributes['default-styling'] ?? true),    
+                            'text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white' => ($filterMenuResetButtonAttributes['default-colors'] ?? true),    
+                    ] : [])
+                    ->except(['default-colors','default-styling']) 
                 }}>
                     <span class="sr-only">{{ __($localisationPath.'Remove filter option') }}</span>
                     <x-heroicon-m-x-mark class="h-6 w-6" />
@@ -34,10 +40,12 @@
             <button x-cloak {{ $filterInputAttributes->merge([
                         ":class" => "(value == 1 || value == true) ? '".$filterInputAttributes['activeColor']."' : '".$filterInputAttributes['inactiveColor']."'",
                     ])
-                    ->class([
-                        'relative inline-flex h-6 py-0.5  focus:outline-none rounded-full w-10' => $isTailwind && ($filterInputAttributes['default-styling'] ?? true),
-                        'tw4ph relative inline-flex h-6 py-0.5 focus:outline-none rounded-full w-10' => $isTailwind4 && ($filterInputAttributes['default-styling'] ?? true),
-                    ])
+                    ->class($isTailwind ? [
+                        'relative inline-flex h-6 py-0.5  focus:outline-none rounded-full w-10' => ($filterInputAttributes['default-styling'] ?? true),
+                    ] : [])
+                    ->class($isTailwind4 ? [
+                        'relative inline-flex h-6 py-0.5 focus:outline-none rounded-full w-10' => ($filterInputAttributes['default-styling'] ?? true),
+                    ] : [])
                     ->except(['default-styling','default-colors','activeColor','inactiveColor','blobColor'])
                 }}>
                 <span :class="(value == 1 || value == true) ? 'translate-x-[18px]' : 'translate-x-0.5'" 

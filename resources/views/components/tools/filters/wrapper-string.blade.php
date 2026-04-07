@@ -10,10 +10,17 @@
  <x-slot:clearButton>
         <template x-if="($wire.get('appliedFilters.{{ $filter->getKey() }}') ?? null) !== null">
             <div class="w-1/12 inline-flex items-end justify-end ">
-                <button @click="toggleStatusWithReset(); filterPopoverOpen = false;" {{ $this->getFilterMenuResetButtonAttributesBag()->merge(['type' => 'button'])->class([
-                            'w-min rounded-full focus:outline-none' => $isTailwind && ($filterMenuResetButtonAttributes['default-styling'] ?? true),    
-                            'text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white' => $isTailwind && ($filterMenuResetButtonAttributes['default-colors'] ?? true),    
-                    ])->except(['default-colors','default-styling']) 
+                <button @click="toggleStatusWithReset(); filterPopoverOpen = false;" 
+                    {{ $this->getFilterMenuResetButtonAttributesBag()->merge(['type' => 'button'])
+                    ->class($isTailwind ? [
+                        'w-min rounded-full focus:outline-none' => ($filterMenuResetButtonAttributes['default-styling'] ?? true),    
+                        'text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white' => ($filterMenuResetButtonAttributes['default-colors'] ?? true),
+                    ] : [])
+                    ->class($isTailwind4 ? [
+                        'w-min rounded-full focus:outline-none' => ($filterMenuResetButtonAttributes['default-styling'] ?? true),    
+                        'text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white' => ($filterMenuResetButtonAttributes['default-colors'] ?? true),
+                    ] : [])
+                    ->except(['default-colors','default-styling']) 
                 }}>
                     <span class="sr-only">{{ __($localisationPath.'Remove filter option') }}</span>
                     <x-heroicon-m-x-mark class="h-6 w-6" />
@@ -30,13 +37,20 @@
     @if ($slot->isEmpty())
         <input {!! $filter->getWireMethod('appliedFilters.'.$filter->getKey()) !!} {{ 
                 $filterInputAttributes->merge()
-                ->class([
-                    'block w-full rounded-md shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50' => ($isTailwind && ($filterInputAttributes['default-styling'] ?? true)),
-                    'border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-800 dark:text-white dark:border-gray-600' => ($isTailwind && ($filterInputAttributes['default-colors'] ?? true)),
-                    'tw4ph block w-full rounded-md shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50' => ($isTailwind4 && ($filterInputAttributes['default-styling'] ?? true)),
-                    'tw4ph border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-800 dark:text-white dark:border-gray-600' => ($isTailwind4 && ($filterInputAttributes['default-colors'] ?? true)),
-                    'form-control' => ($isBootstrap),
-                ])
+                ->class($isTailwind ? [
+                    'block w-full rounded-md shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50' => ($filterInputAttributes['default-styling'] ?? true),
+                    'border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-800 dark:text-white dark:border-gray-600' => ($filterInputAttributes['default-colors'] ?? true),
+                    ] : [])
+                ->class($isTailwind4 ? [
+                    'block w-full rounded-md shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50' => ($filterInputAttributes['default-styling'] ?? true),
+                    'border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-800 dark:text-white dark:border-gray-600' => ($filterInputAttributes['default-colors'] ?? true),
+                    ] : [])
+                ->class($isBootstrap4 ? [
+                    'form-control' => ($filterInputAttributes['default-styling'] ?? true),
+                ] : [])
+                ->class($isBootstrap5 ? [
+                    'form-select' => ($filterInputAttributes['default-styling'] ?? true),
+                ] : [])
                 ->except(['default-styling','default-colors']) 
             }} />
     @else

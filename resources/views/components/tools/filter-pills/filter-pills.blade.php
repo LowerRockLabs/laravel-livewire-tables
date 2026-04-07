@@ -1,15 +1,18 @@
 @aware([ 'dataTableFingerprint','isTailwind','isTailwind4','isBootstrap','isBootstrap4','isBootstrap5', 'localisationPath'])
 
 <div {{ $attributes->merge([
-    'wire:loading.class' => $this->displayFilterPillsWhileLoading() ? '' : 'invisible',
-    'x-cloak',
-])
-->class([
-    'mb-4 px-4 md:p-0' => $isTailwind,
-    'tw4ph mb-4 px-4 md:p-0' => $isTailwind4,
-    'mb-3' => $isBootstrap,
-])
-
+        'wire:loading.class' => $this->displayFilterPillsWhileLoading() ? '' : 'invisible',
+        'x-cloak',
+    ])
+    ->class($isTailwind ? [
+        'mb-4 px-4 md:p-0',
+        ] : [])
+    ->class($isTailwind4 ? [
+        'mb-4 px-4 md:p-0',
+        ] : [])
+    ->class($isBootstrap ? [
+        'mb-3',
+        ] : [])
 }}>
 
 

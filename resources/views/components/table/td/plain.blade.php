@@ -4,7 +4,7 @@
 <td  {{ $attributes
     ->merge($customAttributes)
     ->merge([
-        'x-cloak' => $isTailwind || $isTailwind4
+        'x-cloak' => ($isTailwind || $isTailwind4)
     ])
     ->class($isTailwind ? [
         'whitespace-wrap' => (!$wrapText && $isHtml) && ($customAttributes['default-styling'] ?? true),

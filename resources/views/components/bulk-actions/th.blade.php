@@ -14,13 +14,17 @@
     >
         <input {{
                 $attributes->merge($bulkActionsThCheckboxAttributes)
-                ->class([
-                    'border-gray-300 text-indigo-600 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600' => $isTailwind && ($bulkActionsThCheckboxAttributes['default-colors'] ?? ($bulkActionsThCheckboxAttributes['default'] ?? true)),
-                    'rounded shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50 ' => $isTailwind && ($bulkActionsThCheckboxAttributes['default-styling'] ?? ($bulkActionsThCheckboxAttributes['default'] ?? true)),
-                    'tw4ph border-gray-300 text-indigo-600 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600' => $isTailwind4 && ($bulkActionsThCheckboxAttributes['default-colors'] ?? ($bulkActionsThCheckboxAttributes['default'] ?? true)),
-                    'tw4ph rounded shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50 ' => $isTailwind4 && ($bulkActionsThCheckboxAttributes['default-styling'] ?? ($bulkActionsThCheckboxAttributes['default'] ?? true)),
-                    'form-check-input' => $isBootstrap && ($bulkActionsThCheckboxAttributes['default-styling'] ?? ($bulkActionsThCheckboxAttributes['default'] ?? true)),
-                ])
+                ->class($isTailwind ? [
+                    'border-gray-300 text-indigo-600 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600' => ($bulkActionsThCheckboxAttributes['default-colors'] ?? ($bulkActionsThCheckboxAttributes['default'] ?? true)),
+                    'rounded shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50 ' => ($bulkActionsThCheckboxAttributes['default-styling'] ?? ($bulkActionsThCheckboxAttributes['default'] ?? true)),
+                    ] : []),
+                ->class($isTailwind4 ? [
+                    'border-gray-300 text-indigo-600 focus:border-indigo-300 focus:ring-indigo-200 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600' =>($bulkActionsThCheckboxAttributes['default-colors'] ?? ($bulkActionsThCheckboxAttributes['default'] ?? true)),
+                    'rounded shadow-sm transition duration-150 ease-in-out focus:ring focus:ring-opacity-50' => ($bulkActionsThCheckboxAttributes['default-styling'] ?? ($bulkActionsThCheckboxAttributes['default'] ?? true)),
+                    ] : []),
+                ->class($isBootstrap ? [
+                    'form-check-input' => ($bulkActionsThCheckboxAttributes['default-styling'] ?? ($bulkActionsThCheckboxAttributes['default'] ?? true)),
+                    ] : [])
                 ->except(['default','default-styling','default-colors'])
             }}
         />
